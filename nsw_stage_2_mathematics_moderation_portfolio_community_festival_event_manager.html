@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Festival Event Manager | NSW Stage 2 Mathematics Moderation Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts for authentic student handwriting, teacher annotations, and clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gaegu:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            student: ['"Patrick Hand"', 'cursive'],
+            studentYoung: ['Gaegu', 'cursive'],
+            teacher: ['Caveat', 'cursive'],
+            school: ['"Comic Neue"', 'cursive']
+          },
+          colors: {
+            nswNavy: '#002B49',
+            nswBlue: '#005999',
+            nswLightBlue: '#E6F0F8',
+            nswRed: '#C9242B',
+            teacherRed: '#D62828',
+            teacherGreen: '#1A7A44',
+            stickyYellow: '#FFF9C4',
+            stickyPink: '#FFE4E6',
+            stickyBlue: '#E0F2FE',
+            stickyGreen: '#DCFCE7',
+            stickyPurple: '#F3E8FF'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 10mm authentic Stage 2 school exercise book grid paper */
+    .exercise-book-grid {
+      background-color: #FFFFFF;
+      background-image: 
+        linear-gradient(rgba(180, 210, 235, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180, 210, 235, 0.45) 1px, transparent 1px);
+      background-size: 20px 20px;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Red exercise book margin line */
+    .margin-line {
+      border-left: 2.5px solid #F87171;
+    }
+
+    /* Tactile washi tape effect for portfolio artefacts */
+    .washi-tape {
+      background: rgba(254, 240, 138, 0.9);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      transform: rotate(-1.2deg);
+    }
+
+    /* Sticky note tactile elevation and hover dynamics */
+    .sticky-note {
+      box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.12), -1px 2px 4px rgba(0, 0, 0, 0.05);
+      transform: rotate(0.8deg);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+      box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.16);
+    }
+
+    /* Blind Moderation Mode: hides teacher markings and annotations for stage calibration */
+    .hide-annotations .teacher-mark,
+    .hide-annotations .sticky-note,
+    .hide-annotations .teacher-comment,
+    .hide-annotations .teacher-banner,
+    .hide-annotations .teacher-check,
+    .hide-annotations .grade-badge {
+      display: none !important;
+    }
+
+    .tab-btn.active {
+      background-color: #002B49;
+      color: #FFFFFF;
+      border-color: #002B49;
+      box-shadow: 0 2px 4px rgba(0, 43, 73, 0.2);
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      .tab-content {
+        display: block !important;
+        page-break-after: always;
+      }
+      body {
+        background: white;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-16 antialiased">
+
+  <header class="bg-nswNavy text-white border-b-4 border-nswBlue sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-white text-nswNavy font-black text-xs px-2.5 py-1 rounded tracking-wider uppercase shadow-sm">
+          NESA K–10 (2022)
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight">Community Festival Event Manager</h1>
+          <p class="text-xs text-sky-200">Stage 2 (Year 4) Moderation Portfolio &bull; Additive &amp; Multiplicative Relations &bull; Term 4, Weeks 1–2</p>
+        </div>
+      </div>
+
+      <!-- Moderation Controls -->
+      <div class="flex items-center gap-2.5 no-print">
+        <button id="toggleAnnotationsBtn" onclick="toggleAnnotations()" class="text-xs font-semibold bg-sky-800 hover:bg-sky-700 active:bg-sky-900 text-white px-3.5 py-1.5 rounded-md border border-sky-600 transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+          <span id="annotationBtnText">Hide Teacher Marks (Blind Moderation)</span>
+        </button>
+        <button onclick="window.print()" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-white px-3 py-1.5 rounded-md border border-slate-600 transition flex items-center gap-1">
+          <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          Print
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6">
+
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-6">
+      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+            Rich Summative Task Extracted
+          </span>
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">
+            Plan the Ultimate Class Stalls (Learning Sequence 6)
+          </h2>
+        </div>
+        <div class="text-xs bg-indigo-50 text-indigo-900 border border-indigo-200 px-3 py-1 rounded font-medium">
+          <strong>NSW Stage 2 Common Grade Scale:</strong> Grade A (Extensive), B (Thorough), C (Sound), D (Basic), &amp; E (Elementary)
+        </div>
+      </div>
+
+      <!-- Task Scenario Description -->
+      <div class="p-6 border-b border-slate-100 bg-gradient-to-r from-emerald-50/40 via-white to-sky-50/40">
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+          <strong>Scenario:</strong> <em>"You are the Event Manager for the School Community Festival! You have a total budget of <strong>$100</strong> to buy supplies for <strong>4 Activity Stations</strong>. Every station must receive an <strong>equal share</strong> of prize items without leftovers. Select package combinations, calculate costs using multiplication, sum total spend with addition, calculate remaining change from $100 using subtraction, and use division to distribute items equally. Then tackle the Committee's Emergency Update!"</em>
+        </p>
+      </div>
+
+      <!-- Catalogue and Core Criteria Grid -->
+      <div class="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs text-slate-700">
+        <!-- Catalogue Box -->
+        <div class="p-3.5 bg-amber-50/80 rounded-lg border border-amber-200 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-amber-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-amber-600 text-white inline-flex items-center justify-center text-[10px] font-bold">★</span>
+              Official Festival Catalogue
+            </div>
+            <ul class="text-slate-700 space-y-1 mt-1 font-mono text-[11px]">
+              <li>&bull; Token Packs (Pack of 5) : <strong>$10</strong></li>
+              <li>&bull; Craft Kits (Pack of 4) : <strong>$12</strong></li>
+              <li>&bull; Sports Balls (Pack of 2) : <strong>$8</strong></li>
+              <li>&bull; Healthy Snack Boxes (Box of 6) : <strong>$15</strong></li>
+            </ul>
+          </div>
+          <span class="text-[10px] font-mono text-amber-900 bg-white px-2 py-0.5 rounded border border-amber-300 self-start mt-2">Price &amp; Quantity Rates</span>
+        </div>
+
+        <div class="p-3.5 bg-sky-50/70 rounded-lg border border-sky-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-sky-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-sky-700 text-white inline-flex items-center justify-center text-[10px] font-bold">1</span>
+              Multiply Package Costs
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Multiply number of packages by price per package. Record matching multiplication number sentences.</p>
+          </div>
+          <span class="text-[10px] font-mono text-sky-800 bg-white px-2 py-0.5 rounded border border-sky-200 self-start">MA2-MR-02 &bull; Rates</span>
+        </div>
+
+        <div class="p-3.5 bg-emerald-50/70 rounded-lg border border-emerald-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-emerald-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-700 text-white inline-flex items-center justify-center text-[10px] font-bold">2</span>
+              Budget, Total &amp; Change
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Add item costs to find total spend. Use estimation to check validity. Subtract from $100 budget to find change.</p>
+          </div>
+          <span class="text-[10px] font-mono text-emerald-800 bg-white px-2 py-0.5 rounded border border-emerald-200 self-start">MA2-AR-02 &bull; Estimation</span>
+        </div>
+
+        <div class="p-3.5 bg-purple-50/70 rounded-lg border border-purple-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-purple-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-purple-700 text-white inline-flex items-center justify-center text-[10px] font-bold">3</span>
+              Fair Shares Division
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Calculate total items bought. Use division to distribute items equally across 4 stations with 0 remainder.</p>
+          </div>
+          <span class="text-[10px] font-mono text-purple-800 bg-white px-2 py-0.5 rounded border border-purple-200 self-start">MA2-MR-02 &bull; Sharing</span>
+        </div>
+      </div>
+      
+      <!-- Challenge Prompt Notice -->
+      <div class="bg-indigo-50/80 px-6 py-2.5 border-t border-indigo-100 text-xs text-indigo-950 flex items-center gap-2">
+        <span class="font-bold uppercase tracking-wider text-[10px] bg-indigo-200 text-indigo-900 px-2 py-0.5 rounded">Emergency Update</span>
+        <span>The festival committee has reduced your budget to <strong>$80</strong>, but now there are <strong>5 Activity Stations</strong> instead of 4! Adjust purchases, prove total spend $\le \$80$, and ensure equal division among 5 stations.</span>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
+      <button onclick="switchTab('gradeA')" id="tab-gradeA" class="tab-btn active px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+        Grade A (Extensive) — Ananya
+      </button>
+      <button onclick="switchTab('gradeB')" id="tab-gradeB" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+        Grade B (Thorough) — Liam
+      </button>
+      <button onclick="switchTab('gradeC')" id="tab-gradeC" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+        Grade C (Sound) — Sophie
+      </button>
+      <button onclick="switchTab('gradeD')" id="tab-gradeD" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+        Grade D (Basic) — Cooper
+      </button>
+      <button onclick="switchTab('gradeE')" id="tab-gradeE" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+        Grade E (Elementary) — Jayden
+      </button>
+      <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+        Calibration Matrix
+      </button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: GRADE A (EXTENSIVE) — ANANYA                                       -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeA" class="tab-content block">
+      <div class="bg-purple-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-purple-500 text-purple-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade A &bull; Extensive Knowledge &amp; Very High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Ananya M. &bull; Year 4 (Term 4)</h3>
+          <p class="text-xs text-purple-200">Autonomous algebraic and operational reasoning, multi-step compensation strategies, fluent adaptation to emergency constraints.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-purple-300">GRADE A</div>
+          <div class="text-xs text-purple-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Ananya M.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">22 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Outstanding Relational Reasoning &amp; Strategy Audit</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Student Work (7 cols) -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Step 1 & 2: Budgeting Table & Cost Calculations -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Phase 1: Package Selection &amp; Cost Computation ($100 Budget, 4 Stations)
+              </div>
+
+              <div class="mt-3 overflow-x-auto">
+                <table class="w-full text-xs text-left border-collapse font-sans">
+                  <thead>
+                    <tr class="bg-slate-100 text-slate-700 border-b">
+                      <th class="p-2">Item Chosen</th>
+                      <th class="p-2">Packs</th>
+                      <th class="p-2">Multiplication Cost</th>
+                      <th class="p-2">Total Items Formula</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 text-slate-800 font-student text-base">
+                    <tr>
+                      <td class="p-2 font-sans text-xs">Craft Kits ($12 / pack of 4)</td>
+                      <td class="p-2">4 packs</td>
+                      <td class="p-2 text-blue-800">$4 \times \$12 = \$48$</td>
+                      <td class="p-2 text-emerald-800">$4 \text{ packs} \times 4\text{ items} = 16\text{ kits}$</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-sans text-xs">Sports Balls ($8 / pack of 2)</td>
+                      <td class="p-2">2 packs</td>
+                      <td class="p-2 text-blue-800">$2 \times \$8 = \$16$</td>
+                      <td class="p-2 text-emerald-800">$2 \text{ packs} \times 2\text{ items} = 4\text{ balls}$</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-sans text-xs">Healthy Snacks ($15 / box of 6)</td>
+                      <td class="p-2">2 boxes</td>
+                      <td class="p-2 text-blue-800">$2 \times \$15 = \$30$</td>
+                      <td class="p-2 text-emerald-800">$2 \text{ boxes} \times 6\text{ items} = 12\text{ snacks}$</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Additive Total & Change Strategy -->
+              <div class="mt-4 p-3 bg-purple-50 rounded border border-purple-200 font-student text-base text-slate-800 space-y-2">
+                <div>
+                  <strong class="font-sans text-xs text-purple-950 block">Mental Addition &amp; Pre-Estimation Audit:</strong>
+                  <em>"Estimation Benchmark: Rounding $48 \approx \$50$, $16 \approx \$15$, and $\$30$. Estimated spend = $50 + 15 + 30 = \$95$, which is well under our $100 budget."</em><br>
+                  <strong>Exact Spend Sentence:</strong> $\$48 + \$16 + \$30 = (\$48 + \$16) + \$30 = \$64 + \$30 = \mathbf{\$94}$.
+                </div>
+                <div>
+                  <strong class="font-sans text-xs text-purple-950 block">Efficient Change Strategy (Compensation vs Vertical Trading):</strong>
+                  <em>"Instead of trading zeros vertically ($100 - 94$), I used constant difference and compensation: $100 - 90 = 10$, then $10 - 4 = \mathbf{\$6\text{ change remaining}}$. This avoids subtraction regrouping errors across zeroes!"</em>
+                </div>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-3xl font-black">
+                &#10003; <span class="text-sm">Flawless mental computation</span>
+              </div>
+            </div>
+
+            <!-- Step 3: Equal Sharing Division & Fair Shares -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Phase 2: Total Quantity Verification &amp; Equal Sharing
+              </div>
+
+              <div class="mt-3 space-y-2 font-student text-base text-slate-800">
+                <p><strong>Total Item Count:</strong> $16\text{ (craft)} + 4\text{ (balls)} + 12\text{ (snacks)} = \mathbf{32\text{ total prize items}}$.</p>
+                <div class="p-2.5 bg-emerald-50 rounded border border-emerald-200 font-sans text-xs text-emerald-950">
+                  <strong>Division &amp; Sharing Sentence:</strong> $32 \div 4 = 8\text{ items per Activity Station (0 remainder)}$.<br>
+                  <em>Inverse Verification:</em> $8 \times 4 = 32 \iff 32 \div 4 = 8$.<br>
+                  <strong>Internal Equal Distribution:</strong> Every single station receives exactly <strong>4 Craft Kits</strong> ($16 \div 4 = 4$), <strong>1 Sports Ball</strong> ($4 \div 4 = 1$), and <strong>3 Snack Packs</strong> ($12 \div 4 = 3$). $4 + 1 + 3 = 8$ items each!
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Challenge Prompt (Emergency Update) -->
+            <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-lg border-2 border-purple-300 shadow-sm relative">
+              <div class="absolute -top-3 left-4 bg-purple-700 text-white px-3 py-0.5 text-xs font-bold rounded shadow-sm">
+                Manager's Emergency Update ($80 Budget &bull; 5 Activity Stations)
+              </div>
+
+              <div class="mt-3 space-y-3 font-student text-sm text-slate-800">
+                <div class="bg-white p-3 rounded border border-purple-200 leading-relaxed font-sans text-xs text-slate-700">
+                  <strong class="text-purple-950 block mb-1 font-student text-base">Ananya's Multiplicative Relational Solution:</strong>
+                  "With 5 stations, the total number of items <em>must</em> be a multiple of 5 so there are no remainders. I analyzed the catalogue rates:
+                  <ul class="list-disc list-inside mt-1 space-y-1">
+                    <li>Token Packs come in packs of 5 ($1 \times 5 = 5$ items, $\$10$). Any multiple of these is already divisible by 5.</li>
+                    <li>Sports Balls come in packs of 2 ($2\text{ items}, \$8$). To make a multiple of 5 items, I need 5 packs: $5 \times 2 = 10\text{ balls}$ ($5 \times \$8 = \$40$).</li>
+                  </ul>
+                  <strong>New Purchase Order:</strong><br>
+                  &bull; 3 Token Packs: $3 \times \$10 = \mathbf{\$30}$ (gives $3 \times 5 = 15\text{ tokens}$)<br>
+                  &bull; 5 Sports Ball Packs: $5 \times \$8 = \mathbf{\$40}$ (gives $5 \times 2 = 10\text{ balls}$)<br>
+                  <strong>Budget Balance:</strong> Total spend = $\$30 + \$40 = \mathbf{\$70}$, which is comfortably under the new $\$80$ limit! Change = $\$80 - \$70 = \mathbf{\$10}$.<br>
+                  <strong>Fair Distribution:</strong> Total items = $15 + 10 = \mathbf{25\text{ items}}$.<br>
+                  Number sentence: $\mathbf{25 \div 5 = 5\text{ items per station}}$ (Each station receives 3 tokens and 2 sports balls)."
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Teacher Evidence Column (5 cols) -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Sticky Note Running Record -->
+            <div class="sticky-note bg-stickyPurple p-5 rounded-md border-t-8 border-purple-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-purple-300 pb-1 font-bold text-purple-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-purple-200 px-2 py-0.5 rounded text-purple-900 font-mono">22/10/26 10:15 AM</span>
+              </div>
+              <p class="mb-2">
+                "Ananya demonstrated exceptional mathematical flexibility. When deciding her purchases, she set up an equality condition: <span class="text-purple-900 font-bold">'Total items must be $4 \times n \le 100$'</span>."
+              </p>
+              <p>
+                "She solved the Emergency Update autonomously. Rather than using guess-and-check, she reasoned algebraically about divisibility by 5 and common multiples."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mr. Davis (Year 4)</div>
+            </div>
+
+            <!-- Scribing Card -->
+            <div class="bg-white rounded-lg p-4 border-2 border-purple-200 shadow-sm">
+              <div class="flex items-center gap-2 mb-2 pb-1 border-b border-purple-100">
+                <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+                <span class="text-xs font-bold uppercase tracking-wide text-purple-900">Teacher Scribing (Verbatim Dialogue)</span>
+              </div>
+              <div class="text-xs space-y-2 text-slate-700 leading-relaxed font-sans">
+                <p><strong>Teacher:</strong> "Why did you choose constant difference to find your change instead of standard vertical subtraction?"</p>
+                <p class="bg-purple-50 p-2.5 rounded italic text-purple-950 font-school">
+                  "Because when you have 100, you have to trade from the hundreds into the tens and then into the ones. That creates two regrouping steps where slips happen. By counting up or using $100 - 90 = 10$, then $10 - 4 = 6$, I decompose the problem mentally with zero trades!"
+                </p>
+              </div>
+            </div>
+
+            <!-- Syllabus Mapping Card -->
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200 text-xs space-y-2">
+              <span class="font-bold text-slate-900 uppercase tracking-wide block border-b pb-1">Syllabus Demonstration:</span>
+              <p><strong>MA2-AR-02:</strong> Flexibly selects efficient mental strategies (compensation, bridging) for money and change; uses estimation to check reasonableness.</p>
+              <p><strong>MA2-MR-02:</strong> Completes multi-step number sentences involving rate multiplication and equal sharing division; fluently applies inverse relations.</p>
+              <p><strong>MAO-WM-01:</strong> Generalises multiplicative relationships across unfamiliar constraints ($80 budget, 5 stations); justifies decisions coherently.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Grade A Moderation Rationale -->
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-purple-400 bg-purple-50/60 rounded-xl p-6">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <h4 class="text-sm font-black uppercase tracking-wider text-purple-950 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-700"></span>
+              NESA Moderation Rationale: Grade A (Extensive)
+            </h4>
+            <span class="text-xs font-semibold bg-purple-200 text-purple-900 px-2.5 py-1 rounded">
+              Extensive Knowledge &bull; Transfer to Novel Situations
+            </span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed mb-3">
+            Ananya demonstrates <strong>extensive knowledge and understanding</strong> by readily applying additive and multiplicative concepts to both familiar and unfamiliar situations. She evaluates the efficiency of computational methods, connects multiplication and division inverse operations, and articulates algebraic structures. When faced with the novel emergency update ($80 budget, 5 stations), she immediately leverages divisibility rules and common multiples to formulate an optimal solution without prompting.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: GRADE B (THOROUGH) — LIAM                                          -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeB" class="tab-content hidden">
+      <div class="bg-emerald-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-emerald-500 text-emerald-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade B &bull; Thorough Knowledge &amp; High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Liam D. &bull; Year 4 (Term 4)</h3>
+          <p class="text-xs text-emerald-200">Applies concepts accurately in familiar tasks, clear mental jump addition, structured division with inverse check, sound challenge solution.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-emerald-300">GRADE B</div>
+          <div class="text-xs text-emerald-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Liam D.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">22 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Thorough Work Verified</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Purchases & Multiplication -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Liam's Event Plan ($100 Budget &bull; 4 Stations)
+              </div>
+              <div class="mt-3 space-y-2 font-student text-base text-slate-800">
+                <p>&bull; <strong>Token Packs:</strong> 2 packs $\times \$10 = \mathbf{\$20}$ &bull; Items: $2 \times 5 = \mathbf{10\text{ tokens}}$.</p>
+                <p>&bull; <strong>Craft Kits:</strong> 2 packs $\times \$12 = \mathbf{\$24}$ &bull; Items: $2 \times 4 = \mathbf{8\text{ craft kits}}$.</p>
+                <p>&bull; <strong>Healthy Snack Boxes:</strong> 2 boxes $\times \$15 = \mathbf{\$30}$ &bull; Items: $2 \times 6 = \mathbf{12\text{ snacks}}$.</p>
+                <p>&bull; <strong>Sports Balls:</strong> 1 pack $\times \$8 = \mathbf{\$8}$ &bull; Items: $1 \times 2 = \mathbf{2\text{ balls}}$.</p>
+                
+                <div class="bg-emerald-50 p-2.5 rounded border border-emerald-200 text-xs font-sans mt-3">
+                  <strong>Total Spend Calculation:</strong> $\$20 + \$24 + \$30 + \$8 = \mathbf{\$82}$.<br>
+                  <em>Estimation Check:</em> "I estimated $\$20 + \$25 + \$30 + \$10 = \$85$, which showed my exact total of $\$82$ was correct."<br>
+                  <strong>Change from $100:</strong> $\$100 - \$82 = \mathbf{\$18\text{ change}}$ (used jump: $100 - 80 = 20, 20 - 2 = 18$).
+                </div>
+              </div>
+            </div>
+
+            <!-- Division & Fair Sharing -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-student text-base text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-slate-900 block mb-1">Equal Sharing across 4 Stations:</span>
+              <p>Total Items = $10 + 8 + 12 + 2 = \mathbf{32\text{ items in total}}$.</p>
+              <p><strong>Division Sentence:</strong> $32 \div 4 = \mathbf{8\text{ items each}}$.</p>
+              <p><em>Check:</em> $8 \times 4 = 32$. There are 0 leftover items.</p>
+            </div>
+
+            <!-- Challenge Attempt -->
+            <div class="bg-emerald-50/80 p-4 rounded-lg border border-emerald-200 text-xs font-sans text-slate-800">
+              <strong class="font-bold text-emerald-950 block mb-1">Challenge Prompt Attempt ($80 Budget, 5 Stations):</strong>
+              "To share fairly between 5 stations, the total items must end in 0 or 5.
+              I bought:
+              3 Token Packs ($3 \times \$10 = \$30$, gives $3 \times 5 = 15$ items) and
+              5 Sports Ball Packs ($5 \times \$8 = \$40$, gives $5 \times 2 = 10$ items).
+              Total items: $15 + 10 = \mathbf{25\text{ items}}$.
+              Sharing: $25 \div 5 = \mathbf{5\text{ items per station}}$.
+              Total spend: $\$30 + \$40 = \mathbf{\$70}$. Change: $\$80 - \$70 = \mathbf{\$10}$."
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyGreen p-5 rounded-md border-t-8 border-emerald-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-emerald-300 pb-1 font-bold text-emerald-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-emerald-200 px-2 py-0.5 rounded text-emerald-900 font-mono">22/10/26 10:45 AM</span>
+              </div>
+              <p class="mb-2">
+                "Liam demonstrated thorough mathematical understanding. He accurately carried out rate multiplication for packages and verified his totals with estimation."
+              </p>
+              <p>
+                "Successfully completed the emergency update by testing numbers that fit 5 stations without remainder."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mr. Davis</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-emerald-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-emerald-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Response:</span>
+              <p class="italic text-slate-700 font-school bg-emerald-50 p-2 rounded">
+                "Teacher: How did you know 32 items could be shared equally? Liam: 32 is in the 4 times tables because $4 \times 8 = 32$. So each station gets 8 items exactly."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-emerald-400 bg-emerald-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 mb-2">NESA Moderation Rationale: Grade B (Thorough)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Liam demonstrates <strong>thorough knowledge and understanding</strong> of additive and multiplicative relations in familiar situations. He accurately records multiplication sentences for multi-item packages, uses jump strategies to calculate change, checks calculations with estimation, and applies division to share quantities equally. In the challenge task, he methodically adjusts purchases to meet the new 5-station requirement.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: GRADE C (SOUND) — SOPHIE                                           -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeC" class="tab-content hidden">
+      <div class="bg-blue-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-blue-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade C &bull; Sound Knowledge &amp; Adequate Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Sophie K. &bull; Year 4 (Term 4)</h3>
+          <p class="text-xs text-blue-200">Demonstrates taught routines in familiar tasks, vertical addition algorithm with trading, equal sharing with circle groupings, partial challenge attempt.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-blue-300">GRADE C</div>
+          <div class="text-xs text-blue-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Sophie K.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">22 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Sound Competence Verified</span>
+            <span class="text-2xl">&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Sophie's Stall Plan ($100 Budget)
+              </div>
+              <div class="mt-3 space-y-2 font-student text-base text-slate-800">
+                <p>&bull; 4 Token Packs: $4 \times \$10 = \mathbf{\$40}$ ($4 \times 5 = \mathbf{20\text{ tokens}}$)</p>
+                <p>&bull; 2 Craft Kits: $2 \times \$12 = \mathbf{\$24}$ ($2 \times 4 = \mathbf{8\text{ craft kits}}$)</p>
+                <p>&bull; 2 Sports Balls: $2 \times \$8 = \mathbf{\$16}$ ($2 \times 2 = \mathbf{4\text{ sports balls}}$)</p>
+
+                <div class="mt-3 p-3 bg-slate-50 rounded border border-slate-200 font-sans text-xs">
+                  <strong>Vertical Addition Strategy:</strong>
+                  <div class="font-mono text-sm mt-1">
+                    &nbsp;&nbsp;40<br>
+                    &nbsp;&nbsp;24<br>
+                    + 16<br>
+                    ----<br>
+                    &nbsp;&nbsp;80 &nbsp; (4 + 6 = 10, traded 1 ten into tens column)
+                  </div>
+                  <p class="mt-2 text-slate-700"><strong>Change from $100:</strong> $100 - 80 = \mathbf{\$20\text{ change}}$.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Division Share -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-student text-base text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-slate-900 block mb-1">Fair Sharing to 4 Stations:</span>
+              <p>Total items = $20 + 8 + 4 = \mathbf{32\text{ items}}$.</p>
+              <p><strong>Division Sentence:</strong> $32 \div 4 = \mathbf{8\text{ items each}}$.</p>
+              <div class="p-2 bg-blue-50 rounded border border-blue-200 text-xs font-sans">
+                <em>"I drew 4 circles for the 4 stations and dealt out 32 tally marks. Each circle got 8 tally marks."</em>
+              </div>
+            </div>
+
+            <!-- Challenge Attempt (With Remainder) -->
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-xs font-sans text-slate-700">
+              <strong class="font-bold text-slate-900 block mb-1">Challenge Prompt Attempt ($80 Budget, 5 Stations):</strong>
+              "I bought 2 Token Packs ($20) and 2 Craft Kits ($24). Total = $44.
+              Total items: $10 + 8 = 18$ items.
+              $18 \div 5 = 3$ remainder 3.
+              Each station gets 3 items but there are 3 left over, so it is not fair."
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyBlue p-5 rounded-md border-t-8 border-sky-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-sky-300 pb-1 font-bold text-sky-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-sky-200 px-2 py-0.5 rounded text-sky-900 font-mono">22/10/26 11:15 AM</span>
+              </div>
+              <p class="mb-2">
+                "Sophie applied taught standard routines accurately. Used vertical addition with trading to find the $80 total."
+              </p>
+              <p>
+                "Represented division using concrete tally groupings. When attempting the challenge, she encountered a remainder and was unsure how to adjust items to make them divisible by 5."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mr. Davis</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-blue-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-blue-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-blue-50 p-2 rounded">
+                "Teacher: How did you know your change was $20? Sophie: Because $80 plus $20 makes $100. I used inverse addition."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-blue-400 bg-blue-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 mb-2">NESA Moderation Rationale: Grade C (Sound)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Sophie demonstrates <strong>sound knowledge and understanding of the main areas of content</strong> in familiar situations. She accurately completes routine calculations: multiplying package units, adding multi-item costs with trading, calculating change using inverse addition, and sharing items using tally representations. She demonstrates partial understanding in the extension prompt by identifying a remainder.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: GRADE D (BASIC) — COOPER                                           -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeD" class="tab-content hidden">
+      <div class="bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-amber-500 text-amber-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade D &bull; Basic Knowledge &amp; Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Cooper B. &bull; Year 4 (Term 4)</h3>
+          <p class="text-xs text-amber-200">Demonstrates basic knowledge with teacher guidance; occasional confusion between pack count and item count, subtraction trading errors.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-amber-400">GRADE D</div>
+          <div class="text-xs text-amber-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-amber-800 underline font-bold">Cooper B.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-amber-800">22 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Supported Task</span>
+            <span class="text-lg text-amber-800">With Teacher Prompts</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Cooper's Stall Plan (With Corrections)
+              </div>
+              <div class="mt-3 space-y-2 font-student text-sm text-slate-800">
+                <p>&bull; Tokens: 3 packs $\times \$10 = \$30$. Items: <span class="line-through text-slate-400">3 items</span> &rarr; $3 \times 5 = 15$ items.</p>
+                <p>&bull; Craft: 2 packs $\times \$12 = \$24$. Items: <span class="line-through text-slate-400">2 items</span> &rarr; $2 \times 4 = 8$ items.</p>
+                <p>&bull; Sports: 1 pack $\times \$8 = \$8$. Items: 2 balls.</p>
+
+                <div class="bg-amber-50 p-3 rounded border border-amber-200 text-xs font-sans mt-3">
+                  <strong>Total Spend:</strong> $\$30 + \$24 + \$8 = \mathbf{\$62}$.<br>
+                  <strong>Change Attempt (Subtraction Error):</strong>
+                  <div class="font-mono text-sm mt-1">
+                    &nbsp;&nbsp;100<br>
+                    - &nbsp;62<br>
+                    ----<br>
+                    &nbsp;&nbsp;&nbsp;48 &nbsp; <span class="text-teacherRed font-teacher text-base">(Subtracted smaller from larger: $2 - 0 = 2$ or $10 - 6 = 4$)</span>
+                  </div>
+                  <span class="text-slate-600 block mt-1">Corrected to $100 - 62 = \mathbf{\$38}$ after teacher intervention.</span>
+                </div>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9651; <span class="text-xs">Pack vs item count confused</span>
+              </div>
+            </div>
+
+            <!-- Division -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-student text-sm text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-slate-900 block mb-1">Sharing Division:</span>
+              <p>Items: $15 + 8 + 2 = \mathbf{25\text{ items}}$.</p>
+              <p class="text-amber-900 font-sans text-xs">
+                Cooper attempted $25 \div 4 = 6$ remainder 1. Teacher prompted him that all stations must get equal amounts with no leftovers. Cooper removed the sports balls to make 20 items ($20 \div 4 = 5$).
+              </p>
+            </div>
+
+            <!-- Challenge -->
+            <div class="bg-rose-50 p-3 rounded border border-rose-200 text-xs text-rose-900 font-sans">
+              <strong>Challenge Prompt:</strong> "I don't know how to do 5 stations because 5 is too many."
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyYellow p-5 rounded-md border-t-8 border-amber-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-amber-200 pb-1 font-bold text-amber-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-amber-200 px-2 py-0.5 rounded text-amber-900 font-mono">22/10/26 11:45 AM</span>
+              </div>
+              <p class="mb-2">
+                "Cooper initially recorded the number of packs as the number of items (e.g. '3 token items' instead of 15). Required prompts to multiply packs by pack size."
+              </p>
+              <p>
+                "Made common subtraction error across zeros ($100 - 62 = 48$). Supported him with base-ten blocks to model trading."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mr. Davis</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-amber-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-amber-950 uppercase tracking-wide block border-b pb-1">Verbatim Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-amber-50 p-2 rounded">
+                "Teacher: If you buy 3 packs of tokens and each pack has 5, how many tokens is that? Cooper: 3... wait, 5, 10, 15!"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-amber-400 bg-amber-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 mb-2">NESA Moderation Rationale: Grade D (Basic)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Cooper demonstrates <strong>basic knowledge and understanding</strong> of the content, achieving a limited level of competence. In familiar situations, he requires teacher guidance to distinguish between package count and total item count, makes regrouping errors when subtracting money across zeroes, and requires support to adjust quantities for equal sharing. Did not access the challenge prompt.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: GRADE E (ELEMENTARY) — JAYDEN                                      -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeE" class="tab-content hidden">
+      <div class="bg-rose-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-rose-500 text-rose-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade E &bull; Elementary Knowledge &amp; Very Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Jayden W. &bull; Year 4 (Term 4)</h3>
+          <p class="text-xs text-rose-200">Demonstrates elementary knowledge in few areas; requires substantial 1-to-1 physical support, concrete blocks, and guided recording throughout.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-rose-400">GRADE E</div>
+          <div class="text-xs text-rose-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-studentYoung text-2xl text-slate-800">
+            Name: <span class="text-rose-800 underline font-bold">jayden</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-rose-800">22/10</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Significant Direct Support Required</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Jayden's Attempt (Concrete Counting)
+              </div>
+              <div class="mt-3 font-studentYoung text-xl text-slate-800 space-y-2">
+                <p>"tokens is 10. craft is 12. balls is 8."</p>
+                <p>10 + 12 + 8 = 30. (Counted with MAB blocks).</p>
+                <p>"money left = 100 take 30 is 50." (Guessed change without calculating).</p>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9675; <span class="text-xs">Multiplication not applied</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-studentYoung text-xl text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-rose-900 block mb-1">Sharing Attempt:</span>
+              <p>"put 1 ball in each station." (Could not divide multi-item quantities).</p>
+              <div class="bg-rose-50 p-2 rounded text-xs font-sans text-rose-900">
+                Challenge prompt not accessed. Student working on foundational one-digit addition and concrete grouping.
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyPink p-5 rounded-md border-t-8 border-rose-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-rose-200 pb-1 font-bold text-rose-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded text-rose-900 font-mono">22/10/26 12:15 PM</span>
+              </div>
+              <p class="mb-2">
+                "Jayden treated prices as individual items. Unable to write multiplication sentences for packages without direct 1:1 modeling."
+              </p>
+              <p>
+                "Struggled to subtract from 100, guessing random tens values. Used concrete counters to share 4 balls."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mr. Davis</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-rose-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-rose-950 uppercase tracking-wide block border-b pb-1">Verbatim Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-rose-50 p-2 rounded">
+                "Teacher: How much change do you get from $100 if you spend $30? Jayden: Maybe $50 dollars?"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-rose-400 bg-rose-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-rose-950 mb-2">NESA Moderation Rationale: Grade E (Elementary)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Jayden has an <strong>elementary knowledge and understanding in few areas of the content</strong> and has achieved very limited competence in the processes and skills. In isolated situations, he requires significant direct teacher support to identify operations, cannot model rate multiplication for packages, is unable to calculate change from $100, and relies on simple concrete sharing with single items.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 6: CALIBRATION MATRIX (GRADES A TO E)                                 -->
+    <!-- ========================================================================= -->
+    <div id="content-matrix" class="tab-content hidden">
+      <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+        
+        <div class="bg-nswNavy text-white px-6 py-5">
+          <div class="flex flex-wrap justify-between items-center gap-2">
+            <div>
+              <span class="bg-indigo-500 text-indigo-950 text-xs font-black px-2.5 py-1 rounded uppercase tracking-wide">
+                Stage 2 Moderation Tool &bull; NESA Common Grade Scale
+              </span>
+              <h3 class="text-xl font-bold mt-1">Cross-Grade Calibration Matrix: Year 4 (Stage 2 Part B)</h3>
+              <p class="text-xs text-sky-200">
+                Direct evidence comparison across Grades A, B, C, D, and E against Stage 2 Mathematics Overview Rubrics (MA2-AR-02, MA2-MR-02 &amp; MAO-WM-01).
+              </p>
+            </div>
+            <div class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded text-slate-300">
+              Unit: Additive &amp; Multiplicative Relations &bull; Term 4 Weeks 1–2
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b-2 border-slate-300 bg-slate-100 text-slate-700">
+                <th class="p-3 font-bold uppercase tracking-wider w-1/6">Syllabus Focus &amp; Rubric Aspect</th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-purple-900 bg-purple-50 border-x border-purple-200">
+                  Grade A (Extensive)<br>
+                  <span class="font-normal text-[10px] text-purple-700">Readily applies to new situations</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-emerald-900 bg-emerald-50 border-r border-emerald-200">
+                  Grade B (Thorough)<br>
+                  <span class="font-normal text-[10px] text-emerald-700">Applies to most situations</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-blue-900 bg-blue-50 border-r border-blue-200">
+                  Grade C (Sound)<br>
+                  <span class="font-normal text-[10px] text-blue-700">Sound knowledge in familiar tasks</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-amber-900 bg-amber-50 border-r border-amber-200">
+                  Grade D (Basic)<br>
+                  <span class="font-normal text-[10px] text-amber-700">Basic knowledge with guidance</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-rose-900 bg-rose-50">
+                  Grade E (Elementary)<br>
+                  <span class="font-normal text-[10px] text-rose-700">Significant direct support</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              
+              <!-- Row 1: Additive Relations (Budgeting, Change & Regrouping) -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Additive Relations</div>
+                  <span class="font-mono text-[10px] text-emerald-800 bg-emerald-100 px-1 py-0.5 rounded">MA2-AR-02</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Multi-item costs, subtraction for change, estimation checks.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Flexible Mental Strategies:</strong> Evaluates method efficiency; applies compensation ($100 - 90 = 10, 10 - 4 = $6) to eliminate multi-column trades across zeroes; validates with pre-estimation.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Accurate Mental Jumps:</strong> Applies mental jump subtraction ($100 - 80 - 2 = $18); checks exact expenditures with benchmark rounding estimates.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Taught Algorithms:</strong> Uses standard vertical addition with trading; confirms change from $100 using inverse addition ($80 + 20 = 100).
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Regrouping Difficulties:</strong> Subtracts smaller from larger in columns ($100 - 62 = 48); requires teacher scaffolding with base-ten models to regroup.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Estimation / Guessing:</strong> Guesses change amounts without calculating; requires physical blocks for simple one-digit additions.
+                </td>
+              </tr>
+
+              <!-- Row 2: Multiplicative Relations (Rates & Fair Sharing) -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Multiplicative Relations</div>
+                  <span class="font-mono text-[10px] text-sky-800 bg-sky-100 px-1 py-0.5 rounded">MA2-MR-02</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Package multiplication rates, equal sharing division.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Relational Rate Modeling:</strong> Sets up dual equations for cost and item counts ($4 \times 12 = 48$, $4 \times 4 = 16$); reasons about factors, multiples, and inverse relations with complete fluency.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Structured Facts:</strong> Computes package costs accurately; carries out equal sharing division and confirms with multiplication facts ($8 \times 4 = 32$).
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Taught Routine / Diagrams:</strong> Uses known multiplication tables; models division by dealing tally marks into 4 visual groups ($32 \div 4 = 8$).
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Pack vs Item Confusion:</strong> Initially counts number of packs as total items; produces sharing combinations with remainders until prompted.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Single-Item Counting:</strong> Treats prices as individual items; unable to apply rate multiplication or divide multi-item quantities.
+                </td>
+              </tr>
+
+              <!-- Row 3: WM - Exploring & Connecting Concepts -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Exploring &amp; Connecting</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Understanding, fluency, and transfer across concepts.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Readily explores and connects additive and multiplicative relations; applies understanding accurately and flexibly to new situations ($80 budget, 5 stations).
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Connects concepts accurately and confidently; applies understanding in most familiar and some unfamiliar problem-solving situations.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Explores concepts and makes connections in familiar situations, showing sound understanding of the main ideas taught.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Explores some concepts with guidance, making limited connections in familiar situations; relies on teacher prompts to connect operations.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Explores isolated concepts with significant support; mathematical connections between operations are rarely made.
+                </td>
+              </tr>
+
+              <!-- Row 4: WM - Choosing & Applying Techniques -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Choosing &amp; Applying</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Selecting efficient problem-solving techniques.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Selects efficient mental techniques from a range (compensation, divisibility by 5), applies them fluently, and adapts them to solve unfamiliar problems.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Chooses effective techniques and applies them accurately to solve most problems, including adapting to the 5-station emergency task.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Chooses and applies taught techniques (standard written addition algorithm, tally sharing) to solve familiar problems with adequate accuracy.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Applies a limited range of techniques, often less efficient ones, to solve some familiar problems, usually with teacher guidance.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Attempts simple familiar problems with significant support, using very limited techniques (physical counters and trial-and-error).
+                </td>
+              </tr>
+
+              <!-- Row 5: WM - Communicating & Reasoning -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Communicating &amp; Reasoning</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Reasoning, justifying, and mathematical clarity.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Communicates thinking coherently and clearly, justifying strategies and conclusions with precise mathematical language and algebraic reasoning.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Clearly explains thinking and strategies using appropriate mathematical language, written number sentences, and estimation verification.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Describes thinking and strategies using everyday and some mathematical language, drawings, numerals, and standard calculation layouts.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Describes some aspects of thinking using everyday language when prompted; struggles to articulate reasons for calculation choices.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Communicates isolated aspects of thinking with significant support, often through gestures or concrete blocks.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-6 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 space-y-2">
+          <h5 class="font-bold text-slate-900 uppercase tracking-wide">Stage 2 Team Moderation Protocols:</h5>
+          <p>&bull; <strong>Grade A Standard (Extensive):</strong> Defined by the ability to readily apply concepts to novel or unfamiliar situations. Ananya demonstrates depth of reasoning by leveraging divisibility rules and mental compensation without prompting.</p>
+          <p>&bull; <strong>Grade B vs Grade C Standard:</strong> Liam (Grade B) reasons flexibly across most situations using mental strategies and estimation checks. Sophie (Grade C) achieves sound understanding in familiar tasks, relying on taught routines and standard vertical algorithms.</p>
+          <p>&bull; <strong>Grade D vs Grade E Standard:</strong> Cooper (Grade D) completes basic calculations with teacher guidance. Jayden (Grade E) exhibits elementary understanding in isolated areas and requires direct one-to-one physical support.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.add('hidden'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-slate-200', 'text-slate-700', 'border-transparent');
+      });
+
+      const targetContent = document.getElementById('content-' + tabId);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.classList.remove('bg-slate-200', 'text-slate-700', 'border-transparent');
+      }
+    }
+
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      const main = document.querySelector('main');
+      const btnText = document.getElementById('annotationBtnText');
+      
+      annotationsVisible = !annotationsVisible;
+      
+      if (!annotationsVisible) {
+        main.classList.add('hide-annotations');
+        btnText.textContent = "Show Teacher Marks (Moderation Mode)";
+      } else {
+        main.classList.remove('hide-annotations');
+        btnText.textContent = "Hide Teacher Marks (Blind Moderation)";
+      }
+    }
+  </script>
+
+</body>
+</html>
