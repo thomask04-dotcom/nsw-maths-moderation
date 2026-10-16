@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Studio: Physics Engine &amp; Level Blueprint | NSW Stage 3 Mathematics Moderation Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts for authentic student handwriting, blueprint technical labels, and teacher annotations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gaegu:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            student: ['"Patrick Hand"', 'cursive'],
+            studentYoung: ['Gaegu', 'cursive'],
+            teacher: ['Caveat', 'cursive'],
+            school: ['"Comic Neue"', 'cursive'],
+            tech: ['"Share Tech Mono"', 'monospace']
+          },
+          colors: {
+            nswNavy: '#002B49',
+            nswBlue: '#005999',
+            nswLightBlue: '#E6F0F8',
+            nswRed: '#C9242B',
+            teacherRed: '#D62828',
+            teacherGreen: '#1A7A44',
+            stickyYellow: '#FFF9C4',
+            stickyPink: '#FFE4E6',
+            stickyBlue: '#E0F2FE',
+            stickyGreen: '#DCFCE7',
+            stickyPurple: '#F3E8FF',
+            blueprintBg: '#0F2744',
+            blueprintGrid: '#1E4976'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 10mm authentic Stage 3 mathematics grid paper */
+    .exercise-book-grid {
+      background-color: #FFFFFF;
+      background-image: 
+        linear-gradient(rgba(180, 210, 235, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180, 210, 235, 0.45) 1px, transparent 1px);
+      background-size: 20px 20px;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Architectural blueprint canvas background */
+    .blueprint-canvas {
+      background-color: #0B1E36;
+      background-image: 
+        linear-gradient(rgba(30, 73, 118, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 73, 118, 0.5) 1px, transparent 1px);
+      background-size: 20px 20px;
+      box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Red exercise book margin line */
+    .margin-line {
+      border-left: 2.5px solid #F87171;
+    }
+
+    /* Tactile washi tape effect for portfolio artefacts */
+    .washi-tape {
+      background: rgba(254, 240, 138, 0.92);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      transform: rotate(-1.2deg);
+    }
+
+    /* Sticky note tactile elevation and hover dynamics */
+    .sticky-note {
+      box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.12), -1px 2px 4px rgba(0, 0, 0, 0.05);
+      transform: rotate(0.8deg);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+      box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.16);
+    }
+
+    /* Blind Moderation Mode: hides teacher markings and annotations for stage calibration */
+    .hide-annotations .teacher-mark,
+    .hide-annotations .sticky-note,
+    .hide-annotations .teacher-comment,
+    .hide-annotations .teacher-banner,
+    .hide-annotations .teacher-check,
+    .hide-annotations .grade-badge {
+      display: none !important;
+    }
+
+    .tab-btn.active {
+      background-color: #002B49;
+      color: #FFFFFF;
+      border-color: #002B49;
+      box-shadow: 0 2px 4px rgba(0, 43, 73, 0.2);
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      .tab-content {
+        display: block !important;
+        page-break-after: always;
+      }
+      body {
+        background: white;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-16 antialiased">
+
+  <header class="bg-nswNavy text-white border-b-4 border-nswBlue sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-white text-nswNavy font-black text-xs px-2.5 py-1 rounded tracking-wider uppercase shadow-sm">
+          NESA K–10 (2022)
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight">Game Studio: Physics Engine &amp; Level Blueprint</h1>
+          <p class="text-xs text-sky-200">Stage 3 (Year 5) Moderation Portfolio &bull; Geometric Measure (Angles up to 360°) &bull; Term 4, Weeks 1–3</p>
+        </div>
+      </div>
+
+      <!-- Moderation Controls -->
+      <div class="flex items-center gap-2.5 no-print">
+        <button id="toggleAnnotationsBtn" onclick="toggleAnnotations()" class="text-xs font-semibold bg-sky-800 hover:bg-sky-700 active:bg-sky-900 text-white px-3.5 py-1.5 rounded-md border border-sky-600 transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+          <span id="annotationBtnText">Hide Teacher Marks (Blind Moderation)</span>
+        </button>
+        <button onclick="window.print()" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-white px-3 py-1.5 rounded-md border border-slate-600 transition flex items-center gap-1">
+          <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          Print
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6">
+
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-6">
+      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+            Rich Summative Task Extracted
+          </span>
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">
+            Game Studio: Physics Engine &amp; Level Blueprint (Learning Sequence 9)
+          </h2>
+        </div>
+        <div class="text-xs bg-indigo-50 text-indigo-900 border border-indigo-200 px-3 py-1 rounded font-medium">
+          <strong>NSW Stage 3 Common Grade Scale:</strong> Grade A (Extensive), B (Thorough), C (Sound), D (Basic), &amp; E (Elementary)
+        </div>
+      </div>
+
+      <!-- Task Scenario Description -->
+      <div class="p-6 border-b border-slate-100 bg-gradient-to-r from-sky-50/50 via-white to-indigo-50/40">
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+          <strong>Scenario:</strong> <em>"You are a Lead Game Mechanic Designer at a Game Development Studio! Your team has been hired to design the Blueprint for an action platformer video game (Sci-Fi Drone Rescue, Cyberpunk Skate Racer, or Ninja Parkour Dash). Your blueprint must accurately construct, measure, and label the 6 Mechanics Constraints using a protractor: Obstacle 1 (Acute angle between 20° and 45°), Obstacle 2 (Obtuse angle between 100° and 140°), Obstacle 3 (Reflex angle between 200° and 250°), Obstacle 4 (Tilted 90° right angle in a diagonal orientation), Obstacle 5 (Straight angle 180° with a path split), and Obstacle 6 (Angle of revolution 360° around a central vertex). Draw the arc of turn, mark the vertex, classify each angle, and record with degree notation (°)."</em>
+        </p>
+      </div>
+
+      <!-- 6 Core Mechanics Criteria Grid -->
+      <div class="p-6 grid grid-cols-2 md:grid-cols-6 gap-3 text-xs text-slate-700">
+        <div class="p-3 bg-sky-50/70 rounded-lg border border-sky-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-sky-950 mb-1 flex items-center gap-1">
+              <span class="w-4 h-4 rounded-full bg-sky-700 text-white inline-flex items-center justify-center text-[9px] font-bold">1</span>
+              Acute Angle
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug">Between 20° and 45° (Launch ramp).</p>
+          </div>
+          <span class="text-[9px] font-mono text-sky-800 bg-white px-1.5 py-0.5 rounded border border-sky-200 self-start mt-2">20°–45°</span>
+        </div>
+
+        <div class="p-3 bg-emerald-50/70 rounded-lg border border-emerald-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-emerald-950 mb-1 flex items-center gap-1">
+              <span class="w-4 h-4 rounded-full bg-emerald-700 text-white inline-flex items-center justify-center text-[9px] font-bold">2</span>
+              Obtuse Angle
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug">Between 100° and 140° (Wide rebound).</p>
+          </div>
+          <span class="text-[9px] font-mono text-emerald-800 bg-white px-1.5 py-0.5 rounded border border-emerald-200 self-start mt-2">100°–140°</span>
+        </div>
+
+        <div class="p-3 bg-purple-50/70 rounded-lg border border-purple-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-purple-950 mb-1 flex items-center gap-1">
+              <span class="w-4 h-4 rounded-full bg-purple-700 text-white inline-flex items-center justify-center text-[9px] font-bold">3</span>
+              Reflex Angle
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug">Between 200° and 250° (Ricochet hazard).</p>
+          </div>
+          <span class="text-[9px] font-mono text-purple-800 bg-white px-1.5 py-0.5 rounded border border-purple-200 self-start mt-2">200°–250°</span>
+        </div>
+
+        <div class="p-3 bg-amber-50/70 rounded-lg border border-amber-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-amber-950 mb-1 flex items-center gap-1">
+              <span class="w-4 h-4 rounded-full bg-amber-700 text-white inline-flex items-center justify-center text-[9px] font-bold">4</span>
+              Tilted 90°
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug">Right angle in diagonal orientation.</p>
+          </div>
+          <span class="text-[9px] font-mono text-amber-800 bg-white px-1.5 py-0.5 rounded border border-amber-200 self-start mt-2">90° Tilted</span>
+        </div>
+
+        <div class="p-3 bg-rose-50/70 rounded-lg border border-rose-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-rose-950 mb-1 flex items-center gap-1">
+              <span class="w-4 h-4 rounded-full bg-rose-700 text-white inline-flex items-center justify-center text-[9px] font-bold">5</span>
+              Straight 180°
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug">Splits into two parallel path vectors.</p>
+          </div>
+          <span class="text-[9px] font-mono text-rose-800 bg-white px-1.5 py-0.5 rounded border border-rose-200 self-start mt-2">180° Split</span>
+        </div>
+
+        <div class="p-3 bg-indigo-50/70 rounded-lg border border-indigo-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-indigo-950 mb-1 flex items-center gap-1">
+              <span class="w-4 h-4 rounded-full bg-indigo-700 text-white inline-flex items-center justify-center text-[9px] font-bold">6</span>
+              Revolution 360°
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug">Complete full turn around central vertex.</p>
+          </div>
+          <span class="text-[9px] font-mono text-indigo-800 bg-white px-1.5 py-0.5 rounded border border-indigo-200 self-start mt-2">360° Turn</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
+      <button onclick="switchTab('gradeA')" id="tab-gradeA" class="tab-btn active px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+        Grade A (Extensive) — Kaelen
+      </button>
+      <button onclick="switchTab('gradeB')" id="tab-gradeB" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+        Grade B (Thorough) — Sienna
+      </button>
+      <button onclick="switchTab('gradeC')" id="tab-gradeC" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+        Grade C (Sound) — Tyler
+      </button>
+      <button onclick="switchTab('gradeD')" id="tab-gradeD" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+        Grade D (Basic) — Darcy
+      </button>
+      <button onclick="switchTab('gradeE')" id="tab-gradeE" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+        Grade E (Elementary) — Jaxson
+      </button>
+      <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+        Calibration Matrix
+      </button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: GRADE A (EXTENSIVE) — KAELEN                                       -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeA" class="tab-content block">
+      <div class="bg-purple-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-purple-500 text-purple-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade A &bull; Extensive Knowledge &amp; Very High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Kaelen V. &bull; Year 5 (Term 4)</h3>
+          <p class="text-xs text-purple-200">Theme: Cyberpunk Skate Racer &bull; Flawless construction, multi-angle drift correction, dual reflex proof, mental rotation of perpendicular vectors.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-purple-300">GRADE A</div>
+          <div class="text-xs text-purple-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Kaelen V.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">24 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Outstanding Geometric Construction &amp; Angle Precision</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Student Artefact Column (7 cols) -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Blueprint Canvas SVG -->
+            <div class="bg-slate-900 p-5 rounded-lg border-2 border-cyan-500 shadow-md relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Blueprint: Neon Velocity Skate Circuit (Level 04)
+              </div>
+
+              <div class="mt-3">
+                <svg class="w-full h-80 blueprint-canvas rounded border border-cyan-700" viewBox="0 0 540 320">
+                  <!-- Blueprint Grid Accents -->
+                  <defs>
+                    <marker id="arrowCyan" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0 0, 6 3, 0 6" fill="#38BDF8"/>
+                    </marker>
+                    <marker id="arrowGold" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0 0, 6 3, 0 6" fill="#FBBF24"/>
+                    </marker>
+                  </defs>
+
+                  <!-- 1. ACUTE ANGLE LAUNCH RAMP: 32° (Vertex V1 at 30, 260) -->
+                  <path d="M 30,260 L 140,260" stroke="#38BDF8" stroke-width="2.5"/>
+                  <path d="M 30,260 L 123,202" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+                  <path d="M 70,260 A 40 40 0 0 0 64,238" fill="none" stroke="#FBBF24" stroke-width="2"/>
+                  <circle cx="30" cy="260" r="3.5" fill="#F43F5E"/>
+                  <text x="32" y="278" font-family="'Share Tech Mono', monospace" font-size="10" fill="#E0F2FE">V1</text>
+                  <text x="80" y="245" font-family="'Share Tech Mono', monospace" font-size="11" font-weight="bold" fill="#FDE047">32° (Acute)</text>
+
+                  <!-- 2. OBTUSE ANGLE REBOUND: 128° (Vertex V2 at 160, 110) -->
+                  <!-- Baseline going south-west, arm going south-east -->
+                  <path d="M 160,110 L 110,165" stroke="#38BDF8" stroke-width="2.5"/>
+                  <path d="M 160,110 L 230,150" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+                  <path d="M 135,138 A 35 35 0 0 1 195,130" fill="none" stroke="#FBBF24" stroke-width="2"/>
+                  <circle cx="160" cy="110" r="3.5" fill="#F43F5E"/>
+                  <text x="160" y="100" font-family="'Share Tech Mono', monospace" font-size="10" fill="#E0F2FE" text-anchor="middle">V2</text>
+                  <text x="160" y="145" font-family="'Share Tech Mono', monospace" font-size="11" font-weight="bold" fill="#FDE047" text-anchor="middle">128° (Obtuse)</text>
+
+                  <!-- 3. REFLEX ANGLE RICOCHET: 235° (Vertex V3 at 250, 240) -->
+                  <path d="M 200,200 L 250,240" stroke="#38BDF8" stroke-width="2.5"/>
+                  <path d="M 250,240 L 330,225" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+                  <!-- Reflex arc around the exterior (greater than 180°) -->
+                  <path d="M 225,220 A 38 38 0 1 0 290,232" fill="none" stroke="#A855F7" stroke-width="2.5"/>
+                  <circle cx="250" cy="240" r="3.5" fill="#F43F5E"/>
+                  <text x="250" y="260" font-family="'Share Tech Mono', monospace" font-size="10" fill="#E0F2FE" text-anchor="middle">V3</text>
+                  <text x="235" y="290" font-family="'Share Tech Mono', monospace" font-size="11" font-weight="bold" fill="#D8B4FE">235° (Reflex)</text>
+                  <text x="235" y="302" font-family="'Inter', sans-serif" font-size="8" fill="#C084FC">[360° - 125° = 235°]</text>
+
+                  <!-- 4. TILTED RIGHT ANGLE (90° on 35° incline): Vertex V4 at 350, 140 -->
+                  <path d="M 310,170 L 350,140" stroke="#38BDF8" stroke-width="2.5"/>
+                  <path d="M 350,140 L 390,195" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+                  <!-- Tilted right angle square symbol -->
+                  <path d="M 338,131 L 348,123 L 360,132" fill="none" stroke="#FBBF24" stroke-width="2"/>
+                  <circle cx="350" cy="140" r="3.5" fill="#F43F5E"/>
+                  <text x="350" y="125" font-family="'Share Tech Mono', monospace" font-size="10" fill="#E0F2FE" text-anchor="middle">V4</text>
+                  <text x="375" y="150" font-family="'Share Tech Mono', monospace" font-size="11" font-weight="bold" fill="#FDE047">90° (Tilted Right Angle)</text>
+
+                  <!-- 5. STRAIGHT ANGLE (180°) VECTOR SPLIT: Vertex V5 at 420, 60 -->
+                  <path d="M 340,60 L 420,60" stroke="#38BDF8" stroke-width="2.5"/>
+                  <path d="M 420,60 L 510,60" stroke="#38BDF8" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arrowCyan)"/>
+                  <path d="M 420,60 L 510,95" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+                  <path d="M 390,60 A 30 30 0 0 1 450,60" fill="none" stroke="#34D399" stroke-width="2"/>
+                  <circle cx="420" cy="60" r="3.5" fill="#F43F5E"/>
+                  <text x="420" y="48" font-family="'Share Tech Mono', monospace" font-size="10" fill="#E0F2FE" text-anchor="middle">V5</text>
+                  <text x="420" y="80" font-family="'Share Tech Mono', monospace" font-size="10" font-weight="bold" fill="#6EE7B7" text-anchor="middle">180° Straight (Vector Split)</text>
+
+                  <!-- 6. ANGLE OF REVOLUTION (360° EMP VORTEX): Vertex V6 at 460, 220 -->
+                  <circle cx="460" cy="220" r="28" fill="none" stroke="#EC4899" stroke-width="2" stroke-dasharray="4,2"/>
+                  <circle cx="460" cy="220" r="4" fill="#F43F5E"/>
+                  <path d="M 460,220 L 488,220" stroke="#EC4899" stroke-width="2" marker-end="url(#arrowGold)"/>
+                  <path d="M 480,215 L 488,220 L 480,225" fill="#FBBF24"/>
+                  <text x="460" y="210" font-family="'Share Tech Mono', monospace" font-size="10" fill="#E0F2FE" text-anchor="middle">V6</text>
+                  <text x="460" y="260" font-family="'Share Tech Mono', monospace" font-size="11" font-weight="bold" fill="#F472B6" text-anchor="middle">360° (Revolution)</text>
+                </svg>
+              </div>
+
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-3xl font-black">
+                &#10003; <span class="text-sm">Masterful protractor accuracy</span>
+              </div>
+            </div>
+
+            <!-- Mechanics Audit Table -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Kaelen's Mechanics Constraint Table &amp; Scale Justifications
+              </div>
+
+              <div class="mt-3 overflow-x-auto">
+                <table class="w-full text-xs text-left border-collapse font-sans">
+                  <thead>
+                    <tr class="bg-slate-100 text-slate-700 border-b">
+                      <th class="p-2">Obstacle &amp; Feature</th>
+                      <th class="p-2">Exact Angle</th>
+                      <th class="p-2">Classification</th>
+                      <th class="p-2">Protractor Alignment &amp; Scale Reasoning</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 text-slate-800 font-student text-base">
+                    <tr>
+                      <td class="p-2 font-sans text-xs">1. Launch Ramp Kick</td>
+                      <td class="p-2 text-blue-800 font-bold">32°</td>
+                      <td class="p-2 text-indigo-900">Acute (&lt; 90°)</td>
+                      <td class="p-2 font-sans text-xs">Aligned origin on V1 with horizontal baseline. Selected inner scale because the ray opens anti-clockwise from 0°. Benchmark check: turn is clearly less than half of 90° (45°).</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-sans text-xs">2. Rebound Bank</td>
+                      <td class="p-2 text-blue-800 font-bold">128°</td>
+                      <td class="p-2 text-indigo-900">Obtuse (90°–180°)</td>
+                      <td class="p-2 font-sans text-xs">Rotated protractor to match diagonal ray. Read outer scale starting at 0°. Verified obtuse because the turn extends past the 90° perpendicular benchmark. Avoided 52° dual-scale error.</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-sans text-xs">3. Ricochet Hazard</td>
+                      <td class="p-2 text-purple-800 font-bold">235°</td>
+                      <td class="p-2 text-purple-900">Reflex (180°–360°)</td>
+                      <td class="p-2 font-sans text-xs">Measured interior angle of 125° using semicircular protractor. Applied subtractive strategy: 360° - 125° = 235°. Verified with 360° circular protractor directly.</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-sans text-xs">4. Wall-Grind Corner</td>
+                      <td class="p-2 text-emerald-800 font-bold">90°</td>
+                      <td class="p-2 text-emerald-900">Right Angle (Perpendicular)</td>
+                      <td class="p-2 font-sans text-xs">Constructed on a 35° tilted baseline. Mental rotation proof: perpendicularity is independent of horizontal/vertical axes. Measured exact 90° turn between rays.</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-sans text-xs">5. Warp Vector Split</td>
+                      <td class="p-2 text-emerald-800 font-bold">180°</td>
+                      <td class="p-2 text-emerald-900">Straight Angle</td>
+                      <td class="p-2 font-sans text-xs">Forms continuous straight line across vertex V5. Proves that two opposite rays make half a revolution (180°). Path splits into parallel escape trajectories.</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-sans text-xs">6. EMP Shield Vortex</td>
+                      <td class="p-2 text-rose-800 font-bold">360°</td>
+                      <td class="p-2 text-rose-900">Angle of Revolution</td>
+                      <td class="p-2 font-sans text-xs">Full circular turn rotating 360° around central vertex V6. Both the initial arm and terminal arm coincide, representing a complete rotation.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Teacher Evidence Column (5 cols) -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Sticky Note Running Record -->
+            <div class="sticky-note bg-stickyPurple p-5 rounded-md border-t-8 border-purple-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-purple-300 pb-1 font-bold text-purple-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-purple-200 px-2 py-0.5 rounded text-purple-900 font-mono">24/10/26 10:15 AM</span>
+              </div>
+              <p class="mb-2">
+                "Kaelen demonstrated exceptional geometric fluency and autonomous reasoning. When drafting the Wall-Grind corner, he explicitly justified that a right angle does not need to be vertical or horizontal, rotating his protractor to align with the inclined ray."
+              </p>
+              <p>
+                "For Obstacle 3, he seamlessly calculated the reflex angle using the subtractive method ($360^\circ - 125^\circ = 235^\circ$) and cross-verified with a circular 360° tool."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mr. Sterling (Year 5)</div>
+            </div>
+
+            <!-- Scribing Card -->
+            <div class="bg-white rounded-lg p-4 border-2 border-purple-200 shadow-sm">
+              <div class="flex items-center gap-2 mb-2 pb-1 border-b border-purple-100">
+                <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+                <span class="text-xs font-bold uppercase tracking-wide text-purple-900">Teacher Scribing (Verbatim Dialogue)</span>
+              </div>
+              <div class="text-xs space-y-2 text-slate-700 leading-relaxed font-sans">
+                <p><strong>Teacher:</strong> "Kaelen, how do you prevent reading the wrong number on the protractor when an angle is tilted?"</p>
+                <p class="bg-purple-50 p-2.5 rounded italic text-purple-950 font-school">
+                  "I always use a mental benchmark first. Before I even look at the numbers, I check if the opening is smaller than a corner (acute) or wider than a corner (obtuse). For Obstacle 2, it is clearly wider than 90°, so when the protractor showed 52° and 128°, I knew 128° had to be correct because 52° would be acute!"
+                </p>
+              </div>
+            </div>
+
+            <!-- Syllabus Mapping Card -->
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200 text-xs space-y-2">
+              <span class="font-bold text-slate-900 uppercase tracking-wide block border-b pb-1">Syllabus Demonstration:</span>
+              <p><strong>MA3-GM-03:</strong> Measures and constructs angles up to 360° with high precision; classifies acute, obtuse, straight, reflex, and revolution; demonstrates perpendicularity in non-standard orientations.</p>
+              <p><strong>MAO-WM-01:</strong> Readily connects dynamic rotations to invisible rays; selects efficient subtractive techniques for reflex angles; justifies scale choices with clarity.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Grade A Moderation Rationale -->
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-purple-400 bg-purple-50/60 rounded-xl p-6">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <h4 class="text-sm font-black uppercase tracking-wider text-purple-950 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-700"></span>
+              NESA Moderation Rationale: Grade A (Extensive)
+            </h4>
+            <span class="text-xs font-semibold bg-purple-200 text-purple-900 px-2.5 py-1 rounded">
+              Extensive Knowledge &bull; Transfer to Novel Situations
+            </span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed mb-3">
+            Kaelen demonstrates <strong>extensive knowledge and understanding</strong> by applying angle concepts and protractor skills to an unfamiliar, complex game blueprint layout. He seamlessly navigates rotated baselines, articulates the relationship between interior and reflex angles using both subtractive and circular measurement techniques, and justifies perpendicularity independently of coordinate axes. His mathematical communication is precise, fluent, and autonomous.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: GRADE B (THOROUGH) — SIENNA                                        -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeB" class="tab-content hidden">
+      <div class="bg-emerald-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-emerald-500 text-emerald-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade B &bull; Thorough Knowledge &amp; High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Sienna M. &bull; Year 5 (Term 4)</h3>
+          <p class="text-xs text-emerald-200">Theme: Sci-Fi Drone Rescue &bull; Structured protractor construction, reliable scale selection, accurate reflex calculation, clear reasoning in familiar tasks.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-emerald-300">GRADE B</div>
+          <div class="text-xs text-emerald-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Sienna M.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">24 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Thorough Work Verified</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Blueprint: Drone Flight Path Blueprint
+              </div>
+              <div class="mt-3 space-y-2 font-student text-base text-slate-800">
+                <p>&bull; <strong>Obstacle 1 (Ascent Angle):</strong> 35° &bull; Acute angle (&lt; 90°). <em>"Aligned baseline with launch pad, read inner scale from 0°."</em></p>
+                <p>&bull; <strong>Obstacle 2 (Debris Turn):</strong> 120° &bull; Obtuse angle (between 90° and 180°). <em>"Wide turn, checked that it's 30° past 90°."</em></p>
+                <p>&bull; <strong>Obstacle 3 (Canyon Turn):</strong> 220° &bull; Reflex angle. <em>"Measured inside angle of 140°, then calculated $360^\circ - 140^\circ = 220^\circ$."</em></p>
+                <p>&bull; <strong>Obstacle 4 (Docking Corner):</strong> 90° &bull; Right angle tilted at 45°. <em>"Turned protractor to align with diagonal approach ray."</em></p>
+                <p>&bull; <strong>Obstacle 5 (Scanner Gate):</strong> 180° &bull; Straight angle. Splits into scout and transport corridors.</p>
+                <p>&bull; <strong>Obstacle 6 (Sensor Sweep):</strong> 360° &bull; Angle of revolution around communication beacon.</p>
+              </div>
+            </div>
+
+            <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200 text-xs font-sans text-slate-800 space-y-2">
+              <strong class="font-bold text-emerald-950 block text-sm">Scale Selection Reflection:</strong>
+              <p>"To avoid using the wrong scale, I always locate 0° on the baseline first. If my angle opens clockwise, I follow the outer scale. If it opens anti-clockwise, I follow the inner scale. I check my answer by asking: Should this angle look sharp (acute) or wide (obtuse)?"</p>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyGreen p-5 rounded-md border-t-8 border-emerald-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-emerald-300 pb-1 font-bold text-emerald-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-emerald-200 px-2 py-0.5 rounded text-emerald-900 font-mono">24/10/26 10:45 AM</span>
+              </div>
+              <p class="mb-2">
+                "Sienna demonstrated thorough competence in using a protractor. She constructed all 6 angles within specifications and clearly explained her subtractive method for the 220° reflex angle."
+              </p>
+              <p>
+                "Consistently checked scale readings against 90° benchmarks in familiar tasks."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mr. Sterling</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-emerald-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-emerald-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Response:</span>
+              <p class="italic text-slate-700 font-school bg-emerald-50 p-2 rounded">
+                "Teacher: How did you find the reflex angle without a circular protractor? Sienna: A full circle is 360°. I measured the inside angle which was 140°, and subtracted 140° from 360° to get 220°."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-emerald-400 bg-emerald-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 mb-2">NESA Moderation Rationale: Grade B (Thorough)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Sienna demonstrates <strong>thorough knowledge and understanding</strong> of angle construction and classification up to 360°. She applies protractor measurement procedures accurately across all familiar blueprint components, avoids dual-scale errors using baseline tracking, calculates reflex angles using subtraction, and articulates her reasoning clearly.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: GRADE C (SOUND) — TYLER                                            -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeC" class="tab-content hidden">
+      <div class="bg-blue-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-blue-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade C &bull; Sound Knowledge &amp; Adequate Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Tyler B. &bull; Year 5 (Term 4)</h3>
+          <p class="text-xs text-blue-200">Theme: Ninja Parkour Dash &bull; Applies taught 3-step routine, measures up to 180° accurately, calculates reflex angle with formula prompt.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-blue-300">GRADE C</div>
+          <div class="text-xs text-blue-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Tyler B.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">24 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Sound Competence Verified</span>
+            <span class="text-2xl">&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Tyler's Ninja Track Blueprint
+              </div>
+              <div class="mt-3 space-y-2 font-student text-base text-slate-800">
+                <p>&bull; 1. Jump Slide: <strong>40°</strong> (Acute angle - smaller than 90°)</p>
+                <p>&bull; 2. Wall Rebound: <strong>110°</strong> (Obtuse angle - bigger than 90°)</p>
+                <p>&bull; 3. Roof Flip: <strong>210°</strong> (Reflex angle - measured 150° inside, $360 - 150 = 210^\circ$)</p>
+                <p>&bull; 4. Wall Kick: <strong>90°</strong> (Right angle - checked with paper corner, turned page to make baseline flat)</p>
+                <p>&bull; 5. Speed Sprint: <strong>180°</strong> (Straight line with two arrows)</p>
+                <p>&bull; 6. Smoke Bomb Spin: <strong>360°</strong> (Full circle turn)</p>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 p-3 rounded border border-blue-200 text-xs font-sans text-slate-700">
+              <strong>Scale Selection Strategy:</strong> "I looked at the angle first. The 40° angle was small, so I picked the smaller number 40° instead of 140°. For 110°, it was open wide, so I picked 110° instead of 70°."
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyBlue p-5 rounded-md border-t-8 border-sky-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-sky-300 pb-1 font-bold text-sky-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-sky-200 px-2 py-0.5 rounded text-sky-900 font-mono">24/10/26 11:15 AM</span>
+              </div>
+              <p class="mb-2">
+                "Tyler executed the taught 3-step measuring routine well. When constructing the tilted right angle, he turned his paper so the baseline was horizontal."
+              </p>
+              <p>
+                "Correctly applied the $360^\circ - \text{interior}$ rule for the reflex angle after reviewing the anchor chart."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mr. Sterling</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-blue-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-blue-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-blue-50 p-2 rounded">
+                "Teacher: How did you know your 40° measurement was on the correct scale? Tyler: Because 40° is acute. If I used 140°, it would be obtuse."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-blue-400 bg-blue-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 mb-2">NESA Moderation Rationale: Grade C (Sound)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Tyler demonstrates <strong>sound knowledge and understanding of the main areas of content</strong> in familiar situations. He accurately measures and constructs angles up to 180° using a protractor, uses degree notation correctly, classifies all standard angle types, and calculates reflex angles using taught anchor-chart formulas.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: GRADE D (BASIC) — DARCY                                            -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeD" class="tab-content hidden">
+      <div class="bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-amber-500 text-amber-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade D &bull; Basic Knowledge &amp; Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Darcy L. &bull; Year 5 (Term 4)</h3>
+          <p class="text-xs text-amber-200">Demonstrates basic knowledge with teacher guidance; occasional dual-scale reversal, struggles with reflex calculations and diagonal baselines.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-amber-400">GRADE D</div>
+          <div class="text-xs text-amber-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-amber-800 underline font-bold">Darcy L.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-amber-800">24 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Supported Task</span>
+            <span class="text-lg text-amber-800">With Teacher Prompts</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Darcy's Blueprint (With Corrections)
+              </div>
+              <div class="mt-3 space-y-2 font-student text-sm text-slate-800">
+                <p>&bull; Obstacle 1: <span class="line-through text-slate-400">150°</span> &rarr; <strong>30°</strong> (Read wrong scale initially; teacher prompted: <em>"Is this ramp acute or obtuse?"</em>)</p>
+                <p>&bull; Obstacle 2: <strong>115°</strong> (Obtuse angle - correct)</p>
+                <p>&bull; Obstacle 3: <span class="line-through text-slate-400">130°</span> &rarr; <strong>230°</strong> (Measured acute interior instead of reflex exterior until guided to subtract from 360)</p>
+                <p>&bull; Obstacle 4: 90° (Initially drew horizontal right angle; needed reminder to make it tilted on a diagonal)</p>
+                <p>&bull; Obstacle 5: 180 (Omitted degree symbol; drew line without vector split)</p>
+                <p>&bull; Obstacle 6: Drew a circle around a point, labelled "circle"</p>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9651; <span class="text-xs">Dual-scale error corrected</span>
+              </div>
+            </div>
+
+            <div class="bg-amber-50 p-3 rounded border border-amber-200 text-xs font-sans text-amber-950">
+              <strong>Scale Confusion Note:</strong> "The protractor has numbers going both ways and I got mixed up which zero to start on."
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyYellow p-5 rounded-md border-t-8 border-amber-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-amber-200 pb-1 font-bold text-amber-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-amber-200 px-2 py-0.5 rounded text-amber-900 font-mono">24/10/26 11:45 AM</span>
+              </div>
+              <p class="mb-2">
+                "Darcy confused the inner and outer scales on Obstacle 1, recording 150° for an acute angle. Guided him to check whether 150° matches an acute ramp."
+              </p>
+              <p>
+                "Struggled with the reflex angle concept, attempting to read numbers backwards on the semicircle."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mr. Sterling</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-amber-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-amber-950 uppercase tracking-wide block border-b pb-1">Verbatim Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-amber-50 p-2 rounded">
+                "Teacher: Look at your 30° ramp. Why did you write 150° first? Darcy: Because the 150 was right above the line. I forgot to look at the zero on the bottom."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-amber-400 bg-amber-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 mb-2">NESA Moderation Rationale: Grade D (Basic)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Darcy demonstrates <strong>basic knowledge and understanding</strong> of angle measurement, achieving a limited level of competence. In familiar situations, he requires teacher guidance to select the correct protractor scale, makes dual-scale errors, struggles to measure reflex angles beyond 180°, and occasionally omits degree symbols.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: GRADE E (ELEMENTARY) — JAXSON                                      -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeE" class="tab-content hidden">
+      <div class="bg-rose-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-rose-500 text-rose-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade E &bull; Elementary Knowledge &amp; Very Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Jaxson P. &bull; Year 5 (Term 4)</h3>
+          <p class="text-xs text-rose-200">Demonstrates elementary knowledge in few areas; unable to align protractor origin or baseline independently, reads random numbers, omits degree symbols.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-rose-400">GRADE E</div>
+          <div class="text-xs text-rose-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-studentYoung text-2xl text-slate-800">
+            Name: <span class="text-rose-800 underline font-bold">jaxson</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-rose-800">24/10</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Significant Direct Support Required</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Jaxson's Attempt (Random Protractor Readings)
+              </div>
+              <div class="mt-3 font-studentYoung text-xl text-slate-800 space-y-2">
+                <p>"ramp is 80." (Did not align origin at vertex; placed ruler edge at top of protractor).</p>
+                <p>"corner is 100." (Protractor tilted arbitrarily).</p>
+                <p>"straight line is 0."</p>
+                <p>"circle is 100."</p>
+                <p class="text-xs font-sans text-slate-500 italic mt-2">Reflex angles and vector splits not accessed.</p>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9675; <span class="text-xs">Protractor not aligned</span>
+              </div>
+            </div>
+
+            <div class="bg-rose-50 p-3 rounded border border-rose-200 font-studentYoung text-lg text-rose-950">
+              "protractor is hard because it has too many numbers on it."
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyPink p-5 rounded-md border-t-8 border-rose-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-rose-200 pb-1 font-bold text-rose-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded text-rose-900 font-mono">24/10/26 12:15 PM</span>
+              </div>
+              <p class="mb-2">
+                "Jaxson was unable to place the centre point of the protractor on the vertex without 1:1 physical assistance."
+              </p>
+              <p>
+                "Views numbers on the protractor as arbitrary labels. Omits degree notation and cannot identify acute vs obtuse angles."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mr. Sterling</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-rose-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-rose-950 uppercase tracking-wide block border-b pb-1">Verbatim Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-rose-50 p-2 rounded">
+                "Teacher: Jaxson, where does the centre hole of the protractor go? Jaxson: In the middle of the paper somewhere?"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-rose-400 bg-rose-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-rose-950 mb-2">NESA Moderation Rationale: Grade E (Elementary)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Jaxson has an <strong>elementary knowledge and understanding in few areas of the content</strong> and has achieved very limited competence in the processes and skills. In isolated situations, he requires significant direct teacher support to position a protractor, cannot identify the vertex or baseline, reads numbers arbitrarily off the curved edge, omits degree symbols, and cannot classify angles.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 6: CALIBRATION MATRIX (GRADES A TO E)                                 -->
+    <!-- ========================================================================= -->
+    <div id="content-matrix" class="tab-content hidden">
+      <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+        
+        <div class="bg-nswNavy text-white px-6 py-5">
+          <div class="flex flex-wrap justify-between items-center gap-2">
+            <div>
+              <span class="bg-indigo-500 text-indigo-950 text-xs font-black px-2.5 py-1 rounded uppercase tracking-wide">
+                Stage 3 Moderation Tool &bull; NESA Common Grade Scale
+              </span>
+              <h3 class="text-xl font-bold mt-1">Cross-Grade Calibration Matrix: Year 5 (Stage 3 Part A)</h3>
+              <p class="text-xs text-sky-200">
+                Direct evidence comparison across Grades A, B, C, D, and E against the official NSW Stage 3 Mathematics Overview Rubric (MA3-GM-03 &amp; MAO-WM-01).
+              </p>
+            </div>
+            <div class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded text-slate-300">
+              Unit: Geometric Measure (Angles up to 360°) &bull; Term 4 Weeks 1–3
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b-2 border-slate-300 bg-slate-100 text-slate-700">
+                <th class="p-3 font-bold uppercase tracking-wider w-1/6">Syllabus Focus &amp; Rubric Aspect</th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-purple-900 bg-purple-50 border-x border-purple-200">
+                  Grade A (Extensive)<br>
+                  <span class="font-normal text-[10px] text-purple-700">Readily applies to new situations</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-emerald-900 bg-emerald-50 border-r border-emerald-200">
+                  Grade B (Thorough)<br>
+                  <span class="font-normal text-[10px] text-emerald-700">Applies to most situations</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-blue-900 bg-blue-50 border-r border-blue-200">
+                  Grade C (Sound)<br>
+                  <span class="font-normal text-[10px] text-blue-700">Sound knowledge in familiar tasks</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-amber-900 bg-amber-50 border-r border-amber-200">
+                  Grade D (Basic)<br>
+                  <span class="font-normal text-[10px] text-amber-700">Basic knowledge with guidance</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-rose-900 bg-rose-50">
+                  Grade E (Elementary)<br>
+                  <span class="font-normal text-[10px] text-rose-700">Significant direct support</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              
+              <!-- Row 1: Angle Construction & Protractor Measurement -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Protractor Measurement &amp; Construction</div>
+                  <span class="font-mono text-[10px] text-emerald-800 bg-emerald-100 px-1 py-0.5 rounded">MA3-GM-03</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Measures and constructs angles up to 360° using protractors and degree symbol (°).</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Flawless Precision:</strong> Seamlessly measures and constructs angles in any orientation; self-corrects cumulative drift; tracks baseline zero to eliminate dual-scale errors.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Accurate Construction:</strong> Accurately measures and constructs familiar acute, obtuse, and reflex angles using protractors; avoids dual-scale errors consistently.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Taught Routine Competence:</strong> Aligns origin and baseline accurately; selects correct scale using acute/obtuse benchmarks; records with degree symbol (°).
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Dual-Scale Reversals:</strong> Frequently reads incorrect scale (e.g., writing 150° for 30°); requires teacher prompts to verify angle opening before recording.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Arbitrary Reading:</strong> Cannot place protractor origin on vertex without 1:1 guidance; reads random numbers; omits degree notation entirely.
+                </td>
+              </tr>
+
+              <!-- Row 2: Reflex Angles & Revolutions -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Reflex Angles &amp; Revolutions</div>
+                  <span class="font-mono text-[10px] text-sky-800 bg-sky-100 px-1 py-0.5 rounded">MA3-GM-03</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Reflex angles (180°–360°) and angle of revolution (360°).</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Dual Reflex Strategies:</strong> Fluently applies subtractive strategies ($360^\circ - \text{interior}$) and validates with circular 360° tools; explains why rays coincide at 360°.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Subtractive Fluency:</strong> Calculates reflex angles independently by measuring interior angle and subtracting from 360°; labels 360° revolutions accurately.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Formula Application:</strong> Measures interior angle and subtracts from 360° when following taught anchor chart steps; identifies 360° as a full circle turn.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Reflex Misconception:</strong> Measures acute interior instead of reflex exterior; requires direct scaffolding to calculate difference from 360°.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Not Accessed:</strong> Unable to conceptualize turns past 180°; treats angles as isolated line segments rather than rotation.
+                </td>
+              </tr>
+
+              <!-- Row 3: Classifying Benchmark Angles in Any Orientation -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Angle Classification &amp; Orientation</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MA3-GM-03</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Acute, right, obtuse, straight, reflex, revolution in varied orientations.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Mental Rotation Mastery:</strong> Classifies and constructs tilted 90° right angles on diagonal baselines; proves perpendicularity is independent of horizontal axes.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Independent Classification:</strong> Classifies all 6 angle categories accurately in varied orientations; aligns protractor to diagonal rays without turning paper.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Standard Orientation Dependence:</strong> Classifies standard angles correctly; turns paper physically to align tilted angles with horizontal baselines.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Orientation Confusion:</strong> Only recognises right angles in standard horizontal/vertical orientation; misclassifies tilted right angles as acute or obtuse.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Limited Vocabulary:</strong> Confuses acute and obtuse; refers to angles vaguely as "big" or "small" without degree criteria.
+                </td>
+              </tr>
+
+              <!-- Row 4: WM - Exploring & Connecting Concepts -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Exploring &amp; Connecting</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Understanding, fluency, and transfer across focus areas.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Readily explores and connects geometric concepts across focus areas (rotation, vectors, perpendicularity), applying understanding accurately and flexibly in new situations.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Connects concepts accurately and confidently, applying understanding of angle turns and circle divisions in most familiar and some unfamiliar situations.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Explores concepts and makes connections in familiar situations, showing sound understanding of the main ideas taught (benchmarks, degree ranges).
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Explores some concepts with guidance, making limited connections in familiar situations; struggles to relate circle fractions to protractor degrees.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Explores isolated concepts with significant support; mathematical connections between turns and protractor numbers are rarely made.
+                </td>
+              </tr>
+
+              <!-- Row 5: WM - Choosing & Applying Techniques -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Choosing &amp; Applying</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Selecting efficient problem-solving techniques.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Selects efficient measurement and construction techniques from a range (baseline tracking, subtractive reflex calculation), applies them fluently, and adapts to solve unfamiliar challenges.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Chooses effective techniques and applies them accurately to solve most problems, including using benchmark estimates to verify scale selection.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Chooses and applies taught techniques (3-step protractor alignment, benchmark checking) to solve familiar problems with adequate accuracy.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Applies a limited range of techniques, often guess-and-check or relying on horizontal baselines, to solve some familiar problems, usually with guidance.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Attempts simple familiar problems with significant support, using very limited techniques (placing protractor arbitrarily).
+                </td>
+              </tr>
+
+              <!-- Row 6: WM - Communicating & Reasoning -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Communicating &amp; Reasoning</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Reasoning, justifying, and mathematical clarity.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Communicates thinking coherently and clearly, justifying strategies and conclusions with precise mathematical language, degree notation, and geometric proofs.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Clearly explains thinking and strategies using appropriate mathematical language, degree symbols, and structured justifications.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Describes thinking and strategies using everyday and some mathematical language, drawings, numerals, and standard angle classifications.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Describes some aspects of thinking using everyday language when prompted; struggles to articulate reasons for protractor scale choices.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Communicates isolated aspects of thinking with significant support, often through gestures or pointing to protractor numbers.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-6 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 space-y-2">
+          <h5 class="font-bold text-slate-900 uppercase tracking-wide">Stage 3 Team Moderation Protocols:</h5>
+          <p>&bull; <strong>Grade A Standard (Extensive):</strong> Defined by the ability to readily apply angle concepts to novel situations. Kaelen demonstrates depth of reasoning by constructing a tilted 90° right angle on an inclined baseline, applying subtractive reflex formulas, and tracking baseline zeros autonomously.</p>
+          <p>&bull; <strong>Grade B vs Grade C Standard:</strong> Sienna (Grade B) reasons flexibly across most situations, rotating her protractor smoothly to match diagonal rays and explaining scale selection. Tyler (Grade C) achieves sound understanding in familiar tasks, relying on taught 3-step routines and turning the paper so lines appear horizontal.</p>
+          <p>&bull; <strong>Grade D vs Grade E Standard:</strong> Darcy (Grade D) completes basic calculations with teacher guidance but falls into dual-scale reversals (reading 150° for 30°). Jaxson (Grade E) exhibits elementary understanding in isolated areas, unable to align the protractor origin without 1-to-1 physical support.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.add('hidden'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-slate-200', 'text-slate-700', 'border-transparent');
+      });
+
+      const targetContent = document.getElementById('content-' + tabId);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.classList.remove('bg-slate-200', 'text-slate-700', 'border-transparent');
+      }
+    }
+
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      const main = document.querySelector('main');
+      const btnText = document.getElementById('annotationBtnText');
+      
+      annotationsVisible = !annotationsVisible;
+      
+      if (!annotationsVisible) {
+        main.classList.add('hide-annotations');
+        btnText.textContent = "Show Teacher Marks (Moderation Mode)";
+      } else {
+        main.classList.remove('hide-annotations');
+        btnText.textContent = "Hide Teacher Marks (Blind Moderation)";
+      }
+    }
+  </script>
+
+</body>
+</html>
