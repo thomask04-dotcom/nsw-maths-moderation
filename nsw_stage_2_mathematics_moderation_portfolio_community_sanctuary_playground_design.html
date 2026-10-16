@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Sanctuary &amp; Playground Design | NSW Stage 2 Mathematics Moderation Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts for authentic student handwriting, teacher annotations, and clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gaegu:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            student: ['"Patrick Hand"', 'cursive'],
+            studentYoung: ['Gaegu', 'cursive'],
+            teacher: ['Caveat', 'cursive'],
+            school: ['"Comic Neue"', 'cursive']
+          },
+          colors: {
+            nswNavy: '#002B49',
+            nswBlue: '#005999',
+            nswLightBlue: '#E6F0F8',
+            nswRed: '#C9242B',
+            teacherRed: '#D62828',
+            teacherGreen: '#1A7A44',
+            stickyYellow: '#FFF9C4',
+            stickyPink: '#FFE4E6',
+            stickyBlue: '#E0F2FE',
+            stickyGreen: '#DCFCE7',
+            stickyPurple: '#F3E8FF'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 10mm authentic Stage 2 school exercise book grid paper */
+    .exercise-book-grid {
+      background-color: #FFFFFF;
+      background-image: 
+        linear-gradient(rgba(180, 210, 235, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180, 210, 235, 0.45) 1px, transparent 1px);
+      background-size: 20px 20px;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Red exercise book margin line */
+    .margin-line {
+      border-left: 2.5px solid #F87171;
+    }
+
+    /* Tactile washi tape effect for portfolio artefacts */
+    .washi-tape {
+      background: rgba(254, 240, 138, 0.9);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      transform: rotate(-1.2deg);
+    }
+
+    /* Sticky note tactile elevation and hover dynamics */
+    .sticky-note {
+      box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.12), -1px 2px 4px rgba(0, 0, 0, 0.05);
+      transform: rotate(0.8deg);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+      box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.16);
+    }
+
+    /* Blind Moderation Mode: hides teacher markings and annotations for stage calibration */
+    .hide-annotations .teacher-mark,
+    .hide-annotations .sticky-note,
+    .hide-annotations .teacher-comment,
+    .hide-annotations .teacher-banner,
+    .hide-annotations .teacher-check,
+    .hide-annotations .grade-badge {
+      display: none !important;
+    }
+
+    .tab-btn.active {
+      background-color: #002B49;
+      color: #FFFFFF;
+      border-color: #002B49;
+      box-shadow: 0 2px 4px rgba(0, 43, 73, 0.2);
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      .tab-content {
+        display: block !important;
+        page-break-after: always;
+      }
+      body {
+        background: white;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-16 antialiased">
+
+  <header class="bg-nswNavy text-white border-b-4 border-nswBlue sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-white text-nswNavy font-black text-xs px-2.5 py-1 rounded tracking-wider uppercase shadow-sm">
+          NESA K–10 (2022)
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight">Community Sanctuary &amp; Playground Design</h1>
+          <p class="text-xs text-sky-200">Stage 2 (Year 3) Moderation Portfolio &bull; Geometric Measure &amp; 2D Spatial Structure &bull; Term 4, Weeks 5–7</p>
+        </div>
+      </div>
+
+      <!-- Moderation Controls -->
+      <div class="flex items-center gap-2.5 no-print">
+        <button id="toggleAnnotationsBtn" onclick="toggleAnnotations()" class="text-xs font-semibold bg-sky-800 hover:bg-sky-700 active:bg-sky-900 text-white px-3.5 py-1.5 rounded-md border border-sky-600 transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+          <span id="annotationBtnText">Hide Teacher Marks (Blind Moderation)</span>
+        </button>
+        <button onclick="window.print()" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-white px-3 py-1.5 rounded-md border border-slate-600 transition flex items-center gap-1">
+          <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          Print
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6">
+
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-6">
+      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+            Rich Summative Task Extracted
+          </span>
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">
+            Design the Ultimate Community Sanctuary &amp; Playground (Learning Sequence 9)
+          </h2>
+        </div>
+        <div class="text-xs bg-indigo-50 text-indigo-900 border border-indigo-200 px-3 py-1 rounded font-medium">
+          <strong>NSW Stage 2 Common Grade Scale:</strong> Grade A (Extensive), B (Thorough), C (Sound), D (Basic), &amp; E (Elementary)
+        </div>
+      </div>
+
+      <!-- Task Scenario Description -->
+      <div class="p-6 border-b border-slate-100 bg-gradient-to-r from-sky-50/50 via-white to-emerald-50/40">
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+          <strong>Scenario:</strong> <em>"You are the Lead Designer creating a new community park for Wollongong! On your grid paper (where 1 grid square = 1 square metre), create a scaled grid map with letters across the bottom (horizontal) and numbers up the side (vertical). Design 4 rectangular zones (Playground, Native Garden Sanctuary, Sports Field, and a Picnic Shelter of 4 m² that is not a square). Calculate the area of each zone using row-by-column arrays, write a 3-step navigation route using directional language and landmarks, and tackle the Council Cafe Challenge Prompt!"</em>
+        </p>
+      </div>
+
+      <!-- 4 Core Criteria & Challenge Prompt -->
+      <div class="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs text-slate-700">
+        <div class="p-3.5 bg-sky-50/70 rounded-lg border border-sky-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-sky-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-sky-700 text-white inline-flex items-center justify-center text-[10px] font-bold">1</span>
+              Draw Grid Map
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Construct a scaled grid map ($1\text{ sq unit} = 1\text{ m}^2$) with horizontal letters (A–J) and vertical numbers (1–8).</p>
+          </div>
+          <span class="text-[10px] font-mono text-sky-800 bg-white px-2 py-0.5 rounded border border-sky-200 self-start">MA2-GM-01</span>
+        </div>
+
+        <div class="p-3.5 bg-emerald-50/70 rounded-lg border border-emerald-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-emerald-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-700 text-white inline-flex items-center justify-center text-[10px] font-bold">2</span>
+              Coordinates &amp; Arrays
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Locate 4 zones using horizontal-first coordinates. Calculate area in square metres using rows and columns.</p>
+          </div>
+          <span class="text-[10px] font-mono text-emerald-800 bg-white px-2 py-0.5 rounded border border-emerald-200 self-start">MA2-2DS-03 &bull; Arrays</span>
+        </div>
+
+        <div class="p-3.5 bg-amber-50/70 rounded-lg border border-amber-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-amber-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-amber-700 text-white inline-flex items-center justify-center text-[10px] font-bold">3</span>
+              Non-Square 4 m² Shelter
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Construct a picnic shelter with an area of exactly $4\text{ m}^2$ that is not shaped as a square (e.g., $1\text{m} \times 4\text{m}$ or $4\text{m} \times 1\text{m}$).</p>
+          </div>
+          <span class="text-[10px] font-mono text-amber-800 bg-white px-2 py-0.5 rounded border border-amber-200 self-start">MA2-2DS-03 &bull; Conservation</span>
+        </div>
+
+        <div class="p-3.5 bg-purple-50/70 rounded-lg border border-purple-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-purple-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-purple-700 text-white inline-flex items-center justify-center text-[10px] font-bold">4</span>
+              3-Step Navigation Route
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Write a 3-step navigation route from Park Entrance to Native Sanctuary using turns, distances, and landmarks.</p>
+          </div>
+          <span class="text-[10px] font-mono text-purple-800 bg-white px-2 py-0.5 rounded border border-purple-200 self-start">MA2-GM-01 &bull; WM</span>
+        </div>
+      </div>
+      
+      <!-- Challenge Prompt Notice -->
+      <div class="bg-indigo-50/70 px-6 py-2.5 border-t border-indigo-100 text-xs text-indigo-950 flex items-center gap-2">
+        <span class="font-bold uppercase tracking-wider text-[10px] bg-indigo-200 text-indigo-900 px-2 py-0.5 rounded">Designer's Challenge</span>
+        <span>Add a Community Cafe of exactly <strong>$6\text{ m}^2$</strong> that must fit into a narrow space only <strong>$1\text{ metre wide}$</strong>. Draw the cafe, list its coordinates, and explain how conservation of area allows $6\text{ m}^2$ in a $1\text{m}$ width!</span>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
+      <button onclick="switchTab('gradeA')" id="tab-gradeA" class="tab-btn active px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+        Grade A (Extensive) — Maya
+      </button>
+      <button onclick="switchTab('gradeB')" id="tab-gradeB" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+        Grade B (Thorough) — Lucas
+      </button>
+      <button onclick="switchTab('gradeC')" id="tab-gradeC" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+        Grade C (Sound) — Ethan
+      </button>
+      <button onclick="switchTab('gradeD')" id="tab-gradeD" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+        Grade D (Basic) — Sienna
+      </button>
+      <button onclick="switchTab('gradeE')" id="tab-gradeE" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+        Grade E (Elementary) — Noah
+      </button>
+      <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+        Calibration Matrix
+      </button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: GRADE A (EXTENSIVE) — MAYA                                         -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeA" class="tab-content block">
+      <div class="bg-purple-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-purple-500 text-purple-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade A &bull; Extensive Knowledge &amp; Very High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Maya L. &bull; Year 3 (Term 4)</h3>
+          <p class="text-xs text-purple-200">Autonomous reasoning, elegant array multiplication, sophisticated route with compass bearings, fluent proof of non-square area conservation.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-purple-300">GRADE A</div>
+          <div class="text-xs text-purple-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <!-- Header -->
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Maya L.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">14 Nov 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Flawless Coordinate System &amp; Deep Transfer</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Student Artefact Column (7 cols) -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Step 1: Grid Map SVG -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Wollongong Community Sanctuary Map (1 square = 1 m²)
+              </div>
+              
+              <div class="mt-3">
+                <svg class="w-full h-80 bg-slate-50 border border-slate-300 rounded" viewBox="0 0 540 440">
+                  <defs>
+                    <pattern id="gridMaya" width="45" height="45" patternUnits="userSpaceOnUse">
+                      <rect width="45" height="45" fill="none" stroke="#CBD5E1" stroke-width="1"/>
+                    </pattern>
+                  </defs>
+                  
+                  <!-- Grid Background (10 cols A-J, 8 rows 1-8) -->
+                  <g transform="translate(45, 20)">
+                    <rect width="450" height="360" fill="url(#gridMaya)" stroke="#475569" stroke-width="2"/>
+                    
+                    <!-- Zone 1: Sports Field (D5 to G8: 4 cols x 4 rows = 16 m2) -->
+                    <rect x="135" y="0" width="180" height="180" fill="#93C5FD" fill-opacity="0.6" stroke="#2563EB" stroke-width="2"/>
+                    <text x="225" y="90" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" font-weight="bold" fill="#1E3A8A">Sports Field (16 m²)</text>
+                    <text x="225" y="108" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" fill="#1E40AF">4m × 4m array</text>
+
+                    <!-- Zone 2: Native Sanctuary (A5 to B8: 2 cols x 4 rows = 8 m2) -->
+                    <rect x="0" y="0" width="90" height="180" fill="#86EFAC" fill-opacity="0.6" stroke="#16A34A" stroke-width="2"/>
+                    <text x="45" y="85" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="12" font-weight="bold" fill="#14532D">Native</text>
+                    <text x="45" y="100" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="12" font-weight="bold" fill="#14532D">Sanctuary</text>
+                    <text x="45" y="115" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#166534">8 m²</text>
+
+                    <!-- Zone 3: Playground Zone (A1 to C3: 3 cols x 3 rows = 9 m2) -->
+                    <rect x="0" y="225" width="135" height="135" fill="#FDE047" fill-opacity="0.6" stroke="#CA8A04" stroke-width="2"/>
+                    <text x="67" y="295" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" font-weight="bold" fill="#713F12">Playground (9 m²)</text>
+
+                    <!-- Zone 4: Picnic Shelter (E2 to H2: 4 cols x 1 row = 4 m2 NON-SQUARE) -->
+                    <rect x="180" y="270" width="180" height="45" fill="#FCA5A5" fill-opacity="0.65" stroke="#DC2626" stroke-width="2"/>
+                    <text x="270" y="298" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="13" font-weight="bold" fill="#7F1D1D">Picnic Shelter (4 m²: 4m × 1m)</text>
+
+                    <!-- CHALLENGE CAFE: C1 to H1 narrow 1m wide slot? Maya places it at J2-J7 (1 col x 6 rows = 6 m2) -->
+                    <rect x="405" y="45" width="45" height="270" fill="#D8B4FE" fill-opacity="0.75" stroke="#9333EA" stroke-width="2.5" stroke-dasharray="4,2"/>
+                    <text x="427" y="180" text-anchor="middle" transform="rotate(-90 427 180)" font-family="'Patrick Hand', cursive" font-size="13" font-weight="bold" fill="#581C87">Community Cafe (6m × 1m = 6 m²)</text>
+
+                    <!-- Park Entrance at E1 -->
+                    <circle cx="202" cy="360" r="5" fill="#EF4444"/>
+                    <text x="202" y="375" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="bold" fill="#DC2626">▲ ENTRANCE (E1)</text>
+
+                    <!-- Walking Navigation Path -->
+                    <path d="M 202,360 L 202,315 L 157,315 L 157,180 L 90,180" fill="none" stroke="#7C3AED" stroke-width="3" stroke-dasharray="6,4"/>
+                    <circle cx="90" cy="180" r="4" fill="#7C3AED"/>
+                  </g>
+
+                  <!-- Vertical Row Numbers (1 to 8 up side) -->
+                  <g font-family="'Inter', sans-serif" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">
+                    <text x="25" y="45">8</text>
+                    <text x="25" y="90">7</text>
+                    <text x="25" y="135">6</text>
+                    <text x="25" y="180">5</text>
+                    <text x="25" y="225">4</text>
+                    <text x="25" y="270">3</text>
+                    <text x="25" y="315">2</text>
+                    <text x="25" y="360">1</text>
+                    <text x="20" y="200" transform="rotate(-90 20 200)" font-size="10" fill="#64748B">VERTICAL ROWS</text>
+                  </g>
+
+                  <!-- Horizontal Column Letters (A to J across bottom) -->
+                  <g font-family="'Inter', sans-serif" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">
+                    <text x="67" y="405">A</text>
+                    <text x="112" y="405">B</text>
+                    <text x="157" y="405">C</text>
+                    <text x="202" y="405">D</text>
+                    <text x="247" y="405">E</text>
+                    <text x="292" y="405">F</text>
+                    <text x="337" y="405">G</text>
+                    <text x="382" y="405">H</text>
+                    <text x="427" y="405">I</text>
+                    <text x="472" y="405">J</text>
+                    <text x="270" y="425" font-size="10" fill="#64748B">HORIZONTAL COLUMNS (READ FIRST)</text>
+                  </g>
+
+                  <!-- Compass Rose -->
+                  <g transform="translate(480, 40)">
+                    <circle cx="20" cy="20" r="18" fill="#FFFFFF" stroke="#94A3B8"/>
+                    <path d="M 20,5 L 24,18 L 20,15 L 16,18 Z" fill="#EF4444"/>
+                    <path d="M 20,35 L 24,22 L 20,25 L 16,22 Z" fill="#64748B"/>
+                    <text x="20" y="4" text-anchor="middle" font-size="8" font-weight="bold" fill="#DC2626">N</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-3xl font-black">
+                &#10003; <span class="text-sm">Exemplary spatial layout</span>
+              </div>
+            </div>
+
+            <!-- Step 2: Maya's Designer Guide & Calculations -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Maya's Designer's Guide: Coordinate Arrays &amp; Area Calculations
+              </div>
+
+              <div class="mt-2 space-y-2.5 font-student text-base text-slate-800">
+                <div class="p-2.5 bg-sky-50 rounded border border-sky-200">
+                  <strong class="font-sans text-xs text-sky-950 block">1. Sports Field:</strong>
+                  Coordinates: D5, D6, D7, D8 to G5, G6, G7, G8 &bull; Array: 4 columns × 4 rows<br>
+                  <span class="font-sans text-xs text-slate-700">Area Calculation: $4\text{ m} \times 4\text{ m} = 16\text{ square metres } (16\text{ m}^2)$.</span>
+                </div>
+
+                <div class="p-2.5 bg-emerald-50 rounded border border-emerald-200">
+                  <strong class="font-sans text-xs text-emerald-950 block">2. Native Garden Sanctuary:</strong>
+                  Coordinates: A5, A6, A7, A8 to B5, B6, B7, B8 &bull; Array: 2 columns × 4 rows<br>
+                  <span class="font-sans text-xs text-slate-700">Area Calculation: $2\text{ m} \times 4\text{ m} = 8\text{ square metres } (8\text{ m}^2)$.</span>
+                </div>
+
+                <div class="p-2.5 bg-amber-50 rounded border border-amber-200">
+                  <strong class="font-sans text-xs text-amber-950 block">3. Playground Zone:</strong>
+                  Coordinates: A1, A2, A3 to C1, C2, C3 &bull; Array: 3 columns × 3 rows<br>
+                  <span class="font-sans text-xs text-slate-700">Area Calculation: $3\text{ m} \times 3\text{ m} = 9\text{ square metres } (9\text{ m}^2)$.</span>
+                </div>
+
+                <div class="p-2.5 bg-rose-50 rounded border border-rose-200">
+                  <strong class="font-sans text-xs text-rose-950 block">4. Picnic Shelter (Non-Square Shape):</strong>
+                  Coordinates: E2, F2, G2, H2 &bull; Array: 4 columns × 1 row<br>
+                  <span class="font-sans text-xs text-slate-700">Area Calculation: $4\text{ m} \times 1\text{ m} = 4\text{ square metres } (4\text{ m}^2)$.<br>
+                  <em>"I created a 4m long by 1m wide shelter. It is a long rectangle covering exactly 4 square metres because $4 \times 1 = 4$. It proves that an area of 4 square metres does not need to be a $2\text{m} \times 2\text{m}$ square!"</em></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 & 4: Navigation Route & Challenge Prompt -->
+            <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-lg border-2 border-purple-300 shadow-sm relative">
+              <div class="absolute -top-3 left-4 bg-purple-700 text-white px-3 py-0.5 text-xs font-bold rounded shadow-sm">
+                3-Step Navigation Route &amp; Council Cafe Challenge
+              </div>
+
+              <div class="mt-3 space-y-3 font-student text-sm text-slate-800">
+                <div class="bg-white p-3 rounded border border-purple-200">
+                  <strong class="font-sans text-xs text-purple-950 block mb-1">3-Step Directional Route (Entrance E1 to Native Sanctuary B5):</strong>
+                  <ol class="list-decimal list-inside space-y-1 font-sans text-xs text-slate-700">
+                    <li><strong>Step 1:</strong> Start at Park Entrance at <strong>E1</strong>. Walk 2 metres North (forward) along Column E until you reach coordinate <strong>E2</strong>, with the Picnic Shelter immediately on your right.</li>
+                    <li><strong>Step 2:</strong> Turn 90° West (left) and walk 2 metres to coordinate <strong>C2</strong>, passing just behind the Playground fence on your left.</li>
+                    <li><strong>Step 3:</strong> Turn 90° North (right) and walk 3 metres straight ahead through Column C to reach <strong>C5</strong>, then turn West into the Native Sanctuary entrance at <strong>B5</strong>.</li>
+                  </ol>
+                </div>
+
+                <div class="bg-white p-3 rounded border border-purple-200 leading-relaxed font-sans text-xs text-slate-700">
+                  <strong class="text-purple-950 block mb-1 font-student text-base">Council Cafe Challenge Solution &amp; Conservation Proof:</strong>
+                  "I placed the Cafe in a 1-metre wide boundary along Column J from row 2 up to row 7. The coordinates are: <strong>J2, J3, J4, J5, J6, and J7</strong>.<br>
+                  <strong>Spatial Justification:</strong> Even though the space is only 1 metre wide, area is the measure of the total surface space inside the boundary. By extending the building 6 metres in length along the boundary, the array is $1\text{m wide} \times 6\text{m long} = 6\text{ square metres } (6\text{ m}^2)$. Area is conserved regardless of whether the shape is a squarish block or a long linear strip!"
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Teacher Evidence Column (5 cols) -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Sticky Note Running Record -->
+            <div class="sticky-note bg-stickyPurple p-5 rounded-md border-t-8 border-purple-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-purple-300 pb-1 font-bold text-purple-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-purple-200 px-2 py-0.5 rounded text-purple-900 font-mono">14/11/26 10:45 AM</span>
+              </div>
+              <p class="mb-2">
+                "Maya worked completely autonomously. When setting up her grid, she immediately explained: <span class="text-purple-900 font-bold">'Horizontal letters must be read before vertical numbers to prevent ambiguity across the array.'</span>"
+              </p>
+              <p>
+                "Tackled the Council Cafe Challenge effortlessly. She drew a $1\text{m} \times 6\text{m}$ vertical strip down column J, demonstrating deep conceptual transfer of conservation of area."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Alcott (Year 3)</div>
+            </div>
+
+            <!-- Scribing Card -->
+            <div class="bg-white rounded-lg p-4 border-2 border-purple-200 shadow-sm">
+              <div class="flex items-center gap-2 mb-2 pb-1 border-b border-purple-100">
+                <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+                <span class="text-xs font-bold uppercase tracking-wide text-purple-900">Teacher Scribing (Verbatim Dialogue)</span>
+              </div>
+              <div class="text-xs space-y-2 text-slate-700 leading-relaxed font-sans">
+                <p><strong>Teacher:</strong> "Maya, why does your $1\text{m} \times 4\text{m}$ picnic shelter still have an area of 4 square metres if it's not a square?"</p>
+                <p class="bg-purple-50 p-2.5 rounded italic text-purple-950 font-school">
+                  "Because area isn't the shape of the outside lines; it's the amount of ground surface inside. A square metre is just a measuring unit. 4 single square metre frames joined in one long row cover the exact same amount of ground as 4 frames put together in a $2 \times 2$ square."
+                </p>
+              </div>
+            </div>
+
+            <!-- Syllabus Mapping Card -->
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200 text-xs space-y-2">
+              <span class="font-bold text-slate-900 uppercase tracking-wide block border-b pb-1">Syllabus Demonstration:</span>
+              <p><strong>MA2-GM-01:</strong> Masterfully coordinates horizontal and vertical references; formulates precise routes integrating turn angles, metric distance, and landmarks.</p>
+              <p><strong>MA2-2DS-03:</strong> Fluently calculates area using array structures ($L \times W$); demonstrates that an area of $1\text{ m}^2$ or multiple square metres need not be square.</p>
+              <p><strong>MAO-WM-01:</strong> Connects spatial concepts across focus areas; articulates conservation of area with mathematical clarity.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Grade A Moderation Rationale -->
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-purple-400 bg-purple-50/60 rounded-xl p-6">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <h4 class="text-sm font-black uppercase tracking-wider text-purple-950 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-700"></span>
+              NESA Moderation Rationale: Grade A (Extensive)
+            </h4>
+            <span class="text-xs font-semibold bg-purple-200 text-purple-900 px-2.5 py-1 rounded">
+              Extensive Knowledge &bull; Transfer to Novel Situations
+            </span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed mb-3">
+            Maya demonstrates <strong>extensive knowledge and understanding</strong> by applying spatial concepts flexibly to both familiar and unfamiliar contexts. She exhibits autonomous grid-referencing precision, calculates rectangular areas using row-by-column array multiplication, and constructs a flawless $4\text{ m} \times 1\text{ m}$ non-square shelter. In the Challenge Prompt, she transfers conservation of area principles to design a $1\text{m} \times 6\text{m}$ cafe strip, justifying that surface coverage remains identical regardless of geometric configuration.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: GRADE B (THOROUGH) — LUCAS                                         -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeB" class="tab-content hidden">
+      <div class="bg-emerald-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-emerald-500 text-emerald-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade B &bull; Thorough Knowledge &amp; High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Lucas P. &bull; Year 3 (Term 4)</h3>
+          <p class="text-xs text-emerald-200">Applies concepts accurately in familiar tasks, structured coordinate recording, clear array multiplication, sound challenge attempt.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-emerald-300">GRADE B</div>
+          <div class="text-xs text-emerald-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Lucas P.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">14 Nov 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Thorough Work Verified</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Grid Map -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Lucas's Park Grid Map (1 square = 1 m²)
+              </div>
+              <div class="mt-3">
+                <svg class="w-full h-80 bg-slate-50 border border-slate-300 rounded" viewBox="0 0 540 440">
+                  <defs>
+                    <pattern id="gridLucas" width="45" height="45" patternUnits="userSpaceOnUse">
+                      <rect width="45" height="45" fill="none" stroke="#CBD5E1" stroke-width="1"/>
+                    </pattern>
+                  </defs>
+                  <g transform="translate(45, 20)">
+                    <rect width="450" height="360" fill="url(#gridLucas)" stroke="#475569" stroke-width="2"/>
+
+                    <!-- Sports Field: C5 to F8 (4 cols x 4 rows = 16 m2) -->
+                    <rect x="90" y="0" width="180" height="180" fill="#93C5FD" fill-opacity="0.6" stroke="#2563EB" stroke-width="2"/>
+                    <text x="180" y="95" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" font-weight="bold" fill="#1E3A8A">Sports Field (16 m²)</text>
+
+                    <!-- Native Garden: H5 to I8 (2 cols x 4 rows = 8 m2) -->
+                    <rect x="315" y="0" width="90" height="180" fill="#86EFAC" fill-opacity="0.6" stroke="#16A34A" stroke-width="2"/>
+                    <text x="360" y="95" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="13" font-weight="bold" fill="#14532D">Native Garden (8 m²)</text>
+
+                    <!-- Playground: B1 to D3 (3 cols x 3 rows = 9 m2) -->
+                    <rect x="45" y="225" width="135" height="135" fill="#FDE047" fill-opacity="0.6" stroke="#CA8A04" stroke-width="2"/>
+                    <text x="112" y="295" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" font-weight="bold" fill="#713F12">Playground (9 m²)</text>
+
+                    <!-- Picnic Shelter: F2 to I2 (4 cols x 1 row = 4 m2 NON-SQUARE) -->
+                    <rect x="225" y="270" width="180" height="45" fill="#FCA5A5" fill-opacity="0.65" stroke="#DC2626" stroke-width="2"/>
+                    <text x="315" y="298" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="13" font-weight="bold" fill="#7F1D1D">Picnic Shelter (4 m²)</text>
+
+                    <!-- Challenge Cafe at A2-A7 (1 col x 6 rows = 6 m2) -->
+                    <rect x="0" y="45" width="45" height="270" fill="#D8B4FE" fill-opacity="0.7" stroke="#9333EA" stroke-width="2"/>
+                    <text x="22" y="180" text-anchor="middle" transform="rotate(-90 22 180)" font-family="'Patrick Hand', cursive" font-size="12" font-weight="bold" fill="#581C87">Cafe (6 m²)</text>
+
+                    <!-- Entrance at E1 -->
+                    <circle cx="180" cy="360" r="5" fill="#EF4444"/>
+                    <text x="180" y="375" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="bold" fill="#DC2626">ENTRANCE (E1)</text>
+
+                    <!-- Route -->
+                    <path d="M 180,360 L 180,225 L 360,225 L 360,180" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="5,4"/>
+                  </g>
+
+                  <!-- Coordinate numbers and letters -->
+                  <g font-family="'Inter', sans-serif" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">
+                    <text x="25" y="45">8</text><text x="25" y="90">7</text><text x="25" y="135">6</text><text x="25" y="180">5</text>
+                    <text x="25" y="225">4</text><text x="25" y="270">3</text><text x="25" y="315">2</text><text x="25" y="360">1</text>
+                    <text x="67" y="405">A</text><text x="112" y="405">B</text><text x="157" y="405">C</text><text x="202" y="405">D</text>
+                    <text x="247" y="405">E</text><text x="292" y="405">F</text><text x="337" y="405">G</text><text x="382" y="405">H</text>
+                    <text x="427" y="405">I</text><text x="472" y="405">J</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Lucas's Designer Guide -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-student text-base text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-slate-900 block mb-1">Lucas's Area &amp; Coordinate Log:</span>
+              <p>&bull; <strong>Playground:</strong> B1, B2, B3, C1, C2, C3, D1, D2, D3 = 3 rows of 3 = <strong>9 square metres (9 m²)</strong>.</p>
+              <p>&bull; <strong>Sports Field:</strong> C5 to F8 = 4 rows of 4 columns = <strong>16 square metres (16 m²)</strong>.</p>
+              <p>&bull; <strong>Picnic Shelter:</strong> F2, G2, H2, I2 = 1 row of 4 = <strong>4 square metres</strong>. <em>"It is not a square because it is 4m long and 1m wide."</em></p>
+              <div class="bg-emerald-50 p-2.5 rounded border border-emerald-200 text-xs font-sans">
+                <strong>Navigation Route:</strong> 1. From E1 walk north 3 metres to E4. 2. Turn right and walk east 4 metres to H4. 3. Turn left and walk north into the Native Garden at H5.
+              </div>
+              <div class="bg-purple-50 p-2.5 rounded border border-purple-200 text-xs font-sans">
+                <strong>Challenge Attempt:</strong> "I drew the cafe from A2 to A7. It is 1m wide and 6m long. $1 \times 6 = 6\text{ m}^2$, so it fits into the 1m space."
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyGreen p-5 rounded-md border-t-8 border-emerald-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-emerald-300 pb-1 font-bold text-emerald-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-emerald-200 px-2 py-0.5 rounded text-emerald-900 font-mono">14/11/26 11:15 AM</span>
+              </div>
+              <p class="mb-2">
+                "Lucas constructed his grid map accurately with horizontal letters before vertical numbers. Calculated areas using array multiplication ($4 \times 4 = 16$, $3 \times 3 = 9$)."
+              </p>
+              <p>
+                "Demonstrated thorough reasoning on the 4m² shelter and completed the extension cafe prompt accurately using counting."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Alcott</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-emerald-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-emerald-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Response:</span>
+              <p class="italic text-slate-700 font-school bg-emerald-50 p-2 rounded">
+                "Teacher: How did you know your picnic shelter is 4 square metres? Lucas: I made 1 row of 4 boxes. $1 \times 4$ is 4 square metres. A square would be $2 \times 2$, but this is a long rectangle."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-emerald-400 bg-emerald-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 mb-2">NESA Moderation Rationale: Grade B (Thorough)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Lucas demonstrates <strong>thorough knowledge and understanding</strong> of grid maps and two-dimensional area arrays in familiar situations. He accurately records coordinates horizontal-first, calculates area using row and column arrays, constructs a valid non-square $4\text{ m}^2$ shelter, and provides a clear 3-step navigation route. In the challenge prompt, he correctly models a $1\text{m} \times 6\text{m}$ cafe strip.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: GRADE C (SOUND) — ETHAN                                            -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeC" class="tab-content hidden">
+      <div class="bg-blue-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-blue-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade C &bull; Sound Knowledge &amp; Adequate Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Ethan R. &bull; Year 3 (Term 4)</h3>
+          <p class="text-xs text-blue-200">Demonstrates taught routines in familiar tasks, relies on square counting to verify arrays, standard horizontal-first coordinates.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-blue-300">GRADE C</div>
+          <div class="text-xs text-blue-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Ethan R.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">14 Nov 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Sound Competence Verified</span>
+            <span class="text-2xl">&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Ethan's Park Map
+              </div>
+              <div class="mt-3">
+                <svg class="w-full h-80 bg-slate-50 border border-slate-300 rounded" viewBox="0 0 540 440">
+                  <defs>
+                    <pattern id="gridEthan" width="45" height="45" patternUnits="userSpaceOnUse">
+                      <rect width="45" height="45" fill="none" stroke="#CBD5E1" stroke-width="1"/>
+                    </pattern>
+                  </defs>
+                  <g transform="translate(45, 20)">
+                    <rect width="450" height="360" fill="url(#gridEthan)" stroke="#475569" stroke-width="2"/>
+
+                    <!-- Sports Field: D5 to F7 (3 cols x 3 rows = 9 m2) -->
+                    <rect x="135" y="45" width="135" height="135" fill="#93C5FD" fill-opacity="0.6" stroke="#2563EB" stroke-width="2"/>
+                    <text x="202" y="115" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="13" font-weight="bold">Sports Field (9 m²)</text>
+
+                    <!-- Native Garden: A5 to B7 (2 cols x 3 rows = 6 m2) -->
+                    <rect x="0" y="45" width="90" height="135" fill="#86EFAC" fill-opacity="0.6" stroke="#16A34A" stroke-width="2"/>
+                    <text x="45" y="115" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="12" font-weight="bold">Garden (6 m²)</text>
+
+                    <!-- Playground: B1 to C4 (2 cols x 4 rows = 8 m2) -->
+                    <rect x="45" y="180" width="90" height="180" fill="#FDE047" fill-opacity="0.6" stroke="#CA8A04" stroke-width="2"/>
+                    <text x="90" y="270" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="13" font-weight="bold">Playground (8 m²)</text>
+
+                    <!-- Picnic Shelter: G2 to H3 (2 cols x 2 rows = 4 m2 - originally drew square, erased to make 1x4 after prompt) -->
+                    <rect x="270" y="270" width="180" height="45" fill="#FCA5A5" fill-opacity="0.65" stroke="#DC2626" stroke-width="2"/>
+                    <text x="360" y="298" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="12" font-weight="bold">Shelter (1m × 4m = 4 m²)</text>
+
+                    <circle cx="225" cy="360" r="5" fill="#EF4444"/>
+                    <text x="225" y="375" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="bold">Entrance (F1)</text>
+
+                    <!-- Path -->
+                    <path d="M 225,360 L 225,200 L 45,200 L 45,180" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4,4"/>
+                  </g>
+                  <g font-family="'Inter', sans-serif" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">
+                    <text x="25" y="45">8</text><text x="25" y="90">7</text><text x="25" y="135">6</text><text x="25" y="180">5</text>
+                    <text x="25" y="225">4</text><text x="25" y="270">3</text><text x="25" y="315">2</text><text x="25" y="360">1</text>
+                    <text x="67" y="405">A</text><text x="112" y="405">B</text><text x="157" y="405">C</text><text x="202" y="405">D</text>
+                    <text x="247" y="405">E</text><text x="292" y="405">F</text><text x="337" y="405">G</text><text x="382" y="405">H</text>
+                    <text x="427" y="405">I</text><text x="472" y="405">J</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Guide -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-student text-sm text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-slate-900 block mb-1">Ethan's Recording:</span>
+              <p>&bull; <strong>Playground:</strong> B1, B2, B3, B4 and C1, C2, C3, C4. Area = 8 squares = <strong>8 square metres</strong> (I counted 1, 2, 3, 4, 5, 6, 7, 8).</p>
+              <p>&bull; <strong>Sports Field:</strong> D5 to F7. Area = 3 rows of 3 = <strong>9 square metres</strong>.</p>
+              <p>&bull; <strong>Picnic Shelter:</strong> G2, H2, I2, J2. Area = <strong>4 square metres</strong>. <em>"I folded 4 boxes in a line so it's not a square."</em></p>
+              <div class="bg-blue-50 p-2.5 rounded border border-blue-200 text-xs font-sans">
+                <strong>Directions:</strong> 1. Walk from F1 straight past shelter. 2. Turn left near playground. 3. Turn right into the garden gate.
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyBlue p-5 rounded-md border-t-8 border-sky-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-sky-300 pb-1 font-bold text-sky-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-sky-200 px-2 py-0.5 rounded text-sky-900 font-mono">14/11/26 11:40 AM</span>
+              </div>
+              <p class="mb-2">
+                "Ethan followed taught routines well. Used horizontal letter first then vertical number. Double-checked his area calculations by counting each square one-by-one."
+              </p>
+              <p>
+                "Initially drew a $2 \times 2$ picnic shelter. When reminded it must not be a square, he adjusted it to $1 \times 4$. Needed scaffolding for the cafe challenge."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Alcott</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-blue-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-blue-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-blue-50 p-2 rounded">
+                "Teacher: How did you find the area of the playground? Ethan: I did 2 columns and 4 rows, and then I pointed to each square to make sure there were 8 in all."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-blue-400 bg-blue-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 mb-2">NESA Moderation Rationale: Grade C (Sound)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Ethan demonstrates <strong>sound knowledge and understanding of the main areas of content</strong> in familiar situations. He accurately records coordinates using the horizontal-first convention, calculates area using rows and columns supported by counting, and writes a basic 3-step route. When prompted, he adjusts his picnic shelter to a non-square $1\text{m} \times 4\text{m}$ configuration.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: GRADE D (BASIC) — SIENNA                                           -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeD" class="tab-content hidden">
+      <div class="bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-amber-500 text-amber-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade D &bull; Basic Knowledge &amp; Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Sienna W. &bull; Year 3 (Term 4)</h3>
+          <p class="text-xs text-amber-200">Demonstrates basic knowledge with teacher guidance; occasional coordinate reversals, square-by-square counting, partial shelter design.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-amber-400">GRADE D</div>
+          <div class="text-xs text-amber-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-amber-800 underline font-bold">Sienna W.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-amber-800">14 Nov 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Supported Task</span>
+            <span class="text-lg text-amber-800">With Teacher Prompts</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Sienna's Map (Occasional Coordinate Reversal)
+              </div>
+              <div class="mt-3">
+                <svg class="w-full h-80 bg-slate-50 border border-slate-300 rounded" viewBox="0 0 540 440">
+                  <defs>
+                    <pattern id="gridSienna" width="45" height="45" patternUnits="userSpaceOnUse">
+                      <rect width="45" height="45" fill="none" stroke="#CBD5E1" stroke-width="1"/>
+                    </pattern>
+                  </defs>
+                  <g transform="translate(45, 20)">
+                    <rect width="450" height="360" fill="url(#gridSienna)" stroke="#475569" stroke-width="2"/>
+
+                    <!-- Playground: B2 to D3 (3 cols x 2 rows = 6 m2) -->
+                    <rect x="45" y="225" width="135" height="90" fill="#FDE047" fill-opacity="0.6" stroke="#CA8A04" stroke-width="2"/>
+                    <text x="112" y="275" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="13">Playground (6)</text>
+
+                    <!-- Sports Field: D5 to F6 (3 cols x 2 rows = 6 m2) -->
+                    <rect x="135" y="90" width="135" height="90" fill="#93C5FD" fill-opacity="0.6" stroke="#2563EB" stroke-width="2"/>
+                    <text x="202" y="140" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="13">Sports Field (6)</text>
+
+                    <!-- Native Garden: H5 to I7 (2 cols x 3 rows = 6 m2) -->
+                    <rect x="315" y="45" width="90" height="135" fill="#86EFAC" fill-opacity="0.6" stroke="#16A34A" stroke-width="2"/>
+                    <text x="360" y="115" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="12">Garden</text>
+
+                    <!-- Picnic Shelter: Drawn as 2x2 SQUARE (Missed "not a square" rule) -->
+                    <rect x="225" y="225" width="90" height="90" fill="#FCA5A5" fill-opacity="0.65" stroke="#DC2626" stroke-width="2"/>
+                    <text x="270" y="275" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="12" fill="#B91C1C">Shelter (Square!)</text>
+
+                    <circle cx="180" cy="360" r="5" fill="#EF4444"/>
+                    <text x="180" y="375" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10">gate</text>
+                  </g>
+                  <g font-family="'Inter', sans-serif" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">
+                    <text x="25" y="45">8</text><text x="25" y="90">7</text><text x="25" y="135">6</text><text x="25" y="180">5</text>
+                    <text x="25" y="225">4</text><text x="25" y="270">3</text><text x="25" y="315">2</text><text x="25" y="360">1</text>
+                    <text x="67" y="405">A</text><text x="112" y="405">B</text><text x="157" y="405">C</text><text x="202" y="405">D</text>
+                    <text x="247" y="405">E</text><text x="292" y="405">F</text><text x="337" y="405">G</text><text x="382" y="405">H</text>
+                    <text x="427" y="405">I</text><text x="472" y="405">J</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9651; <span class="text-xs">Shelter drawn as square</span>
+              </div>
+            </div>
+
+            <!-- Guide with Reversals -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-student text-sm text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-amber-900 block mb-1">Sienna's Recording:</span>
+              <p>&bull; <strong>Playground:</strong> <span class="line-through text-slate-400">2B, 3B, 2C, 3C</span> &rarr; B2, B3, C2, C3 (corrected). Area = 6.</p>
+              <p>&bull; <strong>Picnic Shelter:</strong> F3, F4, G3, G4. Area = 4. (Drew as 2 by 2 square).</p>
+              <div class="bg-amber-50 p-2.5 rounded border border-amber-200 text-xs font-sans">
+                <strong>Directions:</strong> "Walk past the swings. Turn right then go to the trees."
+              </div>
+              <div class="bg-rose-50 p-2 rounded text-xs text-rose-900 font-sans">
+                <strong>Challenge Note:</strong> "The cafe can't fit because 6 is too big to fit in 1."
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyYellow p-5 rounded-md border-t-8 border-amber-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-amber-200 pb-1 font-bold text-amber-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-amber-200 px-2 py-0.5 rounded text-amber-900 font-mono">14/11/26 12:10 PM</span>
+              </div>
+              <p class="mb-2">
+                "Sienna frequently reversed coordinates (writing vertical number before horizontal letter e.g., '2B'). Required reminders to find the letter first."
+              </p>
+              <p>
+                "Counted squares one-by-one and omitted units of measure (recording '6' instead of '6 square metres'). Drew shelter as a square."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Alcott</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-amber-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-amber-950 uppercase tracking-wide block border-b pb-1">Verbatim Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-amber-50 p-2 rounded">
+                "Teacher: What unit are we measuring the park in? Sienna: Squares. Teacher: Square what? Sienna: Square centimetres? Oh, square metres."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-amber-400 bg-amber-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 mb-2">NESA Moderation Rationale: Grade D (Basic)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Sienna demonstrates <strong>basic knowledge and understanding</strong> of the content, achieving a limited level of competence. In familiar situations, she requires prompting to follow the horizontal-first coordinate convention, relies on counting individual squares without array thinking, omits square metre units, and draws the picnic shelter as a square. Holds misconceptions regarding area conservation in the challenge prompt.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: GRADE E (ELEMENTARY) — NOAH                                        -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeE" class="tab-content hidden">
+      <div class="bg-rose-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-rose-500 text-rose-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade E &bull; Elementary Knowledge &amp; Very Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Noah K. &bull; Year 3 (Term 4)</h3>
+          <p class="text-xs text-rose-200">Demonstrates elementary knowledge in few areas; requires substantial 1-to-1 physical support and direct modeling throughout.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-rose-400">GRADE E</div>
+          <div class="text-xs text-rose-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-studentYoung text-2xl text-slate-800">
+            Name: <span class="text-rose-800 underline font-bold">noah</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-rose-800">14/11</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Significant Direct Support Required</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Noah's Grid Attempt (Unconnected Shapes)
+              </div>
+              <div class="mt-3">
+                <svg class="w-full h-80 bg-slate-50 border border-slate-300 rounded" viewBox="0 0 540 440">
+                  <defs>
+                    <pattern id="gridNoah" width="45" height="45" patternUnits="userSpaceOnUse">
+                      <rect width="45" height="45" fill="none" stroke="#CBD5E1" stroke-width="1"/>
+                    </pattern>
+                  </defs>
+                  <g transform="translate(45, 20)">
+                    <rect width="450" height="360" fill="url(#gridNoah)" stroke="#DC2626" stroke-width="2"/>
+
+                    <!-- Random crooked blob across lines -->
+                    <path d="M 60,80 Q 140,70 160,150 Q 120,200 50,180 Z" fill="#FCA5A5" fill-opacity="0.6" stroke="#DC2626" stroke-width="2"/>
+                    <text x="100" y="130" font-family="'Gaegu', cursive" font-size="18">play</text>
+
+                    <rect x="250" y="200" width="120" height="80" fill="#93C5FD" fill-opacity="0.6" stroke="#2563EB" stroke-width="2"/>
+                    <text x="310" y="245" font-family="'Gaegu', cursive" font-size="16">footy</text>
+                  </g>
+                  <!-- Crooked letters -->
+                  <text x="70" y="405" font-family="'Gaegu', cursive" font-size="18">1</text>
+                  <text x="115" y="405" font-family="'Gaegu', cursive" font-size="18">2</text>
+                  <text x="160" y="405" font-family="'Gaegu', cursive" font-size="18">A</text>
+                  <text x="25" y="90" font-family="'Gaegu', cursive" font-size="18">B</text>
+                </svg>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9675; <span class="text-xs">Grid array not followed</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-studentYoung text-xl text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-rose-900 block mb-1">Noah's Written Responses:</span>
+              <p>"play is at 1. footy is big."</p>
+              <p>"area = 5 boxes." (Counted arbitrary squares across boundary lines).</p>
+              <div class="bg-rose-50 p-2.5 rounded border border-rose-200 text-xs font-sans text-rose-900">
+                <strong>Navigation:</strong> "walk over there to the trees."
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyPink p-5 rounded-md border-t-8 border-rose-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-rose-200 pb-1 font-bold text-rose-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded text-rose-900 font-mono">14/11/26 12:30 PM</span>
+              </div>
+              <p class="mb-2">
+                "Noah confused horizontal and vertical axes completely. Mixed letters and numbers randomly on both sides."
+              </p>
+              <p>
+                "Drew shapes freehand without following the grid line array. Could not identify square metres or calculate area."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Alcott</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-rose-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-rose-950 uppercase tracking-wide block border-b pb-1">Verbatim Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-rose-50 p-2 rounded">
+                "Teacher: Noah, what coordinate is the footy field at? Noah: It's next to the red gate."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-rose-400 bg-rose-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-rose-950 mb-2">NESA Moderation Rationale: Grade E (Elementary)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Noah has an <strong>elementary knowledge and understanding in few areas of the content</strong> and has achieved very limited competence in the processes and skills. In isolated situations, he requires significant direct teacher support to identify grid lines, cannot apply the horizontal-first convention, does not construct rectangular area arrays, and is unable to measure area in square metres.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 6: CALIBRATION MATRIX (GRADES A TO E)                                 -->
+    <!-- ========================================================================= -->
+    <div id="content-matrix" class="tab-content hidden">
+      <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+        
+        <div class="bg-nswNavy text-white px-6 py-5">
+          <div class="flex flex-wrap justify-between items-center gap-2">
+            <div>
+              <span class="bg-indigo-500 text-indigo-950 text-xs font-black px-2.5 py-1 rounded uppercase tracking-wide">
+                Stage 2 Moderation Tool
+              </span>
+              <h3 class="text-xl font-bold mt-1">Cross-Grade Calibration Matrix: Year 3 (Stage 2 Part A)</h3>
+              <p class="text-xs text-sky-200">
+                Direct evidence comparison across Grades A, B, C, D, and E against NSW Syllabus Outcomes (MA2-GM-01, MA2-2DS-03 &amp; MAO-WM-01).
+              </p>
+            </div>
+            <div class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded text-slate-300">
+              Unit: Geometric Measure &amp; 2D Spatial Structure &bull; Term 4
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b-2 border-slate-300 bg-slate-100 text-slate-700">
+                <th class="p-3 font-bold uppercase tracking-wider w-1/6">Syllabus Focus</th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-purple-900 bg-purple-50 border-x border-purple-200">Grade A (Extensive)</th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-emerald-900 bg-emerald-50 border-r border-emerald-200">Grade B (Thorough)</th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-blue-900 bg-blue-50 border-r border-blue-200">Grade C (Sound)</th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-amber-900 bg-amber-50 border-r border-amber-200">Grade D (Basic)</th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-rose-900 bg-rose-50">Grade E (Elementary)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              
+              <!-- Row 1: Grid Coordinate System -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Grid References</div>
+                  <span class="font-mono text-[10px] text-sky-800 bg-sky-100 px-1 py-0.5 rounded">MA2-GM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Horizontal before vertical convention.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Masterful Precision:</strong> Autonomous grid setup; explains mathematical rationale for horizontal-first convention; references ranges flawlessly.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Accurate Recording:</strong> Accurately coordinates horizontal letters and vertical numbers; no reversals in familiar layout.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Taught Routine:</strong> Follows horizontal-then-vertical rule correctly in standard tasks with minimal teacher reminders.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Inconsistent:</strong> Frequently reverses coordinates (e.g. 2B for B2); needs prompts to check horizontal axis first.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Arbitrary:</strong> Confuses rows and columns; labels letters/numbers randomly; cannot locate cells without 1:1 help.
+                </td>
+              </tr>
+
+              <!-- Row 2: Area Arrays & Square Metres -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Area Arrays (m²)</div>
+                  <span class="font-mono text-[10px] text-sky-800 bg-sky-100 px-1 py-0.5 rounded">MA2-2DS-03</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Rows and columns array structure.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Fluent Array Reasoning:</strong> Multiplies rows and columns ($4\text{m} \times 4\text{m} = 16\text{ m}^2$); records numerals and words consistently.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Structured Arrays:</strong> Uses row-by-column multiplication or skip-counting; records full square metre units accurately.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Counting Verification:</strong> Applies basic rows and columns but relies on counting squares one-by-one to verify total area.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Count-by-One Only:</strong> Counts squares individually; omits units or confuses square metres with square centimetres.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>No Array Structure:</strong> Draws blobs across grid boundaries; counts squares inaccurately with gaps and overlaps.
+                </td>
+              </tr>
+
+              <!-- Row 3: Non-Square Square Metres -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Conservation of Area</div>
+                  <span class="font-mono text-[10px] text-sky-800 bg-sky-100 px-1 py-0.5 rounded">MA2-2DS-03</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Non-square 4 m² picnic shelter.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Conceptual Mastery:</strong> Explains that area measures internal surface coverage regardless of boundary shape ($4 \times 1 = 2 \times 2 = 4\text{ m}^2$).
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Accurate Construction:</strong> Independently designs a $4\text{m} \times 1\text{m}$ shelter and articulates why it is not a square.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Guided Adjustment:</strong> Initially draws a $2 \times 2$ square; modifies to $1 \times 4$ when prompted to review the non-square criterion.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Misconception:</strong> Draws a $2 \times 2$ square; believes 4 square metres can only be constructed as a square.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Unable to Model:</strong> Cannot represent $4\text{ m}^2$; does not understand spatial conservation.
+                </td>
+              </tr>
+
+              <!-- Row 4: Navigation Routes -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Directional Routes</div>
+                  <span class="font-mono text-[10px] text-sky-800 bg-sky-100 px-1 py-0.5 rounded">MA2-GM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">3-step route with turns &amp; landmarks.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Precise Navigation:</strong> Integrates turn angles (90°), cardinal directions (North/East), exact metric distances, and landmarks.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Clear Step Sequence:</strong> Uses correct left/right turns, distances in metres, and references specific mapped landmarks.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Adequate Instructions:</strong> Writes a 3-step route with basic turns ("turn left, walk past swings"); landmarks are generic.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Vague Directions:</strong> Omits distance or specific turn directions ("walk over near the trees").
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Gestural / Non-specific:</strong> Gives fragmented directions ("over there"); cannot describe route sequentially.
+                </td>
+              </tr>
+
+              <!-- Row 5: Challenge Prompt & Working Mathematically -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Challenge &amp; Transfer</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">6 m² cafe in 1m width.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Novel Transfer:</strong> Fluently constructs $1\text{m} \times 6\text{m}$ cafe; justifies that area is conserved across narrow linear boundaries.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Sound Transfer:</strong> Correctly maps $1 \times 6$ cafe and lists coordinates; explains $1 \times 6 = 6\text{ m}^2$.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Partial Transfer:</strong> Draws cafe with prompting; struggles to explain how a $6\text{ m}^2$ area fits a 1m slot without counting.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Persistent Misconception:</strong> Claims a $6\text{ m}^2$ cafe cannot fit in a 1m space because "6 is bigger than 1".
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Not Accessed:</strong> Requires intensive foundational support on whole numbers and simple grid counting.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-6 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 space-y-1">
+          <h5 class="font-bold text-slate-900 uppercase tracking-wide">Key Moderation Takeaways for Stage 2 Teams:</h5>
+          <p>&bull; <strong>Grade A differentiator:</strong> Maya demonstrates deep conceptual transfer of area conservation to novel situations ($1\text{m} \times 6\text{m}$ cafe) and integrates compass orientation and angular turns into navigation.</p>
+          <p>&bull; <strong>Grade B vs C differentiator:</strong> Lucas (Grade B) reasons structurally using row-and-column array multiplication, whereas Ethan (Grade C) relies on counting individual grid squares one-by-one to verify area totals.</p>
+          <p>&bull; <strong>Grade D vs E differentiator:</strong> Sienna (Grade D) follows taught routines with teacher prompts but holds misconceptions regarding coordinate order and non-square areas, whereas Noah (Grade E) cannot navigate the grid structure and draws ungridded blobs.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.add('hidden'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-slate-200', 'text-slate-700', 'border-transparent');
+      });
+
+      const targetContent = document.getElementById('content-' + tabId);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.classList.remove('bg-slate-200', 'text-slate-700', 'border-transparent');
+      }
+    }
+
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      const main = document.querySelector('main');
+      const btnText = document.getElementById('annotationBtnText');
+      
+      annotationsVisible = !annotationsVisible;
+      
+      if (!annotationsVisible) {
+        main.classList.add('hide-annotations');
+        btnText.textContent = "Show Teacher Marks (Moderation Mode)";
+      } else {
+        main.classList.remove('hide-annotations');
+        btnText.textContent = "Hide Teacher Marks (Blind Moderation)";
+      }
+    }
+  </script>
+
+</body>
+</html>
