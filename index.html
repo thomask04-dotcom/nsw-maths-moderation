@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moderation Portfolio Finder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/*
+  NSW K–6 Mathematics Moderation Portfolio Finder
+  ------------------------------------------------
+  HOW TO ADD A NEW PORTFOLIO
+  1. Upload the .html file to the GitHub repo as usual.
+     The finder checks the repo each time it loads and shows any file it
+     doesn't recognise under "Recently added", guessing the stage from the
+     file name — so new uploads appear automatically.
+  2. (Optional) For full filtering by year, strand and outcome, add an entry
+     to the PORTFOLIOS list in the <script> below, copying the pattern of
+     the existing entries.
+*/
+:root{
+  --navy:#002B49; --blue:#005999; --light:#E6F0F8; --red:#C9242B;
+  --ink:#1b2733; --muted:#5b6b7a; --line:#dbe3ea; --bg:#f6f8fa; --card:#fff;
+  --es1:#7a3e9d; --s1:#1a7a44; --s2:#005999; --s3:#c25b00;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.45}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 40px}
+header{background:var(--navy);color:#fff;border-radius:14px;padding:22px 22px 20px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.06)}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.75;font-weight:600}
+h1{margin:4px 0 6px;font-size:24px;font-weight:800;letter-spacing:-.01em}
+header p{margin:0;opacity:.85;max-width:620px}
+.search{margin-top:16px;position:relative}
+.search input{width:100%;font:inherit;font-size:16px;padding:13px 14px 13px 42px;border-radius:10px;border:0;outline:none;color:var(--ink)}
+.search input:focus{box-shadow:0 0 0 3px rgba(255,255,255,.45)}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+
+.filters{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:14px;display:grid;gap:12px}
+.frow{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.flabel{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);width:78px;padding-top:7px;flex-shrink:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;flex:1;min-width:0}
+.chip{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:#fff;color:var(--ink);padding:5px 12px;border-radius:999px;cursor:pointer;transition:all .15s}
+.chip:hover{border-color:var(--blue)}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip .n{font-weight:500;opacity:.6;margin-left:4px;font-size:12px}
+.chip:disabled{opacity:.4;cursor:default}
+select{font:inherit;font-size:14px;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:#fff;max-width:100%}
+
+.bar{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 10px;gap:10px;flex-wrap:wrap}
+.count{font-weight:700}
+.count span{font-weight:400;color:var(--muted)}
+.clear{font:inherit;font-size:14px;background:none;border:0;color:var(--blue);font-weight:600;cursor:pointer;padding:4px 0;text-decoration:underline}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px;border-top:5px solid var(--stage-c,var(--navy));transition:box-shadow .15s,transform .15s}
+.card:hover{box-shadow:0 6px 18px rgba(0,43,73,.10);transform:translateY(-1px)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;background:var(--light);color:var(--navy)}
+.tag.stage{background:var(--stage-c);color:#fff}
+.tag.new{background:#fff4d6;color:#7a5600}
+.card h2{font-size:17px;margin:2px 0 0;line-height:1.3}
+.task{color:var(--muted);font-size:14px;margin:0}
+.meta{font-size:13px;display:grid;gap:3px;margin-top:2px}
+.meta b{font-weight:600;color:var(--muted)}
+.codes{display:flex;flex-wrap:wrap;gap:4px}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;background:#f1f4f7;border:1px solid var(--line);padding:1px 6px;border-radius:5px}
+.open{margin-top:auto;padding-top:6px}
+.open a{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:8px 14px;border-radius:8px}
+.open a:hover{background:var(--blue)}
+.empty{text-align:center;padding:40px 16px;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:14px}
+mark{background:#fff1a8;color:inherit;border-radius:2px}
+footer{margin-top:22px;font-size:12px;color:var(--muted);text-align:center}
+footer a{color:var(--blue)}
+
+.es1{--stage-c:var(--es1)} .s1{--stage-c:var(--s1)} .s2{--stage-c:var(--s2)} .s3{--stage-c:var(--s3)}
+
+@media (max-width:560px){
+  h1{font-size:20px}
+  .flabel{width:100%;padding-top:0}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">NSW K–6 Mathematics · 2022 Syllabus</div>
+    <h1>Moderation Portfolio Finder</h1>
+    <p>Find annotated A–E work samples by stage, year, focus area or outcome code.</p>
+    <div class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Try “fractions”, “Year 4”, “MA2-AR-02” or “museum”" autocomplete="off" aria-label="Search portfolios">
+    </div>
+  </header>
+
+  <section class="filters" aria-label="Filters">
+    <div class="frow"><div class="flabel">Stage</div><div class="chips" id="f-stage"></div></div>
+    <div class="frow"><div class="flabel">Year</div><div class="chips" id="f-year"></div></div>
+    <div class="frow"><div class="flabel">Strand</div><div class="chips" id="f-strand"></div></div>
+    <div class="frow"><div class="flabel">Focus area</div><div class="chips"><select id="f-focus" aria-label="Focus area"><option value="">All focus areas</option></select></div></div>
+  </section>
+
+  <div class="bar">
+    <div class="count" id="count"></div>
+    <button class="clear" id="clear" hidden>Clear all filters</button>
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <footer>Portfolios open in a new tab. Source: <a href="https://github.com/thomask04-dotcom/nsw-maths-moderation" target="_blank" rel="noopener">nsw-maths-moderation</a></footer>
+</div>
+
+<script>
+const REPO = "thomask04-dotcom/nsw-maths-moderation";
+const BASE = "https://thomask04-dotcom.github.io/nsw-maths-moderation/";
+
+const STAGES = [
+  {id:"ES1", label:"Early Stage 1", cls:"es1", years:["K"]},
+  {id:"S1",  label:"Stage 1",       cls:"s1",  years:["1","2"]},
+  {id:"S2",  label:"Stage 2",       cls:"s2",  years:["3","4"]},
+  {id:"S3",  label:"Stage 3",       cls:"s3",  years:["5","6"]},
+];
+const YEARS = ["K","1","2","3","4","5","6"];
+const STRANDS = ["Number and algebra","Measurement and space","Statistics and probability"];
+
+// ---- Portfolio details. Add new entries here for full filtering. ----
+const PORTFOLIOS = [
+  {file:"nsw_early_stage_1_mathematics_moderation_portfolio_the_great_bush_picnic_design_challenge.html",
+   title:"The Great Bush Picnic Design Challenge", stage:"ES1", year:"K",
+   task:"Equal sharing, group labelling and repeating pattern pathways.",
+   focus:["Forming groups"], strand:["Number and algebra"],
+   outcomes:["MAE-FG-01","MAE-FG-02"], timing:"Learning sequences 5–6"},
+  {file:"nsw_early_stage_1_mathematics_moderation_portfolio_the_toy_workshop_celebration_gift_station.html",
+   title:"The Toy Workshop & Celebration Gift Station", stage:"ES1", year:"K",
+   task:"Making and describing toys and gift boxes from 2D shapes and 3D objects.",
+   focus:["2D spatial structure","3D spatial structure"], strand:["Measurement and space"],
+   outcomes:["MAE-2DS-01","MAE-2DS-02","MAE-3DS-01","MAE-3DS-02"], timing:"Term 4, Weeks 8–10"},
+
+  {file:"nsw_stage_1_mathematics_moderation_portfolio_community_playground_toy_box_challenge.html",
+   title:"Community Playground Toy Box Challenge", stage:"S1", year:"1", part:"Part A",
+   task:"Combining and separating quantities to fill a playground toy box.",
+   focus:["Combining and separating quantities"], strand:["Number and algebra"],
+   outcomes:["MA1-CSQ-01"], timing:"Learning sequence 9"},
+  {file:"nsw_stage_1_mathematics_moderation_portfolio_tabletop_museum_challenge.html",
+   title:"Tabletop Museum Challenge", stage:"S1", year:"1", part:"Part A",
+   task:"Designing a tabletop museum exhibition booth with 2D shapes and 3D objects.",
+   focus:["2D spatial structure","3D spatial structure"], strand:["Measurement and space"],
+   outcomes:["MA1-2DS-01","MA1-2DS-02","MA1-3DS-02"], timing:"Learning sequence 10"},
+  {file:"nsw_stage_1_mathematics_moderation_portfolio_school_fun_day_challenge_time_explorer.html",
+   title:"School Fun Day Challenge & Time Explorer", stage:"S1", year:"2", part:"Part B",
+   task:"A timed game challenge and calendar explorer.",
+   focus:["Non-spatial measure","Chance"], strand:["Measurement and space","Statistics and probability"],
+   outcomes:["MA1-NSM-02","MA1-CHAN-01"], timing:"Learning sequence 5"},
+  {file:"nsw_stage_1_mathematics_moderation_portfolio_school_fun_day_stall_challenge.html",
+   title:"School Fun Day Stall Challenge", stage:"S1", year:"2", part:"Part B",
+   task:"Designing a fun day stall, moving from combining and separating quantities to additive relations.",
+   focus:["Combining and separating quantities","Additive relations"], strand:["Number and algebra"],
+   outcomes:["MA1-CSQ-01"], timing:"Learning sequence 6"},
+
+  {file:"nsw_stage_2_mathematics_moderation_portfolio_the_community_garden_builder.html",
+   title:"The Community Garden Builder", stage:"S2", year:"3",
+   task:"Planning garden beds using partitioned fractions.",
+   focus:["Partitioned fractions"], strand:["Number and algebra"],
+   outcomes:["MA2-PF-01"], timing:"Term 4, Weeks 3–4 · Learning sequence 6"},
+  {file:"nsw_stage_2_mathematics_moderation_portfolio_community_sanctuary_playground_design.html",
+   title:"Community Sanctuary & Playground Design", stage:"S2", year:"3",
+   task:"Designing a community sanctuary and playground.",
+   focus:["Geometric measure","2D spatial structure"], strand:["Measurement and space"],
+   outcomes:["MA2-GM-01","MA2-2DS-03"], timing:"Term 4, Weeks 5–7 · Learning sequence 9"},
+  {file:"nsw_stage_2_mathematics_moderation_portfolio_community_festival_event_manager.html",
+   title:"Community Festival Event Manager", stage:"S2", year:"4",
+   task:"Planning the ultimate class stalls for a community festival.",
+   focus:["Additive relations","Multiplicative relations"], strand:["Number and algebra"],
+   outcomes:["MA2-AR-02","MA2-MR-02"], timing:"Term 4, Weeks 1–2 · Learning sequence 6"},
+  {file:"nsw_stage_2_mathematics_moderation_portfolio_primary_sports_day_track_design.html",
+   title:"Primary Sports Day Track Design", stage:"S2", year:"4",
+   task:"Designing a sports day track while representing numbers using place value.",
+   focus:["Representing numbers using place value"], strand:["Number and algebra"],
+   outcomes:["MA2-RN-02"], timing:"Term 4, Weeks 3–4 · Learning sequence 6"},
+
+  {file:"nsw_stage_3_mathematics_moderation_portfolio_game_studio_physics_engine_level_blueprint.html",
+   title:"Game Studio: Physics Engine & Level Blueprint", stage:"S3", year:"5",
+   task:"Building a game level blueprint with angles up to 360°.",
+   focus:["Geometric measure"], strand:["Measurement and space"],
+   outcomes:["MA3-GM-03"], timing:"Term 4, Weeks 1–3 · Learning sequence 9"},
+  {file:"nsw_stage_3_mathematics_moderation_portfolio_youth_expo_event_logistics_planner.html",
+   title:"Youth Expo Event Logistics Planner", stage:"S3", year:"5",
+   task:"Planning the logistics of a youth expo event.",
+   focus:["Additive relations","Multiplicative relations"], strand:["Number and algebra"],
+   outcomes:["MA3-AR-01","MA3-MR-01"], timing:"Term 4, Weeks 6–7 · Learning sequence 5"},
+  {file:"nsw_stage_3_mathematics_moderation_portfolio_the_illusion_museum.html",
+   title:"The Illusion Museum: Same Space, Different Shape", stage:"S3", year:"6", part:"Part B",
+   task:"Exploring prisms and objects that take up the same space in different shapes.",
+   focus:["3D spatial structure"], strand:["Measurement and space"],
+   outcomes:["MA3-3DS-01","MA3-3DS-02"], timing:"Term 3, Weeks 3–4 · Learning sequence 6"},
+  {file:"nsw_stage_3_mathematics_moderation_portfolio_the_number_scramble.html",
+   title:"The Number Scramble: Order of Operations", stage:"S3", year:"6", part:"Part B",
+   task:"Using order of operations to solve number puzzles.",
+   focus:["Multiplicative relations"], strand:["Number and algebra"],
+   outcomes:["MA3-MR-02"], timing:"Term 3, Weeks 7–8 · Learning sequence 6"},
+];
+
+// ---- State ----
+const state = {q:"", stage:new Set(), year:new Set(), strand:new Set(), focus:""};
+let items = PORTFOLIOS.map(p => ({...p}));
+
+const $ = s => document.querySelector(s);
+const stageOf = id => STAGES.find(s => s.id === id);
+const yearLabel = y => y === "K" ? "Kindergarten" : "Year " + y;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function haystack(p){
+  const st = stageOf(p.stage);
+  const yrs = p.year ? [p.year] : st.years;
+  const yearWords = yrs.map(y => y === "K" ? "kindergarten kindy k foundation year k" : `year ${y} yr ${y} y${y}`).join(" ");
+  return [p.title, p.task, st.label, p.stage, yearWords, p.part||"", (p.focus||[]).join(" "),
+          (p.strand||[]).join(" "), (p.outcomes||[]).join(" "), p.timing||""].join(" ").toLowerCase();
+}
+
+function matches(p, skip){
+  if (skip !== "stage" && state.stage.size && !state.stage.has(p.stage)) return false;
+  if (skip !== "year" && state.year.size) {
+    const yrs = p.year ? [p.year] : stageOf(p.stage).years;
+    if (!yrs.some(y => state.year.has(y))) return false;
+  }
+  if (skip !== "strand" && state.strand.size && !(p.strand||[]).some(s => state.strand.has(s))) return false;
+  if (skip !== "focus" && state.focus && !(p.focus||[]).includes(state.focus)) return false;
+  if (state.q) {
+    const h = haystack(p);
+    const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+    // keep "year 4" together as a phrase
+    const phrase = state.q.toLowerCase().match(/(year|yr)\s*([k1-6])/);
+    if (phrase && !h.includes("year " + phrase[2])) return false;
+    if (!terms.every(t => h.includes(t))) return false;
+  }
+  return true;
+}
+
+function chip(container, value, label, set, count){
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button";
+  b.setAttribute("aria-pressed", set.has(value));
+  b.innerHTML = `${esc(label)}<span class="n">${count}</span>`;
+  b.disabled = count === 0 && !set.has(value);
+  b.onclick = () => { set.has(value) ? set.delete(value) : set.add(value); render(); };
+  container.appendChild(b);
+}
+
+function renderFilters(){
+  const fs = $("#f-stage"); fs.innerHTML = "";
+  STAGES.forEach(s => chip(fs, s.id, s.label, state.stage, items.filter(p => p.stage === s.id && matches(p,"stage")).length));
+
+  const fy = $("#f-year"); fy.innerHTML = "";
+  YEARS.forEach(y => chip(fy, y, y === "K" ? "K" : "Yr " + y, state.year,
+    items.filter(p => (p.year ? [p.year] : stageOf(p.stage).years).includes(y) && matches(p,"year")).length));
+
+  const fst = $("#f-strand"); fst.innerHTML = "";
+  STRANDS.forEach(s => chip(fst, s, s, state.strand, items.filter(p => (p.strand||[]).includes(s) && matches(p,"strand")).length));
+
+  const sel = $("#f-focus");
+  const all = [...new Set(items.flatMap(p => p.focus || []))].sort();
+  sel.innerHTML = `<option value="">All focus areas</option>` + all.map(f => {
+    const n = items.filter(p => (p.focus||[]).includes(f) && matches(p,"focus")).length;
+    return `<option value="${esc(f)}" ${state.focus===f?"selected":""}>${esc(f)} (${n})</option>`;
+  }).join("");
+}
+
+function hl(text){
+  let out = esc(text);
+  const terms = state.q.toLowerCase().split(/\s+/).filter(t => t.length > 1);
+  terms.forEach(t => {
+    const re = new RegExp("(" + t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&") + ")", "gi");
+    out = out.replace(/(^|>)([^<]+)(?=<|$)/g, (m, a, b) => a + b.replace(re, "<mark>$1</mark>"));
+  });
+  return out;
+}
+
+function card(p){
+  const st = stageOf(p.stage);
+  const yr = p.year ? yearLabel(p.year) + (p.part ? ` (${p.part})` : "") : st.years.map(yearLabel).join(" / ");
+  return `<article class="card ${st.cls}">
+    <div class="tags"><span class="tag stage">${st.label}</span><span class="tag">${esc(yr)}</span>${p.isNew?'<span class="tag new">Recently added</span>':""}</div>
+    <h2>${hl(p.title)}</h2>
+    ${p.task ? `<p class="task">${hl(p.task)}</p>` : ""}
+    <div class="meta">
+      ${p.focus && p.focus.length ? `<div><b>Focus:</b> ${hl(p.focus.join(", "))}</div>` : ""}
+      ${p.timing ? `<div><b>When:</b> ${esc(p.timing)}</div>` : ""}
+      ${p.outcomes && p.outcomes.length ? `<div class="codes">${p.outcomes.map(o => `<span class="code">${hl(o)}</span>`).join("")}</div>` : ""}
+    </div>
+    <div class="open"><a href="${BASE + encodeURIComponent(p.file)}" target="_blank" rel="noopener">Open portfolio
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+  </article>`;
+}
+
+function render(){
+  renderFilters();
+  const order = {ES1:0,S1:1,S2:2,S3:3};
+  const list = items.filter(p => matches(p))
+    .sort((a,b) => order[a.stage]-order[b.stage] || (a.year||"").localeCompare(b.year||"") || a.title.localeCompare(b.title));
+  $("#count").innerHTML = `${list.length} portfolio${list.length===1?"":"s"} <span>of ${items.length}</span>`;
+  const active = state.q || state.stage.size || state.year.size || state.strand.size || state.focus;
+  $("#clear").hidden = !active;
+  $("#grid").innerHTML = list.length ? list.map(card).join("")
+    : `<div class="empty" style="grid-column:1/-1">No portfolios match those filters yet.<br>Try removing a filter or a search word.</div>`;
+}
+
+// Pick up portfolios added to the repo since this page was last edited
+function titleFromFile(f){
+  const m = f.replace(/\.html$/,"").split("_portfolio_")[1] || f.replace(/\.html$/,"");
+  const small = new Set(["the","and","of","a","an","in","on","for","to"]);
+  return m.split("_").map((w,i) => i && small.has(w) ? w : w.charAt(0).toUpperCase()+w.slice(1)).join(" ");
+}
+function stageFromFile(f){
+  if (/early_stage_1/i.test(f)) return "ES1";
+  const m = f.match(/stage_([1-3])/i);
+  return m ? "S" + m[1] : null;
+}
+async function discover(){
+  try {
+    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/`);
+    if (!r.ok) return;
+    const files = await r.json();
+    const known = new Set(PORTFOLIOS.map(p => p.file));
+    const fresh = files.filter(f => f.type === "file" && /\.html?$/i.test(f.name) && !known.has(f.name) && f.name !== "index.html")
+      .map(f => ({file:f.name, title:titleFromFile(f.name), stage:stageFromFile(f.name), isNew:true}))
+      .filter(p => p.stage);
+    if (fresh.length) { items = items.concat(fresh); render(); }
+  } catch(e) { /* offline or rate-limited: the built-in list still works */ }
+}
+
+$("#q").addEventListener("input", e => { state.q = e.target.value.trim(); render(); });
+$("#f-focus").addEventListener("change", e => { state.focus = e.target.value; render(); });
+$("#clear").onclick = () => { state.q=""; $("#q").value=""; state.stage.clear(); state.year.clear(); state.strand.clear(); state.focus=""; render(); };
+
+render();
+discover();
+</script>
+</body>
+</html>
