@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primary Sports Day Track Design | NSW Stage 2 Mathematics Moderation Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts for authentic student handwriting, teacher annotations, and clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gaegu:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            student: ['"Patrick Hand"', 'cursive'],
+            studentYoung: ['Gaegu', 'cursive'],
+            teacher: ['Caveat', 'cursive'],
+            school: ['"Comic Neue"', 'cursive']
+          },
+          colors: {
+            nswNavy: '#002B49',
+            nswBlue: '#005999',
+            nswLightBlue: '#E6F0F8',
+            nswRed: '#C9242B',
+            teacherRed: '#D62828',
+            teacherGreen: '#1A7A44',
+            stickyYellow: '#FFF9C4',
+            stickyPink: '#FFE4E6',
+            stickyBlue: '#E0F2FE',
+            stickyGreen: '#DCFCE7',
+            stickyPurple: '#F3E8FF'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 10mm authentic Stage 2 school exercise book grid paper */
+    .exercise-book-grid {
+      background-color: #FFFFFF;
+      background-image: 
+        linear-gradient(rgba(180, 210, 235, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180, 210, 235, 0.45) 1px, transparent 1px);
+      background-size: 20px 20px;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Red exercise book margin line */
+    .margin-line {
+      border-left: 2.5px solid #F87171;
+    }
+
+    /* Tactile washi tape effect for portfolio artefacts */
+    .washi-tape {
+      background: rgba(254, 240, 138, 0.9);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      transform: rotate(-1.2deg);
+    }
+
+    /* Sticky note tactile elevation and hover dynamics */
+    .sticky-note {
+      box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.12), -1px 2px 4px rgba(0, 0, 0, 0.05);
+      transform: rotate(0.8deg);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+      box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.16);
+    }
+
+    /* Blind Moderation Mode: hides teacher markings and annotations for stage calibration */
+    .hide-annotations .teacher-mark,
+    .hide-annotations .sticky-note,
+    .hide-annotations .teacher-comment,
+    .hide-annotations .teacher-banner,
+    .hide-annotations .teacher-check,
+    .hide-annotations .grade-badge {
+      display: none !important;
+    }
+
+    .tab-btn.active {
+      background-color: #002B49;
+      color: #FFFFFF;
+      border-color: #002B49;
+      box-shadow: 0 2px 4px rgba(0, 43, 73, 0.2);
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      .tab-content {
+        display: block !important;
+        page-break-after: always;
+      }
+      body {
+        background: white;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-16 antialiased">
+
+  <header class="bg-nswNavy text-white border-b-4 border-nswBlue sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-white text-nswNavy font-black text-xs px-2.5 py-1 rounded tracking-wider uppercase shadow-sm">
+          NESA K–10 (2022)
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight">Primary Sports Day Track Design</h1>
+          <p class="text-xs text-sky-200">Stage 2 (Year 4) Moderation Portfolio &bull; Representing Numbers Using Place Value &bull; Term 4, Weeks 3–4</p>
+        </div>
+      </div>
+
+      <!-- Moderation Controls -->
+      <div class="flex items-center gap-2.5 no-print">
+        <button id="toggleAnnotationsBtn" onclick="toggleAnnotations()" class="text-xs font-semibold bg-sky-800 hover:bg-sky-700 active:bg-sky-900 text-white px-3.5 py-1.5 rounded-md border border-sky-600 transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+          <span id="annotationBtnText">Hide Teacher Marks (Blind Moderation)</span>
+        </button>
+        <button onclick="window.print()" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-white px-3 py-1.5 rounded-md border border-slate-600 transition flex items-center gap-1">
+          <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          Print
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6">
+
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-6">
+      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+            Rich Summative Task Extracted
+          </span>
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">
+            Primary Sports Day Track Design (Learning Sequence 6)
+          </h2>
+        </div>
+        <div class="text-xs bg-indigo-50 text-indigo-900 border border-indigo-200 px-3 py-1 rounded font-medium">
+          <strong>NSW Stage 2 Common Grade Scale:</strong> Grade A (Extensive), B (Thorough), C (Sound), D (Basic), &amp; E (Elementary)
+        </div>
+      </div>
+
+      <!-- Task Scenario Description -->
+      <div class="p-6 border-b border-slate-100 bg-gradient-to-r from-sky-50/50 via-white to-indigo-50/40">
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+          <strong>Scenario:</strong> <em>"Our Primary School is setting up the outdoor field for Sports Day. The Principal needs your sports event design team to plan 1 activity zone along a 1-metre to 10-metre track area (Option A: Long Jump runway &amp; sandpit; Option B: Obstacle Sprint Course; or Option C: Shot Put throwing sector). Draw your plan, record at least 4 key distances in decimal metres (up to 2 decimal places), position fractional benchmark flags (1/4 = 0.25, 1/2 = 0.5, 3/4 = 0.75), order all distances from shortest to longest using symbols (&lt;, &gt;), and solve the Helper's Decimal Comparison Challenge!"</em>
+        </p>
+      </div>
+
+      <!-- 4 Core Criteria & Challenge Prompt -->
+      <div class="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs text-slate-700">
+        <div class="p-3.5 bg-sky-50/70 rounded-lg border border-sky-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-sky-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-sky-700 text-white inline-flex items-center justify-center text-[10px] font-bold">1</span>
+              Design &amp; Draw Plan
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Construct a scaled layout of the activity zone along the 10-metre track line with clear linear markings.</p>
+          </div>
+          <span class="text-[10px] font-mono text-sky-800 bg-white px-2 py-0.5 rounded border border-sky-200 self-start">MA2-RN-02 &bull; Scale</span>
+        </div>
+
+        <div class="p-3.5 bg-emerald-50/70 rounded-lg border border-emerald-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-emerald-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-700 text-white inline-flex items-center justify-center text-[10px] font-bold">2</span>
+              Decimal Metre Records
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Record at least 4 key distances in decimal metres up to 2 decimal places with placeholder zero understanding (e.g. 2.05 m vs 2.50 m).</p>
+          </div>
+          <span class="text-[10px] font-mono text-emerald-800 bg-white px-2 py-0.5 rounded border border-emerald-200 self-start">MA2-RN-02 &bull; Hundredths</span>
+        </div>
+
+        <div class="p-3.5 bg-purple-50/70 rounded-lg border border-purple-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-purple-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-purple-700 text-white inline-flex items-center justify-center text-[10px] font-bold">3</span>
+              Benchmark Flags
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Place benchmark flags corresponding to 1/4 (0.25), 1/2 (0.5), and 3/4 (0.75) of the track length.</p>
+          </div>
+          <span class="text-[10px] font-mono text-purple-800 bg-white px-2 py-0.5 rounded border border-purple-200 self-start">MA2-RN-02 &bull; Benchmarks</span>
+        </div>
+
+        <div class="p-3.5 bg-amber-50/70 rounded-lg border border-amber-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-amber-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-amber-700 text-white inline-flex items-center justify-center text-[10px] font-bold">4</span>
+              Compare &amp; Order
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">List measured distances in ascending order using words and comparison symbols (&lt;, &gt;) based on left-to-right place value.</p>
+          </div>
+          <span class="text-[10px] font-mono text-amber-800 bg-white px-2 py-0.5 rounded border border-amber-200 self-start">MA2-RN-02 &bull; Ordering</span>
+        </div>
+      </div>
+      
+      <!-- Challenge Prompt Notice -->
+      <div class="bg-indigo-50/80 px-6 py-2.5 border-t border-indigo-100 text-xs text-indigo-950 flex items-center gap-2">
+        <span class="font-bold uppercase tracking-wider text-[10px] bg-indigo-200 text-indigo-900 px-2 py-0.5 rounded">Helper's Challenge</span>
+        <span>A student helper claims <strong>0.75 metres</strong> is further than <strong>0.8 metres</strong> because "75 is bigger than 8". Disprove this misconception using place value, and identify the exact distance that sits halfway between <strong>0.7 metres</strong> and <strong>0.8 metres</strong>!</span>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
+      <button onclick="switchTab('gradeA')" id="tab-gradeA" class="tab-btn active px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+        Grade A (Extensive) — Tahlia
+      </button>
+      <button onclick="switchTab('gradeB')" id="tab-gradeB" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+        Grade B (Thorough) — Marcus
+      </button>
+      <button onclick="switchTab('gradeC')" id="tab-gradeC" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+        Grade C (Sound) — Mia
+      </button>
+      <button onclick="switchTab('gradeD')" id="tab-gradeD" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+        Grade D (Basic) — Braxton
+      </button>
+      <button onclick="switchTab('gradeE')" id="tab-gradeE" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+        Grade E (Elementary) — Archie
+      </button>
+      <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+        Calibration Matrix
+      </button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: GRADE A (EXTENSIVE) — TAHLIA                                       -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeA" class="tab-content block">
+      <div class="bg-purple-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-purple-500 text-purple-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade A &bull; Extensive Knowledge &amp; Very High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Tahlia R. &bull; Year 4 (Term 4)</h3>
+          <p class="text-xs text-purple-200">Autonomous place-value reasoning, flawless placeholder zero logic, dual fraction-decimal scaling, masterfully disproves whole-number decimal misconceptions.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-purple-300">GRADE A</div>
+          <div class="text-xs text-purple-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Tahlia R.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">30 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Outstanding Decimal Place Value Mastery</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Student Artefact Column (7 cols) -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Step 1 & 3: Track Layout SVG & Benchmark Flags -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Option A: Long Jump Zone Design (10-Metre Track Area)
+              </div>
+
+              <div class="mt-3">
+                <svg class="w-full h-56 bg-slate-50 border border-slate-300 rounded" viewBox="0 0 540 220">
+                  <!-- Runway Base Track -->
+                  <rect x="25" y="80" width="490" height="40" fill="#FDE68A" stroke="#D97706" stroke-width="2"/>
+                  <!-- Landing Pit (from 6.0m to 10.0m) -->
+                  <rect x="319" y="70" width="196" height="60" fill="#FED7AA" stroke="#C2410C" stroke-width="2" rx="4"/>
+                  <text x="417" y="105" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" font-weight="bold" fill="#9A3412">Soft Sand Landing Pit</text>
+                  
+                  <!-- Take-off Board at 6.00m -->
+                  <rect x="312" y="75" width="8" height="50" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+                  <text x="316" y="65" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#000000">Take-off (6.00m)</text>
+
+                  <!-- 10-Metre Calibration Axis Line -->
+                  <line x1="25" y1="140" x2="515" y2="140" stroke="#1E293B" stroke-width="2.5"/>
+                  
+                  <!-- Metre Scale Markers (0 to 10m) -->
+                  <g font-family="'Inter', sans-serif" font-size="9" font-weight="bold" fill="#334155" text-anchor="middle">
+                    <line x1="25" y1="135" x2="25" y2="145" stroke="#1E293B" stroke-width="2"/><text x="25" y="157">0m</text>
+                    <line x1="74" y1="137" x2="74" y2="143" stroke="#94A3B8"/><text x="74" y="157">1m</text>
+                    <line x1="123" y1="137" x2="123" y2="143" stroke="#94A3B8"/><text x="123" y="157">2m</text>
+                    <line x1="172" y1="137" x2="172" y2="143" stroke="#94A3B8"/><text x="172" y="157">3m</text>
+                    <line x1="221" y1="137" x2="221" y2="143" stroke="#94A3B8"/><text x="221" y="157">4m</text>
+                    <line x1="270" y1="135" x2="270" y2="145" stroke="#1E293B" stroke-width="2"/><text x="270" y="157">5m</text>
+                    <line x1="319" y1="137" x2="319" y2="143" stroke="#94A3B8"/><text x="319" y="157">6m</text>
+                    <line x1="368" y1="137" x2="368" y2="143" stroke="#94A3B8"/><text x="368" y="157">7m</text>
+                    <line x1="417" y1="137" x2="417" y2="143" stroke="#94A3B8"/><text x="417" y="157">8m</text>
+                    <line x1="466" y1="137" x2="466" y2="143" stroke="#94A3B8"/><text x="466" y="157">9m</text>
+                    <line x1="515" y1="135" x2="515" y2="145" stroke="#1E293B" stroke-width="2"/><text x="515" y="157">10m</text>
+                  </g>
+
+                  <!-- Benchmark Flag 1: 1/4 Track = 2.50m (x = 25 + 2.5 * 49 = 147.5) -->
+                  <g transform="translate(147.5, 20)">
+                    <line x1="0" y1="0" x2="0" y2="60" stroke="#7C3AED" stroke-width="2"/>
+                    <polygon points="0,0 28,8 0,16" fill="#7C3AED"/>
+                    <text x="32" y="10" font-family="'Patrick Hand', cursive" font-size="11" font-weight="bold" fill="#6B21A8">1/4 Track = 2.50m</text>
+                    <text x="32" y="21" font-family="'Inter', sans-serif" font-size="8" fill="#7E22CE">(0.25 of track)</text>
+                  </g>
+
+                  <!-- Benchmark Flag 2: 1/2 Track = 5.00m (x = 270) -->
+                  <g transform="translate(270, 15)">
+                    <line x1="0" y1="0" x2="0" y2="65" stroke="#2563EB" stroke-width="2"/>
+                    <polygon points="0,0 28,8 0,16" fill="#2563EB"/>
+                    <text x="32" y="10" font-family="'Patrick Hand', cursive" font-size="11" font-weight="bold" fill="#1E40AF">1/2 Track = 5.00m</text>
+                    <text x="32" y="21" font-family="'Inter', sans-serif" font-size="8" fill="#1D4ED8">(0.50 of track)</text>
+                  </g>
+
+                  <!-- Benchmark Flag 3: 3/4 Track = 7.50m (x = 25 + 7.5 * 49 = 392.5) -->
+                  <g transform="translate(392.5, 15)">
+                    <line x1="0" y1="0" x2="0" y2="65" stroke="#DC2626" stroke-width="2"/>
+                    <polygon points="0,0 28,8 0,16" fill="#DC2626"/>
+                    <text x="32" y="10" font-family="'Patrick Hand', cursive" font-size="11" font-weight="bold" fill="#991B1B">3/4 Track = 7.50m</text>
+                    <text x="32" y="21" font-family="'Inter', sans-serif" font-size="8" fill="#B91C1C">(0.75 of track)</text>
+                  </g>
+
+                  <!-- Key Measured Distance Markers (Circles along track) -->
+                  <!-- Distance 1: 0.85m (Sprint Start Acceleration Line) -->
+                  <circle cx="66.6" cy="100" r="4.5" fill="#059669" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <!-- Distance 2: 2.05m (First Rhythm Checkpoint Marker) -->
+                  <circle cx="125.4" cy="100" r="4.5" fill="#059669" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <!-- Distance 3: 4.75m (Max Velocity Transition Flag) -->
+                  <circle cx="257.7" cy="100" r="4.5" fill="#059669" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <!-- Distance 4: 7.50m (Target School Record Marker inside pit) -->
+                  <circle cx="392.5" cy="100" r="4.5" fill="#059669" stroke="#FFFFFF" stroke-width="1.5"/>
+
+                  <!-- Callouts for Distance Labels -->
+                  <text x="66" y="182" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="12" font-weight="bold" fill="#047857">0.85m</text>
+                  <text x="125" y="182" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="12" font-weight="bold" fill="#047857">2.05m</text>
+                  <text x="258" y="182" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="12" font-weight="bold" fill="#047857">4.75m</text>
+                  <text x="393" y="182" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="12" font-weight="bold" fill="#047857">7.50m</text>
+                </svg>
+              </div>
+
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-3xl font-black">
+                &#10003; <span class="text-sm">Flawless linear scaling</span>
+              </div>
+            </div>
+
+            <!-- Step 2: Tahlia's Decimal Measurement Recording Table -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Step 2: Place Value Measurement Audit &amp; Placeholders
+              </div>
+
+              <div class="mt-3 overflow-x-auto">
+                <table class="w-full text-xs text-left border-collapse font-sans">
+                  <thead>
+                    <tr class="bg-slate-100 text-slate-700 border-b">
+                      <th class="p-2">Track Checkpoint</th>
+                      <th class="p-2">Metres &amp; Centimetres</th>
+                      <th class="p-2">Place Value Decomposition</th>
+                      <th class="p-2">Decimal Record</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 text-slate-800 font-student text-base">
+                    <tr>
+                      <td class="p-2 font-sans text-xs">Start Acceleration Mark</td>
+                      <td class="p-2">0m 85cm</td>
+                      <td class="p-2 text-indigo-900">0 ones + 8 tenths + 5 hundredths</td>
+                      <td class="p-2 text-blue-800 font-bold">0.85 m</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-sans text-xs">Rhythm Checkpoint</td>
+                      <td class="p-2">2m 5cm</td>
+                      <td class="p-2 text-indigo-900">2 ones + 0 tenths + 5 hundredths</td>
+                      <td class="p-2 text-blue-800 font-bold">2.05 m</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-sans text-xs">Max Velocity Marker</td>
+                      <td class="p-2">4m 75cm</td>
+                      <td class="p-2 text-indigo-900">4 ones + 7 tenths + 5 hundredths</td>
+                      <td class="p-2 text-blue-800 font-bold">4.75 m</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-sans text-xs">School Record Pit Marker</td>
+                      <td class="p-2">7m 50cm</td>
+                      <td class="p-2 text-indigo-900">7 ones + 5 tenths + 0 hundredths</td>
+                      <td class="p-2 text-blue-800 font-bold">7.50 m</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Note on Zero Placeholder -->
+              <div class="mt-3 p-3 bg-purple-50 rounded border border-purple-200 font-student text-sm text-slate-800 space-y-1">
+                <strong class="font-sans text-xs text-purple-950 block">Tahlia's Critical Place Value Justification on 2.05 m vs 2.5 m:</strong>
+                "I specifically recorded 2 metres and 5 centimetres as <strong>2.05 m</strong> because 5 centimetres is 5 hundredths of a metre ($5/100$). There are zero tenths ($0 \times 10\text{cm}$). If I mistakenly omitted the zero and wrote 2.5 m, that would equal 2 metres and 5 tenths ($50\text{cm}$ or 2.50 m), which is 45 centimetres too long! The placeholder zero preserves the hundredths place."
+              </div>
+            </div>
+
+            <!-- Step 4 & Challenge: Ordering & Disproving Helper Misconception -->
+            <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-lg border-2 border-purple-300 shadow-sm relative">
+              <div class="absolute -top-3 left-4 bg-purple-700 text-white px-3 py-0.5 text-xs font-bold rounded shadow-sm">
+                Step 4: Decimal Ordering &amp; Helper Challenge Proof
+              </div>
+
+              <div class="mt-3 space-y-3 font-student text-sm text-slate-800">
+                <div class="bg-white p-3 rounded border border-purple-200">
+                  <strong class="font-sans text-xs text-purple-950 block mb-1">Ascending Order with Relational Symbols:</strong>
+                  <p class="text-base text-slate-900">
+                    <strong>0.85 m &lt; 2.05 m &lt; 4.75 m &lt; 7.50 m</strong>
+                  </p>
+                  <p class="text-xs text-slate-600 font-sans mt-1">
+                    <em>Proof:</em> Compare whole ones first ($0 &lt; 2 &lt; 4 &lt; 7$). 0.85m has 0 ones; 2.05m has 2 ones; 4.75m has 4 ones; 7.50m has 7 ones.
+                  </p>
+                </div>
+
+                <div class="bg-white p-3.5 rounded border border-purple-200 leading-relaxed font-sans text-xs text-slate-700 space-y-2">
+                  <strong class="text-purple-950 block font-student text-base">Disproving the Helper's Claim (0.8 m vs 0.75 m):</strong>
+                  <p>
+                    "The student helper has fallen into the common <em>'longer decimals are bigger numbers'</em> trap, treating decimals as disconnected whole counting numbers (thinking 75 is bigger than 8). This is mathematically incorrect because place value is determined from left to right:
+                  </p>
+                  <div class="grid grid-cols-2 gap-2 my-2 font-mono text-[11px] bg-slate-50 p-2 rounded border">
+                    <div>
+                      <strong>0.8 m</strong> = 8 tenths = 80 hundredths = <strong>80 cm</strong>
+                    </div>
+                    <div>
+                      <strong>0.75 m</strong> = 7 tenths + 5 hundredths = <strong>75 cm</strong>
+                    </div>
+                  </div>
+                  <p>
+                    Since 8 tenths is larger than 7 tenths ($80\text{ cm} &gt; 75\text{ cm}$), <strong>0.8 m is greater than 0.75 m</strong>! (0.8 &gt; 0.75)."
+                  </p>
+                  <div class="p-2 bg-emerald-50 rounded border border-emerald-200 text-emerald-950 font-student text-sm">
+                    <strong>Halfway Distance Calculation:</strong><br>
+                    "Between 0.7 m ($0.70\text{ m} = 70\text{ cm}$) and 0.8 m ($0.80\text{ m} = 80\text{ cm}$), the exact middle is 75 cm. Therefore, the distance halfway is <strong>0.75 m</strong>!"
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Teacher Evidence Column (5 cols) -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Sticky Note Running Record -->
+            <div class="sticky-note bg-stickyPurple p-5 rounded-md border-t-8 border-purple-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-purple-300 pb-1 font-bold text-purple-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-purple-200 px-2 py-0.5 rounded text-purple-900 font-mono">30/10/26 10:20 AM</span>
+              </div>
+              <p class="mb-2">
+                "Tahlia demonstrated exceptional depth of decimal understanding. When drafting her Long Jump runway, she explicitly connected the metre ruler as a physical 100-hundredths linear number line."
+              </p>
+              <p>
+                "She solved the helper challenge autonomously, immediately sketching a decimal place value alignment chart without prompting to prove why 8 tenths exceeds 7 tenths."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Patterson (Year 4)</div>
+            </div>
+
+            <!-- Scribing Card -->
+            <div class="bg-white rounded-lg p-4 border-2 border-purple-200 shadow-sm">
+              <div class="flex items-center gap-2 mb-2 pb-1 border-b border-purple-100">
+                <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+                <span class="text-xs font-bold uppercase tracking-wide text-purple-900">Teacher Scribing (Verbatim Dialogue)</span>
+              </div>
+              <div class="text-xs space-y-2 text-slate-700 leading-relaxed font-sans">
+                <p><strong>Teacher:</strong> "Tahlia, how do you explain why 0.25 on a 1-metre track represents 2.50 metres on your 10-metre track?"</p>
+                <p class="bg-purple-50 p-2.5 rounded italic text-purple-950 font-school">
+                  "Because 1/4 of 1 whole is 0.25. When the whole is stretched 10 times bigger to 10 metres, every fraction is scaled by 10: 1/4 of 10 metres is 2.5 metres, or 2 metres and 50 centimetres ($2.50\text{ m}$). The benchmark proportion remains identical!"
+                </p>
+              </div>
+            </div>
+
+            <!-- Syllabus Mapping Card -->
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200 text-xs space-y-2">
+              <span class="font-bold text-slate-900 uppercase tracking-wide block border-b pb-1">Syllabus Demonstration:</span>
+              <p><strong>MA2-RN-02:</strong> Fluently converts and records linear measurements up to 2 decimal places; demonstrates that 1 tenth equals 10 hundredths; masterfully applies placeholder zeros.</p>
+              <p><strong>MAO-WM-01:</strong> Readily connects fractional benchmarks to decimal notation ($1/4 = 0.25$, $1/2 = 0.50$, $3/4 = 0.75$); coherently justifies decimal comparisons from left to right.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Grade A Moderation Rationale -->
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-purple-400 bg-purple-50/60 rounded-xl p-6">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <h4 class="text-sm font-black uppercase tracking-wider text-purple-950 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-700"></span>
+              NESA Moderation Rationale: Grade A (Extensive)
+            </h4>
+            <span class="text-xs font-semibold bg-purple-200 text-purple-900 px-2.5 py-1 rounded">
+              Extensive Knowledge &bull; Transfer to Novel Situations
+            </span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed mb-3">
+            Tahlia demonstrates <strong>extensive knowledge and understanding</strong> by readily applying decimal place value concepts to unfamiliar and complex measurement contexts. She exhibits complete autonomy when recording single-digit centimetre lengths with zero placeholders (2.05 m), scales fractional benchmarks across 1m and 10m domains ($1/4 \rightarrow 0.25 \rightarrow 2.50\text{ m}$), and disproves persistent whole-number decimal misconceptions using precise mathematical terminology.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: GRADE B (THOROUGH) — MARCUS                                        -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeB" class="tab-content hidden">
+      <div class="bg-emerald-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-emerald-500 text-emerald-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade B &bull; Thorough Knowledge &amp; High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Marcus T. &bull; Year 4 (Term 4)</h3>
+          <p class="text-xs text-emerald-200">Applies decimal conversions accurately in familiar tasks, systematic left-to-right ordering, clear placeholder zero explanation, sound challenge solution.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-emerald-300">GRADE B</div>
+          <div class="text-xs text-emerald-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Marcus T.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">30 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Thorough Work Verified</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Sprint Course Design -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Option B: Obstacle Sprint Course Design
+              </div>
+              <div class="mt-3 space-y-2 font-student text-base text-slate-800">
+                <p>&bull; <strong>Hurdle 1 Distance:</strong> 1m 20cm = <strong>1.20 m</strong> (or 1.2 m)</p>
+                <p>&bull; <strong>Agility Poles Distance:</strong> 2m 50cm = <strong>2.50 m</strong></p>
+                <p>&bull; <strong>Balance Beam Station:</strong> 3m 5cm = <strong>3.05 m</strong> <em>"Recorded with a 0 in the tenths because 5cm is 5 hundredths."</em></p>
+                <p>&bull; <strong>Sprint Finish Line:</strong> 6m 45cm = <strong>6.45 m</strong></p>
+
+                <div class="bg-emerald-50 p-2.5 rounded border border-emerald-200 text-xs font-sans mt-3">
+                  <strong>Benchmark Flags on Track:</strong><br>
+                  Flag 1 at 1/4 = <strong>0.25</strong> (2.50 m on course)<br>
+                  Flag 2 at 1/2 = <strong>0.50</strong> (5.00 m on course)<br>
+                  Flag 3 at 3/4 = <strong>0.75</strong> (7.50 m on course)
+                </div>
+              </div>
+            </div>
+
+            <!-- Ordering & Challenge Solution -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-student text-base text-slate-800 space-y-3">
+              <span class="font-sans text-xs font-bold text-slate-900 block mb-1">Ascending Distance Order:</span>
+              <p class="text-lg"><strong>1.20 m &lt; 2.50 m &lt; 3.05 m &lt; 6.45 m</strong></p>
+              <p class="text-xs font-sans text-slate-700">"First compare the whole numbers. 1 is smallest, then 2, then 3, then 6. 3.05m is smaller than 3.5m because 0 tenths is less than 5 tenths."</p>
+
+              <div class="bg-emerald-50/80 p-3 rounded border border-emerald-200 text-xs font-sans text-slate-800">
+                <strong class="font-bold text-emerald-950 block mb-1">Challenge Prompt Solution:</strong>
+                "The helper is incorrect. To compare 0.8m and 0.75m, make them have the same number of decimal places: $0.8\text{m} = 0.80\text{m}$.
+                80 hundredths is greater than 75 hundredths, so <strong>0.8m is further than 0.75m</strong>.
+                Halfway between 0.70m and 0.80m is <strong>0.75 m</strong>."
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyGreen p-5 rounded-md border-t-8 border-emerald-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-emerald-300 pb-1 font-bold text-emerald-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-emerald-200 px-2 py-0.5 rounded text-emerald-900 font-mono">30/10/26 10:50 AM</span>
+              </div>
+              <p class="mb-2">
+                "Marcus demonstrated thorough place value understanding. Recorded 3m 5cm as 3.05m with zero hesitation."
+              </p>
+              <p>
+                "Successfully explained that 0.8m = 0.80m, showing that comparing tenths resolves the helper's misconception."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Patterson</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-emerald-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-emerald-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Response:</span>
+              <p class="italic text-slate-700 font-school bg-emerald-50 p-2 rounded">
+                "Teacher: Why is 0.8 bigger than 0.75 when 75 has two digits? Marcus: Because the first digit after the point is tenths. 8 tenths is eighty centimetres, but 7 tenths is only seventy centimetres."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-emerald-400 bg-emerald-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 mb-2">NESA Moderation Rationale: Grade B (Thorough)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Marcus demonstrates <strong>thorough knowledge and understanding</strong> of decimal place value up to 2 decimal places in familiar tasks. He accurately records single-digit centimetre lengths using placeholder zeros, orders decimals correctly using left-to-right place value columns, and disproves the challenge misconception by equating 0.8 with 0.80.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: GRADE C (SOUND) — MIA                                              -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeC" class="tab-content hidden">
+      <div class="bg-blue-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-blue-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade C &bull; Sound Knowledge &amp; Adequate Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Mia K. &bull; Year 4 (Term 4)</h3>
+          <p class="text-xs text-blue-200">Demonstrates taught routines in familiar tasks, accurate decimal conversion of round centimetre values, connects decimals to money for comparison.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-blue-300">GRADE C</div>
+          <div class="text-xs text-blue-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Mia K.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">30 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Sound Competence Verified</span>
+            <span class="text-2xl">&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Option C: Shot Put Sector Distances
+              </div>
+              <div class="mt-3 space-y-2 font-student text-base text-slate-800">
+                <p>&bull; Marker 1: 1 metre 50 centimetres = <strong>1.50 m</strong></p>
+                <p>&bull; Marker 2: 2 metres 25 centimetres = <strong>2.25 m</strong></p>
+                <p>&bull; Marker 3: 3 metres 75 centimetres = <strong>3.75 m</strong></p>
+                <p>&bull; Marker 4: 4 metres 10 centimetres = <strong>4.10 m</strong></p>
+
+                <div class="mt-3 p-3 bg-slate-50 rounded border border-slate-200 font-sans text-xs">
+                  <strong>Benchmark Flags Placed:</strong>
+                  <ul class="list-disc list-inside mt-1 space-y-0.5">
+                    <li>1/4 track = 0.25 m</li>
+                    <li>1/2 track = 0.50 m</li>
+                    <li>3/4 track = 0.75 m</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ordering & Challenge -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-student text-base text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-slate-900 block mb-1">Distance Ordering:</span>
+              <p><strong>1.50 m &lt; 2.25 m &lt; 3.75 m &lt; 4.10 m</strong></p>
+              <p class="text-xs font-sans text-slate-600">"One metre fifty is less than two metres twenty-five, which is less than three metres seventy-five, which is less than four metres ten."</p>
+
+              <div class="bg-blue-50 p-3 rounded border border-blue-200 text-xs font-sans text-slate-700">
+                <strong>Challenge Attempt:</strong> "I think of money. $0.80 is 80 cents, and $0.75 is 75 cents. 80 cents is more than 75 cents, so 0.8m is bigger than 0.75m. Halfway is 0.75."
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyBlue p-5 rounded-md border-t-8 border-sky-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-sky-300 pb-1 font-bold text-sky-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-sky-200 px-2 py-0.5 rounded text-sky-900 font-mono">30/10/26 11:20 AM</span>
+              </div>
+              <p class="mb-2">
+                "Mia accurately executed taught routines. Relied on double-digit centimetre numbers (50cm, 25cm, 75cm, 10cm) where zero placeholder confusion does not occur."
+              </p>
+              <p>
+                "Connected decimals to money models to explain why 0.8 is greater than 0.75."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Patterson</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-blue-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-blue-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-blue-50 p-2 rounded">
+                "Teacher: How did you know 0.8 is bigger than 0.75? Mia: Because 0.8 has a hidden zero, so it is 80 hundredths, and 80 is bigger than 75."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-blue-400 bg-blue-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 mb-2">NESA Moderation Rationale: Grade C (Sound)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Mia demonstrates <strong>sound knowledge and understanding of the main areas of content</strong> in familiar situations. She accurately converts double-digit centimetres to decimal metres (up to 2 decimal places), connects key benchmark fractions to decimal cards ($1/4 = 0.25$, $1/2 = 0.50$), orders measurements correctly, and uses money analogies to explain why 0.8 exceeds 0.75.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: GRADE D (BASIC) — BRAXTON                                          -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeD" class="tab-content hidden">
+      <div class="bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-amber-500 text-amber-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade D &bull; Basic Knowledge &amp; Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Braxton L. &bull; Year 4 (Term 4)</h3>
+          <p class="text-xs text-amber-200">Demonstrates basic knowledge with teacher guidance; placeholder zero omissions (writing 2.5 for 2m 5cm), initially tricked by longer decimals.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-amber-400">GRADE D</div>
+          <div class="text-xs text-amber-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-amber-800 underline font-bold">Braxton L.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-amber-800">30 Oct 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Supported Task</span>
+            <span class="text-lg text-amber-800">With Teacher Prompts</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Braxton's Long Jump Measurements (With Corrections)
+              </div>
+              <div class="mt-3 space-y-2 font-student text-sm text-slate-800">
+                <p>&bull; Run-up: 1m 45cm = <strong>1.45 m</strong></p>
+                <p>&bull; Hurdle: 0m 80cm = <strong>0.8 m</strong></p>
+                <p>&bull; Take-off mark: 2m 5cm = <span class="line-through text-slate-400">2.5 m</span> &rarr; <strong>2.05 m</strong> (corrected after teacher prompt)</p>
+                <p>&bull; Pit mark: 3m 20cm = <strong>3.2 m</strong></p>
+
+                <div class="bg-amber-50 p-3 rounded border border-amber-200 text-xs font-sans mt-3">
+                  <strong>Ordering Attempt:</strong>
+                  <div class="font-mono text-sm mt-1">
+                    0.8 m &lt; 1.45 m &lt; 2.05 m &lt; 3.2 m
+                  </div>
+                  <span class="text-slate-600 block mt-1">Initially ordered 2.5m as larger than 3.2m before correction.</span>
+                </div>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9651; <span class="text-xs">Placeholder zero omitted initially</span>
+              </div>
+            </div>
+
+            <!-- Challenge Attempt -->
+            <div class="bg-rose-50 p-3 rounded border border-rose-200 text-xs text-rose-900 font-sans">
+              <strong>Challenge Response:</strong> "First I thought 0.75 was bigger because 75 is bigger than 8. But teacher showed me 0.8 is 80cm, so 0.8 is bigger."<br>
+              <strong>Halfway distance:</strong> "0.75" (needed teacher prompt to find middle of 70 and 80).
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyYellow p-5 rounded-md border-t-8 border-amber-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-amber-200 pb-1 font-bold text-amber-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-amber-200 px-2 py-0.5 rounded text-amber-900 font-mono">30/10/26 11:50 AM</span>
+              </div>
+              <p class="mb-2">
+                "Braxton recorded 2m 5cm as '2.5m'. Directed him to the place value chart to demonstrate that 2.5m is 2 metres and 50 centimetres."
+              </p>
+              <p>
+                "Struggled with the helper prompt, initially agreeing that 0.75m is longer because 75 &gt; 8."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Patterson</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-amber-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-amber-950 uppercase tracking-wide block border-b pb-1">Verbatim Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-amber-50 p-2 rounded">
+                "Teacher: What does the 5 mean in 2.05? Braxton: 5 centimetres. Teacher: And what would 2.5 mean? Braxton: 50 centimetres! Oh, I need the zero in the middle."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-amber-400 bg-amber-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 mb-2">NESA Moderation Rationale: Grade D (Basic)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Braxton demonstrates <strong>basic knowledge and understanding</strong> of decimal place value, achieving a limited level of competence. In familiar situations, he requires teacher guidance to record single-digit centimetre lengths with zero placeholders (omitting zero in 2.05 m), exhibits whole-number misconceptions when comparing decimals of unequal length (0.75 vs 0.8), and requires scaffolding to identify benchmark fractions.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: GRADE E (ELEMENTARY) — ARCHIE                                      -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeE" class="tab-content hidden">
+      <div class="bg-rose-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-rose-500 text-rose-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade E &bull; Elementary Knowledge &amp; Very Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Archie D. &bull; Year 4 (Term 4)</h3>
+          <p class="text-xs text-rose-200">Demonstrates elementary knowledge in few areas; records whole centimetres only, omits decimal point, treats decimals as two unrelated numbers.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-rose-400">GRADE E</div>
+          <div class="text-xs text-rose-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-studentYoung text-2xl text-slate-800">
+            Name: <span class="text-rose-800 underline font-bold">archie</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-rose-800">30/10</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Significant Direct Support Required</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Archie's Attempt (Whole Numbers Only)
+              </div>
+              <div class="mt-3 font-studentYoung text-xl text-slate-800 space-y-2">
+                <p>"line is 100cm."</p>
+                <p>"jump is 2m."</p>
+                <p>"sand is 75." (Omitted metres and decimal points).</p>
+                <p>"0.75 is bigger than 0.8 because 75 is a big number."</p>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9675; <span class="text-xs">Decimal notation not applied</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-studentYoung text-xl text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-rose-900 block mb-1">Ordering Attempt:</span>
+              <p>"8, 75, 100" (Orders raw whole numbers, unable to compare decimal values).</p>
+              <div class="bg-rose-50 p-2 rounded text-xs font-sans text-rose-900">
+                Halfway challenge question not accessed. Student working on reading whole centimetres on a ruler.
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyPink p-5 rounded-md border-t-8 border-rose-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-rose-200 pb-1 font-bold text-rose-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded text-rose-900 font-mono">30/10/26 12:15 PM</span>
+              </div>
+              <p class="mb-2">
+                "Archie was unable to record measurements using decimal metres without 1:1 assistance. Recorded '75' instead of '0.75m'."
+              </p>
+              <p>
+                "Views numbers after the point as separate counting numbers. Confirmed 0.75 is bigger because '75 is way more than 8'."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Patterson</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-rose-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-rose-950 uppercase tracking-wide block border-b pb-1">Verbatim Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-rose-50 p-2 rounded">
+                "Teacher: What does the point mean in 0.8? Archie: It's just a dot between the numbers."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-rose-400 bg-rose-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-rose-950 mb-2">NESA Moderation Rationale: Grade E (Elementary)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Archie has an <strong>elementary knowledge and understanding in few areas of the content</strong> and has achieved very limited competence in the processes and skills. In isolated situations, he requires significant direct teacher support to read a metre ruler, is unable to record measurements using decimal notation, views decimal numbers as whole numbers separated by a dot, and cannot order decimals.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 6: CALIBRATION MATRIX (GRADES A TO E)                                 -->
+    <!-- ========================================================================= -->
+    <div id="content-matrix" class="tab-content hidden">
+      <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+        
+        <div class="bg-nswNavy text-white px-6 py-5">
+          <div class="flex flex-wrap justify-between items-center gap-2">
+            <div>
+              <span class="bg-indigo-500 text-indigo-950 text-xs font-black px-2.5 py-1 rounded uppercase tracking-wide">
+                Stage 2 Moderation Tool &bull; NESA Common Grade Scale
+              </span>
+              <h3 class="text-xl font-bold mt-1">Cross-Grade Calibration Matrix: Year 4 (Stage 2 Part B)</h3>
+              <p class="text-xs text-sky-200">
+                Direct evidence comparison across Grades A, B, C, D, and E against Stage 2 Mathematics Overview Rubrics (MA2-RN-02 &amp; MAO-WM-01).
+              </p>
+            </div>
+            <div class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded text-slate-300">
+              Unit: Representing Numbers Using Place Value &bull; Term 4 Weeks 3–4
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b-2 border-slate-300 bg-slate-100 text-slate-700">
+                <th class="p-3 font-bold uppercase tracking-wider w-1/6">Syllabus Focus &amp; Rubric Aspect</th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-purple-900 bg-purple-50 border-x border-purple-200">
+                  Grade A (Extensive)<br>
+                  <span class="font-normal text-[10px] text-purple-700">Readily applies to new situations</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-emerald-900 bg-emerald-50 border-r border-emerald-200">
+                  Grade B (Thorough)<br>
+                  <span class="font-normal text-[10px] text-emerald-700">Applies to most situations</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-blue-900 bg-blue-50 border-r border-blue-200">
+                  Grade C (Sound)<br>
+                  <span class="font-normal text-[10px] text-blue-700">Sound knowledge in familiar tasks</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-amber-900 bg-amber-50 border-r border-amber-200">
+                  Grade D (Basic)<br>
+                  <span class="font-normal text-[10px] text-amber-700">Basic knowledge with guidance</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-rose-900 bg-rose-50">
+                  Grade E (Elementary)<br>
+                  <span class="font-normal text-[10px] text-rose-700">Significant direct support</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              
+              <!-- Row 1: Decimal Measurement & Placeholder Zeros -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Decimal Measurements</div>
+                  <span class="font-mono text-[10px] text-emerald-800 bg-emerald-100 px-1 py-0.5 rounded">MA2-RN-02</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Converts metres and centimetres; applies placeholder zeros.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Masterful Placeholder Logic:</strong> Autonomously records single-digit centimetres (2.05m); explains that omitting zero creates a 45cm error; justifies hundredths place value fluently.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Accurate Conversions:</strong> Correctly records decimal measurements including single-digit centimetres (3.05m) with minimal teacher reminders.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Taught Double-Digit Routines:</strong> Converts standard double-digit centimetres accurately (1.50m, 2.25m, 4.10m); avoids single-digit hundredth conversions.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Placeholder Omissions:</strong> Initially writes 2.5m for 2m 5cm; requires teacher intervention with a place value chart to insert placeholder zero.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Whole Numbers Only:</strong> Records measurements in raw centimetres or whole metres only; omits decimal point notation entirely.
+                </td>
+              </tr>
+
+              <!-- Row 2: Comparing & Ordering Decimals -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Comparing &amp; Ordering</div>
+                  <span class="font-mono text-[10px] text-sky-800 bg-sky-100 px-1 py-0.5 rounded">MA2-RN-02</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Orders decimals up to 2 decimal places using place value columns.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Rigorous Column Analysis:</strong> Compares ones, tenths, and hundredths left-to-right; completely disproves longer decimal misconceptions ($0.8 &gt; 0.75$) with dual proofs.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Systematic Comparison:</strong> Equates 0.8 with 0.80 to compare hundredths accurately; orders measurements correctly using relational symbols.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Money / Benchmarks Analogy:</strong> Orders decimals by connecting to money (80 cents vs 75 cents); explains ordering adequately using words.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Longer-is-Bigger Misconception:</strong> Initially claims 0.75 is bigger than 0.8 because 75 &gt; 8; relies on teacher prompts to align tenths.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Discrete Number View:</strong> Treats decimal numbers as separate whole numbers separated by a dot; orders by superficial whole-number value.
+                </td>
+              </tr>
+
+              <!-- Row 3: Benchmark Connections -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Benchmark Fractions &amp; Decimals</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MA2-RN-02</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Connects 1/4 (0.25), 1/2 (0.5), and 3/4 (0.75).</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Scale &amp; Proportional Transfer:</strong> Fluently connects fractional benchmarks to both 1-metre and 10-metre track scales ($1/4 = 0.25 = 2.50\text{ m}$); finds halfway distance (0.75m).
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Accurate Benchmark Alignment:</strong> Positions 0.25, 0.50, and 0.75 flags accurately on track plan; calculates halfway point as 0.75.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Taught Benchmark Recall:</strong> Accurately matches 1/4 to 0.25, 1/2 to 0.5, and 3/4 to 0.75 using taught cards and wall charts.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Basic Matching:</strong> Matches 1/2 to 0.5; requires teacher assistance to remember quarters (0.25 and 0.75).
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>No Connection:</strong> Cannot relate fraction symbols to decimal notation without 1:1 physical modelling.
+                </td>
+              </tr>
+
+              <!-- Row 4: WM - Exploring & Connecting Concepts -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Exploring &amp; Connecting</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Understanding, fluency, and transfer across concepts.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Readily explores and connects place value, metric measurement, and fractional benchmarks; applies understanding flexibly to scaled 10m sports layouts.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Connects concepts accurately and confidently; applies understanding in most familiar and some unfamiliar design contexts.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Explores concepts and makes connections in familiar situations, showing sound understanding of the main ideas taught.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Explores some concepts with guidance, making limited connections in familiar situations; relies on teacher prompts to connect tenths and hundredths.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Explores isolated concepts with significant support; connections between metric units and decimal notation are rarely made.
+                </td>
+              </tr>
+
+              <!-- Row 5: WM - Choosing & Applying Techniques -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Choosing &amp; Applying</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Selecting efficient problem-solving techniques.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Selects efficient place-value techniques from a range (place value charts, hundredths equivalence), applies them fluently, and adapts to solve unfamiliar challenges.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Chooses effective techniques and applies them accurately to solve most problems, including equating decimal lengths with trailing zeros.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Chooses and applies taught techniques (standard double-digit conversions, money comparisons) to solve familiar problems with adequate accuracy.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Applies a limited range of techniques, often trial-and-error, to solve some familiar problems, usually with teacher guidance.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Attempts simple familiar problems with significant support, using very limited techniques (whole centimetre reading).
+                </td>
+              </tr>
+
+              <!-- Row 6: WM - Communicating & Reasoning -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Communicating &amp; Reasoning</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Reasoning, justifying, and mathematical clarity.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Communicates thinking coherently and clearly, justifying strategies and conclusions with precise mathematical language and place value diagrams.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Clearly explains thinking and strategies using appropriate mathematical language, recorded decimal notation, and comparison symbols.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Describes thinking and strategies using everyday and some mathematical language, drawings, numerals, and standard decimal notation.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Describes some aspects of thinking using everyday language when prompted; struggles to articulate reasons for decimal ordering choices.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Communicates isolated aspects of thinking with significant support, often through gestures or pointing to ruler marks.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-6 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 space-y-2">
+          <h5 class="font-bold text-slate-900 uppercase tracking-wide">Stage 2 Team Moderation Protocols:</h5>
+          <p>&bull; <strong>Grade A Standard (Extensive):</strong> Readily applies decimal place value to novel situations and scaling. Tahlia demonstrates depth of reasoning by articulating why the placeholder zero in 2.05m prevents a 45cm measurement error and disproves the helper misconception using column-by-column logic.</p>
+          <p>&bull; <strong>Grade B vs Grade C Standard:</strong> Marcus (Grade B) reasons flexibly across most situations, equating 0.8 with 0.80 and using zero placeholders reliably. Sophie/Mia (Grade C) achieves sound understanding in familiar tasks, relying on taught routines and double-digit centimetres (e.g. 1.50m, 2.25m) where zero placeholders are not required.</p>
+          <p>&bull; <strong>Grade D vs Grade E Standard:</strong> Braxton (Grade D) completes basic calculations with teacher guidance but omits placeholder zeros (writing 2.5 for 2m 5cm). Archie (Grade E) exhibits elementary understanding in isolated areas, recording only whole numbers and viewing decimals as two unrelated values.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.add('hidden'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-slate-200', 'text-slate-700', 'border-transparent');
+      });
+
+      const targetContent = document.getElementById('content-' + tabId);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.classList.remove('bg-slate-200', 'text-slate-700', 'border-transparent');
+      }
+    }
+
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      const main = document.querySelector('main');
+      const btnText = document.getElementById('annotationBtnText');
+      
+      annotationsVisible = !annotationsVisible;
+      
+      if (!annotationsVisible) {
+        main.classList.add('hide-annotations');
+        btnText.textContent = "Show Teacher Marks (Moderation Mode)";
+      } else {
+        main.classList.remove('hide-annotations');
+        btnText.textContent = "Hide Teacher Marks (Blind Moderation)";
+      }
+    }
+  </script>
+
+</body>
+</html>
