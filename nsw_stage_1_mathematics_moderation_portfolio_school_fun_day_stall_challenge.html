@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSW Stage 1 Mathematics Moderation Portfolio | School Fun Day Stall Challenge</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts for Authentic Student Handwriting and Clean UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gochi+Hand&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom handwriting font utility classes */
+    .font-hand-a { font-family: 'Patrick Hand', cursive; }
+    .font-hand-b { font-family: 'Comic Neue', cursive; }
+    .font-hand-c { font-family: 'Schoolbell', cursive; }
+    .font-hand-d { font-family: 'Architects Daughter', cursive; }
+    .font-hand-e { font-family: 'Gochi Hand', cursive; }
+    .font-teacher { font-family: 'Caveat', cursive; }
+    .font-stamp { font-family: 'Permanent Marker', cursive; }
+
+    /* Exercise book paper styling */
+    .exercise-grid {
+      background-color: #fbfbf9;
+      background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+      position: relative;
+    }
+
+    /* Red student margin line */
+    .red-margin {
+      border-left: 2px solid rgba(239, 68, 68, 0.45);
+    }
+
+    /* Sticky post-it note effects */
+    .sticky-note {
+      box-shadow: 2px 4px 10px rgba(0,0,0,0.12), -1px 2px 4px rgba(0,0,0,0.06);
+      transform: rotate(-1.2deg);
+      transition: transform 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+
+    /* Rubber stamp styling */
+    .rubber-stamp {
+      border: 3px solid #dc2626;
+      color: #dc2626;
+      border-radius: 8px;
+      display: inline-block;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transform: rotate(-7deg);
+      opacity: 0.88;
+    }
+    .rubber-stamp-green {
+      border-color: #15803d;
+      color: #15803d;
+      transform: rotate(5deg);
+    }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: white !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- TOP HEADER & NSW CURRICULUM BANNER -->
+  <header class="bg-gradient-to-r from-violet-950 via-indigo-900 to-slate-900 text-white shadow-lg sticky top-0 z-40 border-b-4 border-amber-400 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-amber-400 p-2 rounded-lg text-slate-950 font-black shadow-md flex items-center justify-center">
+          <i data-lucide="store" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold tracking-widest bg-violet-500/30 text-violet-200 px-2 py-0.5 rounded border border-violet-400/40 uppercase">NSW K–10 Syllabus (2022)</span>
+            <span class="text-xs font-semibold text-amber-300">Stage 1 Part B (Year 2) • Sequence 6</span>
+          </div>
+          <h1 class="text-lg sm:text-xl font-extrabold tracking-tight">NSW Stage 1 Mathematics Moderation Portfolio | School Fun Day Stall Challenge</h1>
+          <p class="text-xs text-slate-300">Rich Task: <span class="text-amber-200 font-medium">Design Your School Fun Day Stall (Combining & Separating Quantities to Additive Relations)</span></p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-2">
+        <button id="toggle-annotations-btn" onclick="toggleAnnotations()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-md text-xs font-medium border border-slate-600 flex items-center gap-1.5 transition">
+          <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span id="annotations-status-text">Hide Teacher Marks</span>
+        </button>
+        <button onclick="openModal('rubric-modal')" class="px-3 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-md text-xs font-medium border border-indigo-400 flex items-center gap-1.5 transition shadow">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+          <span>Syllabus & Rubric</span>
+        </button>
+        <button onclick="openModal('task-brief-modal')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-md text-xs font-bold flex items-center gap-1.5 transition shadow">
+          <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
+          <span>Task Brief & Menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Syllabus Outcomes Strip -->
+    <div class="bg-slate-950/70 border-t border-slate-800 px-4 py-1.5 text-xs">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-slate-300 font-mono">
+        <span class="flex items-center gap-1 text-amber-400 font-semibold"><i data-lucide="target" class="w-3 h-3"></i> Targeted Outcomes:</span>
+        <span title="Working Mathematically"><strong class="text-white">MA1-WM-01:</strong> Working Mathematically</span>
+        <span title="Combining & Separating Quantities"><strong class="text-violet-300">MA1-CSQ-01:</strong> Number bonds, partitioning, bridging to 10 & equality relations</span>
+        <span class="text-slate-400 hidden lg:inline">• Empty number line jumps, building to landmark multiples of 10, shopkeeper's inverse method, relational equality</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR / GRADE SELECTION TABS -->
+  <div class="bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between overflow-x-auto py-2 gap-2 no-scrollbar">
+        <div class="flex items-center gap-1.5">
+          <!-- Grade A -->
+          <button onclick="switchTab('grade-a')" id="tab-btn-grade-a" class="tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-emerald-600 bg-emerald-50 text-emerald-900 shadow-sm">
+            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">A</span>
+            <span>Grade A <span class="hidden md:inline font-normal text-emerald-700">(Extensive)</span></span>
+          </button>
+          <!-- Grade B -->
+          <button onclick="switchTab('grade-b')" id="tab-btn-grade-b" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs">B</span>
+            <span>Grade B <span class="hidden md:inline font-normal text-slate-500">(Thorough)</span></span>
+          </button>
+          <!-- Grade C -->
+          <button onclick="switchTab('grade-c')" id="tab-btn-grade-c" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs">C</span>
+            <span>Grade C <span class="hidden md:inline font-normal text-slate-500">(Sound)</span></span>
+          </button>
+          <!-- Grade D -->
+          <button onclick="switchTab('grade-d')" id="tab-btn-grade-d" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-orange-600 text-white flex items-center justify-center text-xs">D</span>
+            <span>Grade D <span class="hidden md:inline font-normal text-slate-500">(Basic)</span></span>
+          </button>
+          <!-- Grade E -->
+          <button onclick="switchTab('grade-e')" id="tab-btn-grade-e" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs">E</span>
+            <span>Grade E <span class="hidden md:inline font-normal text-slate-500">(Elementary)</span></span>
+          </button>
+        </div>
+
+        <!-- Comparative Matrix Toggle -->
+        <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-indigo-200 bg-indigo-50 text-indigo-800 hover:bg-indigo-100 whitespace-nowrap">
+          <i data-lucide="columns" class="w-4 h-4 text-indigo-600"></i>
+          <span>Moderation Matrix (All Grades)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN MODERATION WORKSPACE -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
+
+    <!-- ========================================================================= -->
+    <!-- GRADE A: EXTENSIVE ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-a-view" class="tab-content block space-y-6">
+      
+      <div class="bg-emerald-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-emerald-400">
+        <div>
+          <div class="flex items-center gap-2 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-emerald-900 px-2.5 py-0.5 rounded border border-emerald-600">Stage 1 Part B (Year 2)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade A: Extensive Achievement</h2>
+          <p class="text-sm text-emerald-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Readily applies Stage 1 Part B knowledge and skills to <em>new (unfamiliar) situations</em>. Demonstrates depth and conceptual transfer by reordering multi-addends into landmark tens, explaining relational equivalence (= means "is the same value as"), and using reverse reasoning to solve multi-step missing-number trade problems.
+          </p>
+        </div>
+        <div class="bg-emerald-950/80 px-4 py-3 rounded-lg border border-emerald-700/60 text-center">
+          <div class="text-xs uppercase text-emerald-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Extensive (A)</div>
+          <div class="text-xs text-emerald-300">Depth in New Situations</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-emerald-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-a', 'sample-1')" id="subtab-grade-a-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-sm transition">
+            Sample 1: Aria M. (Strategic Tens Grouping & Relational Equivalence)
+          </button>
+          <button onclick="switchSubSample('grade-a', 'sample-2')" id="subtab-grade-a-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-emerald-900 border border-emerald-300 hover:bg-emerald-100 transition">
+            Sample 2: Marcus K. (Empty Number Line Jumps & Additive Decomposition)
+          </button>
+        </div>
+        <span class="text-xs text-emerald-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (ARIA M.) -->
+      <div id="grade-a-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">CLASS WORK • YEAR 2</span>
+              <span>Aria M. • Extensive Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-a text-2xl font-bold text-slate-900">School Fun Day Stall: Art Studio</h3>
+                    <p class="font-hand-a text-base text-slate-600">Aria M. (Year 2)</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">
+                    OUTSTANDING!
+                  </div>
+                </div>
+
+                <!-- Step 1: Item Choices & Addition -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. My Stall Items & Total Cost ($50 Budget)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Efficient tens reordering!</span>
+                  </div>
+                  <div class="font-hand-a text-lg text-slate-800 space-y-1">
+                    <p>• Option C (Large Art Set): <strong>$25</strong></p>
+                    <p>• Option A (Small Activity Pack): <strong>$12</strong></p>
+                    <p>• Option E (Mini Decoration Pack): <strong>$8</strong></p>
+                  </div>
+                  <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-200 font-hand-a text-lg text-slate-900 space-y-1">
+                    <p><strong>Total Equation: $25 + $12 + $8 = $45</strong></p>
+                    <p class="text-emerald-950">
+                      "I reordered the addends using Friends of 10: <strong>12 + 8 = 20</strong> because 2 + 8 makes a clean 10. Then <strong>25 + 20 = 45</strong>. My stall stays under budget by $5!"
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 2: Inverse Strategy (Shopkeeper Method) -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Change from $50 Note (Inverse Method)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Clear shopkeeper bridge</span>
+                  </div>
+                  <!-- SVG Empty Number Line -->
+                  <svg width="100%" height="90" viewBox="0 0 380 90" class="bg-slate-50 rounded border border-slate-300">
+                    <line x1="30" y1="65" x2="350" y2="65" stroke="#334155" stroke-width="2.5" />
+                    <!-- Mark 45 -->
+                    <line x1="60" y1="55" x2="60" y2="75" stroke="#334155" stroke-width="2" />
+                    <text x="50" y="85" class="font-mono text-xs font-bold fill-slate-800">$45</text>
+                    <!-- Jump arc +5 -->
+                    <path d="M 60 55 Q 200 10 320 55" fill="none" stroke="#059669" stroke-width="2.5" stroke-dasharray="3 3"/>
+                    <text x="180" y="30" class="font-hand-a text-lg font-bold fill-emerald-800">+ $5</text>
+                    <!-- Mark 50 -->
+                    <line x1="320" y1="55" x2="320" y2="75" stroke="#334155" stroke-width="2" />
+                    <text x="310" y="85" class="font-mono text-xs font-bold fill-slate-800">$50</text>
+                  </svg>
+                  <p class="font-hand-a text-base text-slate-800">
+                    "I used the shopkeeper's inverse way: $45 + <strong>$5</strong> = $50, so my change is <strong>$5</strong>. Counting up from $45 is much faster than taking away backwards!"
+                  </p>
+                </div>
+
+                <!-- Step 3: Balanced Swap (Relational Equality) -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. Balanced Swap (Relational Equality)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ True equivalence demonstrated</span>
+                  </div>
+                  <p class="font-hand-a text-xl text-slate-900 bg-emerald-50 p-2.5 rounded border border-emerald-200 font-bold">
+                    $12 + $18 = $15 + $15 = $30
+                  </p>
+                  <p class="font-hand-a text-base text-slate-800">
+                    "The equals sign means both expressions have the exact same total worth. $12 + $18 makes $30, and double $15 makes $30, so both sides are completely balanced."
+                  </p>
+                </div>
+
+                <!-- Step 4: Challenge Prompt (Unfamiliar Trade) -->
+                <div class="bg-emerald-50/80 p-4 rounded-xl border border-emerald-300 shadow-sm space-y-2">
+                  <span class="bg-emerald-700 text-white font-bold text-xs px-2 py-0.5 rounded">CHALLENGE PROMPT: $35 MEGA PACK TRADE</span>
+                  <div class="font-hand-a text-lg text-slate-900 space-y-1">
+                    <p><strong>Trade Combination: Option A ($12) + Option D ($15) + Option E ($8) = $35!</strong></p>
+                    <p>"First I checked if $25 could trade, but $35 - $25 = $10 and there is no $10 item. So I combined my other items: (12 + 8) + 15 = 20 + 15 = 35."</p>
+                    <p class="font-bold text-emerald-950">Missing Number Proof: 35 = 12 + 15 + [ 8 ]</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Moderation Details -->
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade A Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-emerald-600">A</span>
+              </div>
+
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Combining & Separating Quantities (MA1-CSQ-01)
+                  </div>
+                  <p>
+                    <strong>Extensive:</strong> Readily applies knowledge and skills to new situations. Autonomously reorders multi-addends into landmark tens ($12 + 8 = 20$, then $20 + 25 = 45$). Flawlessly executes the shopkeeper's inverse strategy on an empty number line ($45 + 5 = 50$). Solves the unfamiliar $35 trade challenge by testing constraints and deducing the missing quantity ($35 = 20 + 15$).
+                  </p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Working Mathematically (MA1-WM-01)
+                  </div>
+                  <p>
+                    <strong>Extensive:</strong> Justifies strategies using precise mathematical vocabulary (<em>addends, relational equality, balance, inverse</em>) and records true non-standard equivalence statements showing deep conceptual understanding.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-emerald-50/70 p-3 rounded-lg border border-emerald-200 text-xs">
+                <strong class="text-emerald-950">Depth, Not Acceleration:</strong>
+                <p class="text-emerald-900 mt-1">
+                  Aria demonstrates depth within Stage 1 Part B through flexible partitioning, bridging to landmark tens, and relational equality, without needing Stage 2 vertical algorithms.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (MARCUS K.) -->
+      <div id="grade-a-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">ASSESSMENT RECORD • YEAR 2</span>
+              <span>Marcus K. • Extensive Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-a text-2xl font-bold text-slate-900">Marcus's Fun Day Stall: Sports Arena</h3>
+                    <p class="font-hand-a text-base text-slate-600">Open Number Line Strategy</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">
+                    VERY HIGH COMPETENCE
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Item Combination & Number Line Addition</h4>
+                  <p class="font-hand-a text-base text-slate-800">
+                    Items: Medium Pack ($18) + Bonus Station ($15) + Mini Pack ($8).
+                  </p>
+                  <!-- Number Line SVG -->
+                  <svg width="100%" height="80" viewBox="0 0 380 80" class="bg-slate-50 rounded border border-slate-300">
+                    <line x1="20" y1="55" x2="360" y2="55" stroke="#334155" stroke-width="2" />
+                    <!-- 18 -->
+                    <text x="25" y="72" class="font-mono text-xs">18</text>
+                    <!-- +2 to 20 -->
+                    <path d="M 30 50 Q 50 25 70 50" fill="none" stroke="#2563eb" stroke-width="2"/>
+                    <text x="45" y="30" class="text-[11px] font-bold fill-blue-600">+2</text>
+                    <text x="65" y="72" class="font-mono text-xs">20</text>
+                    <!-- +13 to 33 -->
+                    <path d="M 70 50 Q 140 10 210 50" fill="none" stroke="#2563eb" stroke-width="2"/>
+                    <text x="135" y="25" class="text-[11px] font-bold fill-blue-600">+13</text>
+                    <text x="205" y="72" class="font-mono text-xs">33</text>
+                    <!-- +7 to 40 -->
+                    <path d="M 210 50 Q 250 25 290 50" fill="none" stroke="#2563eb" stroke-width="2"/>
+                    <text x="245" y="30" class="text-[11px] font-bold fill-blue-600">+7</text>
+                    <text x="285" y="72" class="font-mono text-xs">40</text>
+                    <!-- +1 to 41 -->
+                    <path d="M 290 50 Q 315 35 340 50" fill="none" stroke="#2563eb" stroke-width="2"/>
+                    <text x="310" y="35" class="text-[11px] font-bold fill-blue-600">+1</text>
+                    <text x="335" y="72" class="font-mono text-xs font-bold">41</text>
+                  </svg>
+                  <p class="font-hand-a text-base text-slate-800">
+                    "I started at 18. I partitioned 15 into 2 and 13 to bridge to 20 ($18 + 2 = 20, 20 + 13 = 33$). Then I partitioned 8 into 7 and 1 to bridge to 40 ($33 + 7 = 40, 40 + 1 = 41$). Total = $41."
+                  </p>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Inverse Change & Challenge Proof</h4>
+                  <p class="font-hand-a text-base text-slate-800">
+                    "From $41, I jump 9 to reach $50 ($41 + 9 = 50$). Change is <strong>$9</strong>.<br>
+                    For the $35 trade: I saw $12 + $8 = $20, and $20 + $15 = $35. So Option A + Option D + Option E trades fairly."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade A (Marcus K.)</h3>
+                </div>
+                <span class="text-3xl font-black text-emerald-600">A</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Extensive:</strong> Flexibly bridges to decade landmarks 20 and 40 on an open number line by partitioning addends into complements. Deconstructs the $35 trade challenge into component number bonds effortlessly.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE B: THOROUGH ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-b-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-sky-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-sky-400">
+        <div>
+          <div class="flex items-center gap-2 text-sky-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-sky-900 px-2.5 py-0.5 rounded border border-sky-600">Stage 1 Part B (Year 2)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade B: Thorough Achievement</h2>
+          <p class="text-sm text-sky-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Thorough knowledge and understanding; high level of competence. Applies knowledge and skills to <em>most familiar situations</em>. Confidently partitions quantities into tens and ones, uses structured jumps on an empty number line, and explains inverse change and equality clearly.
+          </p>
+        </div>
+        <div class="bg-sky-950/80 px-4 py-3 rounded-lg border border-sky-700/60 text-center">
+          <div class="text-xs uppercase text-sky-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Thorough (B)</div>
+          <div class="text-xs text-sky-300">High Competence</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-sky-50/80 p-2.5 rounded-xl border border-sky-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-sky-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-b', 'sample-1')" id="subtab-grade-b-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-700 text-white shadow-sm transition">
+            Sample 1: Benjamin T. (Empty Number Line Jumps of Tens & Ones)
+          </button>
+          <button onclick="switchSubSample('grade-b', 'sample-2')" id="subtab-grade-b-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-sky-900 border border-sky-300 hover:bg-sky-100 transition">
+            Sample 2: Sophie L. (Quantity Value Tens/Ones Split Strategy)
+          </button>
+        </div>
+        <span class="text-xs text-sky-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (BENJAMIN T.) -->
+      <div id="grade-b-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-sky-100/70 border-b border-sky-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Benjamin T. • Thorough Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-b text-2xl font-bold text-slate-900">Benjamin's Fun Day Stall</h3>
+                    <p class="font-hand-b text-base text-slate-600">Board Game Cafe</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    VERY THOROUGH
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Chosen Items & Number Line Total</h4>
+                  <p class="font-hand-b text-base text-slate-800">
+                    Items: Small pack ($12) + Medium pack ($18) + Bonus reward ($15).
+                  </p>
+                  <!-- Number Line SVG -->
+                  <svg width="100%" height="80" viewBox="0 0 380 80" class="bg-slate-50 rounded border border-slate-300">
+                    <line x1="20" y1="55" x2="360" y2="55" stroke="#334155" stroke-width="2" />
+                    <text x="25" y="72" class="font-mono text-xs">18</text>
+                    <!-- +10 to 28 -->
+                    <path d="M 30 50 Q 80 15 130 50" fill="none" stroke="#0284c7" stroke-width="2"/>
+                    <text x="75" y="28" class="text-[11px] font-bold fill-sky-700">+10</text>
+                    <text x="125" y="72" class="font-mono text-xs">28</text>
+                    <!-- +2 to 30 -->
+                    <path d="M 130 50 Q 155 30 180 50" fill="none" stroke="#0284c7" stroke-width="2"/>
+                    <text x="150" y="35" class="text-[11px] font-bold fill-sky-700">+2</text>
+                    <text x="175" y="72" class="font-mono text-xs">30</text>
+                    <!-- +10 to 40 -->
+                    <path d="M 180 50 Q 230 15 280 50" fill="none" stroke="#0284c7" stroke-width="2"/>
+                    <text x="225" y="28" class="text-[11px] font-bold fill-sky-700">+10</text>
+                    <text x="275" y="72" class="font-mono text-xs">40</text>
+                    <!-- +5 to 45 -->
+                    <path d="M 280 50 Q 310 25 340 50" fill="none" stroke="#0284c7" stroke-width="2"/>
+                    <text x="305" y="32" class="text-[11px] font-bold fill-sky-700">+5</text>
+                    <text x="335" y="72" class="font-mono text-xs font-bold">45</text>
+                  </svg>
+                  <p class="font-hand-b text-base text-slate-800">
+                    "Total cost is <strong>$45</strong>. I jumped 10 then 2 to reach 30, then 10 then 5 to reach 45."
+                  </p>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Inverse Change & Balanced Swap</h4>
+                  <p class="font-hand-b text-base text-slate-800">
+                    "Change: I started at $45 and added 5 to make $50. So <strong>$50 - $45 = $5 change</strong>.<br>
+                    Balanced Swap: <strong>$12 + $18 = $15 + $15</strong> (both equal $30)."
+                  </p>
+                </div>
+
+                <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 space-y-1">
+                  <span class="bg-sky-700 text-white font-bold text-xs px-2 py-0.5 rounded">CHALLENGE PROMPT</span>
+                  <p class="font-hand-b text-base text-slate-800">
+                    "To trade for the $35 pack, I need $35. $12 + $8 = $20, plus $15 makes $35. <strong>$12 + $18 + $5... wait, 12 + 15 + 8 = 35!</strong>"
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade B Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-sky-600">B</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Thorough:</strong> High level of competence in familiar situations. Fluent execution of empty number line jumps of tens and ones, structured inverse change calculation ($45 + 5 = 50$), and clear relational equality statements ($12 + 18 = 15 + 15$).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (SOPHIE L.) -->
+      <div id="grade-b-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-sky-100/70 border-b border-sky-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Sophie L. • Thorough Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-b text-2xl font-bold text-slate-900">Sophie's Stall Plan</h3>
+                    <p class="font-hand-b text-base text-slate-600">Quantity Value Partitioning</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    VERY THOROUGH
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Quantity Value Partitioning</h4>
+                  <p class="font-hand-b text-base text-slate-800">
+                    Option C ($25) + Option A ($12) + Option E ($8).<br>
+                    <strong>Tens: 20 + 10 = 30</strong><br>
+                    <strong>Ones: 5 + 2 + 8 = 15</strong> (I know 2 + 8 = 10, plus 5 is 15)<br>
+                    <strong>Total: 30 + 15 = 45</strong>.
+                  </p>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Change & Equality</h4>
+                  <p class="font-hand-b text-base text-slate-800">
+                    "Change: I counted up from 45 to 50 on a number line. $45 + 5 = 50, so change is $5.<br>
+                    Equality: $25 + $15 = $18 + $12 + $10 = $40."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade B (Sophie L.)</h3>
+                </div>
+                <span class="text-3xl font-black text-sky-600">B</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Thorough:</strong> Accurately separates tens and ones by quantity value ($20 + 10 = 30$ and $5 + 2 + 8 = 15$) and uses known number bonds to recombine fluently.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE C: SOUND ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-c-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-amber-400">
+        <div>
+          <div class="flex items-center gap-2 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-amber-900 px-2.5 py-0.5 rounded border border-amber-600">Stage 1 Part B (Year 2)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade C: Sound Achievement</h2>
+          <p class="text-sm text-amber-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Demonstrates knowledge and skills in <em>familiar situations</em>. Demonstrates building to 10 and empty number line jump strategies using taught classroom routines. Calculates change by counting up with adequate competence.
+          </p>
+        </div>
+        <div class="bg-amber-950/80 px-4 py-3 rounded-lg border border-amber-700/60 text-center">
+          <div class="text-xs uppercase text-amber-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Sound (C)</div>
+          <div class="text-xs text-amber-300">Adequate Competence</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-amber-50/80 p-2.5 rounded-xl border border-amber-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-amber-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-c', 'sample-1')" id="subtab-grade-c-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-700 text-white shadow-sm transition">
+            Sample 1: Chloe S. (Taught Number Line Jumps & Landmark 10s)
+          </button>
+          <button onclick="switchSubSample('grade-c', 'sample-2')" id="subtab-grade-c-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-amber-900 border border-amber-300 hover:bg-amber-100 transition">
+            Sample 2: Liam P. (Base-10 Drawings & Oral Scribing Record)
+          </button>
+        </div>
+        <span class="text-xs text-amber-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (CHLOE S.) -->
+      <div id="grade-c-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">CLASS WORK • YEAR 2</span>
+              <span>Chloe S. • Sound Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Chloe's Fun Day Stall</h3>
+                    <p class="font-hand-c text-base text-slate-600">Activity Stall</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    GOOD WORK CHLOE
+                  </div>
+                </div>
+
+                <!-- Addition on Number Line -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Adding Items on Number Line</h4>
+                  <p class="font-hand-c text-base text-slate-800">
+                    I chose Option A ($12), Option B ($18), and Option E ($8).
+                  </p>
+                  <svg width="100%" height="75" viewBox="0 0 380 75" class="bg-slate-50 rounded border border-slate-400">
+                    <line x1="20" y1="50" x2="360" y2="50" stroke="#334155" stroke-width="2" />
+                    <text x="25" y="68" class="font-hand-c text-xs">18</text>
+                    <!-- +10 -->
+                    <path d="M 30 45 Q 85 15 140 45" fill="none" stroke="#d97706" stroke-width="2"/>
+                    <text x="80" y="25" class="font-hand-c text-xs">+10</text>
+                    <text x="135" y="68" class="font-hand-c text-xs">28</text>
+                    <!-- +2 -->
+                    <path d="M 140 45 Q 165 25 190 45" fill="none" stroke="#d97706" stroke-width="2"/>
+                    <text x="160" y="30" class="font-hand-c text-xs">+2</text>
+                    <text x="185" y="68" class="font-hand-c text-xs">30</text>
+                    <!-- +8 -->
+                    <path d="M 190 45 Q 260 10 330 45" fill="none" stroke="#d97706" stroke-width="2"/>
+                    <text x="255" y="22" class="font-hand-c text-xs">+8</text>
+                    <text x="325" y="68" class="font-hand-c text-xs font-bold">38</text>
+                  </svg>
+                  <p class="font-hand-c text-base text-slate-800">
+                    $18 + $12 + $8 = <strong>$38</strong> altogether.
+                  </p>
+                </div>
+
+                <!-- Change from $50 -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Change from $50 Note</h4>
+                  <p class="font-hand-c text-base text-slate-800">
+                    I counted up on the number line from 38 to 50:<br>
+                    38 + <strong>2</strong> = 40<br>
+                    40 + <strong>10</strong> = 50<br>
+                    2 + 10 = <strong>$12 change</strong>.
+                  </p>
+                </div>
+
+                <!-- Balanced Swap -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. Equal Swap</h4>
+                  <p class="font-hand-c text-base text-slate-800">
+                    $12 + $18 = $30. Both are 30.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade C Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-amber-600">C</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <p>
+                  <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations. Accurately performs addition jumps on an empty number line ($18 + 10 + 2 + 8 = 38$) and demonstrates the inverse adding-up strategy to find change ($38 + 2 = 40, 40 + 10 = 50$). Achieves an adequate level of competence using taught routines.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (LIAM P.) -->
+      <div id="grade-c-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Liam P. • Sound Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Liam's Stall Plan</h3>
+                    <p class="font-hand-c text-base text-slate-600">Drawing Blocks Method</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    SATISFACTORY
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. My Items: $12 + $15 + $8</h4>
+                  <p class="font-hand-c text-base text-slate-800">
+                    I drew tens rods and dots for ones:<br>
+                    | . . (12) + | . . . . . (15) + . . . . . . . . (8)<br>
+                    Tens: 10 + 10 = 20.<br>
+                    Ones: 2 + 5 + 8 = 15.<br>
+                    <strong>20 + 15 = $35 total.</strong>
+                  </p>
+                </div>
+
+                <div class="sticky-note bg-amber-100 p-4 rounded-xl border border-amber-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-amber-800"></i> Teacher Scribing of Oral Explanation:
+                  </div>
+                  <p class="font-teacher text-base text-slate-800 leading-snug">
+                    "When asked how he found his change from $50, Liam pointed on his number line and counted on his fingers: 'I am at 35. 5 more makes 40. Then 10 more makes 50. 5 and 10 is 15 dollars change.' Liam demonstrated taught routines with adequate competence."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade C (Liam P.)</h3>
+                </div>
+                <span class="text-3xl font-black text-amber-600">C</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations. Combines quantities using standard concrete/pictorial representations (tens rods and ones dots) and calculates change by counting on with adequate accuracy.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE D: BASIC ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-d-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-orange-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-orange-400">
+        <div>
+          <div class="flex items-center gap-2 text-orange-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-orange-900 px-2.5 py-0.5 rounded border border-orange-600">Stage 1 Part B (Year 2)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade D: Basic Achievement</h2>
+          <p class="text-sm text-orange-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Basic knowledge and understanding; limited competence. Requires teacher prompting and scaffolding; displays partial execution (e.g. overshoots budget, exhibits run-on equals signs, or counts backward with tracking errors).
+          </p>
+        </div>
+        <div class="bg-orange-950/80 px-4 py-3 rounded-lg border border-orange-700/60 text-center">
+          <div class="text-xs uppercase text-orange-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Basic (D)</div>
+          <div class="text-xs text-orange-300">Requires Scaffolding</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-orange-50/80 p-2.5 rounded-xl border border-orange-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-orange-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-d', 'sample-1')" id="subtab-grade-d-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-orange-700 text-white shadow-sm transition">
+            Sample 1: Daniel K. (Budget Overshoot & Run-on Equals Sign)
+          </button>
+          <button onclick="switchSubSample('grade-d', 'sample-2')" id="subtab-grade-d-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-orange-900 border border-orange-300 hover:bg-orange-100 transition">
+            Sample 2: Mia B. (Unstructured Tally Counting & Fingers)
+          </button>
+        </div>
+        <span class="text-xs text-orange-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (DANIEL K.) -->
+      <div id="grade-d-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-orange-100/70 border-b border-orange-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Daniel K. • Basic Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-d text-2xl font-bold text-slate-900">Dan's Fun Stall</h3>
+                    <p class="font-hand-d text-base text-slate-600">Dan</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-amber-700 border-amber-700">
+                    NEEDS PROMPTING
+                  </div>
+                </div>
+
+                <!-- Overshoot and run-on equals -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. My Items</h4>
+                  <p class="font-hand-d text-base text-slate-800 line-through text-rose-500">
+                    $25 + $18 + $15 = $58
+                  </p>
+                  <div class="teacher-mark font-teacher text-base text-rose-600 bg-rose-50 p-2 rounded border border-rose-200">
+                    ✎ <em>Teacher prompt: Remember your budget is only $50! You have spent too much. Let's swap an item.</em>
+                  </div>
+                  <p class="font-hand-d text-base text-slate-800">
+                    New items: $25 + $12 + $8.<br>
+                    <span class="text-rose-600 font-bold">25 + 12 = 37 + 8 = 45</span> (Run-on equals sign)
+                  </p>
+                </div>
+
+                <!-- Change Calculation -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Change</h4>
+                  <p class="font-hand-d text-base text-slate-800">
+                    I counted backwards from 50 on my fingers: 49, 48, 47, 46, 45, 44... I got <strong>$6 change</strong>.
+                  </p>
+                  <div class="teacher-mark font-teacher text-base text-rose-600">
+                    ✎ <em>Teacher prompt: Check your fingers! 50 take away 45 leaves 5.</em>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade D Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-orange-600">D</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Basic:</strong> Limited competence. Initially overshoots the $50 budget ($58); exhibits the operational "run-on equals sign" misconception ($25 + 12 = 37 + 8 = 45$); attempts to count backward by ones for change with tracking errors ($6 instead of $5).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (MIA B.) -->
+      <div id="grade-d-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-orange-100/70 border-b border-orange-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Mia B. • Basic Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-d text-2xl font-bold text-slate-900">Mia's Stall</h3>
+                    <p class="font-hand-d text-base text-slate-600">Mia</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-amber-700 border-amber-700">
+                    SCAFFOLDED
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Adding Items: $12 + $18</h4>
+                  <p class="font-hand-d text-base text-slate-800">
+                    I drew tallies on my paper and counted them all from 1 up to 30. It took a long time. My teacher showed me that 2 and 8 makes 10.
+                  </p>
+                </div>
+
+                <div class="sticky-note bg-amber-100 p-4 rounded-xl border border-amber-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="help-circle" class="w-4 h-4 text-orange-600"></i> Teacher Prompting Log:
+                  </div>
+                  <p class="font-teacher text-base text-slate-800 leading-snug">
+                    "Mia needed step-by-step guidance to set up an empty number line. She is still reliant on drawing single tally marks and counting on by ones. Requires scaffolding to access 2-digit partitioning."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade D (Mia B.)</h3>
+                </div>
+                <span class="text-3xl font-black text-orange-600">D</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Basic:</strong> Limited competence. Relies heavily on count-by-one tallies rather than non-count-by-one or landmark ten strategies. Needs prompting to recognise number bonds to 10.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE E: ELEMENTARY ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-e-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-rose-900 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-rose-400">
+        <div>
+          <div class="flex items-center gap-2 text-rose-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-rose-950 px-2.5 py-0.5 rounded border border-rose-700">Stage 1 Part B (Year 2)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade E: Elementary Achievement</h2>
+          <p class="text-sm text-rose-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Demonstrates <em>elementary knowledge in few areas</em> of the content. Achieved very limited competence; requires <strong>substantial direct 1:1 teacher support</strong>; unable to add two-digit numbers or calculate change independently.
+          </p>
+        </div>
+        <div class="bg-rose-950/80 px-4 py-3 rounded-lg border border-rose-700/60 text-center">
+          <div class="text-xs uppercase text-rose-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Elementary (E)</div>
+          <div class="text-xs text-rose-300">Substantial Support</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-rose-50/80 p-2.5 rounded-xl border border-rose-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-rose-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-e', 'sample-1')" id="subtab-grade-e-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-700 text-white shadow-sm transition">
+            Sample 1: Eli W. (SLSO Running Record with Unifix Cubes)
+          </button>
+          <button onclick="switchSubSample('grade-e', 'sample-2')" id="subtab-grade-e-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-rose-900 border border-rose-300 hover:bg-rose-100 transition">
+            Sample 2: Noah J. (Non-symbolic Picture Scribbles)
+          </button>
+        </div>
+        <span class="text-xs text-rose-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (ELI W.) -->
+      <div id="grade-e-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-rose-100/70 border-b border-rose-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Eli W. • Elementary Running Record</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-e text-2xl font-bold text-slate-900">Eli's Stall Record</h3>
+                    <p class="text-xs text-slate-500 font-mono">Observed & Scribed by Learning Support Teacher</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-rose-700 border-rose-700">
+                    SUBSTANTIAL 1:1 SUPPORT
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Teacher Anecdotal Observation</h4>
+                  <p class="font-teacher text-lg text-slate-900 leading-snug">
+                    "Eli was provided with concrete Unifix cubes to represent prices. When asked to make $12, Eli connected 5 cubes and stated 'Ten'. He could not separate tens from ones. With direct physical assistance, we made a tower of 12 and 8. Eli counted them randomly: '1, 2, 5, 8, 12, 20'. He was unable to identify change from $50 or access the trade challenge."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade E Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-rose-600">E</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Elementary:</strong> Very limited competence. Struggles with one-to-one correspondence past 5; cannot partition two-digit quantities into tens and ones; unable to use number lines or calculate change even with direct adult scaffolding.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (NOAH J.) -->
+      <div id="grade-e-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-rose-100/70 border-b border-rose-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Noah J. • Elementary Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-e text-2xl font-bold text-slate-900">Noah's Drawing</h3>
+                    <p class="font-hand-e text-base text-slate-600">Noah</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-rose-700 border-rose-700">
+                    SUBSTANTIAL 1:1 SUPPORT
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Student Artifact</h4>
+                  <p class="font-hand-e text-base text-slate-800">
+                    Noah drew pictures of balloons and games with random numbers written beside them: "50, 12, 8, 100".
+                  </p>
+                  <p class="font-teacher text-base text-slate-800 mt-2">
+                    "Noah could not combine the quantities or explain what the numbers represented. Needed continuous 1:1 guidance to identify coins/notes."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade E (Noah J.)</h3>
+                </div>
+                <span class="text-3xl font-black text-rose-600">E</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Elementary:</strong> Demonstrates elementary knowledge in few areas. Cannot form mathematical number sentences or record quantities symbolically without continuous adult direction.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- COMPARATIVE MODERATION MATRIX (ALL 5 GRADES) -->
+    <!-- ========================================================================= -->
+    <div id="matrix-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-indigo-950 text-white rounded-xl p-5 shadow-lg flex flex-wrap items-center justify-between gap-4 border-l-8 border-indigo-400">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-300 bg-indigo-900/60 px-2 py-0.5 rounded border border-indigo-700">NESA K–10 Common Grade Scale</span>
+          <h2 class="text-2xl font-black mt-1">Stage 1 Mathematics Moderation Matrix</h2>
+          <p class="text-sm text-indigo-200 max-w-3xl mt-1">
+            Comparative analysis of student performance across all 5 grade levels for <em>The School Fun Day Stall Challenge</em> (Stage 1 Part B / Year 2).
+          </p>
+        </div>
+        <button onclick="window.print()" class="px-3 py-2 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold flex items-center gap-2 transition shadow">
+          <i data-lucide="printer" class="w-4 h-4"></i> Print Moderation Sheet
+        </button>
+      </div>
+
+      <!-- Comparative Table -->
+      <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse min-w-[900px]">
+          <thead>
+            <tr class="bg-slate-900 text-white border-b-2 border-slate-800">
+              <th class="p-3 font-bold w-44">Syllabus Focus Area</th>
+              <th class="p-3 font-bold bg-emerald-950/80 text-emerald-300 w-1/5 border-l border-slate-800">Grade A (Extensive)</th>
+              <th class="p-3 font-bold bg-sky-950/80 text-sky-300 w-1/5 border-l border-slate-800">Grade B (Thorough)</th>
+              <th class="p-3 font-bold bg-amber-950/80 text-amber-300 w-1/5 border-l border-slate-800">Grade C (Sound)</th>
+              <th class="p-3 font-bold bg-orange-950/80 text-orange-300 w-1/5 border-l border-slate-800">Grade D (Basic)</th>
+              <th class="p-3 font-bold bg-rose-950/80 text-rose-300 w-1/5 border-l border-slate-800">Grade E (Elementary)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Building to Multiples of 10 & Number Line Jumps</div>
+                <div class="text-[11px] text-slate-500 font-mono">MA1-CSQ-01</div>
+              </td>
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+                Autonomously reorders multi-addends into landmark tens ($12 + 8 = 20, 25 + 20 = 45$). Bridges to decades on empty number lines flexibly.
+              </td>
+              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+                Executes empty number line jumps of tens and ones fluently ($18 + 10 + 2 + 10 + 5 = 45$). Separates quantities by tens and ones accurately.
+              </td>
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+                Demonstrates empty number line jumps and building to 10 in familiar setups ($18 + 10 + 2 + 8 = 38$). Adequate competence using taught routines.
+              </td>
+              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+                Overshoots budget ($58); exhibits operational run-on equals signs ($25 + 12 = 37 + 8 = 45$). Requires teacher prompts to correct.
+              </td>
+              <td class="p-3 bg-rose-50/30 border-l border-slate-200">
+                Unable to combine two-digit quantities. Counts randomly on fingers or blocks past 5. Requires continuous 1:1 adult direction.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Inverse Strategy (Shopkeeper Method)</div>
+                <div class="text-[11px] text-slate-500 font-mono">MA1-CSQ-01</div>
+              </td>
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+                Flawlessly explains and applies shopkeeper's inverse method ($45 + 5 = 50$, so change = $5). Justifies why adding up is faster than taking away.
+              </td>
+              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+                Applies inverse strategy accurately on an empty number line to find change ($45 + 5 = 50$). Explains connection between addition and subtraction.
+              </td>
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+                Demonstrates counting up from total to $50 using landmark jumps ($38 + 2 = 40, 40 + 10 = 50 \rightarrow \$12$). Adequate accuracy.
+              </td>
+              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+                Counts backward by ones with tracking errors ($6 instead of $5). Struggles to connect addition as the inverse of subtraction.
+              </td>
+              <td class="p-3 bg-rose-50/30 border-l border-slate-200">
+                Cannot calculate change. Unaware of money values or relationship between payment and change.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Working Mathematically</div>
+                <div class="text-[11px] text-slate-500 font-mono">MA1-WM-01</div>
+              </td>
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+                <strong>Extensive:</strong> Readily applies understanding to new situations. Deconstructs the $35 trade challenge into component number bonds ($12 + 15 + 8 = 35$). Precise vocabulary.
+              </td>
+              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+                <strong>Thorough:</strong> High competence in familiar situations. Clearly explains thinking using appropriate syllabus vocabulary (<em>partition, bridge, landmark ten, inverse</em>).
+              </td>
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+                <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations. Follows taught classroom routines with adequate competence. Simple oral explanations when prompted.
+              </td>
+              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+                <strong>Basic:</strong> Limited competence. Relies on heavy teacher questioning and prompting to complete familiar tasks. Everyday language used.
+              </td>
+              <td class="p-3 bg-rose-50/30 border-l border-slate-200">
+                <strong>Elementary:</strong> Very limited competence. Expresses isolated ideas through gestures only with continuous 1:1 adult support.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODALS -->
+  <div id="task-brief-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">Assessment Task Brief (Sequence 6)</h3>
+        <button onclick="closeModal('task-brief-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+        <div class="p-3 bg-amber-50 rounded-lg border border-amber-200">
+          <h4 class="font-bold text-amber-900 mb-1">Context: School Fun Day Activity Stall</h4>
+          <p>Design an activity stall with a $50 budget. Choose at least 3 items from the Price Menu:</p>
+          <ul class="list-disc list-inside mt-1 font-mono text-xs">
+            <li>Option A: Small activity pack ($12)</li>
+            <li>Option B: Medium activity pack ($18)</li>
+            <li>Option C: Large game/art set ($25)</li>
+            <li>Option D: Bonus reward station ($15)</li>
+            <li>Option E: Mini decoration pack ($8)</li>
+          </ul>
+        </div>
+        <ol class="list-decimal list-inside space-y-1.5 text-slate-700">
+          <li><strong>Total Cost:</strong> Add item prices using building to 10 or an empty number line.</li>
+          <li><strong>Calculate Change:</strong> Show change from $50 using the inverse shopkeeper method.</li>
+          <li><strong>Balanced Swap (Equality):</strong> Write an equivalent number sentence showing two combinations equaling the same total.</li>
+          <li><strong>Challenge:</strong> Trade for a friend's $35 Mega Pack using exact items.</li>
+        </ol>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('task-brief-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="rubric-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">NESA Common Grade Scale & Stage 1 Rubric</h3>
+        <button onclick="closeModal('rubric-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-700">
+        <div class="p-3 bg-amber-50 rounded border border-amber-300">
+          <strong>Key NESA Rubric Principle: Depth, Not Acceleration</strong>
+          <p class="mt-1">Grade A reflects applying Stage 1 content readily to new situations. It does not require content from Stage 2.</p>
+        </div>
+        <div class="p-2 rounded bg-amber-50 border border-amber-200">
+          <strong>Grade C (Sound):</strong> Demonstrates knowledge and understanding of the main areas of content; adequate level of competence in familiar situations using taught routines.
+        </div>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('rubric-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-emerald-600', 'bg-emerald-50', 'text-emerald-900', 'border-sky-600', 'bg-sky-50', 'text-sky-900', 'border-amber-500', 'bg-amber-50', 'text-amber-900', 'border-orange-600', 'bg-orange-50', 'text-orange-900', 'border-rose-600', 'bg-rose-50', 'text-rose-900', 'border-indigo-600', 'bg-indigo-100'));
+      const target = document.getElementById(`${tabId}-view`);
+      if (target) target.classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'border-2');
+        if (tabId === 'grade-a') activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900');
+        if (tabId === 'grade-b') activeBtn.classList.add('border-sky-600', 'bg-sky-50', 'text-sky-900');
+        if (tabId === 'grade-c') activeBtn.classList.add('border-amber-500', 'bg-amber-50', 'text-amber-900');
+        if (tabId === 'grade-d') activeBtn.classList.add('border-orange-600', 'bg-orange-50', 'text-orange-900');
+        if (tabId === 'grade-e') activeBtn.classList.add('border-rose-600', 'bg-rose-50', 'text-rose-900');
+        if (tabId === 'matrix') activeBtn.classList.add('border-indigo-600', 'bg-indigo-100', 'text-indigo-950');
+      }
+      lucide.createIcons();
+    }
+    function switchSubSample(gradeId, sampleId) {
+      const container = document.getElementById(`${gradeId}-view`);
+      if (!container) return;
+      container.querySelectorAll('.subsample-content').forEach(s => s.classList.add('hidden'));
+      const target = document.getElementById(`${gradeId}-${sampleId}`);
+      if (target) target.classList.remove('hidden');
+      container.querySelectorAll('.subtab-btn').forEach(b => {
+        b.classList.remove('active', 'bg-emerald-700', 'bg-sky-700', 'bg-amber-700', 'bg-orange-700', 'bg-rose-700', 'text-white');
+        b.classList.add('bg-white');
+      });
+      const activeSubBtn = document.getElementById(`subtab-${gradeId}-${sampleId}`);
+      if (activeSubBtn) {
+        activeSubBtn.classList.add('active', 'text-white');
+        if (gradeId === 'grade-a') activeSubBtn.classList.add('bg-emerald-700');
+        if (gradeId === 'grade-b') activeSubBtn.classList.add('bg-sky-700');
+        if (gradeId === 'grade-c') activeSubBtn.classList.add('bg-amber-700');
+        if (gradeId === 'grade-d') activeSubBtn.classList.add('bg-orange-700');
+        if (gradeId === 'grade-e') activeSubBtn.classList.add('bg-rose-700');
+      }
+      lucide.createIcons();
+    }
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      annotationsVisible = !annotationsVisible;
+      document.querySelectorAll('.teacher-mark').forEach(m => m.style.display = annotationsVisible ? '' : 'none');
+      document.getElementById('annotations-status-text').textContent = annotationsVisible ? 'Hide Teacher Marks' : 'Show Teacher Marks';
+    }
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+  </script>
+</body>
+</html>
