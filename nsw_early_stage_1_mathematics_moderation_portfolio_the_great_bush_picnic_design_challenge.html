@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSW Early Stage 1 Mathematics Moderation Portfolio | The Great Bush Picnic Design Challenge</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts for Authentic Kindergarten Student Handwriting and Clean UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gochi+Hand&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Kindergarten handwriting font utility classes */
+    .font-hand-a { font-family: 'Patrick Hand', cursive; }
+    .font-hand-b { font-family: 'Comic Neue', cursive; }
+    .font-hand-c { font-family: 'Schoolbell', cursive; }
+    .font-hand-d { font-family: 'Architects Daughter', cursive; }
+    .font-hand-e { font-family: 'Gochi Hand', cursive; }
+    .font-teacher { font-family: 'Caveat', cursive; }
+    .font-stamp { font-family: 'Permanent Marker', cursive; }
+
+    /* Exercise book paper styling */
+    .exercise-grid {
+      background-color: #fbfbf9;
+      background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+      background-size: 26px 26px;
+      position: relative;
+    }
+
+    /* Red student margin line */
+    .red-margin {
+      border-left: 2px solid rgba(239, 68, 68, 0.45);
+    }
+
+    /* Sticky post-it note effects */
+    .sticky-note {
+      box-shadow: 2px 4px 10px rgba(0,0,0,0.12), -1px 2px 4px rgba(0,0,0,0.06);
+      transform: rotate(-1.2deg);
+      transition: transform 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+
+    /* Rubber stamp styling */
+    .rubber-stamp {
+      border: 3px solid #dc2626;
+      color: #dc2626;
+      border-radius: 8px;
+      display: inline-block;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transform: rotate(-7deg);
+      opacity: 0.88;
+    }
+    .rubber-stamp-green {
+      border-color: #15803d;
+      color: #15803d;
+      transform: rotate(5deg);
+    }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: white !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- TOP HEADER & NSW CURRICULUM BANNER -->
+  <header class="bg-gradient-to-r from-emerald-950 via-teal-900 to-slate-900 text-white shadow-lg sticky top-0 z-40 border-b-4 border-amber-400 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-amber-400 p-2 rounded-lg text-slate-950 font-black shadow-md flex items-center justify-center">
+          <i data-lucide="trees" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold tracking-widest bg-emerald-500/30 text-emerald-200 px-2 py-0.5 rounded border border-emerald-400/40 uppercase">NSW K–10 Syllabus (2022)</span>
+            <span class="text-xs font-semibold text-amber-300">Early Stage 1 (Kindergarten) • Sequence 5–6</span>
+          </div>
+          <h1 class="text-lg sm:text-xl font-extrabold tracking-tight">NSW Early Stage 1 Mathematics Moderation Portfolio | The Great Bush Picnic Design Challenge</h1>
+          <p class="text-xs text-slate-300">Rich Task: <span class="text-amber-200 font-medium">Equal Sharing, Group Labelling & Repeating Pattern Pathways (Forming Groups)</span></p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-2">
+        <button id="toggle-annotations-btn" onclick="toggleAnnotations()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-md text-xs font-medium border border-slate-600 flex items-center gap-1.5 transition">
+          <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span id="annotations-status-text">Hide Teacher Marks</span>
+        </button>
+        <button onclick="openModal('rubric-modal')" class="px-3 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-md text-xs font-medium border border-indigo-400 flex items-center gap-1.5 transition shadow">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+          <span>ES1 Rubric</span>
+        </button>
+        <button onclick="openModal('task-brief-modal')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-md text-xs font-bold flex items-center gap-1.5 transition shadow">
+          <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
+          <span>Task Brief</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Syllabus Outcomes Strip -->
+    <div class="bg-slate-950/70 border-t border-slate-800 px-4 py-1.5 text-xs">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-slate-300 font-mono">
+        <span class="flex items-center gap-1 text-amber-400 font-semibold"><i data-lucide="target" class="w-3 h-3"></i> Targeted Outcomes:</span>
+        <span title="Working Mathematically"><strong class="text-white">MA1-WM-01 / MAO-WM-01:</strong> Working Mathematically</span>
+        <span title="Repeating Patterns"><strong class="text-emerald-300">MAE-FG-01:</strong> Recognises, describes and continues repeating patterns</span>
+        <span title="Equal Sharing"><strong class="text-teal-300">MAE-FG-02:</strong> Forms equal groups by sharing and counting collections of objects</span>
+        <span class="text-slate-400 hidden lg:inline">• Early Stage 1 Stage Reporting Guidelines: Grades B, C, and D are evaluated for kindergarten moderation</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR / ES1 GRADE TABS (B, C, D ONLY) -->
+  <div class="bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between overflow-x-auto py-2 gap-2 no-scrollbar">
+        <div class="flex items-center gap-2">
+          <!-- Grade B -->
+          <button onclick="switchTab('grade-b')" id="tab-btn-grade-b" class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-sky-600 bg-sky-50 text-sky-900 shadow-sm">
+            <span class="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs">B</span>
+            <span>Grade B <span class="font-normal text-sky-800">(Thorough Achievement)</span></span>
+          </button>
+          <!-- Grade C -->
+          <button onclick="switchTab('grade-c')" id="tab-btn-grade-c" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs">C</span>
+            <span>Grade C <span class="font-normal text-slate-600">(Sound Achievement)</span></span>
+          </button>
+          <!-- Grade D -->
+          <button onclick="switchTab('grade-d')" id="tab-btn-grade-d" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-orange-600 text-white flex items-center justify-center text-xs">D</span>
+            <span>Grade D <span class="font-normal text-slate-600">(Basic Achievement)</span></span>
+          </button>
+        </div>
+
+        <!-- Comparative Matrix Toggle -->
+        <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-indigo-200 bg-indigo-50 text-indigo-800 hover:bg-indigo-100 whitespace-nowrap">
+          <i data-lucide="columns" class="w-4 h-4 text-indigo-600"></i>
+          <span>ES1 Moderation Matrix (Grades B, C, D)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN MODERATION WORKSPACE -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
+
+    <!-- ========================================================================= -->
+    <!-- GRADE B: THOROUGH ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-b-view" class="tab-content block space-y-6">
+      
+      <div class="bg-sky-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-sky-400">
+        <div>
+          <div class="flex items-center gap-2 text-sky-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-sky-900 px-2.5 py-0.5 rounded border border-sky-600">Early Stage 1 (Kindergarten)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade B: Thorough Achievement</h2>
+          <p class="text-sm text-sky-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Thorough knowledge and understanding of content; high level of competence. Applies knowledge and skills to <em>most familiar situations</em>. Confidently shares collections into equal groups using systematic one-by-one distribution, constructs complex repeating pattern pathways (e.g., AABB or ABC), labels groups accurately with numerals, and reasons clearly about remaining items during resharing.
+          </p>
+        </div>
+        <div class="bg-sky-950/80 px-4 py-3 rounded-lg border border-sky-700/60 text-center">
+          <div class="text-xs uppercase text-sky-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Thorough (B)</div>
+          <div class="text-xs text-sky-300">High Competence</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-sky-50/80 p-2.5 rounded-xl border border-sky-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-sky-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-b', 'sample-1')" id="subtab-grade-b-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-700 text-white shadow-sm transition">
+            Sample 1: Leo T. (12 Snacks Shared to 3 Tables & AABB Pathway)
+          </button>
+          <button onclick="switchSubSample('grade-b', 'sample-2')" id="subtab-grade-b-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-sky-900 border border-sky-300 hover:bg-sky-100 transition">
+            Sample 2: Mia S. (10 Snacks to 2 Possums & ABC Pattern with Remainder Reasoning)
+          </button>
+        </div>
+        <span class="text-xs text-sky-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (LEO T.) -->
+      <div id="grade-b-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-sky-100/70 border-b border-sky-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">KINDERGARTEN WORK • TERM 4</span>
+              <span>Leo T. • Thorough Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Leo's Bush Picnic Plan</h3>
+                    <p class="font-hand-c text-base text-slate-600">3 Animals: Koala, Kangaroo & Wombat</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    VERY THOROUGH!
+                  </div>
+                </div>
+
+                <!-- Section 1: Equal Sharing of 12 Snacks -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Fair Share Picnic Tables (12 Strawberry Snacks)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Systematic 1-by-1 dealing</span>
+                  </div>
+                  
+                  <!-- SVG Picnic Tables Drawing -->
+                  <svg width="100%" height="130" viewBox="0 0 380 130" class="bg-emerald-50/50 rounded-lg border border-slate-200">
+                    <!-- Table 1 -->
+                    <circle cx="65" cy="55" r="42" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+                    <text x="48" y="25" class="font-hand-c text-xs font-bold fill-amber-900">Koala</text>
+                    <circle cx="50" cy="50" r="7" fill="#ef4444"/>
+                    <circle cx="68" cy="50" r="7" fill="#ef4444"/>
+                    <circle cx="50" cy="68" r="7" fill="#ef4444"/>
+                    <circle cx="68" cy="68" r="7" fill="#ef4444"/>
+                    <text x="60" y="115" class="font-hand-c text-lg font-bold fill-slate-900">4</text>
+
+                    <!-- Table 2 -->
+                    <circle cx="190" cy="55" r="42" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+                    <text x="165" y="25" class="font-hand-c text-xs font-bold fill-amber-900">Kangaroo</text>
+                    <circle cx="175" cy="50" r="7" fill="#ef4444"/>
+                    <circle cx="193" cy="50" r="7" fill="#ef4444"/>
+                    <circle cx="175" cy="68" r="7" fill="#ef4444"/>
+                    <circle cx="193" cy="68" r="7" fill="#ef4444"/>
+                    <text x="185" y="115" class="font-hand-c text-lg font-bold fill-slate-900">4</text>
+
+                    <!-- Table 3 -->
+                    <circle cx="315" cy="55" r="42" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+                    <text x="290" y="25" class="font-hand-c text-xs font-bold fill-amber-900">Wombat</text>
+                    <circle cx="300" cy="50" r="7" fill="#ef4444"/>
+                    <circle cx="318" cy="50" r="7" fill="#ef4444"/>
+                    <circle cx="300" cy="68" r="7" fill="#ef4444"/>
+                    <circle cx="318" cy="68" r="7" fill="#ef4444"/>
+                    <text x="310" y="115" class="font-hand-c text-lg font-bold fill-slate-900">4</text>
+                  </svg>
+
+                  <div class="font-hand-c text-base text-slate-800 space-y-1">
+                    <p>I shared 12 snack counters to 3 plates. I went: <em>one for Koala, one for Kangaroo, one for Wombat</em>.</p>
+                    <p class="font-bold text-sky-950">Every plate has 4 snacks. 4 and 4 and 4 is 12 snacks altogether!</p>
+                  </div>
+                </div>
+
+                <!-- Section 2: Repeating Pattern Pathway (AABB) -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Repeating Pathway to Picnic (Gum Leaf & Flower AABB)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Clear repeating unit of 4</span>
+                  </div>
+
+                  <!-- SVG Pattern Pathway -->
+                  <svg width="100%" height="65" viewBox="0 0 380 65" class="bg-white rounded border border-slate-300">
+                    <!-- Leaf 1 -->
+                    <ellipse cx="25" cy="32" rx="12" ry="18" fill="#86efac" stroke="#16a34a" stroke-width="1.5" transform="rotate(15 25 32)"/>
+                    <!-- Leaf 2 -->
+                    <ellipse cx="65" cy="32" rx="12" ry="18" fill="#86efac" stroke="#16a34a" stroke-width="1.5" transform="rotate(15 65 32)"/>
+                    <!-- Flower 1 -->
+                    <circle cx="105" cy="32" r="10" fill="#f43f5e" stroke="#be123c" stroke-width="1.5"/>
+                    <circle cx="105" cy="32" r="4" fill="#fde047"/>
+                    <!-- Flower 2 -->
+                    <circle cx="145" cy="32" r="10" fill="#f43f5e" stroke="#be123c" stroke-width="1.5"/>
+                    <circle cx="145" cy="32" r="4" fill="#fde047"/>
+
+                    <!-- Repeat Leaf 1 -->
+                    <ellipse cx="185" cy="32" rx="12" ry="18" fill="#86efac" stroke="#16a34a" stroke-width="1.5" transform="rotate(15 185 32)"/>
+                    <!-- Repeat Leaf 2 -->
+                    <ellipse cx="225" cy="32" rx="12" ry="18" fill="#86efac" stroke="#16a34a" stroke-width="1.5" transform="rotate(15 225 32)"/>
+                    <!-- Repeat Flower 1 -->
+                    <circle cx="265" cy="32" r="10" fill="#f43f5e" stroke="#be123c" stroke-width="1.5"/>
+                    <circle cx="265" cy="32" r="4" fill="#fde047"/>
+                    <!-- Repeat Flower 2 -->
+                    <circle cx="305" cy="32" r="10" fill="#f43f5e" stroke="#be123c" stroke-width="1.5"/>
+                    <circle cx="305" cy="32" r="4" fill="#fde047"/>
+                    <!-- Next item -->
+                    <ellipse cx="345" cy="32" rx="12" ry="18" fill="#86efac" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="2 2"/>
+                    <text x="338" y="37" class="font-hand-c text-xs font-bold fill-emerald-800">?</text>
+                  </svg>
+
+                  <p class="font-hand-c text-base text-slate-800">
+                    "My pattern is: <strong>Leaf, Leaf, Flower, Flower, Leaf, Leaf, Flower, Flower</strong>. The repeating rule is 2 leaves and then 2 flowers. A leaf comes next!"
+                  </p>
+                </div>
+
+                <!-- Section 3: Challenge Prompt (+1 Extra Friend) -->
+                <div class="bg-sky-50/80 p-4 rounded-xl border border-sky-300 shadow-sm space-y-2">
+                  <span class="bg-sky-700 text-white font-bold text-xs px-2 py-0.5 rounded">CHALLENGE PROMPT: EXTRA GUEST (ECHIDNA)</span>
+                  <div class="font-hand-c text-base text-slate-900 space-y-1">
+                    <p><strong>1 more friend arrived! Now there are 4 friends: Koala, Kangaroo, Wombat, and Echidna.</strong></p>
+                    <p>"I put all 12 strawberry snacks back into the big basket. Then I shared them into 4 bowls: 1, 2, 3, 4."</p>
+                    <p class="font-bold text-sky-950">
+                      "Now every friend gets exactly 3 snacks! 3 + 3 + 3 + 3 = 12. There are 0 leftovers, so it is fair!"
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Moderation Details -->
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade B Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-sky-600">B</span>
+              </div>
+
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-600"></i>
+                    Equal Groups & Sharing (MAE-FG-02)
+                  </div>
+                  <p>
+                    <strong>Thorough:</strong> High competence in familiar situations. Confidently distributes 12 counters systematically one-by-one into 3 groups of 4. Accurately labels each group with the numeral 4 and states the total. Fluently resolves the challenge prompt by resharing 12 across 4 groups (3 each) with zero remainders.
+                  </p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-600"></i>
+                    Repeating Patterns (MAE-FG-01) & Working Mathematically
+                  </div>
+                  <p>
+                    <strong>Thorough:</strong> Constructs a multi-element repeating pattern (AABB) beyond simple AB alternation. Explicitly names the repeating unit ("two leaves and two flowers") and accurately predicts what element comes next.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-sky-50/70 p-3 rounded-lg border border-sky-200 text-xs">
+                <strong class="text-sky-950">ES1 Kindergarten Reporting Context:</strong>
+                <p class="text-sky-900 mt-1">
+                  Leo displays high competence across all taught kindergarten outcomes without teacher prompting. He understands that resharing changes the group size while the total quantity (12) stays constant.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (MIA S.) -->
+      <div id="grade-b-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-sky-100/70 border-b border-sky-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">ASSESSMENT RECORD • KINDERGARTEN</span>
+              <span>Mia S. • Thorough Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Mia's Possum Picnic</h3>
+                    <p class="font-hand-c text-base text-slate-600">2 Animal Guests: Ringtail & Brushtail</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    VERY THOROUGH
+                  </div>
+                </div>
+
+                <!-- 10 Snacks Shared into 2 Groups -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Sharing 10 Gumnuts Equally</h4>
+                  
+                  <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="p-3 bg-amber-50 rounded-lg border border-amber-200">
+                      <div class="font-hand-c text-sm font-bold text-amber-900">Ringtail Possum</div>
+                      <div class="flex justify-center gap-1.5 my-2">
+                        <span class="w-4 h-4 rounded-full bg-amber-700 inline-block"></span>
+                        <span class="w-4 h-4 rounded-full bg-amber-700 inline-block"></span>
+                        <span class="w-4 h-4 rounded-full bg-amber-700 inline-block"></span>
+                        <span class="w-4 h-4 rounded-full bg-amber-700 inline-block"></span>
+                        <span class="w-4 h-4 rounded-full bg-amber-700 inline-block"></span>
+                      </div>
+                      <div class="font-hand-c text-xl font-bold text-slate-900">5</div>
+                    </div>
+                    <div class="p-3 bg-amber-50 rounded-lg border border-amber-200">
+                      <div class="font-hand-c text-sm font-bold text-amber-900">Brushtail Possum</div>
+                      <div class="flex justify-center gap-1.5 my-2">
+                        <span class="w-4 h-4 rounded-full bg-amber-700 inline-block"></span>
+                        <span class="w-4 h-4 rounded-full bg-amber-700 inline-block"></span>
+                        <span class="w-4 h-4 rounded-full bg-amber-700 inline-block"></span>
+                        <span class="w-4 h-4 rounded-full bg-amber-700 inline-block"></span>
+                        <span class="w-4 h-4 rounded-full bg-amber-700 inline-block"></span>
+                      </div>
+                      <div class="font-hand-c text-xl font-bold text-slate-900">5</div>
+                    </div>
+                  </div>
+                  <p class="font-hand-c text-base text-slate-800">
+                    "5 for Ringtail and 5 for Brushtail. 5 and 5 makes 10! Both possums have equal amounts."
+                  </p>
+                </div>
+
+                <!-- ABC Pattern Pathway -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. ABC Repeating Pathway (Stick, Pebble, Leaf)</h4>
+                  <div class="flex items-center gap-2 p-2 bg-slate-50 rounded border border-slate-200 text-xs font-hand-c">
+                    <span>[ Stick 🪵 ]</span> ➔ <span>[ Pebble 🪨 ]</span> ➔ <span>[ Leaf 🍃 ]</span> ➔
+                    <span>[ Stick 🪵 ]</span> ➔ <span>[ Pebble 🪨 ]</span> ➔ <span>[ Leaf 🍃 ]</span> ➔
+                    <span>[ Stick 🪵 ]</span> ➔ <strong class="text-sky-700">[ Pebble 🪨 comes next! ]</strong>
+                  </div>
+                </div>
+
+                <!-- Oral Scribing of Challenge Prompt with Leftover -->
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Scribing of Oral Explanation (Challenge Prompt):
+                  </div>
+                  <p class="font-teacher text-base text-slate-800 leading-snug">
+                    "When the 3rd possum arrived, Mia dealt the 10 gumnuts across 3 plates one-by-one. She had 1 gumnut left in her hand. Mia said: 'Each possum has 3 gumnuts. But I have 1 gumnut left over in my hand! If I give it to Ringtail, it will not be equal. So all 3 possums get 3 gumnuts, and 1 gumnut has to stay in the basket for tomorrow!' Mia reasons about leftovers with high competence."
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade B (Mia S.)</h3>
+                </div>
+                <span class="text-3xl font-black text-sky-600">B</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Thorough:</strong> High competence in familiar situations. Successfully creates a 3-element ABC pattern. When resharing 10 items among 3 groups, she articulates that equal sharing leaves a remainder of 1 and justifies why giving it to one guest would make the groups unequal.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE C: SOUND ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-c-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-amber-400">
+        <div>
+          <div class="flex items-center gap-2 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-amber-900 px-2.5 py-0.5 rounded border border-amber-600">Early Stage 1 (Kindergarten)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade C: Sound Achievement</h2>
+          <p class="text-sm text-amber-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Demonstrates knowledge and understanding of the main areas of content. Demonstrates skills in <em>familiar situations</em> using taught classroom routines. Shares collections by distributing objects one by one into equal groups, copies and continues a simple repeating AB pattern, records groups with drawings and numerals, and works with an <strong>adequate level of competence</strong>.
+          </p>
+        </div>
+        <div class="bg-amber-950/80 px-4 py-3 rounded-lg border border-amber-700/60 text-center">
+          <div class="text-xs uppercase text-amber-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Sound (C)</div>
+          <div class="text-xs text-amber-300">Adequate Competence</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-amber-50/80 p-2.5 rounded-xl border border-amber-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-amber-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-c', 'sample-1')" id="subtab-grade-c-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-700 text-white shadow-sm transition">
+            Sample 1: Oliver K. (9 Apples Shared to 3 Tables & AB Block Pathway)
+          </button>
+          <button onclick="switchSubSample('grade-c', 'sample-2')" id="subtab-grade-c-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-amber-900 border border-amber-300 hover:bg-amber-100 transition">
+            Sample 2: Ruby W. (6 Biscuits Shared to 2 Koalas & Oral Scribing Record)
+          </button>
+        </div>
+        <span class="text-xs text-amber-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (OLIVER K.) -->
+      <div id="grade-c-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">KINDERGARTEN WORK • TERM 4</span>
+              <span>Oliver K. • Sound Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Oliver's Bush Picnic</h3>
+                    <p class="font-hand-c text-base text-slate-600">3 Plates of Apples</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    SATISFACTORY WORK
+                  </div>
+                </div>
+
+                <!-- Section 1: Sharing 9 Apples into 3 Groups -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Sharing 9 Apple Snacks</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Taught one-by-one routine</span>
+                  </div>
+
+                  <!-- SVG 3 Plates with 3 dots each -->
+                  <svg width="100%" height="110" viewBox="0 0 380 110" class="bg-amber-50/40 rounded border border-slate-200">
+                    <!-- Plate 1 -->
+                    <circle cx="65" cy="45" r="35" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
+                    <circle cx="55" cy="40" r="6" fill="#15803d"/>
+                    <circle cx="75" cy="40" r="6" fill="#15803d"/>
+                    <circle cx="65" cy="58" r="6" fill="#15803d"/>
+                    <text x="60" y="98" class="font-hand-c text-base font-bold fill-slate-900">3</text>
+
+                    <!-- Plate 2 -->
+                    <circle cx="190" cy="45" r="35" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
+                    <circle cx="180" cy="40" r="6" fill="#15803d"/>
+                    <circle cx="200" cy="40" r="6" fill="#15803d"/>
+                    <circle cx="190" cy="58" r="6" fill="#15803d"/>
+                    <text x="185" y="98" class="font-hand-c text-base font-bold fill-slate-900">3</text>
+
+                    <!-- Plate 3 -->
+                    <circle cx="315" cy="45" r="35" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
+                    <circle cx="305" cy="40" r="6" fill="#15803d"/>
+                    <circle cx="325" cy="40" r="6" fill="#15803d"/>
+                    <circle cx="315" cy="58" r="6" fill="#15803d"/>
+                    <text x="310" y="98" class="font-hand-c text-base font-bold fill-slate-900">3</text>
+                  </svg>
+
+                  <p class="font-hand-c text-base text-slate-800">
+                    I dealt them out: 1 for you, 1 for you, 1 for you. All 3 plates have 3 green apples. They are equal.
+                  </p>
+                </div>
+
+                <!-- Section 2: Simple AB Pattern Pathway -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. AB Repeating Pattern Pathway</h4>
+                  <div class="flex items-center gap-2 py-2">
+                    <span class="w-7 h-7 rounded bg-blue-500 text-white flex items-center justify-center font-bold text-xs">B</span>
+                    <span class="w-7 h-7 rounded bg-red-500 text-white flex items-center justify-center font-bold text-xs">R</span>
+                    <span class="w-7 h-7 rounded bg-blue-500 text-white flex items-center justify-center font-bold text-xs">B</span>
+                    <span class="w-7 h-7 rounded bg-red-500 text-white flex items-center justify-center font-bold text-xs">R</span>
+                    <span class="w-7 h-7 rounded bg-blue-500 text-white flex items-center justify-center font-bold text-xs">B</span>
+                    <span class="w-7 h-7 rounded bg-red-500 text-white flex items-center justify-center font-bold text-xs">R</span>
+                  </div>
+                  <p class="font-hand-c text-base text-slate-800">
+                    "Blue, Red, Blue, Red, Blue, Red. It repeats over and over."
+                  </p>
+                </div>
+
+                <!-- Section 3: Challenge Prompt (+1 Extra Friend) -->
+                <div class="bg-amber-50/70 p-4 rounded-xl border border-amber-300 shadow-sm space-y-2">
+                  <span class="bg-amber-700 text-white font-bold text-xs px-2 py-0.5 rounded">CHALLENGE PROMPT RESPONSE</span>
+                  <p class="font-hand-c text-base text-slate-800">
+                    "When 1 more friend came, I had 4 plates. I put 2 apples on each plate: 2, 4, 6, 8. There was 1 apple left over on the table. Oliver counted: '1, 2, 3, 4, 5, 6, 7, 8 and 1 more is 9'."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade C Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-amber-600">C</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <p>
+                  <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations. Demonstrates sharing 9 items into 3 equal groups using taught one-by-one routines, labels drawings with the numeral 3, and continues an AB repeating pattern accurately. Achieves an adequate level of competence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (RUBY W.) -->
+      <div id="grade-c-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Ruby W. • Sound Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Ruby's Picnic Record</h3>
+                    <p class="font-hand-c text-base text-slate-600">2 Animal Plates (6 Snacks)</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    SATISFACTORY WORK
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Sharing 6 Biscuit Counters</h4>
+                  <p class="font-hand-c text-base text-slate-800">
+                    Plate 1: 3 biscuits.<br>
+                    Plate 2: 3 biscuits.<br>
+                    Total = 6 biscuits altogether.
+                  </p>
+                </div>
+
+                <div class="sticky-note bg-amber-100 p-4 rounded-xl border border-amber-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-amber-800"></i> Teacher Scribing of Oral Explanation:
+                  </div>
+                  <p class="font-teacher text-base text-slate-800 leading-snug">
+                    "When asked how she shared the biscuits, Ruby said: 'I put one on this plate, then one on that plate until they were all gone. Both plates have 3.' For the challenge prompt (+1 friend = 3 friends), Ruby reshared the 6 biscuits and gave 2 to each friend. When asked if it was equal, she counted each plate with her finger: '1, 2. 1, 2. 1, 2. Yes, they all have 2!' Demonstrates taught routines with adequate competence."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade C (Ruby W.)</h3>
+                </div>
+                <span class="text-3xl font-black text-amber-600">C</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations. Follows taught one-by-one dealing routines to share 6 items into 2 groups of 3, and successfully reshared into 3 groups of 2 with direct recounting. Demonstrates adequate competence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE D: BASIC ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-d-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-orange-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-orange-400">
+        <div>
+          <div class="flex items-center gap-2 text-orange-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-orange-900 px-2.5 py-0.5 rounded border border-orange-600">Early Stage 1 (Kindergarten)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade D: Basic Achievement</h2>
+          <p class="text-sm text-orange-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Basic knowledge and understanding; limited competence. Requires teacher prompting and scaffolding; displays partial execution (e.g., distributes objects unequally into lumps, loses count of items, or creates non-repeating random object arrangements).
+          </p>
+        </div>
+        <div class="bg-orange-950/80 px-4 py-3 rounded-lg border border-orange-700/60 text-center">
+          <div class="text-xs uppercase text-orange-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Basic (D)</div>
+          <div class="text-xs text-orange-300">Requires Scaffolding</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-orange-50/80 p-2.5 rounded-xl border border-orange-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-orange-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-d', 'sample-1')" id="subtab-grade-d-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-orange-700 text-white shadow-sm transition">
+            Sample 1: Jack N. (Unequal Sharing 5 and 3 & Broken Pattern Sequence)
+          </button>
+          <button onclick="switchSubSample('grade-d', 'sample-2')" id="subtab-grade-d-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-orange-900 border border-orange-300 hover:bg-orange-100 transition">
+            Sample 2: Ella M. (Random Object Clusters & Hand-Over-Hand Scaffolding)
+          </button>
+        </div>
+        <span class="text-xs text-orange-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (JACK N.) -->
+      <div id="grade-d-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-orange-100/70 border-b border-orange-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Jack N. • Basic Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-d text-2xl font-bold text-slate-900">Jack's Picnic</h3>
+                    <p class="font-hand-d text-base text-slate-600">Jack</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-amber-700 border-amber-700">
+                    NEEDS PROMPTING
+                  </div>
+                </div>
+
+                <!-- Unequal Sharing Drawing -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Sharing 8 Counters</h4>
+                  
+                  <div class="grid grid-cols-2 gap-3 text-center">
+                    <div class="p-2 border border-slate-300 rounded bg-slate-50">
+                      <span class="text-xs font-bold">Plate A (5 dots)</span>
+                      <div class="text-rose-600 font-bold text-lg">● ● ● ● ●</div>
+                    </div>
+                    <div class="p-2 border border-slate-300 rounded bg-slate-50">
+                      <span class="text-xs font-bold">Plate B (3 dots)</span>
+                      <div class="text-rose-600 font-bold text-lg">● ● ●</div>
+                    </div>
+                  </div>
+
+                  <div class="teacher-mark font-teacher text-base text-rose-600 bg-rose-50 p-2 rounded border border-rose-200">
+                    ✎ <em>Teacher prompt: Jack, count Plate A and Plate B. Are they fair? Does one friend have more?</em>
+                  </div>
+                  <p class="font-hand-d text-base text-slate-800">
+                    "Plate A has 5. Plate B has 3. I moved one over so now it is 4 and 4."
+                  </p>
+                </div>
+
+                <!-- Broken Pattern -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Pattern Pathway (Broken)</h4>
+                  <p class="font-hand-d text-base text-slate-800">
+                    Circle, Circle, Triangle, Square, Circle, Star.
+                  </p>
+                  <div class="teacher-mark font-teacher text-base text-rose-600">
+                    ✎ <em>Teacher prompt: Look closely, where does your pattern repeat?</em>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade D Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-orange-600">D</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Basic:</strong> Limited competence. Initially distributes 8 items unequally (5 and 3) without noticing the disparity until directly questioned. Requires teacher prompting to fix a non-repeating pattern.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (ELLA M.) -->
+      <div id="grade-d-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-orange-100/70 border-b border-orange-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Ella M. • Basic Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-d text-2xl font-bold text-slate-900">Ella's Picnic Design</h3>
+                    <p class="font-hand-d text-base text-slate-600">Ella</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-amber-700 border-amber-700">
+                    SCAFFOLDED
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Concrete Sharing</h4>
+                  <p class="font-hand-d text-base text-slate-800">
+                    Ella dumped a handful of counters onto two plates: 4 on one plate and 2 on the other.
+                  </p>
+                </div>
+
+                <div class="sticky-note bg-amber-100 p-4 rounded-xl border border-amber-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="help-circle" class="w-4 h-4 text-orange-600"></i> Teacher Prompting Log:
+                  </div>
+                  <p class="font-teacher text-base text-slate-800 leading-snug">
+                    "Ella needed hand-over-hand physical modeling to distribute counters one-by-one. When asked how many items were on each plate, she counted by ones with tracking errors (counted 4 as 5). For the pattern, Ella placed all red blocks in a row. Needs continuous scaffolding to access equal groups."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade D (Ella M.)</h3>
+                </div>
+                <span class="text-3xl font-black text-orange-600">D</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Basic:</strong> Limited competence. Struggles to share equally without physical adult modeling; makes one-to-one counting errors; unable to create a repeating pattern without step-by-step guidance.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- COMPARATIVE MODERATION MATRIX (ES1 GRADES B, C, D) -->
+    <!-- ========================================================================= -->
+    <div id="matrix-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-indigo-950 text-white rounded-xl p-5 shadow-lg flex flex-wrap items-center justify-between gap-4 border-l-8 border-indigo-400">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-300 bg-indigo-900/60 px-2 py-0.5 rounded border border-indigo-700">NESA Early Stage 1 Grade Scale</span>
+          <h2 class="text-2xl font-black mt-1">Early Stage 1 Mathematics Moderation Matrix</h2>
+          <p class="text-sm text-indigo-200 max-w-3xl mt-1">
+            Comparative analysis of student performance across Grades B, C, and D for <em>The Great Bush Picnic Design Challenge</em> (Forming Groups).
+          </p>
+        </div>
+        <button onclick="window.print()" class="px-3 py-2 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold flex items-center gap-2 transition shadow">
+          <i data-lucide="printer" class="w-4 h-4"></i> Print Moderation Sheet
+        </button>
+      </div>
+
+      <!-- Comparative Table for Grades B, C, D -->
+      <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse min-w-[750px]">
+          <thead>
+            <tr class="bg-slate-900 text-white border-b-2 border-slate-800">
+              <th class="p-3.5 font-bold w-48">Syllabus Focus Area</th>
+              <th class="p-3.5 font-bold bg-sky-950/80 text-sky-300 w-1/3 border-l border-slate-800">Grade B (Thorough Achievement)</th>
+              <th class="p-3.5 font-bold bg-amber-950/80 text-amber-300 w-1/3 border-l border-slate-800">Grade C (Sound Achievement)</th>
+              <th class="p-3.5 font-bold bg-orange-950/80 text-orange-300 w-1/3 border-l border-slate-800">Grade D (Basic Achievement)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3.5 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Investigate & Form Equal Groups by Sharing</div>
+                <div class="text-[11px] text-slate-500 font-mono">MAE-FG-02</div>
+              </td>
+              <td class="p-3.5 bg-sky-50/30 border-l border-slate-200">
+                Distributes collections systematically one-by-one into equal groups. Labels groups with numerals accurately. Solves the challenge prompt by resharing total collections (e.g. 12 shared to 4 = 3 each) and articulates remainder leftovers clearly.
+              </td>
+              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">
+                Demonstrates sharing collections equally into small groups using taught one-by-one routines. Labels drawings with correct numerals. Follows guided resharing steps with an adequate level of competence.
+              </td>
+              <td class="p-3.5 bg-orange-50/30 border-l border-slate-200">
+                Distributes items in unequal piles (e.g., 5 and 3). Relies on step-by-step teacher prompts to correct imbalances. Struggles to count or reshare independently.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3.5 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Copy, Continue & Create Patterns</div>
+                <div class="text-[11px] text-slate-500 font-mono">MAE-FG-01</div>
+              </td>
+              <td class="p-3.5 bg-sky-50/30 border-l border-slate-200">
+                Creates complex repeating pattern pathways (AABB or ABC). Explicitly identifies the repeating unit and predicts missing or subsequent items fluently.
+              </td>
+              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">
+                Demonstrates copying, continuing, and creating simple AB repeating patterns using concrete materials or drawings. Names alternating elements accurately.
+              </td>
+              <td class="p-3.5 bg-orange-50/30 border-l border-slate-200">
+                Produces non-repeating or broken sequences (e.g., Circle, Circle, Triangle, Star). Needs teacher guidance to identify pattern errors.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3.5 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Working Mathematically</div>
+                <div class="text-[11px] text-slate-500 font-mono">MA1-WM-01 / MAO-WM-01</div>
+              </td>
+              <td class="p-3.5 bg-sky-50/30 border-l border-slate-200">
+                <strong>Thorough:</strong> High level of competence in familiar situations. Clearly explains reasoning using mathematical words (<em>equal, not equal, share, pattern, repeating</em>).
+              </td>
+              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">
+                <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations using taught routines. Explains sharing process simply with everyday words when prompted.
+              </td>
+              <td class="p-3.5 bg-orange-50/30 border-l border-slate-200">
+                <strong>Basic:</strong> Limited competence. Relies on heavy teacher questioning and physical scaffolding to complete tasks.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODALS -->
+  <div id="task-brief-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">Assessment Task Brief: The Great Bush Picnic</h3>
+        <button onclick="closeModal('task-brief-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+        <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+          <h4 class="font-bold text-emerald-950 mb-1">Context: The Great Bush Picnic Design Challenge</h4>
+          <p>Design a picnic layout for friends visiting the park with fair shares and a repeating pathway.</p>
+        </div>
+        <ol class="list-decimal list-inside space-y-1.5 text-slate-700">
+          <li><strong>Choose Guests:</strong> Pick 2, 3, or 4 animal friends coming to the picnic.</li>
+          <li><strong>Share the Snacks:</strong> Take a basket of snack counters (6, 9, or 12). Share them out one by one so every animal gets an equal share.</li>
+          <li><strong>Build a Pattern Pathway:</strong> Create a repeating pathway (AB, ABC, or AABB) leading to the picnic tables.</li>
+          <li><strong>Draw and Label:</strong> Draw your picnic tables, snack groups, and write numerals to label how many snacks are in each group.</li>
+          <li><strong>Challenge Prompt:</strong> One more friend arrives! Can you reshare your snacks equally? Explain what happens.</li>
+        </ol>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('task-brief-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="rubric-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">NESA Early Stage 1 Reporting Guidelines</h3>
+        <button onclick="closeModal('rubric-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-700">
+        <div class="p-3 bg-amber-50 rounded border border-amber-300">
+          <strong>Key Early Stage 1 Rule: Grades B, C, and D Only</strong>
+          <p class="mt-1">Under NSW Department of Education and NESA Kindergarten reporting practices, formal A to E reporting applies from Stage 1 (Years 1–10). For Early Stage 1, teachers moderate against Thorough (B), Sound (C), and Basic (D) achievement standards.</p>
+        </div>
+        <div class="p-2 rounded bg-amber-50 border border-amber-200">
+          <strong>Grade C (Sound):</strong> Demonstrates knowledge and understanding of the main areas of content; adequate level of competence in familiar situations using taught routines.
+        </div>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('rubric-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT CONTROLLERS -->
+  <script>
+    lucide.createIcons();
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-sky-600', 'bg-sky-50', 'text-sky-900', 'border-amber-500', 'bg-amber-50', 'text-amber-900', 'border-orange-600', 'bg-orange-50', 'text-orange-900', 'border-indigo-600', 'bg-indigo-100'));
+      const target = document.getElementById(`${tabId}-view`);
+      if (target) target.classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'border-2');
+        if (tabId === 'grade-b') activeBtn.classList.add('border-sky-600', 'bg-sky-50', 'text-sky-900');
+        if (tabId === 'grade-c') activeBtn.classList.add('border-amber-500', 'bg-amber-50', 'text-amber-900');
+        if (tabId === 'grade-d') activeBtn.classList.add('border-orange-600', 'bg-orange-50', 'text-orange-900');
+        if (tabId === 'matrix') activeBtn.classList.add('border-indigo-600', 'bg-indigo-100', 'text-indigo-950');
+      }
+      lucide.createIcons();
+    }
+    function switchSubSample(gradeId, sampleId) {
+      const container = document.getElementById(`${gradeId}-view`);
+      if (!container) return;
+      container.querySelectorAll('.subsample-content').forEach(s => s.classList.add('hidden'));
+      const target = document.getElementById(`${gradeId}-${sampleId}`);
+      if (target) target.classList.remove('hidden');
+      container.querySelectorAll('.subtab-btn').forEach(b => {
+        b.classList.remove('active', 'bg-sky-700', 'bg-amber-700', 'bg-orange-700', 'text-white');
+        b.classList.add('bg-white');
+      });
+      const activeSubBtn = document.getElementById(`subtab-${gradeId}-${sampleId}`);
+      if (activeSubBtn) {
+        activeSubBtn.classList.add('active', 'text-white');
+        if (gradeId === 'grade-b') activeSubBtn.classList.add('bg-sky-700');
+        if (gradeId === 'grade-c') activeSubBtn.classList.add('bg-amber-700');
+        if (gradeId === 'grade-d') activeSubBtn.classList.add('bg-orange-700');
+      }
+      lucide.createIcons();
+    }
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      annotationsVisible = !annotationsVisible;
+      document.querySelectorAll('.teacher-mark').forEach(m => m.style.display = annotationsVisible ? '' : 'none');
+      document.getElementById('annotations-status-text').textContent = annotationsVisible ? 'Hide Teacher Marks' : 'Show Teacher Marks';
+    }
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+  </script>
+</body>
+</html>
