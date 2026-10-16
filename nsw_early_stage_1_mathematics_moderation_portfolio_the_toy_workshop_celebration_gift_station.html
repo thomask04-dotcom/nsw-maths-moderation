@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Toy Workshop &amp; Celebration Gift Station | NSW ES1 Moderation Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter for UI typography; Caveat, Patrick Hand, Gaegu, and Comic Neue for authentic child and teacher handwriting -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gaegu:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            student: ['Gaegu', 'cursive'],
+            kidprint: ['"Patrick Hand"', 'cursive'],
+            teacher: ['Caveat', 'cursive'],
+            school: ['"Comic Neue"', 'cursive']
+          },
+          colors: {
+            nswNavy: '#002B49',
+            nswBlue: '#005999',
+            nswLightBlue: '#E6F0F8',
+            nswRed: '#C9242B',
+            teacherRed: '#D62828',
+            teacherGreen: '#1A7A44',
+            stickyYellow: '#FFF9C4',
+            stickyPink: '#FFE4E6',
+            stickyBlue: '#E0F2FE'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 24mm authentic school exercise book grid paper */
+    .exercise-book-grid {
+      background-color: #FFFFFF;
+      background-image: 
+        linear-gradient(rgba(170, 205, 235, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(170, 205, 235, 0.45) 1px, transparent 1px);
+      background-size: 24px 24px;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Red exercise book margin line */
+    .margin-line {
+      border-left: 2.5px solid #F87171;
+    }
+
+    /* Tactile washi tape effect for portfolio artefacts */
+    .washi-tape {
+      background: rgba(254, 240, 138, 0.9);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      transform: rotate(-1.5deg);
+    }
+
+    /* Sticky note tactile elevation and hover dynamics */
+    .sticky-note {
+      box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.12), -1px 2px 4px rgba(0, 0, 0, 0.05);
+      transform: rotate(1deg);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+      box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.16);
+    }
+
+    /* Blind Moderation Mode: hides teacher markings and annotations for stage calibration */
+    .hide-annotations .teacher-mark,
+    .hide-annotations .sticky-note,
+    .hide-annotations .teacher-comment,
+    .hide-annotations .teacher-banner,
+    .hide-annotations .teacher-check,
+    .hide-annotations .grade-badge {
+      display: none !important;
+    }
+
+    .tab-btn.active {
+      background-color: #002B49;
+      color: #FFFFFF;
+      border-color: #002B49;
+      box-shadow: 0 2px 4px rgba(0, 43, 73, 0.2);
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      .tab-content {
+        display: block !important;
+        page-break-after: always;
+      }
+      body {
+        background: white;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-16 antialiased">
+
+  <header class="bg-nswNavy text-white border-b-4 border-nswBlue sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-white text-nswNavy font-black text-xs px-2.5 py-1 rounded tracking-wider uppercase shadow-sm">
+          NESA K–10 (2022)
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight">The Toy Workshop &amp; Celebration Gift Station</h1>
+          <p class="text-xs text-sky-200">Stage Moderation Portfolio &bull; Early Stage 1 (Kindergarten) &bull; Term 4, Weeks 8–10</p>
+        </div>
+      </div>
+
+      <!-- Moderation Controls -->
+      <div class="flex items-center gap-2.5 no-print">
+        <button id="toggleAnnotationsBtn" onclick="toggleAnnotations()" class="text-xs font-semibold bg-sky-800 hover:bg-sky-700 active:bg-sky-900 text-white px-3.5 py-1.5 rounded-md border border-sky-600 transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+          <span id="annotationBtnText">Hide Teacher Marks (Blind Moderation)</span>
+        </button>
+        <button onclick="window.print()" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-white px-3 py-1.5 rounded-md border border-slate-600 transition flex items-center gap-1">
+          <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          Print
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6">
+
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-6">
+      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+            Rich Summative Task Extracted
+          </span>
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">
+            The Toy Workshop &amp; Celebration Gift Station
+          </h2>
+        </div>
+        <div class="text-xs bg-amber-50 text-amber-900 border border-amber-200 px-3 py-1 rounded font-medium">
+          <strong>NESA Kindergarten Scale:</strong> Grade B (Thorough), Grade C (Sound), &amp; Grade D (Basic)
+        </div>
+      </div>
+
+      <!-- Task Scenario Description -->
+      <div class="p-6 border-b border-slate-100 bg-gradient-to-r from-sky-50/50 via-white to-amber-50/30">
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+          <strong>Scenario:</strong> <em>"Our school community is setting up a special Celebration Gift Station to welcome new families! You are the Lead Designer. Your task is to build a 3D toy sculpture and design matching 2D gift tags for the packages!"</em>
+        </p>
+      </div>
+
+      <!-- 4 Core Criteria & Challenge Prompt -->
+      <div class="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs text-slate-700">
+        <div class="p-3.5 bg-sky-50/70 rounded-lg border border-sky-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-sky-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-sky-700 text-white inline-flex items-center justify-center text-[10px] font-bold">1</span>
+              3D Toy Sculpture
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Build a 3D toy (robot, vehicle, animal) using blocks. Stack blocks securely using flat faces; test curved surfaces.</p>
+          </div>
+          <span class="text-[10px] font-mono text-sky-800 bg-white px-2 py-0.5 rounded border border-sky-200 self-start">MAE-3DS-01</span>
+        </div>
+
+        <div class="p-3.5 bg-indigo-50/70 rounded-lg border border-indigo-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-indigo-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-indigo-700 text-white inline-flex items-center justify-center text-[10px] font-bold">2</span>
+              Prove Same Volume
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Construct a second toy design using the exact same blocks. Deconstruct and rebuild to prove equal volume.</p>
+          </div>
+          <span class="text-[10px] font-mono text-indigo-800 bg-white px-2 py-0.5 rounded border border-indigo-200 self-start">MAE-3DS-02</span>
+        </div>
+
+        <div class="p-3.5 bg-emerald-50/70 rounded-lg border border-emerald-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-emerald-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-700 text-white inline-flex items-center justify-center text-[10px] font-bold">3</span>
+              Trace 2D Gift Tags
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Trace flat faces onto paper to make 2D shapes (circles, squares, rectangles). Identify straight lines and curves.</p>
+          </div>
+          <span class="text-[10px] font-mono text-emerald-800 bg-white px-2 py-0.5 rounded border border-emerald-200 self-start">MAE-2DS-01</span>
+        </div>
+
+        <div class="p-3.5 bg-amber-50/70 rounded-lg border border-amber-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-amber-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-amber-700 text-white inline-flex items-center justify-center text-[10px] font-bold">4</span>
+              Direct Area Comparison
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Superimpose one tag directly on top of another to demonstrate and reason which tag has a larger surface area.</p>
+          </div>
+          <span class="text-[10px] font-mono text-amber-800 bg-white px-2 py-0.5 rounded border border-amber-200 self-start">MAE-2DS-02 &bull; WM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
+      <button onclick="switchTab('gradeB')" id="tab-gradeB" class="tab-btn active px-4 py-2.5 rounded-t-lg font-bold text-sm border-t-2 border-x transition flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+        Exemplar 1: Grade B (Thorough) — Maya
+      </button>
+      <button onclick="switchTab('gradeC')" id="tab-gradeC" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-sm border-t-2 border-x border-transparent transition flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+        Exemplar 2: Grade C (Sound) — Oliver
+      </button>
+      <button onclick="switchTab('gradeD')" id="tab-gradeD" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-sm border-t-2 border-x border-transparent transition flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+        Exemplar 3: Grade D (Basic) — Leo
+      </button>
+      <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-sm border-t-2 border-x border-transparent transition flex items-center gap-2">
+        <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+        Moderation Calibration Matrix
+      </button>
+    </div>
+
+    <!-- TAB 1: GRADE B (THOROUGH) -->
+    <div id="content-gradeB" class="tab-content block">
+      
+      <!-- Student Banner -->
+      <div class="bg-emerald-900 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-emerald-500 text-emerald-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade B &bull; Thorough Knowledge &amp; High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Maya K. &bull; Kindergarten (Term 4)</h3>
+          <p class="text-xs text-emerald-200">Demonstrates thorough spatial understanding in familiar situations, autonomous reasoning &amp; comparative language.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-emerald-300">GRADE B</div>
+          <div class="text-xs text-emerald-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+
+        <!-- Exercise Book Header Margin -->
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Maya</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">12 Nov 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Teacher Verified</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <!-- Two Column Layout: Student Artefacts & Teacher Scribing / Evidence -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Left Column (Artefacts): 7 Cols -->
+          <div class="lg:col-span-7 space-y-8">
+            
+            <!-- Step 1 & 2: 3D Toy Construction & Volume Equivalence -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Task Step 1 &amp; 2: 3D Toy Sculptures &amp; Volume Proof
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                <!-- Toy 1 Diagram -->
+                <div class="border border-slate-200 rounded p-3 bg-slate-50 flex flex-col items-center">
+                  <span class="text-xs font-semibold text-slate-600 mb-2">Toy A: "Guard Robot" (10 cubes)</span>
+                  <svg class="w-36 h-40" viewBox="0 0 140 160">
+                    <!-- Head Cube -->
+                    <rect x="50" y="10" width="40" height="25" fill="#3B82F6" stroke="#1D4ED8" stroke-width="2" rx="2"/>
+                    <circle cx="62" cy="22" r="3" fill="#FFFFFF"/>
+                    <circle cx="78" cy="22" r="3" fill="#FFFFFF"/>
+                    <!-- Neck / Body Cubes (4 cubes stacked 2x2) -->
+                    <rect x="40" y="40" width="30" height="25" fill="#60A5FA" stroke="#1D4ED8" stroke-width="2"/>
+                    <rect x="70" y="40" width="30" height="25" fill="#60A5FA" stroke="#1D4ED8" stroke-width="2"/>
+                    <rect x="40" y="65" width="30" height="25" fill="#60A5FA" stroke="#1D4ED8" stroke-width="2"/>
+                    <rect x="70" y="65" width="30" height="25" fill="#60A5FA" stroke="#1D4ED8" stroke-width="2"/>
+                    <!-- Arms (2 cubes) -->
+                    <rect x="10" y="45" width="28" height="20" fill="#93C5FD" stroke="#1D4ED8" stroke-width="2" rx="1"/>
+                    <rect x="102" y="45" width="28" height="20" fill="#93C5FD" stroke="#1D4ED8" stroke-width="2" rx="1"/>
+                    <!-- Legs (2 cubes) -->
+                    <rect x="42" y="93" width="24" height="35" fill="#2563EB" stroke="#1E40AF" stroke-width="2"/>
+                    <rect x="74" y="93" width="24" height="35" fill="#2563EB" stroke="#1E40AF" stroke-width="2"/>
+                    <!-- Base Cylinder Crown -->
+                    <ellipse cx="70" cy="8" rx="16" ry="6" fill="#F59E0B" stroke="#B45309" stroke-width="1.5"/>
+                  </svg>
+                  <p class="font-kidprint text-sm text-center text-blue-900 mt-1">
+                    "My tall robot stands up on flat faces!"
+                  </p>
+                </div>
+
+                <!-- Toy 2 Diagram -->
+                <div class="border border-slate-200 rounded p-3 bg-slate-50 flex flex-col items-center">
+                  <span class="text-xs font-semibold text-slate-600 mb-2">Toy B: "Robo-Dog" (Rebuilt from Toy A)</span>
+                  <svg class="w-44 h-40" viewBox="0 0 170 160">
+                    <!-- Head -->
+                    <rect x="110" y="30" width="35" height="28" fill="#3B82F6" stroke="#1D4ED8" stroke-width="2" rx="3"/>
+                    <polygon points="120,30 115,15 125,25" fill="#F59E0B"/>
+                    <!-- Body (6 cubes horizontal 3x2) -->
+                    <rect x="40" y="55" width="35" height="24" fill="#60A5FA" stroke="#1D4ED8" stroke-width="2"/>
+                    <rect x="75" y="55" width="35" height="24" fill="#60A5FA" stroke="#1D4ED8" stroke-width="2"/>
+                    <rect x="40" y="79" width="35" height="24" fill="#60A5FA" stroke="#1D4ED8" stroke-width="2"/>
+                    <rect x="75" y="79" width="35" height="24" fill="#60A5FA" stroke="#1D4ED8" stroke-width="2"/>
+                    <!-- Front & Back Legs (2 cubes) -->
+                    <rect x="45" y="105" width="20" height="32" fill="#2563EB" stroke="#1E40AF" stroke-width="2"/>
+                    <rect x="90" y="105" width="20" height="32" fill="#2563EB" stroke="#1E40AF" stroke-width="2"/>
+                    <!-- Tail (1 cube angled) -->
+                    <rect x="18" y="48" width="22" height="16" transform="rotate(-25 20 50)" fill="#93C5FD" stroke="#1D4ED8" stroke-width="2"/>
+                  </svg>
+                  <p class="font-kidprint text-sm text-center text-blue-900 mt-1">
+                    "I broke robot down to make dog. Same blocks = same volume!"
+                  </p>
+                </div>
+              </div>
+
+              <!-- Margin Tick -->
+              <div class="teacher-mark absolute -right-3 top-10 text-teacherRed font-teacher text-3xl font-black">
+                &#10003; <span class="text-sm">Volume conserved!</span>
+              </div>
+            </div>
+
+            <!-- Step 3 & 4: Traced Gift Tags & Direct Area Superimposition -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Task Step 3 &amp; 4: Tracing 3D Faces &amp; Comparing Area
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                <!-- Traced Tags -->
+                <div class="border border-dashed border-slate-300 rounded p-3 bg-amber-50/30">
+                  <span class="text-xs font-semibold text-slate-700 block mb-1">Maya's Traced Shapes:</span>
+                  <div class="flex items-center justify-around py-2">
+                    <!-- Traced Rectangle Face -->
+                    <div class="text-center">
+                      <div class="w-16 h-24 border-2 border-emerald-600 bg-emerald-100 rounded-sm flex items-center justify-center font-kidprint text-xs text-emerald-900 shadow-sm">
+                        Tag A<br>(Box)
+                      </div>
+                      <span class="text-[10px] text-slate-500 mt-1 block">4 straight sides</span>
+                    </div>
+                    <!-- Traced Square Face -->
+                    <div class="text-center">
+                      <div class="w-14 h-14 border-2 border-blue-600 bg-blue-100 rounded-sm flex items-center justify-center font-kidprint text-xs text-blue-900 shadow-sm">
+                        Tag B<br>(Cube)
+                      </div>
+                      <span class="text-[10px] text-slate-500 mt-1 block">4 equal sides</span>
+                    </div>
+                    <!-- Traced Cylinder Base -->
+                    <div class="text-center">
+                      <div class="w-12 h-12 border-2 border-purple-600 bg-purple-100 rounded-full flex items-center justify-center font-kidprint text-[11px] text-purple-900 shadow-sm">
+                        Tag C
+                      </div>
+                      <span class="text-[10px] text-slate-500 mt-1 block">1 curved line</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Direct Area Superimposition Evidence -->
+                <div class="border border-slate-200 rounded p-3 bg-slate-50 flex flex-col items-center">
+                  <span class="text-xs font-semibold text-slate-700 mb-1">Direct Comparison (Superimposing)</span>
+                  <svg class="w-36 h-36" viewBox="0 0 130 130">
+                    <!-- Base Tag A (Large Rectangle) -->
+                    <rect x="25" y="15" width="80" height="100" fill="#A7F3D0" stroke="#059669" stroke-width="2.5" rx="3"/>
+                    <text x="65" y="105" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="11" fill="#047857">Tag A (Green)</text>
+                    
+                    <!-- Superimposed Tag B (Small Square placed on top) -->
+                    <rect x="25" y="15" width="50" height="50" fill="#93C5FD" fill-opacity="0.85" stroke="#1D4ED8" stroke-width="2" stroke-dasharray="3,2" rx="2"/>
+                    <text x="50" y="44" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="10" fill="#1E40AF">Tag B</text>
+
+                    <!-- Overhang Annotation -->
+                    <line x1="85" y1="35" x2="100" y2="35" stroke="#D97706" stroke-width="1.5"/>
+                    <text x="105" y="38" font-family="'Caveat', cursive" font-size="13" fill="#B45309" font-weight="bold">Overhang!</text>
+                  </svg>
+                  <p class="font-kidprint text-xs text-center text-emerald-950 mt-1">
+                    "Tag A is bigger surface because green sticks out all past blue!"
+                  </p>
+                </div>
+              </div>
+
+              <!-- Margin Tick -->
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-3xl font-black">
+                &#10003; <span class="text-sm">Accurate superimposition</span>
+              </div>
+            </div>
+
+            <!-- Student Hand-drawn Labeling -->
+            <div class="bg-yellow-50/50 p-4 rounded border border-amber-200">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800 block mb-1">Student Writing / Emergent Recording:</span>
+              <p class="font-student text-xl sm:text-2xl text-slate-800 leading-relaxed">
+                I mad a rOBot. I tok it apArt. it is the sAMe VOlYUM bekos 10 BLOKS and 10 BLOKS. Tag A has moR surfis!
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Column: Teacher Evidence & Moderation Notes: 5 Cols -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Sticky Note Observation -->
+            <div class="sticky-note bg-stickyYellow p-5 rounded-md border-t-8 border-amber-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-amber-300 pb-1 font-bold text-amber-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-amber-200 px-2 py-0.5 rounded text-amber-900 font-mono">12/11/26 10:15 AM</span>
+              </div>
+              <p class="mb-2">
+                "Maya immediately sorted blocks by flat surfaces for the base. When testing the wooden cylinder, she noted: <span class="text-teacherRed font-bold">'If I put it on the side it rolls away, so I stand it on the flat circle face to stack!'</span>"
+              </p>
+              <p>
+                "Completely self-directed in taking Robot A apart to make Robot Dog B. Confidently articulated volume conservation without needing prompts."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. G. (Kindergarten)</div>
+            </div>
+
+            <!-- Verbatim Scribing Card -->
+            <div class="bg-white rounded-lg p-4 border-2 border-sky-200 shadow-sm">
+              <div class="flex items-center gap-2 mb-2 pb-1 border-b border-sky-100">
+                <span class="w-3 h-3 rounded-full bg-sky-500"></span>
+                <span class="text-xs font-bold uppercase tracking-wide text-sky-900">Teacher Scribing Block (Verbatim Oral Dialogue)</span>
+              </div>
+              <div class="text-xs space-y-2 text-slate-700 leading-relaxed font-sans">
+                <p><strong>Teacher:</strong> "Maya, why do your robot and dog have the same volume even though the dog is much longer?"</p>
+                <p class="bg-sky-50 p-2 rounded italic text-sky-950 font-school">
+                  "Because volume means how much space it takes up! My dog is flat and stretched out, but I didn't get any new blocks from the tub and I didn't throw any away. It's the exact same 10 blocks, so the amount of space is identical!"
+                </p>
+                <p><strong>Teacher:</strong> "How did you prove Tag A has a larger surface area than Tag B?"</p>
+                <p class="bg-sky-50 p-2 rounded italic text-sky-950 font-school">
+                  "I put the square tag directly on top of the big rectangle. Its corner matches, but the rectangle sticks out at the top and side. That means the rectangle covers more table surface area!"
+                </p>
+              </div>
+            </div>
+
+            <!-- Challenge Prompt Evidence -->
+            <div class="bg-emerald-50 rounded-lg p-4 border border-emerald-200">
+              <span class="text-[11px] font-bold text-emerald-900 uppercase tracking-wide block mb-1">
+                Challenge Prompt (Extension for Deep Transfer):
+              </span>
+              <p class="text-xs text-emerald-900 leading-relaxed font-sans">
+                Maya correctly predicted that the large rectangular face of the tissue box block would trace out a tag with larger surface area than the face of the wooden cube: <em>"The tissue box face is wider and longer, so its flat skin covers more space."</em>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Moderation Rationale & Syllabus Breakdown -->
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-emerald-400 bg-emerald-50/50 rounded-xl p-6">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+              NESA Moderation Rationale: Grade B (Thorough)
+            </h4>
+            <span class="text-xs font-semibold bg-emerald-200 text-emerald-900 px-2.5 py-1 rounded">
+              ES1 Syllabus Aligned &bull; High Competence
+            </span>
+          </div>
+
+          <p class="text-xs text-slate-700 leading-relaxed mb-4">
+            Maya applies mathematical knowledge and skills to <strong>most familiar and some unfamiliar situations</strong> with strong autonomy. She demonstrates thorough understanding by constructing stable 3D models with orientation awareness, explaining volume conservation through deconstruction/reconstruction, and providing clear reasoning for area comparison via superimposition.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-[11px]">
+            <div class="bg-white p-2.5 rounded border border-emerald-200 shadow-sm">
+              <strong class="text-emerald-950 block mb-0.5">MAE-3DS-01 (3D Objects)</strong>
+              Stacks with intention; explains why turning a cylinder onto its flat circular face prevents rolling.
+            </div>
+            <div class="bg-white p-2.5 rounded border border-emerald-200 shadow-sm">
+              <strong class="text-emerald-950 block mb-0.5">MAE-3DS-02 (Volume)</strong>
+              Understands volume as space occupied; reasons that restructuring identical blocks preserves equal volume.
+            </div>
+            <div class="bg-white p-2.5 rounded border border-emerald-200 shadow-sm">
+              <strong class="text-emerald-950 block mb-0.5">MAE-2DS-01 (2D Shapes)</strong>
+              Accurately traces faces; distinguishes straight sides/corners from curved boundaries.
+            </div>
+            <div class="bg-white p-2.5 rounded border border-emerald-200 shadow-sm">
+              <strong class="text-emerald-950 block mb-0.5">MAE-2DS-02 &amp; WM</strong>
+              Superimposes shapes aligning boundaries; reasons clearly about surface overhang and area.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: GRADE C (SOUND) -->
+    <div id="content-gradeC" class="tab-content hidden">
+      
+      <!-- Student Banner -->
+      <div class="bg-blue-900 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-blue-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade C &bull; Sound Knowledge &amp; Adequate Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Oliver T. &bull; Kindergarten (Term 4)</h3>
+          <p class="text-xs text-blue-200">Demonstrates sound knowledge in familiar situations, relying on taught routines and direct counting.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-blue-300">GRADE C</div>
+          <div class="text-xs text-blue-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+
+        <!-- Header Margin -->
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Oliver</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">12 Nov 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Sound Work</span>
+            <span class="text-2xl">&#10003;</span>
+          </div>
+        </div>
+
+        <!-- Artefacts and Evidence -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Left: Artefacts -->
+          <div class="lg:col-span-7 space-y-8">
+            
+            <!-- Step 1 & 2: 3D Toy Construction & Volume via Counting -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Task Step 1 &amp; 2: 3D Castle &amp; Train (Direct Counting)
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                <!-- Structure 1 -->
+                <div class="border border-slate-200 rounded p-3 bg-slate-50 flex flex-col items-center">
+                  <span class="text-xs font-semibold text-slate-600 mb-2">Model 1: "Tall Castle" (8 cubes)</span>
+                  <svg class="w-32 h-36" viewBox="0 0 120 140">
+                    <!-- Column of 8 cubes with numbers -->
+                    <g font-family="'Patrick Hand', cursive" font-size="10" fill="#1E293B" text-anchor="middle">
+                      <rect x="45" y="10" width="30" height="15" fill="#F87171" stroke="#DC2626" stroke-width="1.5"/><text x="60" y="22">8</text>
+                      <rect x="45" y="25" width="30" height="15" fill="#F87171" stroke="#DC2626" stroke-width="1.5"/><text x="60" y="37">7</text>
+                      <rect x="45" y="40" width="30" height="15" fill="#F87171" stroke="#DC2626" stroke-width="1.5"/><text x="60" y="52">6</text>
+                      <rect x="45" y="55" width="30" height="15" fill="#FCA5A5" stroke="#DC2626" stroke-width="1.5"/><text x="60" y="67">5</text>
+                      <rect x="45" y="70" width="30" height="15" fill="#FCA5A5" stroke="#DC2626" stroke-width="1.5"/><text x="60" y="82">4</text>
+                      <rect x="45" y="85" width="30" height="15" fill="#FCA5A5" stroke="#DC2626" stroke-width="1.5"/><text x="60" y="97">3</text>
+                      <rect x="45" y="100" width="30" height="15" fill="#EF4444" stroke="#DC2626" stroke-width="1.5"/><text x="60" y="112">2</text>
+                      <rect x="45" y="115" width="30" height="15" fill="#EF4444" stroke="#DC2626" stroke-width="1.5"/><text x="60" y="127">1</text>
+                    </g>
+                  </svg>
+                  <p class="font-kidprint text-sm text-center text-slate-800 mt-1">
+                    "Counted 1, 2, 3, 4, 5, 6, 7, 8 blocks tall."
+                  </p>
+                </div>
+
+                <!-- Structure 2 -->
+                <div class="border border-slate-200 rounded p-3 bg-slate-50 flex flex-col items-center">
+                  <span class="text-xs font-semibold text-slate-600 mb-2">Model 2: "Long Train" (Rebuilt)</span>
+                  <svg class="w-44 h-36" viewBox="0 0 180 140">
+                    <!-- 2x4 grid of cubes -->
+                    <g font-family="'Patrick Hand', cursive" font-size="10" fill="#1E293B" text-anchor="middle">
+                      <!-- Row 1 -->
+                      <rect x="20" y="60" width="30" height="25" fill="#F87171" stroke="#DC2626" stroke-width="1.5"/><text x="35" y="76">1</text>
+                      <rect x="50" y="60" width="30" height="25" fill="#F87171" stroke="#DC2626" stroke-width="1.5"/><text x="65" y="76">2</text>
+                      <rect x="80" y="60" width="30" height="25" fill="#F87171" stroke="#DC2626" stroke-width="1.5"/><text x="95" y="76">3</text>
+                      <rect x="110" y="60" width="30" height="25" fill="#F87171" stroke="#DC2626" stroke-width="1.5"/><text x="125" y="76">4</text>
+                      <!-- Row 2 -->
+                      <rect x="20" y="85" width="30" height="25" fill="#EF4444" stroke="#DC2626" stroke-width="1.5"/><text x="35" y="101">5</text>
+                      <rect x="50" y="85" width="30" height="25" fill="#EF4444" stroke="#DC2626" stroke-width="1.5"/><text x="65" y="101">6</text>
+                      <rect x="80" y="85" width="30" height="25" fill="#EF4444" stroke="#DC2626" stroke-width="1.5"/><text x="95" y="101">7</text>
+                      <rect x="110" y="85" width="30" height="25" fill="#EF4444" stroke="#DC2626" stroke-width="1.5"/><text x="125" y="101">8</text>
+                    </g>
+                  </svg>
+                  <p class="font-kidprint text-sm text-center text-slate-800 mt-1">
+                    "Still 8 blocks when I laid them down."
+                  </p>
+                </div>
+              </div>
+
+              <div class="teacher-mark absolute -right-3 top-10 text-teacherRed font-teacher text-3xl font-black">
+                &#10003; <span class="text-sm">Recounts accurately to 8</span>
+              </div>
+            </div>
+
+            <!-- Step 3 & 4: Traced Shapes & Direct Comparison -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Task Step 3 &amp; 4: Traced Gift Tags &amp; Superimposing
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                <!-- Traced Shapes with Kindergarten Wobble -->
+                <div class="border border-dashed border-slate-300 rounded p-3 bg-amber-50/30">
+                  <span class="text-xs font-semibold text-slate-700 block mb-1">Oliver's Traced Shapes:</span>
+                  <div class="flex items-center justify-around py-3">
+                    <!-- Traced Square with mild rounded corner -->
+                    <div class="text-center">
+                      <svg class="w-16 h-16" viewBox="0 0 60 60">
+                        <polygon points="6,6 54,8 52,54 8,52" fill="#FED7AA" stroke="#EA580C" stroke-width="2.5" stroke-linejoin="round"/>
+                      </svg>
+                      <span class="font-kidprint text-xs text-orange-950 mt-1 block">"Square"</span>
+                    </div>
+                    <!-- Traced Rectangle -->
+                    <div class="text-center">
+                      <svg class="w-20 h-16" viewBox="0 0 80 60">
+                        <polygon points="5,10 75,12 73,50 6,48" fill="#BAE6FD" stroke="#0284C7" stroke-width="2.5" stroke-linejoin="round"/>
+                      </svg>
+                      <span class="font-kidprint text-xs text-sky-950 mt-1 block">"Rectangle"</span>
+                    </div>
+                  </div>
+                  <p class="text-[10px] text-slate-500 italic text-center">Traced independently; lines are closed with slight corner roundness.</p>
+                </div>
+
+                <!-- Superimposition -->
+                <div class="border border-slate-200 rounded p-3 bg-slate-50 flex flex-col items-center">
+                  <span class="text-xs font-semibold text-slate-700 mb-1">Direct Comparison</span>
+                  <svg class="w-36 h-36" viewBox="0 0 130 130">
+                    <!-- Big Rectangle -->
+                    <polygon points="15,20 115,20 115,100 15,100" fill="#BAE6FD" stroke="#0284C7" stroke-width="2"/>
+                    <!-- Superimposed Square slightly tilted -->
+                    <polygon points="20,25 75,28 72,80 17,77" fill="#FED7AA" fill-opacity="0.9" stroke="#EA580C" stroke-width="2"/>
+                  </svg>
+                  <p class="font-kidprint text-xs text-center text-slate-800 mt-1">
+                    "The blue rectangle is bigger because orange doesn't cover all of it."
+                  </p>
+                </div>
+              </div>
+
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-3xl font-black">
+                &#10003; <span class="text-sm">Identifies larger area</span>
+              </div>
+            </div>
+
+            <!-- Student Hand-drawn Labeling -->
+            <div class="bg-yellow-50/50 p-4 rounded border border-amber-200">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800 block mb-1">Student Writing / Emergent Recording:</span>
+              <p class="font-student text-2xl text-slate-800 leading-relaxed">
+                i mad 8 BLOKS. it is the sAMe becos 8 and 8. the BLOO tag is BIGR.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: Teacher Scribing & Observation -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Sticky Note Observation -->
+            <div class="sticky-note bg-stickyBlue p-5 rounded-md border-t-8 border-sky-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-sky-300 pb-1 font-bold text-sky-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-sky-200 px-2 py-0.5 rounded text-sky-900 font-mono">12/11/26 10:40 AM</span>
+              </div>
+              <p class="mb-2">
+                "Oliver built his tower with flat-faced wooden cubes. Attempted to place a wooden sphere on top; it fell off. He smiled and said: <span class="text-teacherRed font-bold">'Balls roll, they can't balance'</span>, and removed it."
+              </p>
+              <p>
+                "Relies heavily on <em>direct counting</em> to verify equal volume. When asked if they have the same volume, he immediately touched each block one-by-one."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. G. (Kindergarten)</div>
+            </div>
+
+            <!-- Verbatim Scribing Card -->
+            <div class="bg-white rounded-lg p-4 border-2 border-blue-200 shadow-sm">
+              <div class="flex items-center gap-2 mb-2 pb-1 border-b border-blue-100">
+                <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                <span class="text-xs font-bold uppercase tracking-wide text-blue-900">Teacher Scribing Block (Verbatim Oral Dialogue)</span>
+              </div>
+              <div class="text-xs space-y-2 text-slate-700 leading-relaxed font-sans">
+                <p><strong>Teacher:</strong> "Oliver, how do you know your castle and your train have the same volume?"</p>
+                <p class="bg-blue-50 p-2 rounded italic text-blue-950 font-school">
+                  "Because look, I count them! 1, 2, 3, 4, 5, 6, 7, 8 for the tower. And then when I break it and build the train, it has 1, 2, 3, 4, 5, 6, 7, 8 blocks too. They both have 8, so it's the same."
+                </p>
+                <p><strong>Teacher:</strong> "When you put this orange tag on top of the blue tag, what does that show you?"</p>
+                <p class="bg-blue-50 p-2 rounded italic text-blue-950 font-school">
+                  "It shows the blue tag is bigger. The orange sits on top, but there is still blue space showing out here on the side. So the blue one has more space."
+                </p>
+              </div>
+            </div>
+
+            <!-- Challenge Prompt Assessment -->
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wide block mb-1">
+                Challenge Prompt (Transfer Opportunity):
+              </span>
+              <p class="text-xs text-slate-600 leading-relaxed font-sans">
+                Oliver needed teacher prompting to consider which 3D block face would make the biggest tag. He pointed to the largest block face when comparing them visually side-by-side, but did not independently explain surface area conservation.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Moderation Rationale & Syllabus Breakdown -->
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-blue-400 bg-blue-50/50 rounded-xl p-6">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-blue-600"></span>
+              NESA Moderation Rationale: Grade C (Sound)
+            </h4>
+            <span class="text-xs font-semibold bg-blue-200 text-blue-900 px-2.5 py-1 rounded">
+              ES1 Syllabus Aligned &bull; Sound Competence
+            </span>
+          </div>
+
+          <p class="text-xs text-slate-700 leading-relaxed mb-4">
+            Oliver demonstrates <strong>sound knowledge and understanding of the main areas of content</strong> in familiar situations. He competently completes all key steps of the rich assessment task using taught routines: sorting flat faces for stacking, counting one-by-one to verify volume equivalence, independently tracing 3D faces, and superimposing tags to identify the larger surface area.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-[11px]">
+            <div class="bg-white p-2.5 rounded border border-blue-200 shadow-sm">
+              <strong class="text-blue-950 block mb-0.5">MAE-3DS-01 (3D Objects)</strong>
+              Builds stable model using flat faces; recognizes that spheres roll and cannot stack.
+            </div>
+            <div class="bg-white p-2.5 rounded border border-blue-200 shadow-sm">
+              <strong class="text-blue-950 block mb-0.5">MAE-3DS-02 (Volume)</strong>
+              Deconstructs and rebuilds; confirms equal volume through direct block counting (1 to 8).
+            </div>
+            <div class="bg-white p-2.5 rounded border border-blue-200 shadow-sm">
+              <strong class="text-blue-950 block mb-0.5">MAE-2DS-01 (2D Shapes)</strong>
+              Traces faces to create recognizable closed shapes; accurately identifies square and rectangle.
+            </div>
+            <div class="bg-white p-2.5 rounded border border-blue-200 shadow-sm">
+              <strong class="text-blue-950 block mb-0.5">MAE-2DS-02 &amp; WM</strong>
+              Superimposes shapes directly; states which tag has more surface using comparative terms ("bigger").
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: GRADE D (BASIC) -->
+    <div id="content-gradeD" class="tab-content hidden">
+      
+      <!-- Student Banner -->
+      <div class="bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-amber-500 text-amber-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade D &bull; Basic Knowledge &amp; Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Leo M. &bull; Kindergarten (Term 4)</h3>
+          <p class="text-xs text-amber-200">Demonstrates basic knowledge with teacher guidance, scaffolding, and prompt-driven execution.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-amber-400">GRADE D</div>
+          <div class="text-xs text-amber-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+
+        <!-- Header Margin -->
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-amber-800 underline font-bold">Leo</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-amber-800">12 Nov 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Supported Task</span>
+            <span class="text-lg text-amber-800">With Teacher Assistance</span>
+          </div>
+        </div>
+
+        <!-- Artefacts and Evidence -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Left: Artefacts -->
+          <div class="lg:col-span-7 space-y-8">
+            
+            <!-- Step 1 & 2: 3D Toy Construction & Volume Attempt -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Task Step 1 &amp; 2: 3D Tower &amp; Volume Attempt
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                <!-- Structure 1 -->
+                <div class="border border-slate-200 rounded p-3 bg-slate-50 flex flex-col items-center">
+                  <span class="text-xs font-semibold text-slate-600 mb-2">Model 1: Tower (Built with prompting)</span>
+                  <svg class="w-28 h-36" viewBox="0 0 100 140">
+                    <!-- Base cubes -->
+                    <rect x="30" y="80" width="40" height="25" fill="#FBBF24" stroke="#D97706" stroke-width="2"/>
+                    <rect x="30" y="55" width="40" height="25" fill="#FBBF24" stroke="#D97706" stroke-width="2"/>
+                    <!-- Tilted cylinder on curved side falling off -->
+                    <g transform="rotate(18 50 30)">
+                      <rect x="30" y="25" width="40" height="20" fill="#CBD5E1" stroke="#64748B" stroke-width="2" rx="4"/>
+                    </g>
+                    <!-- Motion lines for falling -->
+                    <path d="M75,25 Q85,30 80,45" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="2,2"/>
+                  </svg>
+                  <p class="font-kidprint text-sm text-center text-slate-800 mt-1">
+                    "It felled over! Cylinder kept rolling off."
+                  </p>
+                </div>
+
+                <!-- Structure 2 -->
+                <div class="border border-slate-200 rounded p-3 bg-slate-50 flex flex-col items-center">
+                  <span class="text-xs font-semibold text-slate-600 mb-2">Model 2: Wall (Added extra blocks)</span>
+                  <svg class="w-36 h-36" viewBox="0 0 140 140">
+                    <!-- Wall made of 7 blocks instead of original 5 -->
+                    <rect x="20" y="70" width="25" height="20" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/>
+                    <rect x="45" y="70" width="25" height="20" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/>
+                    <rect x="70" y="70" width="25" height="20" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/>
+                    <rect x="95" y="70" width="25" height="20" fill="#F59E0B" stroke="#B45309" stroke-width="2"/>
+                    
+                    <rect x="32" y="50" width="25" height="20" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/>
+                    <rect x="57" y="50" width="25" height="20" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/>
+                    <rect x="82" y="50" width="25" height="20" fill="#F59E0B" stroke="#B45309" stroke-width="2"/>
+                  </svg>
+                  <p class="font-kidprint text-sm text-center text-slate-800 mt-1">
+                    "Took blocks from tub. Needs help to keep count."
+                  </p>
+                </div>
+              </div>
+
+              <!-- Teacher Margin Note -->
+              <div class="teacher-mark absolute -right-3 top-10 text-teacherRed font-teacher text-xl font-bold">
+                &#9651; <span class="text-xs">Needed prompt to reuse same cubes</span>
+              </div>
+            </div>
+
+            <!-- Step 3 & 4: Incomplete Tracing & Direct Superimposition Difficulty -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Task Step 3 &amp; 4: Traced Lines &amp; Area Attempt
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                <!-- Incomplete Tracing -->
+                <div class="border border-dashed border-slate-300 rounded p-3 bg-amber-50/30">
+                  <span class="text-xs font-semibold text-slate-700 block mb-1">Leo's Traced Shapes (Partial):</span>
+                  <div class="flex items-center justify-around py-3">
+                    <!-- Open line shape (pencil slipped) -->
+                    <div class="text-center">
+                      <svg class="w-16 h-16" viewBox="0 0 60 60">
+                        <path d="M10,12 L50,15 L45,48 L18,45" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"/>
+                      </svg>
+                      <span class="font-kidprint text-xs text-amber-900 mt-1 block">"Box shape" (Open gap)</span>
+                    </div>
+                    <!-- Traced Cylinder with teacher holding block -->
+                    <div class="text-center">
+                      <svg class="w-16 h-16" viewBox="0 0 60 60">
+                        <circle cx="30" cy="30" r="20" fill="#FEF3C7" stroke="#CA8A04" stroke-width="2" stroke-dasharray="3,1"/>
+                      </svg>
+                      <span class="font-kidprint text-xs text-amber-900 mt-1 block">"Round circle"</span>
+                    </div>
+                  </div>
+                  <p class="text-[10px] text-slate-500 italic text-center">Block slipped during independent attempt; closed shape with physical support.</p>
+                </div>
+
+                <!-- Area Guessing / Crooked Superimposition -->
+                <div class="border border-slate-200 rounded p-3 bg-slate-50 flex flex-col items-center">
+                  <span class="text-xs font-semibold text-slate-700 mb-1">Direct Comparison Attempt</span>
+                  <svg class="w-36 h-36" viewBox="0 0 130 130">
+                    <!-- Base tag -->
+                    <rect x="20" y="25" width="85" height="70" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+                    <!-- Crooked second tag offset without aligning edges -->
+                    <rect x="45" y="10" width="60" height="95" fill="#CBD5E1" fill-opacity="0.8" stroke="#475569" stroke-width="2" transform="rotate(15 75 55)"/>
+                  </svg>
+                  <p class="font-kidprint text-xs text-center text-slate-800 mt-1">
+                    "Yellow is bigger cos it's bright." (Corners not aligned)
+                  </p>
+                </div>
+              </div>
+
+              <!-- Teacher Margin Note -->
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9651; <span class="text-xs">Guidance needed to align corners</span>
+              </div>
+            </div>
+
+            <!-- Student Hand-drawn Labeling -->
+            <div class="bg-yellow-50/50 p-4 rounded border border-amber-200">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800 block mb-1">Student Writing / Emergent Recording:</span>
+              <p class="font-student text-2xl text-slate-800 leading-relaxed">
+                LEO. I MAD A TAWER. it BIG.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: Teacher Scribing & Observation -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Sticky Note Observation -->
+            <div class="sticky-note bg-stickyPink p-5 rounded-md border-t-8 border-rose-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-rose-200 pb-1 font-bold text-rose-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded text-rose-900 font-mono">12/11/26 11:10 AM</span>
+              </div>
+              <p class="mb-2">
+                "Leo required direct prompting to stack blocks. He tried balancing a cylinder on its curved surface on top of a triangle prism: <span class="text-teacherRed font-bold">'It won't sit!'</span> Guided him to find the flat faces."
+              </p>
+              <p>
+                "When asked to prove volume, Leo did not understand reusing the same blocks. He reached into the tub for more blocks. Guided him to dismantle the first tower."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. G. (Kindergarten)</div>
+            </div>
+
+            <!-- Verbatim Scribing Card -->
+            <div class="bg-white rounded-lg p-4 border-2 border-amber-200 shadow-sm">
+              <div class="flex items-center gap-2 mb-2 pb-1 border-b border-amber-100">
+                <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                <span class="text-xs font-bold uppercase tracking-wide text-amber-900">Teacher Scribing Block (Verbatim Oral Dialogue)</span>
+              </div>
+              <div class="text-xs space-y-2 text-slate-700 leading-relaxed font-sans">
+                <p><strong>Teacher:</strong> "Leo, which of these two tags has a bigger surface area?"</p>
+                <p class="bg-amber-50 p-2 rounded italic text-amber-950 font-school">
+                  "This yellow one! Because it's my favourite colour and it looks big."
+                </p>
+                <p><strong>Teacher:</strong> "Can you put the grey tag on top of the yellow tag to check?"</p>
+                <p class="bg-amber-50 p-2 rounded italic text-amber-950 font-school">
+                  <em>[Leo places the grey tag sideways over the middle of the yellow tag, with multiple edges sticking out randomly in all directions].</em><br>
+                  "Look, they both stick out! I think they are both big."
+                </p>
+                <p><strong>Teacher:</strong> <em>[Assists Leo to match the bottom corner].</em> "Now look, which one has more surface?"</p>
+                <p class="bg-amber-50 p-2 rounded italic text-amber-950 font-school">
+                  "Oh, the grey one goes up higher! The grey one takes more space."
+                </p>
+              </div>
+            </div>
+
+            <!-- Learning Support Scaffold Note -->
+            <div class="bg-rose-50 rounded-lg p-4 border border-rose-200">
+              <span class="text-[11px] font-bold text-rose-900 uppercase tracking-wide block mb-1">
+                Support Level Provided:
+              </span>
+              <p class="text-xs text-rose-800 leading-relaxed font-sans">
+                Substantial teacher prompting and physical guidance required for holding 3D objects steady during tracing, aligning tag boundaries for direct area comparison, and maintaining cube counts for volume equivalence.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Moderation Rationale & Syllabus Breakdown -->
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-amber-400 bg-amber-50/50 rounded-xl p-6">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-amber-600"></span>
+              NESA Moderation Rationale: Grade D (Basic)
+            </h4>
+            <span class="text-xs font-semibold bg-amber-200 text-amber-900 px-2.5 py-1 rounded">
+              ES1 Syllabus Aligned &bull; Limited Competence
+            </span>
+          </div>
+
+          <p class="text-xs text-slate-700 leading-relaxed mb-4">
+            Leo demonstrates <strong>basic knowledge and understanding</strong> of the content, achieving a limited level of competence. In familiar situations, he requires frequent teacher prompting and physical assistance to select flat faces for stacking, dismantle structures without adding extra blocks, close traced outlines, and align boundaries when superimposing shapes to compare surface area.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-[11px]">
+            <div class="bg-white p-2.5 rounded border border-amber-200 shadow-sm">
+              <strong class="text-amber-950 block mb-0.5">MAE-3DS-01 (3D Objects)</strong>
+              Identifies that flat surfaces stack with guidance; struggles to explain curved rolling behavior.
+            </div>
+            <div class="bg-white p-2.5 rounded border border-amber-200 shadow-sm">
+              <strong class="text-amber-950 block mb-0.5">MAE-3DS-02 (Volume)</strong>
+              Requires physical support to take apart models; does not yet conserve volume without teacher redirection.
+            </div>
+            <div class="bg-white p-2.5 rounded border border-amber-200 shadow-sm">
+              <strong class="text-amber-950 block mb-0.5">MAE-2DS-01 (2D Shapes)</strong>
+              Traces faces with pencil slippage resulting in open lines; identifies shapes with teacher naming prompts.
+            </div>
+            <div class="bg-white p-2.5 rounded border border-amber-200 shadow-sm">
+              <strong class="text-amber-950 block mb-0.5">MAE-2DS-02 &amp; WM</strong>
+              Compares area by perceptual cues (colour/height); requires scaffolding to align corners for superimposition.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 4: MODERATION CALIBRATION MATRIX -->
+    <div id="content-matrix" class="tab-content hidden">
+      <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+        
+        <div class="bg-nswNavy text-white px-6 py-5">
+          <div class="flex flex-wrap justify-between items-center gap-2">
+            <div>
+              <span class="bg-purple-500 text-purple-950 text-xs font-black px-2.5 py-1 rounded uppercase tracking-wide">
+                Teacher Moderation Tool
+              </span>
+              <h3 class="text-xl font-bold mt-1">Cross-Grade Calibration Matrix: Early Stage 1 (Kindergarten)</h3>
+              <p class="text-xs text-sky-200">
+                Direct evidence comparison across Grade B (Thorough), Grade C (Sound), and Grade D (Basic) against NSW Syllabus Outcomes.
+              </p>
+            </div>
+            <div class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded text-slate-300">
+              Unit: 3D &amp; 2D Spatial Structure &bull; Term 4
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b-2 border-slate-300 bg-slate-100 text-slate-700">
+                <th class="p-3 font-bold uppercase tracking-wider w-1/5">Syllabus Focus &amp; Outcome</th>
+                <th class="p-3 font-bold uppercase tracking-wider w-1/4 text-emerald-900 bg-emerald-50/70 border-x border-emerald-200">
+                  Grade B (Thorough) — Maya
+                </th>
+                <th class="p-3 font-bold uppercase tracking-wider w-1/4 text-blue-900 bg-blue-50/70 border-r border-blue-200">
+                  Grade C (Sound) — Oliver
+                </th>
+                <th class="p-3 font-bold uppercase tracking-wider w-1/4 text-amber-900 bg-amber-50/70">
+                  Grade D (Basic) — Leo
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              
+              <!-- Row 1: 3D Stacking & Structure -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900">
+                  <div class="font-bold text-slate-900">3D Objects &amp; Stacking</div>
+                  <span class="font-mono text-[10px] text-sky-800 bg-sky-100 px-1 py-0.5 rounded">MAE-3DS-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Predicts and justifies stacking based on flat/curved features.</p>
+                </td>
+                <td class="p-3 bg-emerald-50/30 border-x border-emerald-100 align-top">
+                  <span class="inline-block font-bold text-emerald-900 mb-1">Autonomous Reasoning:</span>
+                  Explains that a cylinder can stack <em>or</em> roll depending on orientation. Builds complex stable structure deliberately orienting flat faces.
+                </td>
+                <td class="p-3 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <span class="inline-block font-bold text-blue-900 mb-1">Taught Routine:</span>
+                  Uses flat faces to stack blocks into a tower. Recognizes independently that a sphere rolls off and cannot stack, correcting through trial.
+                </td>
+                <td class="p-3 bg-amber-50/30 align-top">
+                  <span class="inline-block font-bold text-amber-900 mb-1">Guided Execution:</span>
+                  Attempts to balance cylinder on curved surface or point of prism. Requires teacher prompting to identify flat sides that balance.
+                </td>
+              </tr>
+
+              <!-- Row 2: Volume Equivalence -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900">
+                  <div class="font-bold text-slate-900">Comparing Volumes</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAE-3DS-02</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Understands volume as space occupied; deconstructs/rebuilds.</p>
+                </td>
+                <td class="p-3 bg-emerald-50/30 border-x border-emerald-100 align-top">
+                  <span class="inline-block font-bold text-emerald-900 mb-1">Conceptual Conservation:</span>
+                  Articulates that changing the spatial arrangement does not change the amount of space occupied: <em>"Same 10 blocks = same volume."</em>
+                </td>
+                <td class="p-3 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <span class="inline-block font-bold text-blue-900 mb-1">Direct Counting:</span>
+                  Deconstructs tower and rebuilds a train; verifies equal volume by touching and recounting each block (1 to 8).
+                </td>
+                <td class="p-3 bg-amber-50/30 align-top">
+                  <span class="inline-block font-bold text-amber-900 mb-1">Partial Understanding:</span>
+                  Attempts to add extra blocks from tub; requires teacher redirection to conserve the original set of blocks.
+                </td>
+              </tr>
+
+              <!-- Row 3: 2D Shape Tracing -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900">
+                  <div class="font-bold text-slate-900">2D Shape Tracing &amp; Features</div>
+                  <span class="font-mono text-[10px] text-emerald-800 bg-emerald-100 px-1 py-0.5 rounded">MAE-2DS-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Traces 3D faces; identifies lines, curves, corners, and sides.</p>
+                </td>
+                <td class="p-3 bg-emerald-50/30 border-x border-emerald-100 align-top">
+                  <span class="inline-block font-bold text-emerald-900 mb-1">High Precision &amp; Vocabulary:</span>
+                  Traces squares, rectangles, and circles neatly. Accurately links traced 2D shapes back to the solid 3D parent faces with correct terminology.
+                </td>
+                <td class="p-3 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <span class="inline-block font-bold text-blue-900 mb-1">Adequate Competence:</span>
+                  Traces closed shapes with slight wobble; correctly names circle, square, and rectangle. Identifies straight lines versus curves.
+                </td>
+                <td class="p-3 bg-amber-50/30 align-top">
+                  <span class="inline-block font-bold text-amber-900 mb-1">Emergent / Supported:</span>
+                  Struggles to hold block steady; produces open lines or gaps. Confuses shapes (calls square "box") without teacher scaffolding.
+                </td>
+              </tr>
+
+              <!-- Row 4: Area Direct Superimposition -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900">
+                  <div class="font-bold text-slate-900">Area &amp; Superimposition</div>
+                  <span class="font-mono text-[10px] text-amber-800 bg-amber-100 px-1 py-0.5 rounded">MAE-2DS-02</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Compares surface area directly by superimposing shapes.</p>
+                </td>
+                <td class="p-3 bg-emerald-50/30 border-x border-emerald-100 align-top">
+                  <span class="inline-block font-bold text-emerald-900 mb-1">Boundary Overhang Reasoning:</span>
+                  Superimposes shapes aligning corners and edges; explains that the boundary overhang proves the larger surface area.
+                </td>
+                <td class="p-3 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <span class="inline-block font-bold text-blue-900 mb-1">Direct Superimposition:</span>
+                  Places smaller shape on top of larger shape; states the larger shape has more space because edges are still visible.
+                </td>
+                <td class="p-3 bg-amber-50/30 align-top">
+                  <span class="inline-block font-bold text-amber-900 mb-1">Perceptual Guessing:</span>
+                  Selects shape based on colour or orientation; superimposes shapes crookedly without aligning boundaries until guided.
+                </td>
+              </tr>
+
+              <!-- Row 5: Working Mathematically -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900">
+                  <div class="font-bold text-slate-900">Working Mathematically</div>
+                  <span class="font-mono text-[10px] text-purple-800 bg-purple-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Communicates thinking, justifies strategies and spatial relations.</p>
+                </td>
+                <td class="p-3 bg-emerald-50/30 border-x border-emerald-100 align-top">
+                  <span class="inline-block font-bold text-emerald-900 mb-1">Clear, Confident Justification:</span>
+                  Uses precise comparative vocabulary (*"takes up the exact same space"*, *"larger surface area"*). Explores challenge prompt autonomously.
+                </td>
+                <td class="p-3 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <span class="inline-block font-bold text-blue-900 mb-1">Sound Recounting:</span>
+                  Explains thinking clearly using everyday and simple mathematical language (*"bigger"*, *"same blocks"*, *"curved"*).
+                </td>
+                <td class="p-3 bg-amber-50/30 align-top">
+                  <span class="inline-block font-bold text-amber-900 mb-1">Prompted Responses:</span>
+                  Answers with single words or everyday gestures (*"it's big"*, pointing); requires teacher scaffolding to verbalize mathematical thinking.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Teacher Moderation Protocol Guidance -->
+        <div class="p-6 bg-slate-50 border-t border-slate-200">
+          <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wide mb-2">Stage Team Moderation Notes &amp; Best Practice:</h4>
+          <ul class="list-disc list-inside text-xs text-slate-600 space-y-1">
+            <li><strong>Oral Language as Primary Evidence:</strong> In Early Stage 1, student oral dialogue captured in teacher scribing blocks provides the primary evidence of mathematical reasoning, rather than written recordings.</li>
+            <li><strong>Conservation of Volume vs Direct Counting:</strong> Grade B students understand that volume is conserved regardless of shape, whereas Grade C students rely on physically counting cubes to confirm equivalence.</li>
+            <li><strong>Superimposition Technique:</strong> Ensure students physically place shapes directly over one another with aligned edges, rather than solely comparing them side-by-side.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      // Hide all content panels
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.add('hidden'));
+
+      // Reset button styling
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-slate-200', 'text-slate-700', 'border-transparent');
+      });
+
+      // Reveal selected tab content
+      const targetContent = document.getElementById('content-' + tabId);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      // Activate clicked button
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.classList.remove('bg-slate-200', 'text-slate-700', 'border-transparent');
+      }
+    }
+
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      const main = document.querySelector('main');
+      const btnText = document.getElementById('annotationBtnText');
+      
+      annotationsVisible = !annotationsVisible;
+      
+      if (!annotationsVisible) {
+        main.classList.add('hide-annotations');
+        btnText.textContent = "Show Teacher Marks (Moderation Mode)";
+      } else {
+        main.classList.remove('hide-annotations');
+        btnText.textContent = "Hide Teacher Marks (Blind Moderation)";
+      }
+    }
+  </script>
+
+</body>
+</html>
