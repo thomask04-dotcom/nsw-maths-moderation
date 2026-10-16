@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSW Stage 1 Mathematics Moderation Portfolio | School Fun Day Challenge & Time Explorer</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts for Authentic Student Handwriting and Clean UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gochi+Hand&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom handwriting font utility classes */
+    .font-hand-a { font-family: 'Patrick Hand', cursive; }
+    .font-hand-b { font-family: 'Comic Neue', cursive; }
+    .font-hand-c { font-family: 'Schoolbell', cursive; }
+    .font-hand-d { font-family: 'Architects Daughter', cursive; }
+    .font-hand-e { font-family: 'Gochi Hand', cursive; }
+    .font-teacher { font-family: 'Caveat', cursive; }
+    .font-stamp { font-family: 'Permanent Marker', cursive; }
+
+    /* Exercise book paper styling */
+    .exercise-grid {
+      background-color: #fbfbf9;
+      background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+      position: relative;
+    }
+
+    /* Red student margin line */
+    .red-margin {
+      border-left: 2px solid rgba(239, 68, 68, 0.45);
+    }
+
+    /* Sticky post-it note effects */
+    .sticky-note {
+      box-shadow: 2px 4px 10px rgba(0,0,0,0.12), -1px 2px 4px rgba(0,0,0,0.06);
+      transform: rotate(-1.2deg);
+      transition: transform 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+
+    /* Rubber stamp styling */
+    .rubber-stamp {
+      border: 3px solid #dc2626;
+      color: #dc2626;
+      border-radius: 8px;
+      display: inline-block;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transform: rotate(-7deg);
+      opacity: 0.88;
+    }
+    .rubber-stamp-green {
+      border-color: #15803d;
+      color: #15803d;
+      transform: rotate(5deg);
+    }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: white !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- TOP HEADER & NSW CURRICULUM BANNER -->
+  <header class="bg-gradient-to-r from-amber-950 via-slate-900 to-indigo-950 text-white shadow-lg sticky top-0 z-40 border-b-4 border-amber-400 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-amber-400 p-2 rounded-lg text-slate-950 font-black shadow-md flex items-center justify-center">
+          <i data-lucide="timer" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold tracking-widest bg-amber-500/30 text-amber-200 px-2 py-0.5 rounded border border-amber-400/40 uppercase">NSW K–10 Syllabus (2022)</span>
+            <span class="text-xs font-semibold text-amber-300">Stage 1 Part B (Year 2) • Sequence 5</span>
+          </div>
+          <h1 class="text-lg sm:text-xl font-extrabold tracking-tight">NSW Stage 1 Mathematics Moderation Portfolio | School Fun Day Challenge & Time Explorer</h1>
+          <p class="text-xs text-slate-300">Rich Task: <span class="text-amber-200 font-medium">Timed Game Challenge & Calendar Explorer (Non-Spatial Measure & Chance)</span></p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-2">
+        <button id="toggle-annotations-btn" onclick="toggleAnnotations()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-md text-xs font-medium border border-slate-600 flex items-center gap-1.5 transition">
+          <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span id="annotations-status-text">Hide Teacher Marks</span>
+        </button>
+        <button onclick="openModal('rubric-modal')" class="px-3 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-md text-xs font-medium border border-indigo-400 flex items-center gap-1.5 transition shadow">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+          <span>Syllabus & Rubric</span>
+        </button>
+        <button onclick="openModal('task-brief-modal')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-md text-xs font-bold flex items-center gap-1.5 transition shadow">
+          <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
+          <span>Task Brief</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Syllabus Outcomes Strip -->
+    <div class="bg-slate-950/70 border-t border-slate-800 px-4 py-1.5 text-xs">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-slate-300 font-mono">
+        <span class="flex items-center gap-1 text-amber-400 font-semibold"><i data-lucide="target" class="w-3 h-3"></i> Targeted Outcomes:</span>
+        <span title="Working Mathematically"><strong class="text-white">MA1-WM-01:</strong> Working Mathematically</span>
+        <span title="Non-Spatial Measure: Time Duration"><strong class="text-amber-300">MA1-NSM-02:</strong> Calendar durations, seconds, minutes, time remaining</span>
+        <span title="Chance"><strong class="text-sky-300">MA1-CHAN-01:</strong> Likely, unlikely, possible & likelihood comparison</span>
+        <span class="text-slate-400 hidden lg:inline">• Combining seconds into minutes, predicting time remaining, probability shifting under time constraints</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR / GRADE SELECTION TABS -->
+  <div class="bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between overflow-x-auto py-2 gap-2 no-scrollbar">
+        <div class="flex items-center gap-1.5">
+          <!-- Grade A -->
+          <button onclick="switchTab('grade-a')" id="tab-btn-grade-a" class="tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-emerald-600 bg-emerald-50 text-emerald-900 shadow-sm">
+            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">A</span>
+            <span>Grade A <span class="hidden md:inline font-normal text-emerald-700">(Extensive)</span></span>
+          </button>
+          <!-- Grade B -->
+          <button onclick="switchTab('grade-b')" id="tab-btn-grade-b" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs">B</span>
+            <span>Grade B <span class="hidden md:inline font-normal text-slate-500">(Thorough)</span></span>
+          </button>
+          <!-- Grade C -->
+          <button onclick="switchTab('grade-c')" id="tab-btn-grade-c" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs">C</span>
+            <span>Grade C <span class="hidden md:inline font-normal text-slate-500">(Sound)</span></span>
+          </button>
+          <!-- Grade D -->
+          <button onclick="switchTab('grade-d')" id="tab-btn-grade-d" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-orange-600 text-white flex items-center justify-center text-xs">D</span>
+            <span>Grade D <span class="hidden md:inline font-normal text-slate-500">(Basic)</span></span>
+          </button>
+          <!-- Grade E -->
+          <button onclick="switchTab('grade-e')" id="tab-btn-grade-e" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs">E</span>
+            <span>Grade E <span class="hidden md:inline font-normal text-slate-500">(Elementary)</span></span>
+          </button>
+        </div>
+
+        <!-- Comparative Matrix Toggle -->
+        <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-indigo-200 bg-indigo-50 text-indigo-800 hover:bg-indigo-100 whitespace-nowrap">
+          <i data-lucide="columns" class="w-4 h-4 text-indigo-600"></i>
+          <span>Moderation Matrix (All Grades)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN MODERATION WORKSPACE -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
+
+    <!-- ========================================================================= -->
+    <!-- GRADE A: EXTENSIVE ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-a-view" class="tab-content block space-y-6">
+      
+      <div class="bg-emerald-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-emerald-400">
+        <div>
+          <div class="flex items-center gap-2 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-emerald-900 px-2.5 py-0.5 rounded border border-emerald-600">Stage 1 Part B (Year 2)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade A: Extensive Achievement</h2>
+          <p class="text-sm text-emerald-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Readily applies Stage 1 Part B knowledge and skills to <em>new (unfamiliar) situations</em>. Demonstrates depth and conceptual transfer by calculating calendar intervals across months, converting composite seconds to minutes (e.g., 77s = 1 min 17s), evaluating probability shifts along a continuous likelihood scale, and justifying how a 15-second delay alters risk thresholds.
+          </p>
+        </div>
+        <div class="bg-emerald-950/80 px-4 py-3 rounded-lg border border-emerald-700/60 text-center">
+          <div class="text-xs uppercase text-emerald-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Extensive (A)</div>
+          <div class="text-xs text-emerald-300">Depth in New Situations</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-emerald-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-a', 'sample-1')" id="subtab-grade-a-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-sm transition">
+            Sample 1: Aria M. (Puzzle Zone: Multi-Interval Calendar & 77s Composite Time Conversion)
+          </button>
+          <button onclick="switchSubSample('grade-a', 'sample-2')" id="subtab-grade-a-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-emerald-900 border border-emerald-300 hover:bg-emerald-100 transition">
+            Sample 2: Marcus K. (Sports Arena: Dual Calendar Jumps & Chance Continuum Analysis)
+          </button>
+        </div>
+        <span class="text-xs text-emerald-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (ARIA M.) -->
+      <div id="grade-a-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">CLASS WORK • YEAR 2</span>
+              <span>Aria M. • Extensive Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-a text-2xl font-bold text-slate-900">School Fun Day: Puzzle Zone Challenge</h3>
+                    <p class="font-hand-a text-base text-slate-600">Aria M. (Year 2)</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">
+                    OUTSTANDING DEPTH!
+                  </div>
+                </div>
+
+                <!-- Step 1: Calendar Calculation -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Calendar Duration (Today: 20 Oct 2026 ➔ Event: 12 March 2027)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Multi-month jump reasoning!</span>
+                  </div>
+                  <div class="font-hand-a text-lg text-slate-800 space-y-1">
+                    <p>• Full months jump: Nov, Dec, Jan, Feb = <strong>4 full months</strong>.</p>
+                    <p>• Days remaining in Oct: 31 - 20 = 11 days (1 week and 4 days).</p>
+                    <p>• Days in March: 12 days (1 week and 5 days).</p>
+                    <p>• Total extra days: 11 + 12 = 23 days = <strong>3 weeks and 2 days</strong>.</p>
+                  </div>
+                  <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-200 font-hand-a text-lg text-slate-900 space-y-1">
+                    <p><strong>Total Duration: 4 months, 3 weeks and 2 days (or exactly 20 weeks and 3 days).</strong></p>
+                    <p class="text-emerald-950">
+                      "I used landmark months first because counting 143 single days on a calendar takes too long and makes errors likely!"
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 2: Timed Game Challenge & Stopwatch Measurements -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Timed Game Challenge (iPad Stopwatch Trials)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Standard unit conversion</span>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="p-3 bg-slate-50 rounded border border-slate-300">
+                      <div class="font-bold text-xs uppercase text-slate-600">Task 1: Tangram Cat Puzzle</div>
+                      <div class="font-mono text-lg font-bold text-emerald-700 mt-1">00:42.00 (42 seconds)</div>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded border border-slate-300">
+                      <div class="font-bold text-xs uppercase text-slate-600">Task 2: Mirror Maze Run</div>
+                      <div class="font-mono text-lg font-bold text-emerald-700 mt-1">00:35.00 (35 seconds)</div>
+                    </div>
+                  </div>
+
+                  <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-200 font-hand-a text-lg text-slate-900 space-y-1">
+                    <p><strong>Combined Time: 42s + 35s = 77 seconds = 1 minute and 17 seconds.</strong></p>
+                    <p>
+                      "I partitioned 77 into 60 seconds (1 whole minute) and 17 seconds. I set our game booth time limit to <strong>90 seconds (1 minute 30 seconds)</strong>. This gives players a 13-second buffer to fix mistakes."
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 3: Chance Prediction -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. Chance Prediction Under 90s Time Limit</h4>
+                  <div class="space-y-1 font-hand-a text-base text-slate-800">
+                    <p>• <strong>Task 1 alone (42s):</strong> <span class="bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-bold">Likely</span> (Plenty of time compared to 90s).</p>
+                    <p>• <strong>Both Tasks combined (77s):</strong> <span class="bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-bold">Likely</span> (77s is 13 seconds faster than 90s).</p>
+                    <p>• <strong>Completing both in under 30s:</strong> <span class="bg-rose-100 text-rose-900 px-2 py-0.5 rounded font-bold">Impossible</span> (The fastest single task is 35s).</p>
+                  </div>
+                </div>
+
+                <!-- Step 4: Challenge Prompt (15s Sudden Delay) -->
+                <div class="bg-emerald-50/80 p-4 rounded-xl border border-emerald-300 shadow-sm space-y-2">
+                  <span class="bg-emerald-700 text-white font-bold text-xs px-2 py-0.5 rounded">CHALLENGE PROMPT: 15-SECOND TIME CUT</span>
+                  <div class="font-hand-a text-lg text-slate-900 space-y-1">
+                    <p><strong>New Time Limit: 90s - 15s = 75 seconds (1 min 15s).</strong></p>
+                    <p>
+                      "Our combined trial time is <strong>77 seconds</strong>. Because 77s is greater than 75s, winning our booth game is now <strong>UNLIKELY</strong>! Players must beat their personal best by 2 whole seconds without a single hesitation."
+                    </p>
+                    <p class="font-bold text-emerald-950">
+                      Chance Shift: From 'Likely' (13s buffer) ➔ 'Unlikely' (2s deficit).
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Moderation Details -->
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade A Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-emerald-600">A</span>
+              </div>
+
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Non-Spatial Measure: Time Duration (MA1-NSM-02)
+                  </div>
+                  <p>
+                    <strong>Extensive:</strong> Readily applies understanding to new situations. Calculates multi-month calendar durations by chunking whole months and remaining days. Converts compound seconds into standard units (77s = 1 min 17s) fluently. Predicts time remaining and mathematically models the impact of a 15-second deduction (90s - 15s = 75s).
+                  </p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Chance (MA1-CHAN-01) & Working Mathematically (MA1-WM-01)
+                  </div>
+                  <p>
+                    <strong>Extensive:</strong> Justifies probability shifts using rigorous numerical reasoning. Articulates why the outcome transitions from <em>likely</em> to <em>unlikely</em> because the required time (77s) exceeds the newly constrained duration (75s). Demonstrates depth within Stage 1 Part B without needing formal percentages or Stage 3 fraction probabilities.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-emerald-50/70 p-3 rounded-lg border border-emerald-200 text-xs">
+                <strong class="text-emerald-950">Depth, Not Acceleration:</strong>
+                <p class="text-emerald-900 mt-1">
+                  Aria demonstrates depth through proportional risk evaluation and multi-unit conversions (seconds to minutes) without being accelerated into formal 24-hour time or theoretical fraction formulas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (MARCUS K.) -->
+      <div id="grade-a-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">ASSESSMENT RECORD • YEAR 2</span>
+              <span>Marcus K. • Extensive Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-a text-2xl font-bold text-slate-900">Marcus's Sports Arena Booth</h3>
+                    <p class="font-hand-a text-base text-slate-600">Chance Continuum & Benchmark Stopwatch Analysis</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">
+                    VERY HIGH COMPETENCE
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Calendar Duration Jump</h4>
+                  <p class="font-hand-a text-base text-slate-800">
+                    Event Date: 20 November 2026 (From 23 October 2026).<br>
+                    "I jumped 4 full weeks on the calendar to 20 November. 4 weeks = 28 days. But 23 to 20 is 3 days earlier, so 28 - 3 = <strong>25 days (or 3 weeks and 4 days)</strong>."
+                  </p>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Timed Tasks & Chance Continuum</h4>
+                  <p class="font-hand-a text-base text-slate-800">
+                    Task A: 5 Basketball Free Throws = 28 seconds.<br>
+                    Task B: Agility Cone Dribble = 34 seconds.<br>
+                    Total Time = 28s + 34s = <strong>62 seconds (1 minute 2 seconds)</strong>.<br>
+                    Allowed Limit Set: <strong>70 seconds</strong>.
+                  </p>
+                  <!-- SVG Chance Continuum -->
+                  <svg width="100%" height="80" viewBox="0 0 380 80" class="bg-slate-50 rounded border border-slate-300">
+                    <line x1="30" y1="45" x2="350" y2="45" stroke="#334155" stroke-width="2.5" />
+                    <!-- Impossible -->
+                    <circle cx="30" cy="45" r="4" fill="#dc2626" />
+                    <text x="15" y="65" class="text-[10px] font-bold fill-slate-700">Impossible</text>
+                    <!-- Unlikely -->
+                    <circle cx="110" cy="45" r="4" fill="#ea580c" />
+                    <text x="95" y="65" class="text-[10px] font-bold fill-slate-700">Unlikely</text>
+                    <!-- Marker for 55s cut -->
+                    <line x1="125" y1="20" x2="125" y2="45" stroke="#ea580c" stroke-width="2" />
+                    <text x="105" y="16" class="text-[10px] font-bold fill-rose-700 font-mono">55s Limit</text>
+                    <!-- Possible / Even -->
+                    <circle cx="190" cy="45" r="4" fill="#ca8a04" />
+                    <text x="175" y="65" class="text-[10px] font-bold fill-slate-700">Possible</text>
+                    <!-- Likely -->
+                    <circle cx="270" cy="45" r="4" fill="#16a34a" />
+                    <text x="258" y="65" class="text-[10px] font-bold fill-slate-700">Likely</text>
+                    <!-- Marker for 70s limit -->
+                    <line x1="285" y1="20" x2="285" y2="45" stroke="#16a34a" stroke-width="2" />
+                    <text x="265" y="16" class="text-[10px] font-bold fill-emerald-800 font-mono">70s Limit</text>
+                    <!-- Certain -->
+                    <circle cx="350" cy="45" r="4" fill="#0284c7" />
+                    <text x="330" y="65" class="text-[10px] font-bold fill-slate-700">Certain</text>
+                  </svg>
+                  <p class="font-hand-a text-base text-slate-800">
+                    "At 70s, completion is <strong>Likely</strong> (plenty of time). If cut by 15s, new limit is <strong>55 seconds</strong>. Because 62s > 55s, it drops to <strong>Unlikely</strong> on the continuum."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade A (Marcus K.)</h3>
+                </div>
+                <span class="text-3xl font-black text-emerald-600">A</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Extensive:</strong> Uses compensation on calendar duration (4 weeks minus 3 days) and maps likelihood shifts along a visual chance continuum. Evaluates how changing time intervals directly affects probability.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE B: THOROUGH ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-b-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-sky-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-sky-400">
+        <div>
+          <div class="flex items-center gap-2 text-sky-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-sky-900 px-2.5 py-0.5 rounded border border-sky-600">Stage 1 Part B (Year 2)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade B: Thorough Achievement</h2>
+          <p class="text-sm text-sky-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Thorough knowledge and understanding; high level of competence. Applies knowledge and skills to <em>most familiar situations</em>. Confidently counts calendar intervals in weeks and days, times trials accurately with a digital stopwatch, adds two-digit seconds, and explains completion likelihood with clear mathematical justifications.
+          </p>
+        </div>
+        <div class="bg-sky-950/80 px-4 py-3 rounded-lg border border-sky-700/60 text-center">
+          <div class="text-xs uppercase text-sky-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Thorough (B)</div>
+          <div class="text-xs text-sky-300">High Competence</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-sky-50/80 p-2.5 rounded-xl border border-sky-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-sky-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-b', 'sample-1')" id="subtab-grade-b-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-700 text-white shadow-sm transition">
+            Sample 1: Benjamin T. (Sports Arena: Structured Stopwatch Timing & 55s Calculation)
+          </button>
+          <button onclick="switchSubSample('grade-b', 'sample-2')" id="subtab-grade-b-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-sky-900 border border-sky-300 hover:bg-sky-100 transition">
+            Sample 2: Sophie L. (Art Studio: 10 Smiley Faces & 90s Duration Conversion)
+          </button>
+        </div>
+        <span class="text-xs text-sky-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (BENJAMIN T.) -->
+      <div id="grade-b-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-sky-100/70 border-b border-sky-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Benjamin T. • Thorough Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-b text-2xl font-bold text-slate-900">Benjamin's Hoop Challenge Booth</h3>
+                    <p class="font-hand-b text-base text-slate-600">Sports Theme</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    VERY THOROUGH
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Calendar Count to Fun Day (27 November 2026)</h4>
+                  <p class="font-hand-b text-base text-slate-800">
+                    Today is 30 October. I counted on the calendar:<br>
+                    • October has 1 day left.<br>
+                    • November has 27 days until our event.<br>
+                    • Total: 1 + 27 = <strong>28 days</strong> = <strong>4 full weeks</strong>.
+                  </p>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Timed Trials & Game Duration</h4>
+                  <p class="font-hand-b text-base text-slate-800">
+                    Task 1 (Shoot 5 Hoops): 30 seconds.<br>
+                    Task 2 (Bounce & Catch 10 times): 25 seconds.<br>
+                    <strong>Combined Time: 30s + 25s = 55 seconds.</strong><br>
+                    Allowed Time Limit: <strong>60 seconds (1 minute)</strong>.
+                  </p>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. Likelihood & 15-Second Delay</h4>
+                  <p class="font-hand-b text-base text-slate-800">
+                    "Under 60 seconds, winning is <strong>Likely</strong> because 55s is less than 60s.<br>
+                    Challenge Delay: 60s - 15s = <strong>45 seconds</strong>.<br>
+                    Now winning is <strong>Unlikely</strong> because 55 seconds is 10 seconds more than 45 seconds. You don't have enough time."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade B Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-sky-600">B</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Thorough:</strong> High level of competence in familiar situations. Fluent calendar calculation converting 28 days to 4 full weeks. Accurate addition of two-digit seconds ($30 + 25 = 55s$) and sound relational explanation connecting the 15-second deduction ($60 - 15 = 45s$) to an outcome shift from <em>likely</em> to <em>unlikely</em>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (SOPHIE L.) -->
+      <div id="grade-b-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-sky-100/70 border-b border-sky-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Sophie L. • Thorough Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-b text-2xl font-bold text-slate-900">Sophie's Art Studio Challenge</h3>
+                    <p class="font-hand-b text-base text-slate-600">Drawing Speed Booth</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    VERY THOROUGH
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Timed Tasks & Total</h4>
+                  <p class="font-hand-b text-base text-slate-800">
+                    Task 1 (Draw 10 Smiley Faces): 50 seconds.<br>
+                    Task 2 (Colour a Rainbow Banner): 40 seconds.<br>
+                    <strong>Total Duration: 50s + 40s = 90 seconds (1 minute and 30 seconds).</strong><br>
+                    Booth Time Limit: <strong>100 seconds</strong>.
+                  </p>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Chance & 15-Second Cut</h4>
+                  <p class="font-hand-b text-base text-slate-800">
+                    "At 100 seconds, finishing is <strong>Likely</strong> (we have 10 seconds remaining).<br>
+                    If cut by 15s: 100 - 15 = <strong>85 seconds</strong>.<br>
+                    Because 90s is more than 85s, winning is now <strong>Unlikely</strong>. Players will run out of time on Task 2."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade B (Sophie L.)</h3>
+                </div>
+                <span class="text-3xl font-black text-sky-600">B</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Thorough:</strong> High competence in familiar situations. Correctly converts 90 seconds to 1 minute 30 seconds, demonstrates accurate two-digit subtraction ($100 - 15 = 85s$), and clearly justifies why finishing becomes unlikely.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE C: SOUND ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-c-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-amber-400">
+        <div>
+          <div class="flex items-center gap-2 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-amber-900 px-2.5 py-0.5 rounded border border-amber-600">Stage 1 Part B (Year 2)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade C: Sound Achievement</h2>
+          <p class="text-sm text-amber-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Demonstrates knowledge and skills in <em>familiar situations</em>. Demonstrates calculating calendar intervals in weeks and days, measuring trial durations using an iPad stopwatch, and categorising outcomes as likely, unlikely, or possible using taught classroom routines with an <strong>adequate level of competence</strong>.
+          </p>
+        </div>
+        <div class="bg-amber-950/80 px-4 py-3 rounded-lg border border-amber-700/60 text-center">
+          <div class="text-xs uppercase text-amber-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Sound (C)</div>
+          <div class="text-xs text-amber-300">Adequate Competence</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-amber-50/80 p-2.5 rounded-xl border border-amber-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-amber-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-c', 'sample-1')" id="subtab-grade-c-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-700 text-white shadow-sm transition">
+            Sample 1: Chloe S. (Taught Calendar Counting & 90-Second Stopwatch Recording)
+          </button>
+          <button onclick="switchSubSample('grade-c', 'sample-2')" id="subtab-grade-c-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-amber-900 border border-amber-300 hover:bg-amber-100 transition">
+            Sample 2: Liam P. (Oral Scribing Record & Stop-Watch Duration Addition)
+          </button>
+        </div>
+        <span class="text-xs text-amber-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (CHLOE S.) -->
+      <div id="grade-c-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">CLASS WORK • YEAR 2</span>
+              <span>Chloe S. • Sound Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Chloe's Puzzle Game Booth</h3>
+                    <p class="font-hand-c text-base text-slate-600">Puzzle Zone</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    SATISFACTORY WORK
+                  </div>
+                </div>
+
+                <!-- Calendar Section -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Calendar Duration</h4>
+                  <p class="font-hand-c text-base text-slate-800">
+                    I counted on the classroom calendar from today until 20 November:<br>
+                    I counted 3 weeks and 4 days. That is 25 days.
+                  </p>
+                </div>
+
+                <!-- Timing Section -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Timed Game (Stopwatch)</h4>
+                  <p class="font-hand-c text-base text-slate-800">
+                    Task 1 (Puzzle): 60 seconds (1 minute).<br>
+                    Task 2 (Match Cards): 30 seconds.<br>
+                    60 + 30 = <strong>90 seconds</strong> altogether.<br>
+                    I made the time limit <strong>100 seconds</strong>.
+                  </p>
+                </div>
+
+                <!-- Chance Section -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. Likelihood & Delay</h4>
+                  <p class="font-hand-c text-base text-slate-800">
+                    "At 100 seconds, winning is <strong>likely</strong> because we have 10 seconds left.<br>
+                    If the teacher cuts 15 seconds: 100 take away 15 is 85 seconds. Now it is <strong>unlikely</strong> to finish because 85 is less than 90."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade C Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-amber-600">C</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <p>
+                  <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations. Demonstrates calculating calendar durations in weeks and days using taught routines, measures trial durations accurately using seconds and minutes ($60 + 30 = 90s$), and classifies event likelihood correctly with adequate accuracy.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (LIAM P.) -->
+      <div id="grade-c-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Liam P. • Sound Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Liam's Sports Booth</h3>
+                    <p class="font-hand-c text-base text-slate-600">Sports Challenge</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                    SOUND ATTAINMENT
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Stopwatch Recording</h4>
+                  <p class="font-hand-c text-base text-slate-800">
+                    Task 1 (5 Hoops): 40 seconds.<br>
+                    Task 2 (Star Jumps): 30 seconds.<br>
+                    Total: 40 + 30 = <strong>70 seconds</strong>.<br>
+                    Time limit: 80 seconds.
+                  </p>
+                </div>
+
+                <div class="sticky-note bg-amber-100 p-4 rounded-xl border border-amber-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-amber-800"></i> Teacher Scribing of Oral Explanation:
+                  </div>
+                  <p class="font-teacher text-base text-slate-800 leading-snug">
+                    "When asked what happens if the time limit is cut by 15 seconds, Liam said: '80 take away 15 is 65. Our game takes 70 seconds. So it is unlikely we can finish because we need 5 more seconds.' Liam demonstrated taught routines with an adequate level of competence."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade C (Liam P.)</h3>
+                </div>
+                <span class="text-3xl font-black text-amber-600">C</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations. Operates digital timing devices accurately, calculates combined time ($40 + 30 = 70s$), and demonstrates that losing 15 seconds makes completion unlikely under direct verbal questioning.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE D: BASIC ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-d-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-orange-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-orange-400">
+        <div>
+          <div class="flex items-center gap-2 text-orange-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-orange-900 px-2.5 py-0.5 rounded border border-orange-600">Stage 1 Part B (Year 2)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade D: Basic Achievement</h2>
+          <p class="text-sm text-orange-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Basic knowledge and understanding; limited competence. Requires teacher prompting and scaffolding; displays partial execution (e.g. confuses seconds with minutes, miscounts calendar days across month boundaries, or treats chance as personal preference rather than time duration).
+          </p>
+        </div>
+        <div class="bg-orange-950/80 px-4 py-3 rounded-lg border border-orange-700/60 text-center">
+          <div class="text-xs uppercase text-orange-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Basic (D)</div>
+          <div class="text-xs text-orange-300">Requires Scaffolding</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-orange-50/80 p-2.5 rounded-xl border border-orange-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-orange-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-d', 'sample-1')" id="subtab-grade-d-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-orange-700 text-white shadow-sm transition">
+            Sample 1: Daniel K. (Unit Confusion: Seconds vs Minutes & Calendar Errors)
+          </button>
+          <button onclick="switchSubSample('grade-d', 'sample-2')" id="subtab-grade-d-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-orange-900 border border-orange-300 hover:bg-orange-100 transition">
+            Sample 2: Mia B. (Subjective Chance Guessing & Finger Counting)
+          </button>
+        </div>
+        <span class="text-xs text-orange-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (DANIEL K.) -->
+      <div id="grade-d-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-orange-100/70 border-b border-orange-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Daniel K. • Basic Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-d text-2xl font-bold text-slate-900">Dan's Art Booth</h3>
+                    <p class="font-hand-d text-base text-slate-600">Dan</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-amber-700 border-amber-700">
+                    NEEDS PROMPTING
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Timed Tasks (Unit Confusion)</h4>
+                  <p class="font-hand-d text-base text-slate-800 line-through text-rose-500">
+                    Task 1 took 45 minutes to draw 10 faces.
+                  </p>
+                  <div class="teacher-mark font-teacher text-base text-rose-600 bg-rose-50 p-2 rounded border border-rose-200">
+                    ✎ <em>Teacher prompt: Look closely at your stopwatch! That says 45 seconds, not 45 minutes! Let's fix our unit label.</em>
+                  </div>
+                  <p class="font-hand-d text-base text-slate-800">
+                    Task 1 = 45 seconds.<br>
+                    Task 2 = 30 seconds.<br>
+                    Total: 45 + 30 = 75 seconds.
+                  </p>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Delay Prompt</h4>
+                  <p class="font-hand-d text-base text-slate-800">
+                    "If we lose 15 seconds, we can't play anymore because the timer is broken."
+                  </p>
+                  <div class="teacher-mark font-teacher text-base text-rose-600">
+                    ✎ <em>Teacher prompt: The timer isn't broken, it just gives you less time! Does that make winning easier or harder?</em>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade D Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-orange-600">D</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Basic:</strong> Limited competence. Confuses standard units of duration (seconds vs minutes); struggles to evaluate how a 15-second time deduction impacts probability without direct teacher intervention.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (MIA B.) -->
+      <div id="grade-d-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-orange-100/70 border-b border-orange-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Mia B. • Basic Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-d text-2xl font-bold text-slate-900">Mia's Puzzle Booth</h3>
+                    <p class="font-hand-d text-base text-slate-600">Mia</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-amber-700 border-amber-700">
+                    SCAFFOLDED
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Calendar Duration</h4>
+                  <p class="font-hand-d text-base text-slate-800">
+                    I counted each day by pointing my pencil: 1, 2, 3, 4, 5, 6, 7, 8... I got lost when turning to November and guessed 40 days.
+                  </p>
+                </div>
+
+                <div class="sticky-note bg-amber-100 p-4 rounded-xl border border-amber-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="help-circle" class="w-4 h-4 text-orange-600"></i> Teacher Prompting Log:
+                  </div>
+                  <p class="font-teacher text-base text-slate-800 leading-snug">
+                    "Mia needed step-by-step scaffolding to group calendar days into 7-day weeks. When asked if completing her game was likely, she said 'Yes because I like puzzles'. Requires guidance to connect chance to elapsed time."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade D (Mia B.)</h3>
+                </div>
+                <span class="text-3xl font-black text-orange-600">D</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Basic:</strong> Limited competence. Relies on counting single calendar squares; confuses subjective feelings ("I like puzzles") with mathematical likelihood. Needs continuous prompting.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE E: ELEMENTARY ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-e-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-rose-900 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-rose-400">
+        <div>
+          <div class="flex items-center gap-2 text-rose-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-rose-950 px-2.5 py-0.5 rounded border border-rose-700">Stage 1 Part B (Year 2)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade E: Elementary Achievement</h2>
+          <p class="text-sm text-rose-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Demonstrates <em>elementary knowledge in few areas</em> of the content. Achieved very limited competence; requires <strong>substantial direct 1:1 teacher support</strong>; unable to read digital stopwatches or relate calendar time to chance events.
+          </p>
+        </div>
+        <div class="bg-rose-950/80 px-4 py-3 rounded-lg border border-rose-700/60 text-center">
+          <div class="text-xs uppercase text-rose-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Elementary (E)</div>
+          <div class="text-xs text-rose-300">Substantial Support</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-rose-50/80 p-2.5 rounded-xl border border-rose-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-rose-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-e', 'sample-1')" id="subtab-grade-e-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-700 text-white shadow-sm transition">
+            Sample 1: Eli W. (SLSO Running Record with Stopwatch Device)
+          </button>
+          <button onclick="switchSubSample('grade-e', 'sample-2')" id="subtab-grade-e-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-rose-900 border border-rose-300 hover:bg-rose-100 transition">
+            Sample 2: Noah J. (Non-mathematical Drawings & Random Numbers)
+          </button>
+        </div>
+        <span class="text-xs text-rose-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (ELI W.) -->
+      <div id="grade-e-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-rose-100/70 border-b border-rose-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Eli W. • Elementary Running Record</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-e text-2xl font-bold text-slate-900">Eli's Booth Observation</h3>
+                    <p class="text-xs text-slate-500 font-mono">Observed & Scribed by Learning Support Teacher</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-rose-700 border-rose-700">
+                    SUBSTANTIAL 1:1 SUPPORT
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Teacher Anecdotal Observation</h4>
+                  <p class="font-teacher text-lg text-slate-900 leading-snug">
+                    "Eli was provided with an iPad stopwatch. When running, he watched the numbers flicker and stated 'A hundred minutes!'. He could not distinguish milliseconds from seconds. On the calendar, Eli pointed to numbers randomly. When asked if he could complete a task in 5 seconds, he nodded without understanding the duration. Required continuous 1:1 adult direction."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade E Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-rose-600">E</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Elementary:</strong> Very limited competence. Unable to read digital time displays, calculate elapsed duration, or understand the concept of chance outcomes even with substantial 1:1 support.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (NOAH J.) -->
+      <div id="grade-e-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-rose-100/70 border-b border-rose-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span>Noah J. • Elementary Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-e text-2xl font-bold text-slate-900">Noah's Game Drawing</h3>
+                    <p class="font-hand-e text-base text-slate-600">Noah</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-rose-700 border-rose-700">
+                    SUBSTANTIAL 1:1 SUPPORT
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Student Artifact</h4>
+                  <p class="font-hand-e text-base text-slate-800">
+                    Noah drew pictures of clocks and wrote "100 hours" and "0 seconds".
+                  </p>
+                  <p class="font-teacher text-base text-slate-800 mt-2">
+                    "Noah could not explain how long his game would take and stated that everything is 'lucky'. Could not access the timing or chance task independently."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade E (Noah J.)</h3>
+                </div>
+                <span class="text-3xl font-black text-rose-600">E</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Elementary:</strong> Demonstrates elementary knowledge in few areas. Cannot relate time numbers to real duration or express chance concepts beyond isolated words.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- COMPARATIVE MODERATION MATRIX (ALL 5 GRADES) -->
+    <!-- ========================================================================= -->
+    <div id="matrix-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-indigo-950 text-white rounded-xl p-5 shadow-lg flex flex-wrap items-center justify-between gap-4 border-l-8 border-indigo-400">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-300 bg-indigo-900/60 px-2 py-0.5 rounded border border-indigo-700">NESA K–10 Common Grade Scale</span>
+          <h2 class="text-2xl font-black mt-1">Stage 1 Mathematics Moderation Matrix</h2>
+          <p class="text-sm text-indigo-200 max-w-3xl mt-1">
+            Comparative analysis of student performance across all 5 grade levels for <em>The School Fun Day Challenge & Time Explorer</em> (Stage 1 Part B / Year 2).
+          </p>
+        </div>
+        <button onclick="window.print()" class="px-3 py-2 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold flex items-center gap-2 transition shadow">
+          <i data-lucide="printer" class="w-4 h-4"></i> Print Moderation Sheet
+        </button>
+      </div>
+
+      <!-- Comparative Table -->
+      <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse min-w-[900px]">
+          <thead>
+            <tr class="bg-slate-900 text-white border-b-2 border-slate-800">
+              <th class="p-3 font-bold w-44">Syllabus Focus Area</th>
+              <th class="p-3 font-bold bg-emerald-950/80 text-emerald-300 w-1/5 border-l border-slate-800">Grade A (Extensive)</th>
+              <th class="p-3 font-bold bg-sky-950/80 text-sky-300 w-1/5 border-l border-slate-800">Grade B (Thorough)</th>
+              <th class="p-3 font-bold bg-amber-950/80 text-amber-300 w-1/5 border-l border-slate-800">Grade C (Sound)</th>
+              <th class="p-3 font-bold bg-orange-950/80 text-orange-300 w-1/5 border-l border-slate-800">Grade D (Basic)</th>
+              <th class="p-3 font-bold bg-rose-950/80 text-rose-300 w-1/5 border-l border-slate-800">Grade E (Elementary)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Time Duration & Calendars</div>
+                <div class="text-[11px] text-slate-500 font-mono">MA1-NSM-02</div>
+              </td>
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+                Autonomously calculates multi-month intervals (4 months, 3 weeks, 2 days). Converts combined seconds into minutes/seconds fluently (77s = 1 min 17s).
+              </td>
+              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+                Calculates calendar intervals in weeks and days accurately. Combines two-digit seconds and converts to standard units ($50s + 40s = 90s = 1\text{ min }30s$).
+              </td>
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+                Demonstrates calculating calendar durations using taught counting routines. Times trials with stopwatches and combines seconds ($60 + 30 = 90s$) with adequate competence.
+              </td>
+              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+                Confuses seconds and minutes (records 45 minutes for drawing). Miscounts calendar days across month boundaries. Requires teacher prompts.
+              </td>
+              <td class="p-3 bg-rose-50/30 border-l border-slate-200">
+                Cannot read digital stopwatches or understand time duration. Points randomly to calendar dates. Requires continuous 1:1 adult support.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Chance & Likelihood Shifts</div>
+                <div class="text-[11px] text-slate-500 font-mono">MA1-CHAN-01</div>
+              </td>
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+                Flawlessly justifies how a 15s deduction alters likelihood from 'Likely' to 'Unlikely' by comparing 77s required against 75s allowed. Maps onto chance continuum.
+              </td>
+              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+                Applies likelihood terms (likely, unlikely, possible) accurately. Explains that a 15-second cut ($60 - 15 = 45s$) leaves insufficient time for a 55s task.
+              </td>
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+                Demonstrates categorising game outcomes as likely or unlikely based on time remaining ($100 - 15 = 85s$, so $90s$ is unlikely). Adequate accuracy.
+              </td>
+              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+                Struggles to connect chance to elapsed time. Relies on subjective feelings ("I like puzzles, so I will win"). Requires prompting.
+              </td>
+              <td class="p-3 bg-rose-50/30 border-l border-slate-200">
+                Cannot evaluate probability. Describes all outcomes as 'lucky' without connecting to game rules or timing.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Working Mathematically</div>
+                <div class="text-[11px] text-slate-500 font-mono">MA1-WM-01</div>
+              </td>
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+                <strong>Extensive:</strong> Readily applies understanding to new situations. Coherent mathematical justifications using precise vocabulary (<em>duration, interval, buffer, deficit, continuum</em>). Depth within Stage 1.
+              </td>
+              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+                <strong>Thorough:</strong> High competence in familiar situations. Clearly explains thinking using appropriate syllabus vocabulary.
+              </td>
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+                <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations using taught routines. Simple oral explanations when prompted. Adequate competence.
+              </td>
+              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+                <strong>Basic:</strong> Limited competence. Relies on heavy teacher questioning and prompting to complete familiar tasks. Everyday language used.
+              </td>
+              <td class="p-3 bg-rose-50/30 border-l border-slate-200">
+                <strong>Elementary:</strong> Very limited competence. Expresses isolated ideas through gestures only with continuous 1:1 adult support.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODALS -->
+  <div id="task-brief-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">Assessment Task Brief (Sequence 5)</h3>
+        <button onclick="closeModal('task-brief-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+        <div class="p-3 bg-amber-50 rounded-lg border border-amber-200">
+          <h4 class="font-bold text-amber-900 mb-1">Context: School Fun Day Challenge & Time Explorer</h4>
+          <p>Design a Timed Game Challenge for the School Fun Day (Sports Arena, Art Studio, or Puzzle Zone).</p>
+        </div>
+        <ol class="list-decimal list-inside space-y-1.5 text-slate-700">
+          <li><strong>Calendar Planning:</strong> Count months, weeks, and days until the 2027 Fun Day event.</li>
+          <li><strong>Timed Game Challenge:</strong> Choose 2 tasks, time them in seconds/minutes with an iPad stopwatch, and calculate the combined total.</li>
+          <li><strong>Set Time Limit:</strong> Set an allowed time limit and justify why.</li>
+          <li><strong>Chance Prediction:</strong> Tag the completion likelihood as likely, unlikely, or possible.</li>
+          <li><strong>Challenge Prompt:</strong> Explain how a sudden 15-second time cut alters the likelihood of players winning your game!</li>
+        </ol>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('task-brief-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="rubric-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">NESA Common Grade Scale & Stage 1 Rubric</h3>
+        <button onclick="closeModal('rubric-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-700">
+        <div class="p-3 bg-amber-50 rounded border border-amber-300">
+          <strong>Key NESA Rubric Principle: Depth, Not Acceleration</strong>
+          <p class="mt-1">Grade A reflects applying Stage 1 content readily to new situations. It does not require content from Stage 2.</p>
+        </div>
+        <div class="p-2 rounded bg-amber-50 border border-amber-200">
+          <strong>Grade C (Sound):</strong> Demonstrates knowledge and understanding of the main areas of content; adequate level of competence in familiar situations using taught routines.
+        </div>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('rubric-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-emerald-600', 'bg-emerald-50', 'text-emerald-900', 'border-sky-600', 'bg-sky-50', 'text-sky-900', 'border-amber-500', 'bg-amber-50', 'text-amber-900', 'border-orange-600', 'bg-orange-50', 'text-orange-900', 'border-rose-600', 'bg-rose-50', 'text-rose-900', 'border-indigo-600', 'bg-indigo-100'));
+      const target = document.getElementById(`${tabId}-view`);
+      if (target) target.classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'border-2');
+        if (tabId === 'grade-a') activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900');
+        if (tabId === 'grade-b') activeBtn.classList.add('border-sky-600', 'bg-sky-50', 'text-sky-900');
+        if (tabId === 'grade-c') activeBtn.classList.add('border-amber-500', 'bg-amber-50', 'text-amber-900');
+        if (tabId === 'grade-d') activeBtn.classList.add('border-orange-600', 'bg-orange-50', 'text-orange-900');
+        if (tabId === 'grade-e') activeBtn.classList.add('border-rose-600', 'bg-rose-50', 'text-rose-900');
+        if (tabId === 'matrix') activeBtn.classList.add('border-indigo-600', 'bg-indigo-100', 'text-indigo-950');
+      }
+      lucide.createIcons();
+    }
+    function switchSubSample(gradeId, sampleId) {
+      const container = document.getElementById(`${gradeId}-view`);
+      if (!container) return;
+      container.querySelectorAll('.subsample-content').forEach(s => s.classList.add('hidden'));
+      const target = document.getElementById(`${gradeId}-${sampleId}`);
+      if (target) target.classList.remove('hidden');
+      container.querySelectorAll('.subtab-btn').forEach(b => {
+        b.classList.remove('active', 'bg-emerald-700', 'bg-sky-700', 'bg-amber-700', 'bg-orange-700', 'bg-rose-700', 'text-white');
+        b.classList.add('bg-white');
+      });
+      const activeSubBtn = document.getElementById(`subtab-${gradeId}-${sampleId}`);
+      if (activeSubBtn) {
+        activeSubBtn.classList.add('active', 'text-white');
+        if (gradeId === 'grade-a') activeSubBtn.classList.add('bg-emerald-700');
+        if (gradeId === 'grade-b') activeSubBtn.classList.add('bg-sky-700');
+        if (gradeId === 'grade-c') activeSubBtn.classList.add('bg-amber-700');
+        if (gradeId === 'grade-d') activeSubBtn.classList.add('bg-orange-700');
+        if (gradeId === 'grade-e') activeSubBtn.classList.add('bg-rose-700');
+      }
+      lucide.createIcons();
+    }
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      annotationsVisible = !annotationsVisible;
+      document.querySelectorAll('.teacher-mark').forEach(m => m.style.display = annotationsVisible ? '' : 'none');
+      document.getElementById('annotations-status-text').textContent = annotationsVisible ? 'Hide Teacher Marks' : 'Show Teacher Marks';
+    }
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+  </script>
+</body>
+</html>
