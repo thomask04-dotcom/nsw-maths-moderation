@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Number Scramble: Order of Operations | NSW Stage 3 Mathematics Moderation Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts for authentic student handwriting, teacher annotations, and monospace equations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gaegu:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            student: ['"Patrick Hand"', 'cursive'],
+            studentYoung: ['Gaegu', 'cursive'],
+            teacher: ['Caveat', 'cursive'],
+            school: ['"Comic Neue"', 'cursive'],
+            tech: ['"Share Tech Mono"', 'monospace']
+          },
+          colors: {
+            nswNavy: '#002B49',
+            nswBlue: '#005999',
+            nswLightBlue: '#E6F0F8',
+            nswRed: '#C9242B',
+            teacherRed: '#D62828',
+            teacherGreen: '#1A7A44',
+            stickyYellow: '#FFF9C4',
+            stickyPink: '#FFE4E6',
+            stickyBlue: '#E0F2FE',
+            stickyGreen: '#DCFCE7',
+            stickyPurple: '#F3E8FF',
+            codeBg: '#0F172A',
+            codeBorder: '#334155'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 10mm authentic Stage 3 mathematics grid paper */
+    .exercise-book-grid {
+      background-color: #FFFFFF;
+      background-image: 
+        linear-gradient(rgba(180, 210, 235, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180, 210, 235, 0.45) 1px, transparent 1px);
+      background-size: 20px 20px;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Red exercise book margin line */
+    .margin-line {
+      border-left: 2.5px solid #F87171;
+    }
+
+    /* Tactile washi tape effect for portfolio artefacts */
+    .washi-tape {
+      background: rgba(254, 240, 138, 0.92);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      transform: rotate(-1.2deg);
+    }
+
+    /* Sticky note tactile elevation and hover dynamics */
+    .sticky-note {
+      box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.12), -1px 2px 4px rgba(0, 0, 0, 0.05);
+      transform: rotate(0.8deg);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+      box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.16);
+    }
+
+    /* Blind Moderation Mode: hides teacher markings and annotations for stage calibration */
+    .hide-annotations .teacher-mark,
+    .hide-annotations .sticky-note,
+    .hide-annotations .teacher-comment,
+    .hide-annotations .teacher-banner,
+    .hide-annotations .teacher-check,
+    .hide-annotations .grade-badge {
+      display: none !important;
+    }
+
+    .tab-btn.active {
+      background-color: #002B49;
+      color: #FFFFFF;
+      border-color: #002B49;
+      box-shadow: 0 2px 4px rgba(0, 43, 73, 0.2);
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      .tab-content {
+        display: block !important;
+        page-break-after: always;
+      }
+      body {
+        background: white;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-16 antialiased">
+
+  <!-- Header Banner: NSW Curriculum & Moderation Navigation -->
+  <header class="bg-nswNavy text-white border-b-4 border-nswBlue sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-white text-nswNavy font-black text-xs px-2.5 py-1 rounded tracking-wider uppercase shadow-sm">
+          NESA K–10 (2022)
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight">The Number Scramble: Order of Operations</h1>
+          <p class="text-xs text-sky-200">Stage 3 (Year 6 Part B) Moderation Portfolio &bull; Multiplicative Relations &bull; Term 3, Weeks 7–8</p>
+        </div>
+      </div>
+
+      <!-- Moderation Controls -->
+      <div class="flex items-center gap-2.5 no-print">
+        <button id="toggleAnnotationsBtn" onclick="toggleAnnotations()" class="text-xs font-semibold bg-sky-800 hover:bg-sky-700 active:bg-sky-900 text-white px-3.5 py-1.5 rounded-md border border-sky-600 transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+          <span id="annotationBtnText">Hide Teacher Marks (Blind Moderation)</span>
+        </button>
+        <button onclick="window.print()" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-white px-3 py-1.5 rounded-md border border-slate-600 transition flex items-center gap-1">
+          <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          Print Portfolio
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6">
+
+    <!-- Assessment Task Brief Card -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-6">
+      <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+            Rich Summative Task Extracted
+          </span>
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">
+            The Number Scramble (Learning Sequence 6)
+          </h2>
+        </div>
+        <div class="text-xs bg-indigo-50 text-indigo-900 border border-indigo-200 px-3 py-1 rounded font-medium">
+          <strong>NSW Stage 3 Common Grade Scale:</strong> Grade A (Extensive), B (Thorough), C (Sound), D (Basic), &amp; E (Elementary)
+        </div>
+      </div>
+
+      <!-- Task Scenario Description -->
+      <div class="p-6 border-b border-slate-100 bg-gradient-to-r from-sky-50/50 via-white to-indigo-50/40">
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+          <strong>The Mathematician's Brief:</strong> <em>"You are a mathematical codebreaker. You have been given four specific digits: <strong>2, 3, 4, and 5</strong>. Using these digits exactly once in each sentence, create as many different mathematical expressions as possible that result in an answer greater than 20. Underneath each expression, show your step-by-step working out using the <strong>Underline and Rewrite</strong> method to prove you followed the agreed order of operations (grouping symbols first, then multiplication/division, then addition/subtraction). Write a short paragraph explaining patterns or strategies used to force answers > 20. Choose one expression with brackets, recalculate it without brackets, and explain how the answer changed and why this proves mathematicians require an agreed order of operations without using mnemonics."</em>
+        </p>
+      </div>
+
+      <!-- 4 Core Criteria Grid -->
+      <div class="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs text-slate-700">
+        <div class="p-3.5 bg-sky-50/70 rounded-lg border border-sky-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-sky-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-sky-700 text-white inline-flex items-center justify-center text-[10px] font-bold">1</span>
+              Codebreaker Expressions
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Use digits 2, 3, 4, and 5 exactly once with mixed operations (+, -, &times;, &divide;) and grouping symbols () to produce values > 20.</p>
+          </div>
+          <span class="text-[10px] font-mono text-sky-800 bg-white px-2 py-0.5 rounded border border-sky-200 self-start">MA3-MR-02 &bull; Grouping Symbols</span>
+        </div>
+
+        <div class="p-3.5 bg-emerald-50/70 rounded-lg border border-emerald-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-emerald-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-700 text-white inline-flex items-center justify-center text-[10px] font-bold">2</span>
+              Underline &amp; Rewrite Proof
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Resolve priority operations systematically, rewriting untouched numbers line-by-line without dropping terms.</p>
+          </div>
+          <span class="text-[10px] font-mono text-emerald-800 bg-white px-2 py-0.5 rounded border border-emerald-200 self-start">MA3-MR-02 &bull; Line-by-Line</span>
+        </div>
+
+        <div class="p-3.5 bg-purple-50/70 rounded-lg border border-purple-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-purple-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-purple-700 text-white inline-flex items-center justify-center text-[10px] font-bold">3</span>
+              Strategic Reflection
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Analyse algebraic patterns (e.g. grouping addition before multiplication to scale sums) that produce large outputs.</p>
+          </div>
+          <span class="text-[10px] font-mono text-purple-800 bg-white px-2 py-0.5 rounded border border-purple-200 self-start">MAO-WM-01 &bull; Reasoning</span>
+        </div>
+
+        <div class="p-3.5 bg-amber-50/70 rounded-lg border border-amber-100 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-amber-950 mb-1 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-amber-700 text-white inline-flex items-center justify-center text-[10px] font-bold">4</span>
+              Agreed Order Proof
+            </div>
+            <p class="text-slate-600 mb-2 leading-relaxed">Recalculate an expression without brackets to prove how grouping symbols override the standard convention.</p>
+          </div>
+          <span class="text-[10px] font-mono text-amber-800 bg-white px-2 py-0.5 rounded border border-amber-200 self-start">MA3-MR-02 &bull; Conventions</span>
+        </div>
+      </div>
+      
+      <!-- Challenge Prompt Notice -->
+      <div class="bg-indigo-50/80 px-6 py-2.5 border-t border-indigo-100 text-xs text-indigo-950 flex items-center gap-2">
+        <span class="font-bold uppercase tracking-wider text-[10px] bg-indigo-200 text-indigo-900 px-2 py-0.5 rounded">Deck of Cards Challenge</span>
+        <span>Pick two cards to create a 2-digit target number (e.g. 36). Draw 5 one-digit cards (e.g. 2, 3, 5, 7, 9). Use each of the 5 digits exactly once, any operations, and grouping symbols to hit the target number exactly!</span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs for Grades A to E & Calibration Matrix -->
+    <div class="flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
+      <button onclick="switchTab('gradeA')" id="tab-gradeA" class="tab-btn active px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+        Grade A (Extensive) — Marcus
+      </button>
+      <button onclick="switchTab('gradeB')" id="tab-gradeB" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+        Grade B (Thorough) — Elena
+      </button>
+      <button onclick="switchTab('gradeC')" id="tab-gradeC" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+        Grade C (Sound) — Lucas
+      </button>
+      <button onclick="switchTab('gradeD')" id="tab-gradeD" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+        Grade D (Basic) — Chloe
+      </button>
+      <button onclick="switchTab('gradeE')" id="tab-gradeE" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+        Grade E (Elementary) — Toby
+      </button>
+      <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+        Calibration Matrix
+      </button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: GRADE A (EXTENSIVE) — MARCUS                                       -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeA" class="tab-content block">
+      <div class="bg-purple-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-purple-500 text-purple-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade A &bull; Extensive Knowledge &amp; Very High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Marcus V. &bull; Year 6 (Term 3)</h3>
+          <p class="text-xs text-purple-200">Exhaustive expression generation, sophisticated distributive justification, algebraic bracket removal proof, and unprompted multi-operator card challenge.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-purple-300">GRADE A</div>
+          <div class="text-xs text-purple-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Marcus V.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">28 Aug 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Outstanding Algebraic Structure &amp; Convention Proof</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Student Work (7 cols) -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Codebreaker Expressions & Step-by-Step Proofs -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Phase 1: Codebreaker Expressions with Digits 2, 3, 4, 5 (Target &gt; 20)
+              </div>
+
+              <div class="mt-3 space-y-4 font-mono text-xs text-slate-800">
+                
+                <!-- Expression 1 -->
+                <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                  <div class="flex justify-between items-center text-indigo-900 font-bold mb-1">
+                    <span>Expression A: (5 + 4) &times; 3 &minus; 2</span>
+                    <span class="text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded text-[11px]">= 25 (&gt; 20)</span>
+                  </div>
+                  <div class="pl-2 border-l-2 border-indigo-400 space-y-0.5 text-[11px] text-slate-700">
+                    <p><span class="underline decoration-indigo-600 decoration-2 font-bold">(5 + 4)</span> &times; 3 &minus; 2</p>
+                    <p>= <span class="underline decoration-indigo-600 decoration-2 font-bold">9 &times; 3</span> &minus; 2 &nbsp;&nbsp;<span class="text-slate-400 font-sans italic">[Brackets evaluated first: 5+4 = 9]</span></p>
+                    <p>= <span class="font-bold text-indigo-900">27 &minus; 2</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400 font-sans italic">[Multiplication precedes subtraction: 9&times;3 = 27]</span></p>
+                    <p>= <span class="font-bold text-purple-900 text-sm">25</span></p>
+                  </div>
+                </div>
+
+                <!-- Expression 2 -->
+                <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                  <div class="flex justify-between items-center text-indigo-900 font-bold mb-1">
+                    <span>Expression B: (4 + 2) &times; 5 &minus; 3</span>
+                    <span class="text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded text-[11px]">= 27 (&gt; 20)</span>
+                  </div>
+                  <div class="pl-2 border-l-2 border-indigo-400 space-y-0.5 text-[11px] text-slate-700">
+                    <p><span class="underline decoration-indigo-600 decoration-2 font-bold">(4 + 2)</span> &times; 5 &minus; 3</p>
+                    <p>= <span class="underline decoration-indigo-600 decoration-2 font-bold">6 &times; 5</span> &minus; 3 &nbsp;&nbsp;<span class="text-slate-400 font-sans italic">[Brackets take priority: 4+2 = 6]</span></p>
+                    <p>= <span class="font-bold text-indigo-900">30 &minus; 3</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400 font-sans italic">[Multiplication completed before subtraction: 6&times;5 = 30]</span></p>
+                    <p>= <span class="font-bold text-purple-900 text-sm">27</span></p>
+                  </div>
+                </div>
+
+                <!-- Expression 3 -->
+                <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                  <div class="flex justify-between items-center text-indigo-900 font-bold mb-1">
+                    <span>Expression C: (5 &times; 4) + (3 &times; 2)</span>
+                    <span class="text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded text-[11px]">= 26 (&gt; 20)</span>
+                  </div>
+                  <div class="pl-2 border-l-2 border-indigo-400 space-y-0.5 text-[11px] text-slate-700">
+                    <p><span class="underline decoration-indigo-600 decoration-2 font-bold">(5 &times; 4)</span> + (3 &times; 2)</p>
+                    <p>= 20 + <span class="underline decoration-indigo-600 decoration-2 font-bold">(3 &times; 2)</span> &nbsp;&nbsp;<span class="text-slate-400 font-sans italic">[First grouping resolved: 5&times;4 = 20]</span></p>
+                    <p>= <span class="font-bold text-indigo-900">20 + 6</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400 font-sans italic">[Second grouping resolved: 3&times;2 = 6]</span></p>
+                    <p>= <span class="font-bold text-purple-900 text-sm">26</span></p>
+                  </div>
+                </div>
+
+                <!-- Expression 4 -->
+                <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                  <div class="flex justify-between items-center text-indigo-900 font-bold mb-1">
+                    <span>Expression D: 5 &times; (3 + 2) &minus; 4</span>
+                    <span class="text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded text-[11px]">= 21 (&gt; 20)</span>
+                  </div>
+                  <div class="pl-2 border-l-2 border-indigo-400 space-y-0.5 text-[11px] text-slate-700">
+                    <p>5 &times; <span class="underline decoration-indigo-600 decoration-2 font-bold">(3 + 2)</span> &minus; 4</p>
+                    <p>= <span class="underline decoration-indigo-600 decoration-2 font-bold">5 &times; 5</span> &minus; 4 &nbsp;&nbsp;<span class="text-slate-400 font-sans italic">[Brackets override standard multiplication order: 3+2 = 5]</span></p>
+                    <p>= <span class="font-bold text-indigo-900">25 &minus; 4</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400 font-sans italic">[Multiplication next: 5&times;5 = 25]</span></p>
+                    <p>= <span class="font-bold text-purple-900 text-sm">21</span></p>
+                  </div>
+                </div>
+
+                <!-- Expression 5 -->
+                <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                  <div class="flex justify-between items-center text-indigo-900 font-bold mb-1">
+                    <span>Expression E: (5 &plus; 2) &times; 4 &minus; 3</span>
+                    <span class="text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded text-[11px]">= 25 (&gt; 20)</span>
+                  </div>
+                  <div class="pl-2 border-l-2 border-indigo-400 space-y-0.5 text-[11px] text-slate-700">
+                    <p><span class="underline decoration-indigo-600 decoration-2 font-bold">(5 + 2)</span> &times; 4 &minus; 3</p>
+                    <p>= <span class="underline decoration-indigo-600 decoration-2 font-bold">7 &times; 4</span> &minus; 3 &nbsp;&nbsp;<span class="text-slate-400 font-sans italic">[Brackets first: 5+2 = 7]</span></p>
+                    <p>= <span class="font-bold text-indigo-900">28 &minus; 3</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400 font-sans italic">[Multiply: 7&times;4 = 28]</span></p>
+                    <p>= <span class="font-bold text-purple-900 text-sm">25</span></p>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-3xl font-black">
+                &#10003; <span class="text-sm">Flawless underline &amp; rewrite</span>
+              </div>
+            </div>
+
+            <!-- Mathematical Strategy Reflection -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative font-student text-slate-800 space-y-3">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Phase 2: Codebreaker Strategy &amp; Algebraic Patterns Reflection
+              </div>
+
+              <div class="mt-2 text-xs font-sans text-slate-700 space-y-2 bg-purple-50/50 p-3.5 rounded border border-purple-200 leading-relaxed">
+                <strong class="font-bold text-purple-950 block text-sm font-student">Marcus's Structural Analysis on Forcing Values &gt; 20:</strong>
+                <p>
+                  "To systematically force numbers greater than 20 out of the small set {2, 3, 4, 5}, I identified two dominant structural patterns:
+                </p>
+                <p>
+                  <strong>1. The Sum-Multiplier Strategy:</strong> If you perform operations strictly according to standard priority without grouping symbols, multiplication only scales a single digit (e.g. $4 \times 5 = 20$). However, by using grouping symbols to force an addition step first, we scale the <em>sum</em> of two numbers by a third factor. For example, in $(5 + 4) \times 3$, we multiply 9 by 3, instantly reaching 27 before subtracting the smallest digit 2. The brackets act as a mathematical lever!
+                </p>
+                <p>
+                  <strong>2. Strategic Conservation of the Smallest Digit:</strong> The digit 2 is most powerful when used as a subtractor at the very end (&minus;2) rather than as a multiplier. If you multiply by 2, you only double, whereas multiplying by 4 or 5 scales the quantity dramatically.
+                </p>
+              </div>
+            </div>
+
+            <!-- Proof of Agreed Order (Bracket Removal Recalculation) -->
+            <div class="bg-gradient-to-r from-purple-50 via-white to-indigo-50 p-5 rounded-lg border-2 border-purple-300 shadow-sm relative">
+              <div class="absolute -top-3 left-4 bg-purple-700 text-white px-3 py-0.5 text-xs font-bold rounded shadow-sm font-tech">
+                Phase 3: The Bracket Removal Proof
+              </div>
+
+              <div class="mt-3 space-y-3 font-sans text-xs text-slate-700 leading-relaxed">
+                <p>
+                  <strong>Selected Expression:</strong> Expression B: <span class="font-mono font-bold text-purple-900 text-sm">(4 + 2) &times; 5 &minus; 3 = 27</span>
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-2 font-mono text-[11px]">
+                  <div class="bg-emerald-50 p-2.5 rounded border border-emerald-300">
+                    <span class="font-bold text-emerald-950 font-sans block mb-1">WITH Grouping Symbols:</span>
+                    <p><span class="underline decoration-emerald-600 font-bold">(4 + 2)</span> &times; 5 &minus; 3</p>
+                    <p>= <span class="underline decoration-emerald-600 font-bold">6 &times; 5</span> &minus; 3</p>
+                    <p>= 30 &minus; 3</p>
+                    <p class="font-bold text-emerald-900 text-sm mt-1">= 27</p>
+                  </div>
+
+                  <div class="bg-rose-50 p-2.5 rounded border border-rose-300">
+                    <span class="font-bold text-rose-950 font-sans block mb-1">WITHOUT Grouping Symbols:</span>
+                    <p>4 + <span class="underline decoration-rose-600 font-bold">2 &times; 5</span> &minus; 3</p>
+                    <p>= <span class="underline decoration-rose-600 font-bold">4 + 10</span> &minus; 3</p>
+                    <p>= 14 &minus; 3</p>
+                    <p class="font-bold text-rose-900 text-sm mt-1">= 11</p>
+                  </div>
+                </div>
+
+                <div class="bg-white p-3 rounded border border-purple-200 space-y-1.5 font-student text-base text-slate-800">
+                  <strong class="font-sans text-xs text-purple-950 block">Marcus's Written Justification:</strong>
+                  <p>
+                    <em>"Removing the brackets caused the answer to plummet from 27 down to 11 (a difference of 16!). Without brackets, the universal agreed order forces multiplication to take precedence over addition ($2 \times 5 = 10$). The 4 is no longer grouped into the multiplier. This proves why mathematicians agreed on grouping symbols: without an agreed hierarchy, two people looking at the exact same sequence of numerals will generate conflicting mathematical realities. Brackets are mandatory to override standard operator precedence."</em>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deck of Cards Challenge -->
+            <div class="bg-slate-900 text-white p-5 rounded-lg border border-slate-700 shadow relative">
+              <div class="absolute -top-3 left-4 bg-amber-500 text-slate-950 px-3 py-0.5 text-xs font-bold rounded shadow font-tech">
+                Challenge Prompt: 5-Card Target Codebreaker
+              </div>
+
+              <div class="mt-3 space-y-2 text-xs font-sans">
+                <div class="flex flex-wrap gap-2 items-center text-slate-300">
+                  <span>Target Drawn: <strong class="text-amber-400 font-mono text-sm">36</strong> (Cards 3 and 6)</span>
+                  <span class="text-slate-500">|</span>
+                  <span>5 One-Digit Cards Drawn: <strong class="text-cyan-400 font-mono text-sm">[2, 3, 5, 7, 9]</strong></span>
+                </div>
+
+                <div class="p-3 bg-slate-950 rounded border border-slate-800 font-mono text-xs space-y-1 text-slate-200">
+                  <p class="text-cyan-300 font-bold">Equation: (9 &times; 3) + (7 &times; 2) &minus; 5</p>
+                  <p class="text-slate-400 pl-3">Step 1: <span class="text-yellow-300">(9 &times; 3)</span> evaluated &rarr; 27 + (7 &times; 2) &minus; 5</p>
+                  <p class="text-slate-400 pl-3">Step 2: <span class="text-yellow-300">(7 &times; 2)</span> evaluated &rarr; 27 + 14 &minus; 5</p>
+                  <p class="text-slate-400 pl-3">Step 3: Left-to-right addition &rarr; 41 &minus; 5</p>
+                  <p class="text-emerald-400 font-bold pl-3">Final: 41 &minus; 5 = 36 [Target Hit Exactly!]</p>
+                </div>
+
+                <p class="text-[11px] text-slate-400 font-student text-sm italic">
+                  "Marcus's note: I paired the largest digit 9 with 3 to get 27, then used 7 &times; 2 = 14 to bridge up to 41, leaving exactly 5 to subtract to land on 36."
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Teacher Evidence Column (5 cols) -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Sticky Note Running Record -->
+            <div class="sticky-note bg-stickyPurple p-5 rounded-md border-t-8 border-purple-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-purple-300 pb-1 font-bold text-purple-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-purple-200 px-2 py-0.5 rounded text-purple-900 font-mono">28/08/26 10:15 AM</span>
+              </div>
+              <p class="mb-2">
+                "Marcus worked completely autonomously. When planning his equations, he immediately discarded mnemonics (like BOMDAS): <span class="text-purple-900 font-bold">'Mnemonics trick people into thinking addition always beats subtraction. Multiplication is just unfinished repeated addition, so it takes priority naturally.'</span>"
+              </p>
+              <p>
+                "His line-by-line rewrite demonstrated flawless cognitive management. Solved the 5-card challenge on his first strategic attempt without trial-and-error."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Vance (Year 6)</div>
+            </div>
+
+            <!-- Scribing Card -->
+            <div class="bg-white rounded-lg p-4 border-2 border-purple-200 shadow-sm">
+              <div class="flex items-center gap-2 mb-2 pb-1 border-b border-purple-100">
+                <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+                <span class="text-xs font-bold uppercase tracking-wide text-purple-900">Teacher Scribing (Verbatim Dialogue)</span>
+              </div>
+              <div class="text-xs space-y-2 text-slate-700 leading-relaxed font-sans">
+                <p><strong>Teacher:</strong> "Marcus, why did $(4 + 2) \times 5 - 3$ become so much smaller when you erased the brackets?"</p>
+                <p class="bg-purple-50 p-2.5 rounded italic text-purple-950 font-school">
+                  "Because without brackets, the 4 is detached from the multiplication. In $(4 + 2) \times 5$, you are making 5 copies of the entire group of 6. But in $4 + 2 \times 5$, you are only making 5 copies of the 2, leaving the 4 sitting as a lonely addend! Brackets change the fundamental group structure."
+                </p>
+              </div>
+            </div>
+
+            <!-- Syllabus Mapping Card -->
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200 text-xs space-y-2">
+              <span class="font-bold text-slate-900 uppercase tracking-wide block border-b pb-1">Syllabus Demonstration:</span>
+              <p><strong>MA3-MR-02:</strong> Constructs and completes complex number sentences involving mixed operations and grouping symbols; applies agreed order of operations systematically.</p>
+              <p><strong>MAO-WM-01:</strong> Connects operations and grouping symbols to algebraic principles; communicates thinking coherently, justifying the mathematical necessity of convention.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Grade A Moderation Rationale -->
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-purple-400 bg-purple-50/60 rounded-xl p-6">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <h4 class="text-sm font-black uppercase tracking-wider text-purple-950 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-700"></span>
+              NESA Moderation Rationale: Grade A (Extensive)
+            </h4>
+            <span class="text-xs font-semibold bg-purple-200 text-purple-900 px-2.5 py-1 rounded">
+              Extensive Knowledge &bull; Transfer to Novel Situations
+            </span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed mb-3">
+            Marcus demonstrates <strong>extensive knowledge and understanding</strong> by readily applying the order of operations and grouping symbols to new and complex numerical situations. He generates an exhaustive range of expressions greater than 20, executes line-by-line working without dropping terms, perceptively evaluates distributive grouping patterns, and proves mathematically how the absence of grouping symbols dismantles the structural integrity of an equation. In the challenge prompt, he synthesizes five distinct card values to hit the target number accurately.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: GRADE B (THOROUGH) — ELENA                                         -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeB" class="tab-content hidden">
+      <div class="bg-emerald-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-emerald-500 text-emerald-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade B &bull; Thorough Knowledge &amp; High Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Elena S. &bull; Year 6 (Term 3)</h3>
+          <p class="text-xs text-emerald-200">Systematic multi-expression generation, structured underline and rewrite proof, clear explanation of operator priority in familiar tasks.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-emerald-300">GRADE B</div>
+          <div class="text-xs text-emerald-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Elena S.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">28 Aug 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Thorough Work Verified</span>
+            <span class="text-2xl">&#10003;&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Elena's Codebreaker Expressions (Digits 2, 3, 4, 5)
+              </div>
+              
+              <div class="mt-3 space-y-3 font-mono text-xs text-slate-800">
+                <!-- Expression 1 -->
+                <div class="p-2.5 bg-slate-50 rounded border border-slate-200">
+                  <p class="font-bold text-indigo-900 mb-1">1. (5 + 3) &times; 4 &minus; 2 = 30</p>
+                  <p class="pl-2 border-l-2 border-emerald-400 text-[11px] text-slate-700">
+                    <span class="underline font-bold">(5 + 3)</span> &times; 4 &minus; 2<br>
+                    = <span class="underline font-bold">8 &times; 4</span> &minus; 2<br>
+                    = 32 &minus; 2 = <strong>30</strong>
+                  </p>
+                </div>
+
+                <!-- Expression 2 -->
+                <div class="p-2.5 bg-slate-50 rounded border border-slate-200">
+                  <p class="font-bold text-indigo-900 mb-1">2. 5 &times; 4 + 3 &times; 2 = 26</p>
+                  <p class="pl-2 border-l-2 border-emerald-400 text-[11px] text-slate-700">
+                    <span class="underline font-bold">5 &times; 4</span> + 3 &times; 2<br>
+                    = 20 + <span class="underline font-bold">3 &times; 2</span><br>
+                    = 20 + 6 = <strong>26</strong>
+                  </p>
+                </div>
+
+                <!-- Expression 3 -->
+                <div class="p-2.5 bg-slate-50 rounded border border-slate-200">
+                  <p class="font-bold text-indigo-900 mb-1">3. (4 + 3) &times; 5 &minus; 2 = 33</p>
+                  <p class="pl-2 border-l-2 border-emerald-400 text-[11px] text-slate-700">
+                    <span class="underline font-bold">(4 + 3)</span> &times; 5 &minus; 2<br>
+                    = <span class="underline font-bold">7 &times; 5</span> &minus; 2<br>
+                    = 35 &minus; 2 = <strong>33</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Strategy & Proof -->
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-student text-base text-slate-800 space-y-3">
+              <span class="font-sans text-xs font-bold text-slate-900 block mb-1">Strategy Reflection &amp; Agreed Order Proof:</span>
+              <p>
+                "Strategy: To get numbers over 20, I put the addition inside brackets so I could multiply the sum by 4 or 5. Multiplying a bigger number makes the total grow much faster."
+              </p>
+
+              <div class="bg-emerald-50 p-3.5 rounded border border-emerald-200 text-xs font-sans space-y-2">
+                <strong class="font-bold text-emerald-950 block text-sm font-student">Recalculation Without Brackets:</strong>
+                <p>Original: $(5 + 3) \times 4 - 2 = \mathbf{30}$.</p>
+                <p>Without brackets: $5 + 3 \times 4 - 2$.</p>
+                <p class="font-mono text-[11px] pl-2 border-l-2 border-emerald-400">
+                  5 + <span class="underline font-bold">3 &times; 4</span> &minus; 2<br>
+                  = <span class="underline font-bold">5 + 12</span> &minus; 2<br>
+                  = 17 &minus; 2 = <strong>15</strong>
+                </p>
+                <p class="mt-1">
+                  <em>"Without brackets, the answer changes from 30 to 15! This proves mathematicians must have an agreed order. If people did operations in whatever order they wanted, math would be chaos."</em>
+                </p>
+              </div>
+
+              <!-- Challenge Attempt -->
+              <div class="bg-slate-50 p-3 rounded border text-xs font-mono">
+                <strong>Challenge Target 24:</strong> $(3 \times 9) + 7 - (2 \times 5) = 27 + 7 - 10 = 34 - 10 = \mathbf{24}$.
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyGreen p-5 rounded-md border-t-8 border-emerald-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-emerald-300 pb-1 font-bold text-emerald-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-emerald-200 px-2 py-0.5 rounded text-emerald-900 font-mono">28/08/26 10:45 AM</span>
+              </div>
+              <p class="mb-2">
+                "Elena demonstrated thorough competence. Systematically solved each line using the underline and rewrite method without dropping terms."
+              </p>
+              <p>
+                "Clearly explained how removing brackets altered the multiplication priority from $(5+3)$ to $(3\times 4)$."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Vance</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-emerald-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-emerald-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Response:</span>
+              <p class="italic text-slate-700 font-school bg-emerald-50 p-2 rounded">
+                "Teacher: Why did $5 + 3 \times 4 - 2$ equal 15 instead of 30? Elena: Because multiplication comes before addition. You have to work out $3 \times 4 = 12$ first, then add 5."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-emerald-400 bg-emerald-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 mb-2">NESA Moderation Rationale: Grade B (Thorough)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Elena demonstrates <strong>thorough knowledge and understanding</strong> of multiplicative relations and the order of operations in familiar situations. She accurately generates multiple expressions exceeding 20, applies the underline and rewrite method without errors, and clearly explains how grouping symbols override standard operator precedence.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: GRADE C (SOUND) — LUCAS                                            -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeC" class="tab-content hidden">
+      <div class="bg-blue-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-blue-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade C &bull; Sound Knowledge &amp; Adequate Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Lucas H. &bull; Year 6 (Term 3)</h3>
+          <p class="text-xs text-blue-200">Demonstrates taught routines in familiar tasks, identifies grouping symbol priority, calculates expressions with standard layout.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-blue-300">GRADE C</div>
+          <div class="text-xs text-blue-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-blue-700 underline font-bold">Lucas H.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-blue-700">28 Aug 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Sound Competence Verified</span>
+            <span class="text-2xl">&#10003;</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Lucas's Codebreaker Expressions
+              </div>
+              <div class="mt-3 space-y-2 font-mono text-xs text-slate-800">
+                <div class="p-2 bg-blue-50/50 rounded border border-blue-200">
+                  <p class="font-bold">1. (5 &times; 4) + 3 + 2 = 25</p>
+                  <p class="pl-2 text-slate-600">20 + 3 + 2 = 25</p>
+                </div>
+                <div class="p-2 bg-blue-50/50 rounded border border-blue-200">
+                  <p class="font-bold">2. 5 &times; 4 + 3 &times; 2 = 26</p>
+                  <p class="pl-2 text-slate-600">20 + 6 = 26 (multiplied first)</p>
+                </div>
+                <div class="p-2 bg-blue-50/50 rounded border border-blue-200">
+                  <p class="font-bold">3. (5 + 4) &times; 3 &minus; 2 = 25</p>
+                  <p class="pl-2 text-slate-600">9 &times; 3 &minus; 2 = 27 &minus; 2 = 25</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm font-student text-base text-slate-800 space-y-2">
+              <span class="font-sans text-xs font-bold text-slate-900 block mb-1">Patterns &amp; Proof:</span>
+              <p>&bull; <strong>Strategy:</strong> "I used 5 and 4 for multiplying because they are the biggest numbers."</p>
+              
+              <div class="p-2.5 bg-blue-50 rounded border border-blue-200 text-xs font-sans space-y-1">
+                <strong>Without Brackets Proof:</strong>
+                <p>$(5 + 4) \times 3 - 2 = 25$.</p>
+                <p>Without brackets: $5 + 4 \times 3 - 2$. Do $4 \times 3 = 12$ first. $5 + 12 - 2 = 15$.</p>
+                <p>"The answer changed from 25 to 15 because the brackets made us add first."</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyBlue p-5 rounded-md border-t-8 border-sky-400 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-sky-300 pb-1 font-bold text-sky-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-sky-200 px-2 py-0.5 rounded text-sky-900 font-mono">28/08/26 11:15 AM</span>
+              </div>
+              <p class="mb-2">
+                "Lucas followed the taught routines well. Correctly identified grouping symbols as priority."
+              </p>
+              <p>
+                "Calculated 3 expressions greater than 20 and successfully recalculated without brackets."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Vance</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-blue-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-blue-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-blue-50 p-2 rounded">
+                "Teacher: What tells you what to do first? Lucas: Brackets come first. If there are no brackets, you do times before plus."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-blue-400 bg-blue-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 mb-2">NESA Moderation Rationale: Grade C (Sound)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Lucas demonstrates <strong>sound knowledge and understanding of the main areas of content</strong> in familiar situations. He accurately creates number sentences with grouping symbols to exceed 20, follows the agreed order of operations in taught problem types, and recalculates accurately when brackets are removed.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: GRADE D (BASIC) — CHLOE                                            -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeD" class="tab-content hidden">
+      <div class="bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-amber-500 text-amber-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade D &bull; Basic Knowledge &amp; Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Chloe P. &bull; Year 6 (Term 3)</h3>
+          <p class="text-xs text-amber-200">Demonstrates basic knowledge with teacher guidance; reverts to left-to-right calculations, inconsistent order of operations.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-amber-400">GRADE D</div>
+          <div class="text-xs text-amber-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-student text-2xl text-slate-800">
+            Name: <span class="text-amber-800 underline font-bold">Chloe P.</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-amber-800">28 Aug 2026</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Supported Task</span>
+            <span class="text-lg text-amber-800">With Teacher Prompts</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Chloe's Expressions (Left-to-Right Errors)
+              </div>
+              <div class="mt-3 space-y-2 font-student text-sm text-slate-800">
+                <p>&bull; <strong>Sentence 1:</strong> $(5 \times 4) + 3 + 2 = 25$ (Used brackets around multiplication, calculated correctly).</p>
+                <p>&bull; <strong>Sentence 2:</strong> $2 + 3 \times 5 - 4 =$ <span class="line-through text-slate-400">21</span> &rarr; <strong>13</strong><br>
+                  <span class="text-xs font-sans text-slate-600 pl-2">Initial error: calculated left-to-right $(2 + 3 = 5 \times 5 = 25 - 4 = 21)$! Corrected after teacher prompted to circle $3 \times 5$ first.</span>
+                </p>
+
+                <div class="bg-amber-50 p-3 rounded border border-amber-200 text-xs font-sans mt-3">
+                  <strong>Without Brackets Attempt:</strong>
+                  <p>"I took the brackets off $(5 \times 4) + 3 + 2$ to make $5 \times 4 + 3 + 2$. It still made 25 because $5 \times 4$ is first anyway."</p>
+                  <span class="text-teacherRed font-teacher text-base">Teacher note: Student picked an expression where brackets didn't alter priority!</span>
+                </div>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9651; <span class="text-xs">Left-to-right slip corrected</span>
+              </div>
+            </div>
+
+            <div class="bg-rose-50 p-3 rounded border border-rose-200 text-xs text-rose-900 font-sans">
+              <strong>Challenge Prompt:</strong> Incomplete. Could not find combination using 5 cards to reach target number.
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyYellow p-5 rounded-md border-t-8 border-amber-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-amber-200 pb-1 font-bold text-amber-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-amber-200 px-2 py-0.5 rounded text-amber-900 font-mono">28/08/26 11:45 AM</span>
+              </div>
+              <p class="mb-2">
+                "Chloe repeatedly reverted to reading equations left-to-right ($2 + 3 \times 5 = 25$). Guided her to locate the multiplication sign before calculating."
+              </p>
+              <p>
+                "Struggles to see why brackets are needed unless multiplication is placed after addition."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Vance</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-amber-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-amber-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-amber-50 p-2 rounded">
+                "Teacher: Chloe, in $2 + 3 \times 5$, which part has to be done first? Chloe: The $2 + 3$ because it comes first in reading? Oh wait, times comes first."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-amber-400 bg-amber-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 mb-2">NESA Moderation Rationale: Grade D (Basic)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Chloe demonstrates <strong>basic knowledge and understanding</strong> of the content, achieving a limited level of competence. In familiar situations, she requires teacher prompting to apply operator precedence instead of reading strictly left-to-right, struggles to articulate why an agreed convention is necessary, and leaves the extension challenge incomplete.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: GRADE E (ELEMENTARY) — TOBY                                        -->
+    <!-- ========================================================================= -->
+    <div id="content-gradeE" class="tab-content hidden">
+      <div class="bg-rose-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+        <div>
+          <span class="grade-badge bg-rose-500 text-rose-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
+            Grade E &bull; Elementary Knowledge &amp; Very Limited Competence
+          </span>
+          <h3 class="text-xl font-bold mt-1">Student: Toby R. &bull; Year 6 (Term 3)</h3>
+          <p class="text-xs text-rose-200">Demonstrates elementary knowledge in few areas; confuses operations, unable to apply order of operations without continuous 1:1 support.</p>
+        </div>
+        <div class="text-right grade-badge">
+          <div class="text-3xl font-black text-rose-400">GRADE E</div>
+          <div class="text-xs text-rose-200">On-Balance Moderated Standard</div>
+        </div>
+      </div>
+
+      <div class="exercise-book-grid p-6 sm:p-10 border-x-2 border-b-2 border-slate-300 rounded-b-xl relative overflow-hidden shadow-lg">
+        <div class="flex justify-between items-baseline border-b border-sky-300 pb-3 mb-6">
+          <div class="font-studentYoung text-2xl text-slate-800">
+            Name: <span class="text-rose-800 underline font-bold">toby</span> &nbsp;&nbsp;&nbsp; Date: <span class="text-rose-800">28/8</span>
+          </div>
+          <div class="teacher-check font-teacher text-xl text-teacherRed font-bold flex items-center gap-1">
+            <span>Significant Direct Support Required</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="bg-white p-5 rounded-lg border-2 border-slate-200 shadow-sm relative">
+              <div class="absolute -top-3 left-4 washi-tape px-3 py-0.5 text-xs font-bold text-amber-900">
+                Toby's Attempt (Repeated Digits / No Brackets)
+              </div>
+              <div class="mt-3 font-studentYoung text-xl text-slate-800 space-y-2">
+                <p>"5 + 5 + 5 + 5 = 20." (Used digit 5 four times instead of using 2, 3, 4, 5 once).</p>
+                <p>"2 + 3 = 5 + 4 = 9 + 5 = 14." (Added all digits).</p>
+                <p class="text-xs font-sans text-slate-500 italic mt-2">Grouping symbols, line-by-line rewrite, and challenge sections not accessed.</p>
+              </div>
+              <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-xl font-bold">
+                &#9675; <span class="text-xs">Order of operations not applied</span>
+              </div>
+            </div>
+
+            <div class="bg-rose-50 p-3 rounded border border-rose-200 font-studentYoung text-lg text-rose-950">
+              "brackets look like smiles on numbers."
+            </div>
+          </div>
+
+          <!-- Teacher Column -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sticky-note bg-stickyPink p-5 rounded-md border-t-8 border-rose-300 text-slate-800 font-teacher text-xl leading-snug">
+              <div class="flex justify-between items-center mb-2 border-b border-rose-200 pb-1 font-bold text-rose-950 text-base font-sans">
+                <span>Teacher Running Record</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded text-rose-900 font-mono">28/08/26 12:15 PM</span>
+              </div>
+              <p class="mb-2">
+                "Toby was unable to construct mixed operation equations without repeating digits. Treated the task as simple single-digit addition."
+              </p>
+              <p>
+                "Cannot interpret grouping symbols or recall multiplication facts without 1:1 physical block modeling."
+              </p>
+              <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Vance</div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 border-2 border-rose-200 shadow-sm text-xs space-y-2">
+              <span class="font-bold text-rose-950 uppercase tracking-wide block border-b pb-1">Verbatim Oral Dialogue:</span>
+              <p class="italic text-slate-700 font-school bg-rose-50 p-2 rounded">
+                "Teacher: Toby, what does $3 \times 4$ mean? Toby: 3 and 4 more?"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-rose-400 bg-rose-50/60 rounded-xl p-6">
+          <h4 class="text-sm font-black uppercase tracking-wider text-rose-950 mb-2">NESA Moderation Rationale: Grade E (Elementary)</h4>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Toby has an <strong>elementary knowledge and understanding in few areas of the content</strong> and has achieved very limited competence in the processes and skills. In isolated situations, he requires significant direct teacher support to formulate number sentences, repeats single digits rather than following constraints, does not use grouping symbols, and leaves calculation proofs blank.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 6: CALIBRATION MATRIX (GRADES A TO E)                                 -->
+    <!-- ========================================================================= -->
+    <div id="content-matrix" class="tab-content hidden">
+      <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+        
+        <div class="bg-nswNavy text-white px-6 py-5">
+          <div class="flex flex-wrap justify-between items-center gap-2">
+            <div>
+              <span class="bg-indigo-500 text-indigo-950 text-xs font-black px-2.5 py-1 rounded uppercase tracking-wide">
+                Stage 3 Moderation Tool &bull; NESA Common Grade Scale
+              </span>
+              <h3 class="text-xl font-bold mt-1">Cross-Grade Calibration Matrix: Year 6 (Stage 3 Part B)</h3>
+              <p class="text-xs text-sky-200">
+                Direct evidence comparison across Grades A, B, C, D, and E against the official NSW Stage 3 Mathematics Overview Rubric (MA3-MR-02 &amp; MAO-WM-01).
+              </p>
+            </div>
+            <div class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded text-slate-300">
+              Unit: Multiplicative Relations &bull; Term 3 Weeks 7–8
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b-2 border-slate-300 bg-slate-100 text-slate-700">
+                <th class="p-3 font-bold uppercase tracking-wider w-1/6">Syllabus Focus &amp; Rubric Aspect</th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-purple-900 bg-purple-50 border-x border-purple-200">
+                  Grade A (Extensive)<br>
+                  <span class="font-normal text-[10px] text-purple-700">Readily applies to new situations</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-emerald-900 bg-emerald-50 border-r border-emerald-200">
+                  Grade B (Thorough)<br>
+                  <span class="font-normal text-[10px] text-emerald-700">Applies to most situations</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-blue-900 bg-blue-50 border-r border-blue-200">
+                  Grade C (Sound)<br>
+                  <span class="font-normal text-[10px] text-blue-700">Sound knowledge in familiar tasks</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-amber-900 bg-amber-50 border-r border-amber-200">
+                  Grade D (Basic)<br>
+                  <span class="font-normal text-[10px] text-amber-700">Basic knowledge with guidance</span>
+                </th>
+                <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-rose-900 bg-rose-50">
+                  Grade E (Elementary)<br>
+                  <span class="font-normal text-[10px] text-rose-700">Significant direct support</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              
+              <!-- Row 1: Order of Operations & Grouping Symbols -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Order of Operations &amp; Grouping</div>
+                  <span class="font-mono text-[10px] text-emerald-800 bg-emerald-100 px-1 py-0.5 rounded">MA3-MR-02</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Applies agreed order of operations; uses grouping symbols to change priority.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Masterful Algebraic Insight:</strong> Flawlessly constructs complex multi-operator expressions; justifies how grouping symbols alter distributive structures and priority; adapts to complex novel targets.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Accurate Systematic Application:</strong> Consistently applies the agreed order of operations in familiar contexts; resolves grouping symbols first without reverting to left-to-right.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Taught Routine Competence:</strong> Successfully calculates expressions with brackets in standard formats; recalls that multiplication precedes addition.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Inconsistent Priority:</strong> Reverts to left-to-right calculation in the absence of brackets; requires teacher prompting to identify multiplication priority.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Arbitrary Operations:</strong> Cannot interpret grouping symbols; treats operations randomly or repeats single digits.
+                </td>
+              </tr>
+
+              <!-- Row 2: Line-by-Line Working & Rewrite Proof -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">Line-by-Line Working Method</div>
+                  <span class="font-mono text-[10px] text-sky-800 bg-sky-100 px-1 py-0.5 rounded">MA3-MR-02</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Underlines priority steps; rewrites untouched terms line-by-line.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  <strong>Flawless Recording:</strong> Meticulously executes the underline and rewrite method, ensuring all uncalculated operations remain in exact mathematical sequence.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  <strong>Systematic Formatting:</strong> Clearly records working out across multiple lines, resolving one priority operation at a time without dropping terms.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  <strong>Taught Method:</strong> Shows basic multi-line steps, occasionally combining simple steps mentally while arriving at the correct total.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  <strong>Dropped Terms:</strong> Writes disconnected calculation fragments across the page; loses track of uncalculated numbers.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  <strong>Blank / Unstructured:</strong> Leaves multi-line working blank; records single incorrect numbers without steps.
+                </td>
+              </tr>
+
+              <!-- Row 3: WM - Exploring & Connecting Concepts -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Exploring &amp; Connecting</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Understanding, fluency, and transfer across focus areas.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Readily explores and connects operations, proving that multiplication is repeated addition ("unfinished business") and evaluating bracket removal impact in new contexts.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Connects concepts accurately and confidently, explaining why grouping symbols alter outcomes in familiar situations.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Explores concepts and makes connections in familiar situations, showing sound understanding of operator hierarchy.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Explores some concepts with guidance, making limited connections; struggles to connect bracket placement with magnitude shifts.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Explores isolated concepts with significant support; connections between operations are rarely made.
+                </td>
+              </tr>
+
+              <!-- Row 4: WM - Choosing & Applying Techniques -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Choosing &amp; Applying</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Selecting efficient problem-solving techniques.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Selects efficient strategic placements (sum-multiplier scaling, subtraction preservation), applies them fluently, and solves complex 5-digit card challenges.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Chooses effective techniques and applies them accurately to solve most problems, including target number challenge expressions.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Chooses and applies taught techniques (multiplying the two largest numbers) to generate required outputs with adequate accuracy.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Applies a limited range of techniques, often trial-and-error, usually requiring teacher guidance to reach target values.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Attempts simple familiar problems with significant support, using very limited techniques (single-digit additions).
+                </td>
+              </tr>
+
+              <!-- Row 5: WM - Communicating & Reasoning -->
+              <tr class="hover:bg-slate-50 transition">
+                <td class="p-3 font-semibold bg-slate-50 text-slate-900 align-top">
+                  <div class="font-bold">WM: Communicating &amp; Reasoning</div>
+                  <span class="font-mono text-[10px] text-indigo-800 bg-indigo-100 px-1 py-0.5 rounded">MAO-WM-01</span>
+                  <p class="text-[11px] text-slate-500 mt-1">Reasoning, justifying, and mathematical clarity.</p>
+                </td>
+                <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
+                  Communicates thinking coherently and clearly, justifying conclusions with precise mathematical language, disproving mnemonics, and proving convention necessity.
+                </td>
+                <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
+                  Clearly explains thinking and strategies using appropriate mathematical language, written rules, and comparative equations.
+                </td>
+                <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
+                  Describes thinking and strategies using everyday and some mathematical language, drawings, numerals, and standard bracket notation.
+                </td>
+                <td class="p-2.5 bg-amber-50/30 border-r border-amber-100 align-top">
+                  Describes some aspects of thinking using everyday language when prompted; struggles to articulate reasons for operation order.
+                </td>
+                <td class="p-2.5 bg-rose-50/30 align-top">
+                  Communicates isolated aspects of thinking with significant support, often through gestures or pointing to numbers.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-6 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 space-y-2">
+          <h5 class="font-bold text-slate-900 uppercase tracking-wide">Stage 3 Team Moderation Protocols:</h5>
+          <p>&bull; <strong>Grade A Standard (Extensive):</strong> Defined by the ability to readily apply concepts to novel situations. Marcus demonstrates depth of reasoning by evaluating how grouping additions prior to multiplication scales total sums, proves why erasing brackets causes magnitude collapse ($27 \rightarrow 11$), and solves the 5-card challenge on his first attempt.</p>
+          <p>&bull; <strong>Grade B vs Grade C Standard:</strong> Elena (Grade B) reasons flexibly across most situations, systematically writing expressions and explaining bracket priority clearly. Lucas (Grade C) achieves sound understanding in familiar tasks, relying on taught routines and descriptive explanations ("put the biggest numbers together").</p>
+          <p>&bull; <strong>Grade D vs Grade E Standard:</strong> Chloe (Grade D) completes basic calculations with teacher guidance but frequently reverts to left-to-right execution when brackets are absent. Toby (Grade E) exhibits elementary understanding in isolated areas, unable to apply grouping symbols or construct equations without repeating digits.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    function switchTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.add('hidden'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-slate-200', 'text-slate-700', 'border-transparent');
+      });
+
+      const targetContent = document.getElementById('content-' + tabId);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.classList.remove('bg-slate-200', 'text-slate-700', 'border-transparent');
+      }
+    }
+
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      const main = document.querySelector('main');
+      const btnText = document.getElementById('annotationBtnText');
+      
+      annotationsVisible = !annotationsVisible;
+      
+      if (!annotationsVisible) {
+        main.classList.add('hide-annotations');
+        btnText.textContent = "Show Teacher Marks (Moderation Mode)";
+      } else {
+        main.classList.remove('hide-annotations');
+        btnText.textContent = "Hide Teacher Marks (Blind Moderation)";
+      }
+    }
+  </script>
+
+</body>
+</html>
