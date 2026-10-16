@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSW Stage 1 Mathematics Moderation Portfolio | Tabletop Museum Challenge</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts for Authentic Student Handwriting and Clean UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gochi+Hand&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom handwriting font utility classes */
+    .font-hand-a { font-family: 'Patrick Hand', cursive; }
+    .font-hand-b { font-family: 'Comic Neue', cursive; }
+    .font-hand-c { font-family: 'Schoolbell', cursive; }
+    .font-hand-d { font-family: 'Architects Daughter', cursive; }
+    .font-hand-e { font-family: 'Gochi Hand', cursive; }
+    .font-teacher { font-family: 'Caveat', cursive; }
+    .font-stamp { font-family: 'Permanent Marker', cursive; }
+
+    /* Exercise book paper styling */
+    .exercise-grid {
+      background-color: #fbfbf9;
+      background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+      position: relative;
+    }
+
+    /* Red student margin line */
+    .red-margin {
+      border-left: 2px solid rgba(239, 68, 68, 0.45);
+    }
+
+    /* Sticky post-it note effects */
+    .sticky-note {
+      box-shadow: 2px 4px 10px rgba(0,0,0,0.12), -1px 2px 4px rgba(0,0,0,0.06);
+      transform: rotate(-1.2deg);
+      transition: transform 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+
+    /* Rubber stamp styling */
+    .rubber-stamp {
+      border: 3px solid #dc2626;
+      color: #dc2626;
+      border-radius: 8px;
+      display: inline-block;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transform: rotate(-7deg);
+      opacity: 0.88;
+    }
+    .rubber-stamp-green {
+      border-color: #15803d;
+      color: #15803d;
+      transform: rotate(5deg);
+    }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: white !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- TOP HEADER & NSW CURRICULUM BANNER -->
+  <header class="bg-gradient-to-r from-sky-900 via-indigo-900 to-slate-900 text-white shadow-lg sticky top-0 z-40 border-b-4 border-amber-400 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-amber-400 p-2 rounded-lg text-slate-950 font-black shadow-md flex items-center justify-center">
+          <i data-lucide="award" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold tracking-widest bg-sky-500/30 text-sky-200 px-2 py-0.5 rounded border border-sky-400/40 uppercase">NSW K–10 Syllabus (2022)</span>
+            <span class="text-xs font-semibold text-amber-300">Stage 1 Part A (Year 1) • Sequence 10</span>
+          </div>
+          <h1 class="text-lg sm:text-xl font-extrabold tracking-tight">NSW Stage 1 Mathematics Moderation Portfolio | Tabletop Museum Challenge</h1>
+          <p class="text-xs text-slate-300">Rich Task: <span class="text-amber-200 font-medium">Tabletop Museum Exhibition Booth Challenge (2D & 3D Spatial Structure)</span></p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-2">
+        <button id="toggle-annotations-btn" onclick="toggleAnnotations()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-md text-xs font-medium border border-slate-600 flex items-center gap-1.5 transition">
+          <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span id="annotations-status-text">Hide Teacher Marks</span>
+        </button>
+        <button onclick="openModal('rubric-modal')" class="px-3 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-md text-xs font-medium border border-indigo-400 flex items-center gap-1.5 transition shadow">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+          <span>Syllabus & Rubric</span>
+        </button>
+        <button onclick="openModal('task-brief-modal')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-md text-xs font-bold flex items-center gap-1.5 transition shadow">
+          <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
+          <span>Task Brief</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Syllabus Outcomes Strip -->
+    <div class="bg-slate-950/70 border-t border-slate-800 px-4 py-1.5 text-xs">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-slate-300 font-mono">
+        <span class="flex items-center gap-1 text-amber-400 font-semibold"><i data-lucide="target" class="w-3 h-3"></i> Targeted Outcomes:</span>
+        <span title="Working Mathematically"><strong class="text-white">MA1-WM-01:</strong> Working Mathematically</span>
+        <span title="3D Spatial Structure"><strong class="text-sky-300">MA1-3DS-02:</strong> Volume & Cube Stacking</span>
+        <span title="2D Spatial Structure: Area"><strong class="text-emerald-300">MA1-2DS-02:</strong> Area in Rows & Columns</span>
+        <span title="2D Spatial Structure: Transformations"><strong class="text-fuchsia-300">MA1-2DS-01:</strong> Slides, Reflections & Symmetry</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR / GRADE SELECTION TABS -->
+  <div class="bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between overflow-x-auto py-2 gap-2 no-scrollbar">
+        <div class="flex items-center gap-1.5">
+          <!-- Grade A -->
+          <button onclick="switchTab('grade-a')" id="tab-btn-grade-a" class="tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-emerald-600 bg-emerald-50 text-emerald-900 shadow-sm">
+            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">A</span>
+            <span>Grade A <span class="hidden md:inline font-normal text-emerald-700">(Extensive)</span></span>
+          </button>
+          <!-- Grade B -->
+          <button onclick="switchTab('grade-b')" id="tab-btn-grade-b" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs">B</span>
+            <span>Grade B <span class="hidden md:inline font-normal text-slate-500">(Thorough)</span></span>
+          </button>
+          <!-- Grade C -->
+          <button onclick="switchTab('grade-c')" id="tab-btn-grade-c" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs">C</span>
+            <span>Grade C <span class="hidden md:inline font-normal text-slate-500">(Sound)</span></span>
+          </button>
+          <!-- Grade D -->
+          <button onclick="switchTab('grade-d')" id="tab-btn-grade-d" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-orange-600 text-white flex items-center justify-center text-xs">D</span>
+            <span>Grade D <span class="hidden md:inline font-normal text-slate-500">(Basic)</span></span>
+          </button>
+          <!-- Grade E -->
+          <button onclick="switchTab('grade-e')" id="tab-btn-grade-e" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs">E</span>
+            <span>Grade E <span class="hidden md:inline font-normal text-slate-500">(Elementary)</span></span>
+          </button>
+        </div>
+
+        <!-- Comparative Matrix Toggle -->
+        <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-indigo-200 bg-indigo-50 text-indigo-800 hover:bg-indigo-100 whitespace-nowrap">
+          <i data-lucide="columns" class="w-4 h-4 text-indigo-600"></i>
+          <span>Moderation Matrix (All Grades)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN MODERATION WORKSPACE -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
+
+    <!-- ========================================================================= -->
+    <!-- GRADE A: EXTENSIVE ACHIEVEMENT -->
+    <!-- ========================================================================= -->
+    <div id="grade-a-view" class="tab-content block space-y-6">
+      
+      <div class="bg-emerald-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-emerald-400">
+        <div>
+          <div class="flex items-center gap-2 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-emerald-900 px-2.5 py-0.5 rounded border border-emerald-600">Stage 1 Part A (Year 1)</span>
+            <span>Student: Aria M. • Age: 7 yrs 1 mo</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade A: Extensive Achievement</h2>
+          <p class="text-sm text-emerald-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Readily applies Stage 1 knowledge and skills to <em>new (unfamiliar) situations</em>. Demonstrates depth and conceptual transfer through autonomous problem-solving and multi-layered spatial reasoning.
+          </p>
+        </div>
+        <div class="bg-emerald-950/80 px-4 py-3 rounded-lg border border-emerald-700/60 text-center">
+          <div class="text-xs uppercase text-emerald-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Extensive (A)</div>
+          <div class="text-xs text-emerald-300">Depth in New Situations</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left: Student Exercise Book Artefact -->
+        <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+          <div class="bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <span class="font-bold text-slate-800">CLASS WORK • STAGE 1</span>
+            <span>Aria M. • Extensive Sample</span>
+          </div>
+
+          <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+            <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+            <div class="pl-8 sm:pl-10 space-y-6">
+              
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-hand-a text-2xl font-bold text-slate-900">Museum Booth Challenge</h3>
+                  <p class="font-hand-a text-base text-slate-600">By Aria</p>
+                </div>
+                <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">
+                  OUTSTANDING WORK!
+                </div>
+              </div>
+
+              <!-- Floor Area Section -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Floor Footprint (Area)</h4>
+                  <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Array reasoning (4 &times; 5 = 20)</span>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row items-center gap-4 py-1">
+                  <!-- SVG Area Array -->
+                  <svg width="220" height="170" viewBox="0 0 220 170" class="bg-slate-50 rounded border border-slate-300 shadow-inner">
+                    <g transform="translate(10, 10)">
+                      <!-- 4 rows of 5 square tiles -->
+                      <rect x="0" y="0" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="38" y="0" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="76" y="0" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="114" y="0" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="152" y="0" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      
+                      <rect x="0" y="36" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="38" y="36" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="76" y="36" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="114" y="36" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="152" y="36" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+
+                      <rect x="0" y="72" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="38" y="72" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="76" y="72" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="114" y="72" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="152" y="72" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+
+                      <rect x="0" y="108" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="38" y="108" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="76" y="108" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="114" y="108" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                      <rect x="152" y="108" width="38" height="36" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5" />
+                    </g>
+                  </svg>
+                  
+                  <div class="font-hand-a text-lg text-slate-800 space-y-1">
+                    <p>I laid tiles in <strong>4 rows of 5</strong> with NO gaps.</p>
+                    <p>Instead of counting by ones, I skip-counted: <em>5, 10, 15, 20</em>.</p>
+                    <p class="font-bold text-emerald-900 bg-emerald-50 px-2 py-1 rounded border border-emerald-200">
+                      Total Area = 20 square tiles
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pedestal Volume Section -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Display Pedestal (Volume)</h4>
+                  <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Multiplicative layer structure</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4 py-1">
+                  <!-- Prism Representation -->
+                  <svg width="180" height="120" viewBox="0 0 180 120" class="bg-slate-50 rounded border border-slate-300">
+                    <g transform="translate(15, 15)">
+                      <!-- 2 x 3 x 2 prism projection -->
+                      <polygon points="20,50 60,30 140,30 100,50" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+                      <polygon points="20,80 60,60 140,60 100,80" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+                      <rect x="20" y="50" width="80" height="30" fill="#fdba74" stroke="#ea580c" stroke-width="1.5"/>
+                      <polygon points="100,50 140,30 140,60 100,80" fill="#fb923c" stroke="#ea580c" stroke-width="1.5"/>
+                      <line x1="60" y1="50" x2="60" y2="80" stroke="#ea580c" stroke-width="1.5"/>
+                      <line x1="80" y1="30" x2="80" y2="60" stroke="#ea580c" stroke-width="1.5"/>
+                    </g>
+                  </svg>
+
+                  <div class="font-hand-a text-lg text-slate-800 space-y-1">
+                    <p>I built a solid rectangular prism: <strong>2 rows of 3 cubes = 6 cubes on the bottom layer</strong>.</p>
+                    <p>Stacked 2 equal layers high: 6 + 6 = 12 cubes.</p>
+                    <p class="font-bold text-emerald-900 bg-emerald-50 px-2 py-1 rounded border border-emerald-200">
+                      Total Volume = 12 connecting cubes
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Banner Section (Symmetry) -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. Entrance Sign (Bilateral Symmetry)</h4>
+                  <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Perfect line symmetry</span>
+                </div>
+                <!-- Symmetrical Pattern Block Banner -->
+                <svg width="100%" height="70" viewBox="0 0 320 70" class="bg-white rounded border border-slate-300">
+                  <line x1="160" y1="5" x2="160" y2="65" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 4" />
+                  <text x="165" y="16" class="text-[10px] fill-red-500 font-mono">Fold Line</text>
+                  <!-- Left side -->
+                  <rect x="90" y="20" width="28" height="28" fill="#facc15" stroke="#ca8a04" stroke-width="1.5"/>
+                  <polygon points="120,48 135,20 150,48" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5"/>
+                  <!-- Right side (mirrored) -->
+                  <polygon points="170,48 185,20 200,48" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5"/>
+                  <rect x="202" y="20" width="28" height="28" fill="#facc15" stroke="#ca8a04" stroke-width="1.5"/>
+                </svg>
+                <p class="font-hand-a text-base text-slate-800">
+                  "Both sides are identical distance from the fold line. If I fold it over the red dotted line, every point matches exactly."
+                </p>
+              </div>
+
+              <!-- Challenge Response (Unfamiliar Situation) -->
+              <div class="bg-emerald-50/80 p-4 rounded-xl border border-emerald-300 shadow-sm space-y-2">
+                <span class="bg-emerald-700 text-white font-bold text-xs px-2 py-0.5 rounded">CHALLENGE PROMPT RESPONSE</span>
+                <p class="font-hand-a text-lg text-slate-900">
+                  "We got 6 extra tiles! 20 + 6 = 26 tiles. I made an entrance walkway of 2 rows of 3 at the front. The booth is now an L-footprint of 26 tiles."
+                </p>
+                <p class="font-hand-a text-lg text-slate-900">
+                  "With 12 extra cubes (12 + 12 = 24 cubes), I built a double-stepped podium: two 6-cube bases side by side, topped with a 2nd and 3rd tier of 4 and 2 cubes so the display is balanced and symmetrical!"
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Moderation Details & NESA Rationales -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">NESA Standard</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1">Grade A Moderation Rationale</h3>
+              </div>
+              <span class="text-3xl font-black text-emerald-600">A</span>
+            </div>
+
+            <div class="space-y-3 text-xs text-slate-700">
+              <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                  Two-Dimensional Spatial Structure (MA1-2DS-01 & 02)
+                </div>
+                <p>
+                  <strong>Extensive:</strong> Readily applies understanding to new situations. Constructs a flawless 4 &times; 5 tile array without gaps or overlaps. Efficiently calculates total area using array skip-counting rather than counting by ones. Autonomously incorporates 6 extra tiles into a balanced composite footprint.
+                </p>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                  Three-Dimensional Spatial Structure (MA1-3DS-02)
+                </div>
+                <p>
+                  <strong>Extensive:</strong> Reasons about spatial structure by stacking cubes into distinct layers (6 + 6 = 12). Successfully integrates 12 additional cubes into a stepped symmetrical structure, demonstrating volume conservation and structural balance.
+                </p>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                  Working Mathematically (MA1-WM-01)
+                </div>
+                <p>
+                  <strong>Extensive:</strong> Chooses efficient techniques, adapts them to solve unfamiliar problems, and communicates thinking clearly with precise mathematical terminology (<em>array, rows, layers, symmetry, fold line, volume</em>).
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-emerald-50/70 p-3 rounded-lg border border-emerald-200 text-xs">
+              <strong class="text-emerald-950">Next Pedagogical Steps (Depth, Not Acceleration):</strong>
+              <p class="text-emerald-900 mt-1">
+                Explore how many different rectangular prisms can be formed from the same 24 cubes (e.g., 2 &times; 3 &times; 4, 1 &times; 4 &times; 6, and 2 &times; 2 &times; 6) to consolidate volume conservation, and introduce fractional partitioning (half-tiles) to measure irregular borders.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE B: THOROUGH ACHIEVEMENT -->
+    <!-- ========================================================================= -->
+    <div id="grade-b-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-sky-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-sky-400">
+        <div>
+          <div class="flex items-center gap-2 text-sky-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-sky-900 px-2.5 py-0.5 rounded border border-sky-600">Stage 1 Part A (Year 1)</span>
+            <span>Student: Benjamin T. • Age: 6 yrs 11 mos</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade B: Thorough Achievement</h2>
+          <p class="text-sm text-sky-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Thorough knowledge and understanding; high level of competence. Applies knowledge and skills to <em>most familiar situations</em> with clear structured communication.
+          </p>
+        </div>
+        <div class="bg-sky-950/80 px-4 py-3 rounded-lg border border-sky-700/60 text-center">
+          <div class="text-xs uppercase text-sky-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Thorough (B)</div>
+          <div class="text-xs text-sky-300">High Competence</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+          <div class="bg-sky-100/70 border-b border-sky-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <span>Benjamin T. • Thorough Sample</span>
+          </div>
+
+          <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+            <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+            <div class="pl-8 sm:pl-10 space-y-6">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-hand-b text-2xl font-bold text-slate-900">Museum Booth Display</h3>
+                  <p class="font-hand-b text-base text-slate-600">Benjamin</p>
+                </div>
+                <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                  VERY THOROUGH
+                </div>
+              </div>
+
+              <!-- Floor Area -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Booth Floor (Area)</h4>
+                <div class="font-hand-b text-base text-slate-800 space-y-1">
+                  <p>I made a grid of 3 rows of 4 tiles. No gaps and no overlapping.</p>
+                  <p>I skip counted by 4s: 4, 8, 12.</p>
+                  <p class="font-bold text-sky-950 bg-sky-50 p-2 rounded border border-sky-200">
+                    Floor Area = 12 square tiles
+                  </p>
+                </div>
+              </div>
+
+              <!-- Pedestal Volume -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Display Pedestal (Volume)</h4>
+                <div class="font-hand-b text-base text-slate-800 space-y-1">
+                  <p>I built a solid stand: 2 cubes wide, 2 cubes long, 2 cubes high.</p>
+                  <p>Bottom layer = 4 cubes. Top layer = 4 cubes.</p>
+                  <p class="font-bold text-sky-950 bg-sky-50 p-2 rounded border border-sky-200">
+                    4 + 4 = 8 connecting cubes volume
+                  </p>
+                </div>
+              </div>
+
+              <!-- Banner -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. Symmetrical Sign</h4>
+                <p class="font-hand-b text-base text-slate-800">
+                  "I used 2 blue rhombuses and 2 green triangles. Both sides match across the middle line."
+                </p>
+              </div>
+
+              <!-- Challenge Response -->
+              <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 space-y-1">
+                <span class="bg-sky-700 text-white font-bold text-xs px-2 py-0.5 rounded">CHALLENGE PROMPT</span>
+                <p class="font-hand-b text-base text-slate-800">
+                  "I added 6 more tiles: 12 + 6 = 18 tiles. I made a new row of 4 and 2 on the side. For the 12 extra blocks, I made another pedestal: 8 + 12 = 20 cubes altogether."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Rationale -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">NESA Standard</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1">Grade B Moderation Rationale</h3>
+              </div>
+              <span class="text-3xl font-black text-sky-600">B</span>
+            </div>
+            <div class="text-xs text-slate-700 space-y-3">
+              <p>
+                <strong>Thorough:</strong> High competence in familiar situations. Fluent row skip-counting ($4, 8, 12$), layer addition ($4 + 4 = 8$), and clear additive expansion ($12 + 6 = 18$ tiles and $8 + 12 = 20$ cubes). Explains thinking logically using appropriate mathematical language.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE C: SOUND ACHIEVEMENT -->
+    <!-- ========================================================================= -->
+    <div id="grade-c-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-amber-400">
+        <div>
+          <div class="flex items-center gap-2 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-amber-900 px-2.5 py-0.5 rounded border border-amber-600">Stage 1 Part A (Year 1)</span>
+            <span>Student: Chloe S. • Age: 6 yrs 9 mos</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade C: Sound Achievement</h2>
+          <p class="text-sm text-amber-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Demonstrates knowledge and skills in <em>familiar situations</em>, meeting the core Stage 1 outcomes. Uses taught routines (direct counting and recounting by ones, structured rows and layers, clear translation/reflection), achieving an <strong>adequate level of competence</strong>.
+          </p>
+        </div>
+        <div class="bg-amber-950/80 px-4 py-3 rounded-lg border border-amber-700/60 text-center">
+          <div class="text-xs uppercase text-amber-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Sound (C)</div>
+          <div class="text-xs text-amber-300">Adequate Competence</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+          <div class="bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <span class="font-bold text-slate-800">CLASS WORK • STAGE 1</span>
+            <span>Chloe S. • Sound Sample</span>
+          </div>
+
+          <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+            <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+            <div class="pl-8 sm:pl-10 space-y-6">
+              
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-hand-c text-2xl font-bold text-slate-900">Museum Booth</h3>
+                  <p class="font-hand-c text-base text-slate-600">Chloe</p>
+                </div>
+                <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
+                  GOOD WORK CHLOE
+                </div>
+              </div>
+
+              <!-- Floor Area -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Floor Tiles (Area)</h4>
+                  <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Numbered 1 to 12 accurately</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4 py-1">
+                  <svg width="200" height="150" viewBox="0 0 200 150" class="bg-slate-50 rounded border border-slate-400">
+                    <g transform="translate(15, 15)">
+                      <rect x="0" y="0" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="15" y="25" class="font-hand-c text-sm font-bold fill-slate-800">1</text>
+                      <rect x="40" y="0" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="55" y="25" class="font-hand-c text-sm font-bold fill-slate-800">2</text>
+                      <rect x="80" y="0" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="95" y="25" class="font-hand-c text-sm font-bold fill-slate-800">3</text>
+                      <rect x="120" y="0" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="135" y="25" class="font-hand-c text-sm font-bold fill-slate-800">4</text>
+                      
+                      <rect x="0" y="40" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="15" y="65" class="font-hand-c text-sm font-bold fill-slate-800">5</text>
+                      <rect x="40" y="40" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="55" y="65" class="font-hand-c text-sm font-bold fill-slate-800">6</text>
+                      <rect x="80" y="40" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="95" y="65" class="font-hand-c text-sm font-bold fill-slate-800">7</text>
+                      <rect x="120" y="40" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="135" y="65" class="font-hand-c text-sm font-bold fill-slate-800">8</text>
+                      
+                      <rect x="0" y="80" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="15" y="105" class="font-hand-c text-sm font-bold fill-slate-800">9</text>
+                      <rect x="40" y="80" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="52" y="105" class="font-hand-c text-xs font-bold fill-slate-800">10</text>
+                      <rect x="80" y="80" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="92" y="105" class="font-hand-c text-xs font-bold fill-slate-800">11</text>
+                      <rect x="120" y="80" width="40" height="40" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                      <text x="132" y="105" class="font-hand-c text-xs font-bold fill-slate-800">12</text>
+                    </g>
+                  </svg>
+
+                  <div class="font-hand-c text-base text-slate-800 space-y-1">
+                    <p>I put square tiles in rows.</p>
+                    <p>No gaps and no overlapping.</p>
+                    <p>I counted 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.</p>
+                    <p class="bg-amber-50 px-2 py-1 rounded border border-amber-200">
+                      Area = <strong>12 square tiles</strong>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pedestal Volume -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Display Stand (Volume)</h4>
+                  <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Solid structure built</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4 py-1">
+                  <svg width="150" height="110" viewBox="0 0 150 110" class="bg-amber-50/50 rounded border border-slate-400">
+                    <rect x="30" y="55" width="40" height="30" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+                    <rect x="70" y="55" width="40" height="30" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+                    <rect x="30" y="25" width="40" height="30" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+                    <rect x="70" y="25" width="40" height="30" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+                    <text x="45" y="45" class="font-hand-c text-xs">1</text>
+                    <text x="85" y="45" class="font-hand-c text-xs">2</text>
+                    <text x="45" y="75" class="font-hand-c text-xs">3</text>
+                    <text x="85" y="75" class="font-hand-c text-xs">4</text>
+                  </svg>
+
+                  <div class="font-hand-c text-base text-slate-800 space-y-1">
+                    <p>I made a stand for the ooshies using wooden cubes.</p>
+                    <p>There are 4 cubes on the bottom and 4 cubes on the top.</p>
+                    <p class="font-bold text-amber-900">4 and 4 is 8 cubes altogether.</p>
+                    <p class="bg-amber-50 px-2 py-1 rounded border border-amber-200">
+                      Volume = <strong>8 wooden cubes</strong>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Banner (Slide/Translation) -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Sign (Slide)</h4>
+                  <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Correct slide identified</span>
+                </div>
+                <svg width="100%" height="65" viewBox="0 0 320 65" class="bg-white rounded border border-slate-300">
+                  <polygon points="40,50 65,15 90,50" fill="#86efac" stroke="#16a34a" stroke-width="2" />
+                  <text x="50" y="42" class="font-hand-c text-xs">Start</text>
+                  <line x1="98" y1="35" x2="140" y2="35" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3 3"/>
+                  <polygon points="145,35 137,30 137,40" fill="#3b82f6" />
+                  <polygon points="155,50 180,15 205,50" fill="#86efac" stroke="#16a34a" stroke-width="2" />
+                  <text x="165" y="42" class="font-hand-c text-xs">Slide</text>
+                </svg>
+                <p class="font-hand-c text-base text-slate-800">
+                  "I slid the green triangle over along the table. It did not change size. It is a slide."
+                </p>
+              </div>
+
+              <!-- Challenge Response & Scribing -->
+              <div class="bg-amber-50/70 p-4 rounded-xl border border-amber-300 shadow-sm space-y-2">
+                <span class="bg-amber-700 text-white font-bold text-xs px-2 py-0.5 rounded">CHALLENGE PROMPT RESPONSE</span>
+                <p class="font-hand-c text-base text-slate-800">
+                  "We got 6 more tiles. I put them on the end. I counted them all again from one up to 18. The area is 18 tiles. Then I stacked the 12 blocks on top to make it tall."
+                </p>
+
+                <!-- Teacher Scribing Block -->
+                <div class="p-3 bg-amber-100/70 rounded border border-amber-300 text-xs text-slate-800 mt-2">
+                  <div class="font-bold text-amber-950 flex items-center gap-1">
+                    <i data-lucide="mic" class="w-3.5 h-3.5 text-indigo-700"></i> Teacher Scribing of Oral Explanation:
+                  </div>
+                  <p class="font-teacher text-base text-slate-900 mt-1">
+                    "When asked how the total area changed, Chloe pointed and counted: 'It got bigger because we added 6 tiles on. 12 and 6 makes 18.' When asked how she counted the blocks, she said: 'I counted each one by pointing my finger so I didn't lose my spot.'"
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Moderation Details -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">NESA Standard</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1">Grade C Moderation Rationale</h3>
+              </div>
+              <span class="text-3xl font-black text-amber-600">C</span>
+            </div>
+
+            <div class="space-y-3 text-xs text-slate-700">
+              <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                  Two-Dimensional Spatial Structure (MA1-2DS-01 & 02)
+                </div>
+                <p>
+                  <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations. Covers the surface with square tiles in straight rows and columns without gaps or overlaps. Correctly labels total area with informal unit ("12 square tiles"). Identifies and creates a slide (translation).
+                </p>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                  Three-Dimensional Spatial Structure (MA1-3DS-02)
+                </div>
+                <p>
+                  <strong>Sound:</strong> Stacks uniform cubes into a solid rectangular prism without leaving hollow pockets. Uses a basic layer recount ("4 on bottom and 4 on top is 8") and records the volume with informal unit label ("8 wooden cubes").
+                </p>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                  Working Mathematically (MA1-WM-01)
+                </div>
+                <p>
+                  <strong>Sound:</strong> Demonstrates knowledge and skills in familiar situations. Successfully carries out familiar classroom routines, relying on counting and recounting by ones rather than skip-counting. Achieves an adequate level of competence.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-amber-50/70 p-3 rounded-lg border border-amber-200 text-xs">
+              <strong class="text-amber-950">Sound (C) Alignment:</strong>
+              <p class="text-amber-900 mt-1">
+                Grade C represents sound knowledge of the main areas of content and adequate competence. Chloe fulfills every core requirement under familiar conditions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE D: BASIC ACHIEVEMENT -->
+    <!-- ========================================================================= -->
+    <div id="grade-d-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-orange-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-orange-400">
+        <div>
+          <div class="flex items-center gap-2 text-orange-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-orange-900 px-2.5 py-0.5 rounded border border-orange-600">Stage 1 Part A (Year 1)</span>
+            <span>Student: Daniel K. • Age: 7 yrs 2 mos</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade D: Basic Achievement</h2>
+          <p class="text-sm text-orange-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Demonstrates <em>basic knowledge with limited competence</em>. Requires regular teacher prompting and scaffolding; displays partial execution (some tile gaps/overlaps, one-by-one counting errors, pedestal structural instability).
+          </p>
+        </div>
+        <div class="bg-orange-950/80 px-4 py-3 rounded-lg border border-orange-700/60 text-center">
+          <div class="text-xs uppercase text-orange-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Basic (D)</div>
+          <div class="text-xs text-orange-300">Requires Scaffolding</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+          <div class="bg-orange-100/70 border-b border-orange-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <span>Daniel K. • Basic Sample</span>
+          </div>
+
+          <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+            <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+            <div class="pl-8 sm:pl-10 space-y-6">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-hand-d text-2xl font-bold text-slate-900">Musium Both</h3>
+                  <p class="font-hand-d text-base text-slate-600">Dan</p>
+                </div>
+                <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-amber-700 border-amber-700">
+                  NEEDS PROMPTING
+                </div>
+              </div>
+
+              <!-- Floor Area with gaps -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2 relative">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Floor Area</h4>
+                <div class="font-hand-d text-base text-slate-800 space-y-1">
+                  <p>I put square tiles down. I counted: 1, 2, 3, 4, 5, 6, 7, 8, 9.</p>
+                  <p class="font-bold text-orange-950">It has 9 tiles.</p>
+                  <div class="teacher-mark font-teacher text-base text-rose-600 bg-rose-50 p-1.5 rounded border border-rose-200">
+                    ✎ <em>Teacher prompt: Remember to push tiles edge-to-edge so no table shows through!</em>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pedestal -->
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Pedestal Stand</h4>
+                <div class="font-hand-d text-base text-slate-800 space-y-1">
+                  <p>I built a tower with blocks. It fell down first because it was too skinny. My teacher helped me make it solid. It has <strong>5 blocks</strong>.</p>
+                </div>
+              </div>
+
+              <!-- Scribing Log -->
+              <div class="sticky-note bg-amber-100 p-4 rounded-xl border border-amber-300 shadow-sm space-y-1 text-slate-900">
+                <div class="font-bold text-amber-950 flex items-center gap-1.5 text-xs">
+                  <i data-lucide="help-circle" class="w-4 h-4 text-orange-600"></i> Teacher Prompting Log:
+                </div>
+                <p class="font-teacher text-base text-slate-800 leading-snug">
+                  "Daniel required step-by-step guidance to place tiles without overlapping and needed concrete physical modeling to prevent his block tower from toppling."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Rationale -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2 py-0.5 rounded">NESA Standard</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1">Grade D Moderation Rationale</h3>
+              </div>
+              <span class="text-3xl font-black text-orange-600">D</span>
+            </div>
+            <div class="text-xs text-slate-700 space-y-3">
+              <p>
+                <strong>Basic:</strong> Limited competence. Leaves noticeable gaps between tiles; builds unstable single-column stacks with hollows; requires physical teacher intervention to complete familiar tasks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- GRADE E: ELEMENTARY ACHIEVEMENT -->
+    <!-- ========================================================================= -->
+    <div id="grade-e-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-rose-900 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-rose-400">
+        <div>
+          <div class="flex items-center gap-2 text-rose-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-rose-950 px-2.5 py-0.5 rounded border border-rose-700">Stage 1 Part A (Year 1)</span>
+            <span>Student: Eli W. • Age: 6 yrs 8 mos</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade E: Elementary Achievement</h2>
+          <p class="text-sm text-rose-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Demonstrates <em>elementary knowledge in few areas</em> of the content. Achieved very limited competence; requires <strong>substantial direct 1:1 teacher support</strong> to engage with materials; unable to complete the task independently.
+          </p>
+        </div>
+        <div class="bg-rose-950/80 px-4 py-3 rounded-lg border border-rose-700/60 text-center">
+          <div class="text-xs uppercase text-rose-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Elementary (E)</div>
+          <div class="text-xs text-rose-300">Substantial Support</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+          <div class="bg-rose-100/70 border-b border-rose-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <span>Eli W. • Elementary Running Record</span>
+          </div>
+
+          <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
+            <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+            <div class="pl-8 sm:pl-10 space-y-6">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-hand-e text-2xl font-bold text-slate-900">Eli's Booth Record</h3>
+                  <p class="text-xs text-slate-500 font-mono">Observed & Scribed by Learning Support Teacher</p>
+                </div>
+                <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm text-rose-700 border-rose-700">
+                  SUBSTANTIAL 1:1 SUPPORT
+                </div>
+              </div>
+
+              <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Teacher Anecdotal Observation</h4>
+                <p class="font-teacher text-lg text-slate-900 leading-snug">
+                  "Eli placed 4 foam tiles randomly on the desk with wide gaps. When prompted to count, Eli stated 'One, two, five, ten!'. He connected 3 blocks in a line, which fell when touched. Did not demonstrate line symmetry or access the expansion challenge."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Rationale -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+            <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-100 px-2 py-0.5 rounded">NESA Standard</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1">Grade E Moderation Rationale</h3>
+              </div>
+              <span class="text-3xl font-black text-rose-600">E</span>
+            </div>
+            <div class="text-xs text-slate-700 space-y-3">
+              <p>
+                <strong>Elementary:</strong> Very limited competence. Cannot align uniform units in rows or columns; stacks blocks randomly; communicates isolated ideas through gestures only with substantial 1:1 adult support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- COMPARATIVE MODERATION MATRIX (ALL 5 GRADES) -->
+    <!-- ========================================================================= -->
+    <div id="matrix-view" class="tab-content hidden space-y-6">
+      
+      <div class="bg-indigo-950 text-white rounded-xl p-5 shadow-lg flex flex-wrap items-center justify-between gap-4 border-l-8 border-indigo-400">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-300 bg-indigo-900/60 px-2 py-0.5 rounded border border-indigo-700">NESA K–10 Common Grade Scale</span>
+          <h2 class="text-2xl font-black mt-1">Stage 1 Mathematics Moderation Matrix</h2>
+          <p class="text-sm text-indigo-200 max-w-3xl mt-1">
+            Comparative analysis of student performance across all 5 grade levels for <em>The Tabletop Museum Exhibition Booth Challenge</em>.
+          </p>
+        </div>
+        <button onclick="window.print()" class="px-3 py-2 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold flex items-center gap-2 transition shadow">
+          <i data-lucide="printer" class="w-4 h-4"></i> Print Moderation Sheet
+        </button>
+      </div>
+
+      <!-- Comparative Table -->
+      <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse min-w-[900px]">
+          <thead>
+            <tr class="bg-slate-900 text-white border-b-2 border-slate-800">
+              <th class="p-3 font-bold w-44">Syllabus Focus Area</th>
+              <th class="p-3 font-bold bg-emerald-950/80 text-emerald-300 w-1/5 border-l border-slate-800">Grade A (Extensive)</th>
+              <th class="p-3 font-bold bg-sky-950/80 text-sky-300 w-1/5 border-l border-slate-800">Grade B (Thorough)</th>
+              <th class="p-3 font-bold bg-amber-950/80 text-amber-300 w-1/5 border-l border-slate-800">Grade C (Sound)</th>
+              <th class="p-3 font-bold bg-orange-950/80 text-orange-300 w-1/5 border-l border-slate-800">Grade D (Basic)</th>
+              <th class="p-3 font-bold bg-rose-950/80 text-rose-300 w-1/5 border-l border-slate-800">Grade E (Elementary)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Area in Rows & Columns</div>
+                <div class="text-[11px] text-slate-500 font-mono">MA1-2DS-02</div>
+              </td>
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+                Constructs 4 &times; 5 array (20 tiles) without gaps/overlaps. Autonomously reconfigures composite footprint when adding 6 extra tiles (20 + 6 = 26). Skip-counts and uses array reasoning.
+              </td>
+              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+                Constructs 3 &times; 4 array (12 tiles). Skip-counts fluently (4, 8, 12). Handles expansion by adding a row of 4 and 2 at the side (12 + 6 = 18).
+              </td>
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+                Constructs 3 &times; 4 array (12 tiles) edge-to-edge. Counts tiles one-by-one (1 to 12). Recounts all 18 tiles one-by-one after adding 6 tiles.
+              </td>
+              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+                Lays tiles with noticeable gaps and overlaps. Requires teacher prompt to correct alignment. Counts by ones with minor tracking errors.
+              </td>
+              <td class="p-3 bg-rose-50/30 border-l border-slate-200">
+                Places tiles in random piles. Unable to construct rows or columns. Inconsistent counting; requires substantial 1:1 adult direction.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Prism Volume & Stacking</div>
+                <div class="text-[11px] text-slate-500 font-mono">MA1-3DS-02</div>
+              </td>
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+                Solid 2 &times; 3 &times; 2 prism (12 cubes). Reasons multiplicatively about layers (6 + 6 = 12). Fluidly expands with 12 more cubes into a balanced 24-cube stepped double-tower.
+              </td>
+              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+                Solid 2 &times; 2 &times; 2 prism (8 cubes). Calculates volume via repeated layer addition (4 + 4 = 8). Builds a second multi-layer pedestal (4 + 4 + 4 = 12) to use the 12 extra cubes (8 + 12 = 20).
+              </td>
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+                Builds solid 8-cube structure (2 layers of 4). Verifies total by recounting cubes. Records volume using informal units ("8 wooden cubes").
+              </td>
+              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+                Builds unstable single-column stack that topples. Requires physical teacher scaffolding to construct a 2-layer stable base. Counts by ones.
+              </td>
+              <td class="p-3 bg-rose-50/30 border-l border-slate-200">
+                Unable to build a 3D prism. Cannot connect cubes into a structured base. Does not understand volume as internal cube measure.
+              </td>
+            </tr>
+
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3 font-bold bg-slate-50 text-slate-900">
+                <div class="font-bold">Working Mathematically</div>
+                <div class="text-[11px] text-slate-500 font-mono">MA1-WM-01</div>
+              </td>
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+                <strong>Extensive:</strong> Autonomous problem-solving in an unfamiliar challenge context. Fluent mathematical reasoning, precise vocabulary, and self-monitoring.
+              </td>
+              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+                <strong>Thorough:</strong> High competence in familiar situations. Clear explanations using appropriate syllabus vocabulary. Structured mathematical thinking.
+              </td>
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+                <strong>Sound:</strong> Demonstrates taught procedures accurately in familiar setups. Relies on counting/recounting by ones. Explains thinking simply when prompted. Adequate competence.
+              </td>
+              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+                <strong>Basic:</strong> Limited competence. Relies on heavy teacher questioning and prompting to complete familiar tasks. Everyday language used.
+              </td>
+              <td class="p-3 bg-rose-50/30 border-l border-slate-200">
+                <strong>Elementary:</strong> Very limited competence. Expresses isolated ideas through gestures only with continuous 1:1 adult support.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODALS -->
+  <div id="task-brief-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">Assessment Task Brief (Sequence 10)</h3>
+        <button onclick="closeModal('task-brief-modal')" class="text-slate-400 hover:text-slate-700 p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+        <div class="p-3 bg-amber-50 rounded-lg border border-amber-200">
+          <h4 class="font-bold text-amber-900 mb-1">Context: Tabletop Museum Exhibition Booth Challenge</h4>
+          <p>Design a tabletop Ooshie Display Booth using square tiles, blocks, and pattern cards.</p>
+        </div>
+        <ol class="list-decimal list-inside space-y-1.5 text-slate-700">
+          <li><strong>Booth Floor (Area):</strong> Cover surface in rows/columns without gaps or overlaps.</li>
+          <li><strong>Display Pedestal (Volume):</strong> Build solid prisms using uniform cubes and count using layers.</li>
+          <li><strong>Banner (Transformations):</strong> Create a slide or symmetrical design using pattern blocks.</li>
+        </ol>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('task-brief-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="rubric-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">NESA Common Grade Scale & Stage 1 Rubric</h3>
+        <button onclick="closeModal('rubric-modal')" class="text-slate-400 hover:text-slate-700 p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-700">
+        <div class="p-3 bg-amber-50 rounded border border-amber-300">
+          <strong>Key NESA Rubric Principle: Depth, Not Acceleration</strong>
+          <p class="mt-1">Grade A reflects applying Stage 1 content readily to new situations. It does not require content from Stage 2.</p>
+        </div>
+        <div class="p-2 rounded bg-amber-50 border border-amber-200">
+          <strong>Grade C (Sound):</strong> Demonstrates knowledge and understanding of the main areas of content; adequate level of competence in familiar situations using taught routines.
+        </div>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('rubric-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-emerald-600', 'bg-emerald-50', 'text-emerald-900', 'border-sky-600', 'bg-sky-50', 'text-sky-900', 'border-amber-500', 'bg-amber-50', 'text-amber-900', 'border-orange-600', 'bg-orange-50', 'text-orange-900', 'border-rose-600', 'bg-rose-50', 'text-rose-900', 'border-indigo-600', 'bg-indigo-100'));
+      const target = document.getElementById(`${tabId}-view`);
+      if (target) target.classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'border-2');
+        if (tabId === 'grade-a') activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900');
+        if (tabId === 'grade-b') activeBtn.classList.add('border-sky-600', 'bg-sky-50', 'text-sky-900');
+        if (tabId === 'grade-c') activeBtn.classList.add('border-amber-500', 'bg-amber-50', 'text-amber-900');
+        if (tabId === 'grade-d') activeBtn.classList.add('border-orange-600', 'bg-orange-50', 'text-orange-900');
+        if (tabId === 'grade-e') activeBtn.classList.add('border-rose-600', 'bg-rose-50', 'text-rose-900');
+        if (tabId === 'matrix') activeBtn.classList.add('border-indigo-600', 'bg-indigo-100', 'text-indigo-950');
+      }
+      lucide.createIcons();
+    }
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      annotationsVisible = !annotationsVisible;
+      document.querySelectorAll('.teacher-mark').forEach(m => m.style.display = annotationsVisible ? '' : 'none');
+      document.getElementById('annotations-status-text').textContent = annotationsVisible ? 'Hide Teacher Marks' : 'Show Teacher Marks';
+    }
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+  </script>
+</body>
+</html>

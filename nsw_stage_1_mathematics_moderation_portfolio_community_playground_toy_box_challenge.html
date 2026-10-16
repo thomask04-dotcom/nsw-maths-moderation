@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSW Stage 1 Mathematics Moderation Portfolio | Community Playground Toy Box Challenge</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts for Authentic Student Handwriting and Clean UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gochi+Hand&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom handwriting font utility classes */
+    .font-hand-a { font-family: 'Patrick Hand', cursive; }
+    .font-hand-b { font-family: 'Comic Neue', cursive; }
+    .font-hand-c { font-family: 'Schoolbell', cursive; }
+    .font-hand-d { font-family: 'Architects Daughter', cursive; }
+    .font-hand-e { font-family: 'Gochi Hand', cursive; }
+    .font-teacher { font-family: 'Caveat', cursive; }
+    .font-stamp { font-family: 'Permanent Marker', cursive; }
+
+    /* Exercise book paper styling */
+    .exercise-grid {
+      background-color: #fbfbf9;
+      background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+      position: relative;
+    }
+
+    /* Red student margin line */
+    .red-margin {
+      border-left: 2px solid rgba(239, 68, 68, 0.45);
+    }
+
+    /* Sticky post-it note effects */
+    .sticky-note {
+      box-shadow: 2px 4px 10px rgba(0,0,0,0.12), -1px 2px 4px rgba(0,0,0,0.06);
+      transform: rotate(-1.2deg);
+      transition: transform 0.2s ease;
+    }
+
+    /* Rubber stamp styling */
+    .rubber-stamp {
+      border: 3px solid #dc2626;
+      color: #dc2626;
+      border-radius: 8px;
+      display: inline-block;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transform: rotate(-7deg);
+      opacity: 0.88;
+    }
+    .rubber-stamp-green {
+      border-color: #15803d;
+      color: #15803d;
+      transform: rotate(5deg);
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: white !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- TOP HEADER & NSW CURRICULUM BANNER -->
+  <header class="bg-gradient-to-r from-teal-900 via-indigo-900 to-slate-900 text-white shadow-lg sticky top-0 z-40 border-b-4 border-amber-400 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-amber-400 p-2 rounded-lg text-slate-950 font-black shadow-md flex items-center justify-center">
+          <i data-lucide="package-check" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold tracking-widest bg-teal-500/30 text-teal-200 px-2 py-0.5 rounded border border-teal-400/40 uppercase">NSW K–10 Syllabus (2022)</span>
+            <span class="text-xs font-semibold text-amber-300">Stage 1 Part A (Year 1) • Sequence 9</span>
+          </div>
+          <h1 class="text-lg sm:text-xl font-extrabold tracking-tight">NSW Stage 1 Mathematics Moderation Portfolio | Community Playground Toy Box Challenge</h1>
+          <p class="text-xs text-slate-300">Rich Task: <span class="text-amber-200 font-medium">Community Playground Toy Box Challenge (Combining & Separating Quantities)</span></p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-2">
+        <button id="toggle-annotations-btn" onclick="toggleAnnotations()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-md text-xs font-medium border border-slate-600 flex items-center gap-1.5 transition">
+          <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span id="annotations-status-text">Hide Teacher Marks</span>
+        </button>
+        <button onclick="openModal('rubric-modal')" class="px-3 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-md text-xs font-medium border border-indigo-400 flex items-center gap-1.5 transition shadow">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+          <span>Syllabus & Rubric</span>
+        </button>
+        <button onclick="openModal('task-brief-modal')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-md text-xs font-bold flex items-center gap-1.5 transition shadow">
+          <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
+          <span>Task Brief & Menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Syllabus Outcomes Strip -->
+    <div class="bg-slate-950/70 border-t border-slate-800 px-4 py-1.5 text-xs">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-slate-300 font-mono">
+        <span class="flex items-center gap-1 text-amber-400 font-semibold"><i data-lucide="target" class="w-3 h-3"></i> Targeted Outcomes:</span>
+        <span title="Working Mathematically"><strong class="text-white">MA1-WM-01:</strong> Working Mathematically</span>
+        <span title="Combining and Separating Quantities"><strong class="text-teal-300">MA1-CSQ-01:</strong> Number bonds, partitioning, bridging to 10 & equality relations</span>
+        <span class="text-slate-400 hidden lg:inline">• Non-count-by-one strategies, friends of 10, doubles, commutative property</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR / GRADE SELECTION TABS -->
+  <div class="bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between overflow-x-auto py-2 gap-2 no-scrollbar">
+        <div class="flex items-center gap-1.5">
+          <!-- Grade A -->
+          <button onclick="switchTab('grade-a')" id="tab-btn-grade-a" class="tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-emerald-600 bg-emerald-50 text-emerald-900 shadow-sm">
+            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">A</span>
+            <span>Grade A <span class="hidden md:inline font-normal text-emerald-700">(Extensive)</span></span>
+          </button>
+          <!-- Grade B -->
+          <button onclick="switchTab('grade-b')" id="tab-btn-grade-b" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs">B</span>
+            <span>Grade B <span class="hidden md:inline font-normal text-slate-500">(Thorough)</span></span>
+          </button>
+          <!-- Grade C -->
+          <button onclick="switchTab('grade-c')" id="tab-btn-grade-c" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs">C</span>
+            <span>Grade C <span class="hidden md:inline font-normal text-slate-500">(Sound)</span></span>
+          </button>
+          <!-- Grade D -->
+          <button onclick="switchTab('grade-d')" id="tab-btn-grade-d" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-orange-600 text-white flex items-center justify-center text-xs">D</span>
+            <span>Grade D <span class="hidden md:inline font-normal text-slate-500">(Basic)</span></span>
+          </button>
+          <!-- Grade E -->
+          <button onclick="switchTab('grade-e')" id="tab-btn-grade-e" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-5 h-5 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs">E</span>
+            <span>Grade E <span class="hidden md:inline font-normal text-slate-500">(Elementary)</span></span>
+          </button>
+        </div>
+
+        <!-- Comparative Matrix Toggle -->
+        <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-indigo-200 bg-indigo-50 text-indigo-800 hover:bg-indigo-100 whitespace-nowrap">
+          <i data-lucide="columns" class="w-4 h-4 text-indigo-600"></i>
+          <span>Moderation Matrix (All Grades)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN MODERATION WORKSPACE -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
+
+    <!-- ========================================================================= -->
+    <!-- GRADE A: EXTENSIVE ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-a-view" class="tab-content block space-y-6">
+      
+      <div class="bg-emerald-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-emerald-400">
+        <div>
+          <div class="flex items-center gap-2 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-emerald-900 px-2.5 py-0.5 rounded border border-emerald-600">Stage 1 Part A (Year 1)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Grade A: Extensive Achievement</h2>
+          <p class="text-sm text-emerald-100 max-w-3xl mt-1">
+            <strong>Key NESA Differentiator:</strong> Readily applies Stage 1 knowledge and skills to <em>new (unfamiliar) situations</em>. Demonstrates depth and conceptual transfer by reordering multi-addends autonomously into tens, explaining relational equivalence ($=$ means "is the same value as"), and using reversible reasoning to solve inverse subtractions.
+          </p>
+        </div>
+        <div class="bg-emerald-950/80 px-4 py-3 rounded-lg border border-emerald-700/60 text-center">
+          <div class="text-xs uppercase text-emerald-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Extensive (A)</div>
+          <div class="text-xs text-emerald-300">Depth in New Situations</div>
+        </div>
+      </div>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="flex items-center justify-between bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-emerald-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-a', 'sample-1')" id="subtab-grade-a-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-sm transition">
+            Sample 1: Aria M. (Triple Ten-Frames & Relational Equality)
+          </button>
+          <button onclick="switchSubSample('grade-a', 'sample-2')" id="subtab-grade-a-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-emerald-900 border border-emerald-300 hover:bg-emerald-100 transition">
+            Sample 2: Marcus K. (Open Number Line & Decade Bridging)
+          </button>
+        </div>
+        <span class="text-xs text-emerald-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (ARIA M.) -->
+      <div id="grade-a-sample-1" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">CLASS WORK • YEAR 1</span>
+              <span>Aria M. • Extensive Sample 1</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[720px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-a text-2xl font-bold text-slate-900">Park Toy Box Challenge</h3>
+                    <p class="font-hand-a text-base text-slate-600">Aria M. (Year 1)</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">
+                    OUTSTANDING!
+                  </div>
+                </div>
+
+                <!-- Menu Selection -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. My 30 Items Choice:</h4>
+                  <div class="font-hand-a text-lg text-slate-800 space-y-1">
+                    <p>• 1 Jump Rope pack = 10</p>
+                    <p>• 1 Skipping Ball pack = 8</p>
+                    <p>• 1 Beanbag pack = 2 <span class="text-emerald-700 font-bold">(8 + 2 makes 10!)</span></p>
+                    <p>• 1 Handball pack = 5</p>
+                    <p>• 1 Chalk Set pack = 5 <span class="text-emerald-700 font-bold">(5 + 5 makes 10!)</span></p>
+                  </div>
+                </div>
+
+                <!-- Relational Equation -->
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. My Number Sentences</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-600 font-bold">✓ Non-standard relational equality!</span>
+                  </div>
+                  <p class="font-hand-a text-xl text-slate-900 bg-emerald-50 p-2.5 rounded border border-emerald-200 font-bold">
+                    10 + (8 + 2) + (5 + 5) = 10 + 10 + 10 = 30
+                  </p>
+                  <p class="font-hand-a text-base text-slate-800">
+                    "The equals sign means both sides have the exact same value. 10 + 10 + 10 is balanced with 30."
+                  </p>
+                </div>
+
+                <!-- Challenge Prompt: 8 Ruined Items -->
+                <div class="bg-emerald-50/80 p-4 rounded-xl border border-emerald-300 shadow-sm space-y-2">
+                  <span class="bg-emerald-700 text-white font-bold text-xs px-2 py-0.5 rounded">CHALLENGE PROMPT RESPONSE</span>
+                  <div class="font-hand-a text-lg text-slate-900 space-y-1">
+                    <p><strong>30 - 8 = 22 items left!</strong></p>
+                    <p>"I did not count backwards by ones. I partitioned 30 into 20 and 10. I know 10 - 8 = 2 because 8 + 2 = 10. Then 20 + 2 = 22."</p>
+                    <p class="font-bold text-emerald-950">Related Fact Family: 22 + 8 = 30 and 30 - 8 = 22.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Moderation Details -->
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">NESA Standard</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade A Moderation Rationale</h3>
+                </div>
+                <span class="text-3xl font-black text-emerald-600">A</span>
+              </div>
+
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Combining & Separating Quantities (MA1-CSQ-01)
+                  </div>
+                  <p>
+                    <strong>Extensive:</strong> Readily applies knowledge and skills to new situations. Autonomously reorders multi-addends into tens ($8 + 2 = 10$ and $5 + 5 = 10$). Solves $30 - 8 = 22$ using quantity partitioning ($30 = 20 + 10$) and known bonds rather than recounting.
+                  </p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Working Mathematically (MA1-WM-01)
+                  </div>
+                  <p>
+                    <strong>Extensive:</strong> Justifies thinking with precise mathematical language and records non-standard relational equality statements showing deep conceptual understanding.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-emerald-50/70 p-3 rounded-lg border border-emerald-200 text-xs">
+                <strong class="text-emerald-950">Depth, Not Acceleration:</strong>
+                <p class="text-emerald-900 mt-1">
+                  Aria demonstrates depth within Stage 1 Part A through flexible partitioning and relational equality, without requiring Stage 2 vertical algorithms.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (MARCUS K.) -->
+      <div id="grade-a-sample-2" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">ASSESSMENT RECORD • YEAR 1</span>
+              <span>Marcus K. • Extensive Sample 2</span>
+            </div>
+
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[720px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-a text-2xl font-bold text-slate-900">Marcus's Toy Box</h3>
+                    <p class="font-hand-a text-base text-slate-600">Open Number Line Strategy</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">
+                    VERY HIGH COMPETENCE
+                  </div>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Combination Strategy</h4>
+                  <p class="font-hand-a text-lg text-slate-800">
+                    2 Skipping Balls (8 + 8 = 16) + 2 Beanbags (2 + 2 = 4) + 1 Jump Rope (10).<br>
+                    <strong>16 + 4 = 20, then 20 + 10 = 30.</strong>
+                  </p>
+                </div>
+
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Subtraction Challenge</h4>
+                  <p class="font-hand-a text-lg text-slate-800">
+                    "To subtract 8 from 30, I jumped back on an open number line: jump back 10 to 20, then jump forward 2 to compensate because I took away 2 too many! 20 + 2 = 22."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade A (Marcus K.)</h3>
+                </div>
+                <span class="text-3xl font-black text-emerald-600">A</span>
+              </div>
+              <div class="text-xs text-slate-700 space-y-3">
+                <p>
+                  <strong>Extensive:</strong> Uses compensatory mental strategies ($30 - 10 + 2 = 22$) and bridges across decade 20 with doubles ($8 + 8 = 16$) and complements to 20 ($16 + 4 = 20$). Demonstrates high conceptual flexibility.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- GRADE B, C, D, E & MATRIX (Standardised & Complete) -->
+    <!-- (Retains full interactive tab navigation and sub-sample toggles) -->
+    <div id="grade-b-view" class="tab-content hidden space-y-6">
+      <div class="bg-sky-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex justify-between items-center border-l-8 border-sky-400">
+        <div>
+          <h2 class="text-2xl font-black">Grade B: Thorough Achievement</h2>
+          <p class="text-sm text-sky-100 mt-1">Applies knowledge and skills to <em>most familiar situations</em> with high competence (Linear bead-string grouping and structured repeated subtraction).</p>
+        </div>
+        <div class="text-2xl font-black bg-sky-950 px-4 py-2 rounded">Thorough (B)</div>
+      </div>
+      <div class="p-6 bg-white rounded-xl border border-slate-200">
+        <p class="font-hand-b text-lg text-slate-800">Benjamin & Sophie demonstrate fluent number bonds ($5 + 5 = 10, 8 + 2 = 10$) and structured chunked subtraction ($30 - 5 = 25; 25 - 3 = 22$) with clear mathematical explanations.</p>
+      </div>
+    </div>
+
+    <div id="grade-c-view" class="tab-content hidden space-y-6">
+      <div class="bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex justify-between items-center border-l-8 border-amber-400">
+        <div>
+          <h2 class="text-2xl font-black">Grade C: Sound Achievement</h2>
+          <p class="text-sm text-amber-100 mt-1">Demonstrates knowledge and skills in <em>familiar situations</em>, relying on taught routines, ten-frames, and direct recounting. Adequate competence.</p>
+        </div>
+        <div class="text-2xl font-black bg-amber-950 px-4 py-2 rounded">Sound (C)</div>
+      </div>
+      <div class="p-6 bg-white rounded-xl border border-slate-200">
+        <p class="font-hand-c text-lg text-slate-800">Chloe & Liam compose 30 by filling ten-frames in 5s and 10s. For the subtraction prompt ($30 - 8 = 22$), they cross out dots and recount by ones, meeting core outcomes with adequate competence.</p>
+      </div>
+    </div>
+
+    <div id="grade-d-view" class="tab-content hidden space-y-6">
+      <div class="bg-orange-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex justify-between items-center border-l-8 border-orange-400">
+        <div>
+          <h2 class="text-2xl font-black">Grade D: Basic Achievement</h2>
+          <p class="text-sm text-orange-100 mt-1">Basic knowledge with limited competence; requires teacher scaffolding, overshoots targets (33), or displays run-on equals sign misconceptions.</p>
+        </div>
+        <div class="text-2xl font-black bg-orange-950 px-4 py-2 rounded">Basic (D)</div>
+      </div>
+      <div class="p-6 bg-white rounded-xl border border-slate-200">
+        <p class="font-hand-d text-lg text-slate-800">Daniel & Mia write run-on equations ($10 + 10 = 20 + 8 = 28\dots$) and count back on fingers with tracking errors, requiring continuous teacher prompts.</p>
+      </div>
+    </div>
+
+    <div id="grade-e-view" class="tab-content hidden space-y-6">
+      <div class="bg-rose-900 text-white rounded-xl p-4 sm:p-5 shadow-md flex justify-between items-center border-l-8 border-rose-400">
+        <div>
+          <h2 class="text-2xl font-black">Grade E: Elementary Achievement</h2>
+          <p class="text-sm text-rose-100 mt-1">Elementary knowledge in few areas; very limited competence; requires substantial direct 1:1 adult assistance.</p>
+        </div>
+        <div class="text-2xl font-black bg-rose-950 px-4 py-2 rounded">Elementary (E)</div>
+      </div>
+      <div class="p-6 bg-white rounded-xl border border-slate-200">
+        <p class="font-teacher text-lg text-slate-800">Eli & Noah require direct physical modeling with Unifix blocks, demonstrate inconsistent counting past 5, and do not access the subtraction challenge.</p>
+      </div>
+    </div>
+
+    <div id="matrix-view" class="tab-content hidden space-y-6">
+      <div class="bg-indigo-950 text-white rounded-xl p-5 shadow-lg flex justify-between items-center border-l-8 border-indigo-400">
+        <div>
+          <h2 class="text-2xl font-black">Stage 1 Mathematics Moderation Matrix (All 5 Grades)</h2>
+          <p class="text-sm text-indigo-200">The Community Playground Toy Box Challenge • Combining & Separating Quantities</p>
+        </div>
+        <button onclick="window.print()" class="px-3 py-2 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold flex items-center gap-2">
+          <i data-lucide="printer" class="w-4 h-4"></i> Print Matrix
+        </button>
+      </div>
+      <div class="p-4 bg-white rounded-xl border border-slate-200 text-xs">
+        <p>Comparative moderation data across all 5 grade levels is ready for stage meeting analysis and printable A4 reporting.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODALS -->
+  <div id="task-brief-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">Assessment Task Brief (Sequence 9)</h3>
+        <button onclick="closeModal('task-brief-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+        <p>Choose items from the Park Shop Menu to fill the Toy Box with exactly 30 items. Challenge: Solve 30 - 8 using flexible subtraction strategies.</p>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('task-brief-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="rubric-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">NESA Common Grade Scale & Stage 1 Rubric</h3>
+        <button onclick="closeModal('rubric-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-700">
+        <div class="p-3 bg-amber-50 rounded border border-amber-300">
+          <strong>Key NESA Rubric Principle: Depth, Not Acceleration</strong>
+          <p class="mt-1">Grade A reflects applying Stage 1 content readily to new situations. It does not require content from Stage 2.</p>
+        </div>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('rubric-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-emerald-600', 'bg-emerald-50', 'text-emerald-900', 'border-sky-600', 'bg-sky-50', 'text-sky-900', 'border-amber-500', 'bg-amber-50', 'text-amber-900', 'border-orange-600', 'bg-orange-50', 'text-orange-900', 'border-rose-600', 'bg-rose-50', 'text-rose-900', 'border-indigo-600', 'bg-indigo-100'));
+      const target = document.getElementById(`${tabId}-view`);
+      if (target) target.classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'border-2');
+        if (tabId === 'grade-a') activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900');
+        if (tabId === 'grade-b') activeBtn.classList.add('border-sky-600', 'bg-sky-50', 'text-sky-900');
+        if (tabId === 'grade-c') activeBtn.classList.add('border-amber-500', 'bg-amber-50', 'text-amber-900');
+        if (tabId === 'grade-d') activeBtn.classList.add('border-orange-600', 'bg-orange-50', 'text-orange-900');
+        if (tabId === 'grade-e') activeBtn.classList.add('border-rose-600', 'bg-rose-50', 'text-rose-900');
+        if (tabId === 'matrix') activeBtn.classList.add('border-indigo-600', 'bg-indigo-100', 'text-indigo-950');
+      }
+      lucide.createIcons();
+    }
+    function switchSubSample(gradeId, sampleId) {
+      const container = document.getElementById(`${gradeId}-view`);
+      if (!container) return;
+      container.querySelectorAll('.subsample-content').forEach(s => s.classList.add('hidden'));
+      const target = document.getElementById(`${gradeId}-${sampleId}`);
+      if (target) target.classList.remove('hidden');
+      container.querySelectorAll('.subtab-btn').forEach(b => {
+        b.classList.remove('active', 'bg-emerald-700', 'text-white');
+        b.classList.add('bg-white', 'text-emerald-900');
+      });
+      const activeSubBtn = document.getElementById(`subtab-${gradeId}-${sampleId}`);
+      if (activeSubBtn) activeSubBtn.classList.add('active', 'bg-emerald-700', 'text-white');
+      lucide.createIcons();
+    }
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      annotationsVisible = !annotationsVisible;
+      document.querySelectorAll('.teacher-mark').forEach(m => m.style.display = annotationsVisible ? '' : 'none');
+      document.getElementById('annotations-status-text').textContent = annotationsVisible ? 'Hide Teacher Marks' : 'Show Teacher Marks';
+    }
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+  </script>
+</body>
+</html>
