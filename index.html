@@ -1,341 +1,761 @@
 <!DOCTYPE html>
 <html lang="en-AU">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moderation Portfolio Finder</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-/*
-  NSW K–6 Mathematics Moderation Portfolio Finder
-  ------------------------------------------------
-  HOW TO ADD A NEW PORTFOLIO
-  1. Upload the .html file to the GitHub repo as usual.
-     The finder checks the repo each time it loads and shows any file it
-     doesn't recognise under "Recently added", guessing the stage from the
-     file name — so new uploads appear automatically.
-  2. (Optional) For full filtering by year, strand and outcome, add an entry
-     to the PORTFOLIOS list in the <script> below, copying the pattern of
-     the existing entries.
-*/
-:root{
-  --navy:#002B49; --blue:#005999; --light:#E6F0F8; --red:#C9242B;
-  --ink:#1b2733; --muted:#5b6b7a; --line:#dbe3ea; --bg:#f6f8fa; --card:#fff;
-  --es1:#7a3e9d; --s1:#1a7a44; --s2:#005999; --s3:#c25b00;
-}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.45}
-.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 40px}
-header{background:var(--navy);color:#fff;border-radius:14px;padding:22px 22px 20px;position:relative;overflow:hidden}
-header::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.06)}
-.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.75;font-weight:600}
-h1{margin:4px 0 6px;font-size:24px;font-weight:800;letter-spacing:-.01em}
-header p{margin:0;opacity:.85;max-width:620px}
-.search{margin-top:16px;position:relative}
-.search input{width:100%;font:inherit;font-size:16px;padding:13px 14px 13px 42px;border-radius:10px;border:0;outline:none;color:var(--ink)}
-.search input:focus{box-shadow:0 0 0 3px rgba(255,255,255,.45)}
-.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSW Mathematics Moderation Exemplar Finder Tool</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter for UI typography & Share Tech Mono for syllabus codes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-.filters{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:14px;display:grid;gap:12px}
-.frow{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
-.flabel{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);width:78px;padding-top:7px;flex-shrink:0}
-.chips{display:flex;flex-wrap:wrap;gap:6px;flex:1;min-width:0}
-.chip{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:#fff;color:var(--ink);padding:5px 12px;border-radius:999px;cursor:pointer;transition:all .15s}
-.chip:hover{border-color:var(--blue)}
-.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
-.chip .n{font-weight:500;opacity:.6;margin-left:4px;font-size:12px}
-.chip:disabled{opacity:.4;cursor:default}
-select{font:inherit;font-size:14px;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:#fff;max-width:100%}
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"Share Tech Mono"', 'monospace']
+          },
+          colors: {
+            nswNavy: '#002B49',
+            nswBlue: '#005999',
+            nswLightBlue: '#E6F0F8',
+            nswRed: '#C9242B',
+            nswGreen: '#1A7A44',
+            nswAmber: '#D97706',
+            nswPurple: '#6B21A8'
+          }
+        }
+      }
+    }
+  </script>
 
-.bar{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 10px;gap:10px;flex-wrap:wrap}
-.count{font-weight:700}
-.count span{font-weight:400;color:var(--muted)}
-.clear{font:inherit;font-size:14px;background:none;border:0;color:var(--blue);font-weight:600;cursor:pointer;padding:4px 0;text-decoration:underline}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px;border-top:5px solid var(--stage-c,var(--navy));transition:box-shadow .15s,transform .15s}
-.card:hover{box-shadow:0 6px 18px rgba(0,43,73,.10);transform:translateY(-1px)}
-.tags{display:flex;gap:6px;flex-wrap:wrap}
-.tag{font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;background:var(--light);color:var(--navy)}
-.tag.stage{background:var(--stage-c);color:#fff}
-.tag.new{background:#fff4d6;color:#7a5600}
-.card h2{font-size:17px;margin:2px 0 0;line-height:1.3}
-.task{color:var(--muted);font-size:14px;margin:0}
-.meta{font-size:13px;display:grid;gap:3px;margin-top:2px}
-.meta b{font-weight:600;color:var(--muted)}
-.codes{display:flex;flex-wrap:wrap;gap:4px}
-.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;background:#f1f4f7;border:1px solid var(--line);padding:1px 6px;border-radius:5px}
-.open{margin-top:auto;padding-top:6px}
-.open a{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:8px 14px;border-radius:8px}
-.open a:hover{background:var(--blue)}
-.empty{text-align:center;padding:40px 16px;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:14px}
-mark{background:#fff1a8;color:inherit;border-radius:2px}
-footer{margin-top:22px;font-size:12px;color:var(--muted);text-align:center}
-footer a{color:var(--blue)}
-
-.es1{--stage-c:var(--es1)} .s1{--stage-c:var(--s1)} .s2{--stage-c:var(--s2)} .s3{--stage-c:var(--s3)}
-
-@media (max-width:560px){
-  h1{font-size:20px}
-  .flabel{width:100%;padding-top:0}
-  .grid{grid-template-columns:1fr}
-}
-</style>
+  <style>
+    /* Clean custom scrollbar for embedded Google Sites iframes */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+    
+    /* Card tactile hover elevation */
+    .exemplar-card {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .exemplar-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 43, 73, 0.12), 0 8px 10px -6px rgba(0, 43, 73, 0.08);
+    }
+  </style>
 </head>
-<body>
-<div class="wrap">
-  <header>
-    <div class="eyebrow">NSW K–6 Mathematics · 2022 Syllabus</div>
-    <h1>Moderation Portfolio Finder</h1>
-    <p>Find annotated A–E work samples by stage, year, focus area or outcome code.</p>
-    <div class="search">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="Try “fractions”, “Year 4”, “MA2-AR-02” or “museum”" autocomplete="off" aria-label="Search portfolios">
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen p-3 sm:p-6 antialiased">
+
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Top Header Banner (Clean, Embed-Ready Layout) -->
+    <header class="bg-gradient-to-r from-nswNavy via-sky-950 to-nswNavy text-white rounded-2xl shadow-lg border-b-4 border-nswBlue p-5 sm:p-7 mb-6">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="bg-white text-nswNavy font-black text-[11px] px-2.5 py-0.5 rounded tracking-wider uppercase shadow-sm">
+              NESA K–10 (2022)
+            </span>
+            <span class="bg-sky-800/80 text-sky-200 text-xs px-2.5 py-0.5 rounded-full border border-sky-600 font-medium">
+              Mathematics Curriculum Moderation Portal
+            </span>
+          </div>
+          <h1 class="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight">
+            Moderation Exemplar Finder Tool
+          </h1>
+          <p class="text-xs sm:text-sm text-sky-200 mt-1 max-w-2xl leading-relaxed">
+            Search, filter, and launch simulated student work portfolios across Early Stage 1, Stage 1, Stage 2, and Stage 3 calibrated against the official NSW Mathematics Syllabus focus areas and Common Grade Scale rubrics.
+          </p>
+        </div>
+
+        <!-- Portal Info Badges (No URL config boxes) -->
+        <div class="flex flex-wrap lg:flex-col items-start lg:items-end justify-start lg:justify-center gap-2">
+          <span class="inline-flex items-center gap-1.5 bg-sky-900/60 border border-sky-600/60 text-sky-200 text-xs px-3 py-1.5 rounded-lg shadow-sm backdrop-blur-sm font-medium">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Common Grade Scale Calibrated
+          </span>
+          <span class="inline-flex items-center gap-1.5 bg-slate-900/60 border border-slate-700/60 text-slate-300 text-[11px] px-3 py-1 rounded-lg font-mono">
+            Direct Portfolio Launch
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Search & Filter Controls Card -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 mb-6">
+      
+      <!-- Top Row: Real-time Keyword & Outcome Search Bar -->
+      <div class="mb-4">
+        <label for="searchQuery" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+          Keyword, Outcome Code, or Task Search
+        </label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input type="search" id="searchQuery" oninput="filterExemplars()" placeholder="Search by task, outcome or concept, e.g. 'Number Scramble', 'MA2-PF-01', 'fractions', 'year 4 volume'" class="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-nswBlue focus:border-transparent transition">
+          <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dropdown Selectors Row -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+        
+        <!-- Filter 1: Stage Selector -->
+        <div>
+          <label for="stageSelect" class="block font-semibold text-slate-700 mb-1">
+            NSW Curriculum Stage
+          </label>
+          <select id="stageSelect" onchange="onStageChange()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-1 focus:ring-nswBlue font-medium">
+            <option value="ALL">All Stages (ES1 – Stage 3)</option>
+            <option value="Early Stage 1">Early Stage 1 (Kindergarten)</option>
+            <option value="Stage 1">Stage 1 (Years 1 &amp; 2)</option>
+            <option value="Stage 2">Stage 2 (Years 3 &amp; 4)</option>
+            <option value="Stage 3">Stage 3 (Years 5 &amp; 6)</option>
+          </select>
+        </div>
+
+        <!-- Filter 2: Year Group (Cascades with Stage) -->
+        <div>
+          <label for="yearSelect" class="block font-semibold text-slate-700 mb-1">
+            Year Level
+          </label>
+          <select id="yearSelect" onchange="filterExemplars()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-1 focus:ring-nswBlue font-medium">
+            <option value="ALL">All Year Levels</option>
+            <option value="Kindergarten">Kindergarten</option>
+            <option value="Year 1">Year 1 (Stage 1)</option>
+            <option value="Year 2">Year 2 (Stage 1)</option>
+            <option value="Year 3">Year 3 (Stage 2)</option>
+            <option value="Year 4">Year 4 (Stage 2)</option>
+            <option value="Year 5">Year 5 (Stage 3)</option>
+            <option value="Year 6">Year 6 (Stage 3)</option>
+          </select>
+        </div>
+
+        <!-- Filter 3: Official NSW Syllabus Focus Area (Dynamic & Strand-Grouped) -->
+        <div>
+          <label for="strandSelect" class="block font-semibold text-slate-700 mb-1">
+            Syllabus Focus Area
+          </label>
+          <select id="strandSelect" onchange="filterExemplars()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-1 focus:ring-nswBlue font-medium">
+            <!-- Dynamically populated via updateFocusAreaDropdown() based on Stage selection -->
+          </select>
+        </div>
+
+        <!-- Filter 4: Term / Timing -->
+        <div>
+          <label for="termSelect" class="block font-semibold text-slate-700 mb-1">
+            Term &amp; Timing
+          </label>
+          <select id="termSelect" onchange="filterExemplars()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-1 focus:ring-nswBlue font-medium">
+            <option value="ALL">All Terms &amp; Weeks</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Quick Reset & Metrics Bar -->
+      <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-wrap justify-between items-center gap-2 text-xs">
+        <div class="flex items-center gap-2 text-slate-600 font-medium">
+          <span>Showing <strong id="resultsCount" class="text-nswNavy font-bold">0</strong> matching moderation exemplars</span>
+          <span class="text-slate-300">|</span>
+          <span class="text-[11px] text-slate-500">Portfolios open in a new tab</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="resetAllFilters()" class="text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-md transition flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            Reset Filters
+          </button>
+        </div>
+      </div>
     </div>
-  </header>
 
-  <section class="filters" aria-label="Filters">
-    <div class="frow"><div class="flabel">Stage</div><div class="chips" id="f-stage"></div></div>
-    <div class="frow"><div class="flabel">Year</div><div class="chips" id="f-year"></div></div>
-    <div class="frow"><div class="flabel">Strand</div><div class="chips" id="f-strand"></div></div>
-    <div class="frow"><div class="flabel">Focus area</div><div class="chips"><select id="f-focus" aria-label="Focus area"><option value="">All focus areas</option></select></div></div>
-  </section>
+    <!-- Results Cards Grid -->
+    <div id="exemplarsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+      <!-- Dynamically generated via JavaScript -->
+    </div>
 
-  <div class="bar">
-    <div class="count" id="count"></div>
-    <button class="clear" id="clear" hidden>Clear all filters</button>
+    <!-- No Results Placeholder -->
+    <div id="noResultsState" class="hidden bg-white rounded-xl border-2 border-dashed border-slate-300 p-12 text-center my-6">
+      <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 mx-auto flex items-center justify-center mb-3">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h3 class="text-base font-bold text-slate-800">No matching moderation exemplars found</h3>
+      <p class="text-xs text-slate-500 max-w-sm mx-auto mt-1 mb-4">
+        Try adjusting your stage, year group, or syllabus focus area filters to broaden your search.
+      </p>
+      <button onclick="resetAllFilters()" class="text-xs font-semibold bg-nswNavy hover:bg-sky-900 text-white px-4 py-2 rounded-lg transition shadow-sm">
+        Reset All Search Filters
+      </button>
+    </div>
+
+    <!-- NESA Syllabus Overview Rubric Alignment Guidelines Banner -->
+    <div class="bg-indigo-50/70 border border-indigo-200/80 rounded-xl p-5 text-xs text-indigo-950 space-y-2.5">
+      <div class="flex items-center gap-2">
+        <span class="w-5 h-5 rounded-full bg-indigo-700 text-white flex items-center justify-center font-bold text-[11px]">i</span>
+        <h4 class="font-bold text-sm text-indigo-950">NSW Mathematics K–10 Syllabus (2022) Alignment Protocol</h4>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-indigo-900 pt-1 leading-relaxed">
+        <div class="p-3 bg-white/80 rounded-lg border border-indigo-100">
+          <strong class="text-indigo-950 block mb-0.5">Early Stage 1 (Kindergarten)</strong>
+          Moderated across Grades B (Thorough), C (Sound), and D (Basic). Oral language captured in teacher scribing blocks serves as primary evidence of mathematical reasoning.
+        </div>
+        <div class="p-3 bg-white/80 rounded-lg border border-indigo-100">
+          <strong class="text-indigo-950 block mb-0.5">Stages 1 to 3 (Years 1 to 6)</strong>
+          Calibrated across all 5 grades (A to E). <strong>Grade A reflects depth and application to novel/unfamiliar situations</strong>, never acceleration to content from higher stages.
+        </div>
+        <div class="p-3 bg-white/80 rounded-lg border border-indigo-100">
+          <strong class="text-indigo-950 block mb-0.5">Working Mathematically (MAO-WM-01)</strong>
+          Embedded throughout: <em>Exploring and connecting concepts</em>, <em>Choosing and applying techniques</em>, and <em>Communicating thinking and reasoning clearly</em>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification for Copying -->
+    <div id="toastNotification" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-2.5 rounded-lg shadow-xl text-xs flex items-center gap-2 transition-opacity duration-300 opacity-0 pointer-events-none z-50">
+      <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      <span id="toastMessage">Copied to clipboard!</span>
+    </div>
+
   </div>
-  <div class="grid" id="grid"></div>
 
-  <footer>Portfolios open in a new tab. Source: <a href="https://github.com/thomask04-dotcom/nsw-maths-moderation" target="_blank" rel="noopener">nsw-maths-moderation</a></footer>
-</div>
+  <script>
+    // ================================================================
+    // NSW Mathematics Moderation Exemplar Finder
+    // Portfolios are opened from GitHub Pages so links work inside
+    // a Google Sites embed. To add a portfolio: upload it to the repo
+    // (it will appear automatically under "Recently added"), then
+    // optionally copy an entry below to give it full details.
+    // ================================================================
+    const REPO = "thomask04-dotcom/nsw-maths-moderation";
+    const BASE_URL = "https://thomask04-dotcom.github.io/nsw-maths-moderation/";
 
-<script>
-const REPO = "thomask04-dotcom/nsw-maths-moderation";
-const BASE = "https://thomask04-dotcom.github.io/nsw-maths-moderation/";
+    const STAGE_BADGE = {
+      "Early Stage 1": "bg-emerald-600",
+      "Stage 1": "bg-teal-600",
+      "Stage 2": "bg-blue-600",
+      "Stage 3": "bg-purple-600"
+    };
+    const STAGE_ORDER = { "Early Stage 1": 0, "Stage 1": 1, "Stage 2": 2, "Stage 3": 3 };
+    const YEAR_ORDER = { "Kindergarten": 0, "Year 1": 1, "Year 2": 2, "Year 3": 3, "Year 4": 4, "Year 5": 5, "Year 6": 6 };
+    const GRADE_DOT = { A: "bg-purple-600", B: "bg-emerald-500", C: "bg-blue-500", D: "bg-amber-500", E: "bg-rose-500" };
 
-const STAGES = [
-  {id:"ES1", label:"Early Stage 1", cls:"es1", years:["K"]},
-  {id:"S1",  label:"Stage 1",       cls:"s1",  years:["1","2"]},
-  {id:"S2",  label:"Stage 2",       cls:"s2",  years:["3","4"]},
-  {id:"S3",  label:"Stage 3",       cls:"s3",  years:["5","6"]},
-];
-const YEARS = ["K","1","2","3","4","5","6"];
-const STRANDS = ["Number and algebra","Measurement and space","Statistics and probability"];
+    // Master registry — one entry per portfolio file in the repository
+    const EXEMPLAR_DATA = [
+      // ---------------- Early Stage 1 ----------------
+      {
+        stage: "Early Stage 1", year: "Kindergarten", term: "", weeks: "",
+        taskTitle: "The Great Bush Picnic Design Challenge",
+        unitTitle: "Forming Groups",
+        learningSequence: "Learning Sequences 5–6",
+        outcomes: ["MAE-FG-01", "MAE-FG-02", "MAO-WM-01"],
+        filename: "nsw_early_stage_1_mathematics_moderation_portfolio_the_great_bush_picnic_design_challenge.html",
+        focusAreas: ["Forming groups"],
+        description: "Students choose animal guests, use equal sharing to deal out 6, 9 or 12 snack counters one by one, label each group with numerals, build an AB, ABC or AABB pattern pathway, and reshare when one more friend arrives.",
+        students: [
+          { name: "Leo T.", grade: "B" }, { name: "Mia S.", grade: "B" },
+          { name: "Oliver K.", grade: "C" }, { name: "Ruby W.", grade: "C" },
+          { name: "Jack N.", grade: "D" }, { name: "Ella M.", grade: "D" }
+        ]
+      },
+      {
+        stage: "Early Stage 1", year: "Kindergarten", term: "Term 4", weeks: "Weeks 8–10",
+        taskTitle: "The Toy Workshop & Celebration Gift Station",
+        unitTitle: "Three-dimensional Spatial Structure & Two-dimensional Spatial Structure",
+        learningSequence: "",
+        outcomes: ["MAE-3DS-01", "MAE-3DS-02", "MAE-2DS-01", "MAE-2DS-02", "MAO-WM-01"],
+        filename: "nsw_early_stage_1_mathematics_moderation_portfolio_the_toy_workshop_celebration_gift_station.html",
+        focusAreas: ["Three-dimensional spatial structure", "Two-dimensional spatial structure"],
+        description: "Students build 3D toys, prove volume conservation by deconstructing and rebuilding copies with identical blocks, trace 2D gift tags, and directly superimpose shapes to compare area.",
+        students: [
+          { name: "Maya K.", grade: "B" }, { name: "Oliver T.", grade: "C" }, { name: "Leo M.", grade: "D" }
+        ]
+      },
 
-// ---- Portfolio details. Add new entries here for full filtering. ----
-const PORTFOLIOS = [
-  {file:"nsw_early_stage_1_mathematics_moderation_portfolio_the_great_bush_picnic_design_challenge.html",
-   title:"The Great Bush Picnic Design Challenge", stage:"ES1", year:"K",
-   task:"Equal sharing, group labelling and repeating pattern pathways.",
-   focus:["Forming groups"], strand:["Number and algebra"],
-   outcomes:["MAE-FG-01","MAE-FG-02"], timing:"Learning sequences 5–6"},
-  {file:"nsw_early_stage_1_mathematics_moderation_portfolio_the_toy_workshop_celebration_gift_station.html",
-   title:"The Toy Workshop & Celebration Gift Station", stage:"ES1", year:"K",
-   task:"Making and describing toys and gift boxes from 2D shapes and 3D objects.",
-   focus:["2D spatial structure","3D spatial structure"], strand:["Measurement and space"],
-   outcomes:["MAE-2DS-01","MAE-2DS-02","MAE-3DS-01","MAE-3DS-02"], timing:"Term 4, Weeks 8–10"},
+      // ---------------- Stage 1 ----------------
+      {
+        stage: "Stage 1", year: "Year 1", term: "", weeks: "",
+        taskTitle: "Community Playground Toy Box Challenge",
+        unitTitle: "Combining and Separating Quantities",
+        learningSequence: "Learning Sequence 9",
+        outcomes: ["MA1-CSQ-01", "MAO-WM-01"],
+        filename: "nsw_stage_1_mathematics_moderation_portfolio_community_playground_toy_box_challenge.html",
+        focusAreas: ["Combining and separating quantities"],
+        description: "Students choose items from a Park Shop menu to fill a toy box with exactly 30 items, regroup addends into tens, and solve 30 − 8 using flexible subtraction strategies.",
+        students: [
+          { name: "Aria M.", grade: "A" }, { name: "Marcus K.", grade: "A" },
+          { name: "Benjamin", grade: "B" }, { name: "Sophie", grade: "B" },
+          { name: "Chloe", grade: "C" }, { name: "Liam", grade: "C" },
+          { name: "Daniel", grade: "D" }, { name: "Mia", grade: "D" },
+          { name: "Eli", grade: "E" }, { name: "Noah", grade: "E" }
+        ]
+      },
+      {
+        stage: "Stage 1", year: "Year 1", term: "", weeks: "",
+        taskTitle: "Tabletop Museum Challenge",
+        unitTitle: "Two-dimensional Spatial Structure & Three-dimensional Spatial Structure",
+        learningSequence: "Learning Sequence 10",
+        outcomes: ["MA1-2DS-01", "MA1-2DS-02", "MA1-3DS-02", "MAO-WM-01"],
+        filename: "nsw_stage_1_mathematics_moderation_portfolio_tabletop_museum_challenge.html",
+        focusAreas: ["Two-dimensional spatial structure", "Three-dimensional spatial structure"],
+        description: "Students design a tabletop display booth: covering the floor in rows and columns of tiles without gaps or overlaps, building a cube pedestal counted in layers, and making a slide or symmetrical banner with pattern blocks.",
+        students: [
+          { name: "Aria M.", grade: "A" }, { name: "Benjamin T.", grade: "B" },
+          { name: "Chloe S.", grade: "C" }, { name: "Daniel K.", grade: "D" }, { name: "Eli W.", grade: "E" }
+        ]
+      },
+      {
+        stage: "Stage 1", year: "Year 2", term: "", weeks: "",
+        taskTitle: "School Fun Day Challenge & Time Explorer",
+        unitTitle: "Non-spatial Measure & Chance",
+        learningSequence: "Learning Sequence 5",
+        outcomes: ["MA1-NSM-02", "MA1-CHAN-01", "MAO-WM-01"],
+        filename: "nsw_stage_1_mathematics_moderation_portfolio_school_fun_day_challenge_time_explorer.html",
+        focusAreas: ["Non-spatial measure", "Chance"],
+        description: "Students design a timed game, count months, weeks and days to the Fun Day on a calendar, time two tasks with a stopwatch and combine the durations, set a time limit, and describe the chance of winning as likely, unlikely or possible.",
+        students: [
+          { name: "Aria M.", grade: "A" }, { name: "Marcus K.", grade: "A" },
+          { name: "Benjamin T.", grade: "B" }, { name: "Sophie L.", grade: "B" },
+          { name: "Chloe S.", grade: "C" }, { name: "Liam P.", grade: "C" },
+          { name: "Daniel K.", grade: "D" }, { name: "Mia B.", grade: "D" },
+          { name: "Eli W.", grade: "E" }, { name: "Noah J.", grade: "E" }
+        ]
+      },
+      {
+        stage: "Stage 1", year: "Year 2", term: "", weeks: "",
+        taskTitle: "School Fun Day Stall Challenge",
+        unitTitle: "Combining and Separating Quantities",
+        learningSequence: "Learning Sequence 6",
+        outcomes: ["MA1-CSQ-01", "MAO-WM-01"],
+        filename: "nsw_stage_1_mathematics_moderation_portfolio_school_fun_day_stall_challenge.html",
+        focusAreas: ["Combining and separating quantities"],
+        description: "Students design an activity stall with a $50 budget, add item prices by bridging to 10 or on an empty number line, work out change using the shopkeeper's method, and write equivalent number sentences for a balanced swap.",
+        students: [
+          { name: "Aria M.", grade: "A" }, { name: "Marcus K.", grade: "A" },
+          { name: "Benjamin T.", grade: "B" }, { name: "Sophie L.", grade: "B" },
+          { name: "Chloe S.", grade: "C" }, { name: "Liam P.", grade: "C" },
+          { name: "Daniel K.", grade: "D" }, { name: "Mia B.", grade: "D" },
+          { name: "Eli W.", grade: "E" }, { name: "Noah J.", grade: "E" }
+        ]
+      },
 
-  {file:"nsw_stage_1_mathematics_moderation_portfolio_community_playground_toy_box_challenge.html",
-   title:"Community Playground Toy Box Challenge", stage:"S1", year:"1", part:"Part A",
-   task:"Combining and separating quantities to fill a playground toy box.",
-   focus:["Combining and separating quantities"], strand:["Number and algebra"],
-   outcomes:["MA1-CSQ-01"], timing:"Learning sequence 9"},
-  {file:"nsw_stage_1_mathematics_moderation_portfolio_tabletop_museum_challenge.html",
-   title:"Tabletop Museum Challenge", stage:"S1", year:"1", part:"Part A",
-   task:"Designing a tabletop museum exhibition booth with 2D shapes and 3D objects.",
-   focus:["2D spatial structure","3D spatial structure"], strand:["Measurement and space"],
-   outcomes:["MA1-2DS-01","MA1-2DS-02","MA1-3DS-02"], timing:"Learning sequence 10"},
-  {file:"nsw_stage_1_mathematics_moderation_portfolio_school_fun_day_challenge_time_explorer.html",
-   title:"School Fun Day Challenge & Time Explorer", stage:"S1", year:"2", part:"Part B",
-   task:"A timed game challenge and calendar explorer.",
-   focus:["Non-spatial measure","Chance"], strand:["Measurement and space","Statistics and probability"],
-   outcomes:["MA1-NSM-02","MA1-CHAN-01"], timing:"Learning sequence 5"},
-  {file:"nsw_stage_1_mathematics_moderation_portfolio_school_fun_day_stall_challenge.html",
-   title:"School Fun Day Stall Challenge", stage:"S1", year:"2", part:"Part B",
-   task:"Designing a fun day stall, moving from combining and separating quantities to additive relations.",
-   focus:["Combining and separating quantities","Additive relations"], strand:["Number and algebra"],
-   outcomes:["MA1-CSQ-01"], timing:"Learning sequence 6"},
+      // ---------------- Stage 2 ----------------
+      {
+        stage: "Stage 2", year: "Year 3", term: "Term 4", weeks: "Weeks 3–4",
+        taskTitle: "The Community Garden Builder",
+        unitTitle: "Partitioned Fractions",
+        learningSequence: "Learning Sequence 6",
+        outcomes: ["MA2-PF-01", "MAO-WM-01"],
+        filename: "nsw_stage_2_mathematics_moderation_portfolio_the_community_garden_builder.html",
+        focusAreas: ["Partitioned fractions"],
+        description: "Students partition a 1-metre garden bed into equal fractional sections, find complements to one whole with bar models (3/8 + 5/8 = 1), rebuild a herb box from a 1/3 unit fraction, and extend past one whole (5/4 = 10/8).",
+        students: [
+          { name: "Zara N.", grade: "A" }, { name: "Marcus K.", grade: "B" }, { name: "Liam T.", grade: "C" },
+          { name: "Chloe S.", grade: "D" }, { name: "Toby B.", grade: "E" }
+        ]
+      },
+      {
+        stage: "Stage 2", year: "Year 3", term: "Term 4", weeks: "Weeks 5–7",
+        taskTitle: "Community Sanctuary & Playground Design",
+        unitTitle: "Geometric Measure & Two-dimensional Spatial Structure",
+        learningSequence: "Learning Sequence 9",
+        outcomes: ["MA2-GM-01", "MA2-2DS-03", "MAO-WM-01"],
+        filename: "nsw_stage_2_mathematics_moderation_portfolio_community_sanctuary_playground_design.html",
+        focusAreas: ["Geometric measure", "Two-dimensional spatial structure"],
+        description: "Students construct a scaled grid map, calculate rectangular areas in square metres using rows and columns, design a 4 m² non-square shelter, write a 3-step navigation route, and show how a 6 m² cafe fits a 1 m wide space.",
+        students: [
+          { name: "Maya L.", grade: "A" }, { name: "Lucas P.", grade: "B" }, { name: "Ethan R.", grade: "C" },
+          { name: "Sienna W.", grade: "D" }, { name: "Noah K.", grade: "E" }
+        ]
+      },
+      {
+        stage: "Stage 2", year: "Year 4", term: "Term 4", weeks: "Weeks 1–2",
+        taskTitle: "Community Festival Event Manager",
+        unitTitle: "Additive Relations & Multiplicative Relations",
+        learningSequence: "Learning Sequence 6",
+        outcomes: ["MA2-AR-02", "MA2-MR-02", "MAO-WM-01"],
+        filename: "nsw_stage_2_mathematics_moderation_portfolio_community_festival_event_manager.html",
+        focusAreas: ["Additive relations", "Multiplicative relations"],
+        description: "Students manage a $100 budget across 4 activity stations, multiply package costs, find total spend and change with mental strategies, share items equally using division, and adapt to a cut to $80 across 5 stations.",
+        students: [
+          { name: "Ananya M.", grade: "A" }, { name: "Liam D.", grade: "B" }, { name: "Sophie K.", grade: "C" },
+          { name: "Cooper B.", grade: "D" }, { name: "Jayden W.", grade: "E" }
+        ]
+      },
+      {
+        stage: "Stage 2", year: "Year 4", term: "Term 4", weeks: "Weeks 3–4",
+        taskTitle: "Primary Sports Day Track Design",
+        unitTitle: "Representing Numbers Using Place Value",
+        learningSequence: "Learning Sequence 6",
+        outcomes: ["MA2-RN-02", "MAO-WM-01"],
+        filename: "nsw_stage_2_mathematics_moderation_portfolio_primary_sports_day_track_design.html",
+        focusAreas: ["Representing numbers using place value"],
+        description: "Students plan a track zone, record distances in metres to two decimal places using placeholder zeros (2.05 m vs 2.50 m), place benchmark flags at 1/4, 1/2 and 3/4, order lengths with < and >, and disprove decimal misconceptions.",
+        students: [
+          { name: "Tahlia R.", grade: "A" }, { name: "Marcus T.", grade: "B" }, { name: "Mia K.", grade: "C" },
+          { name: "Braxton L.", grade: "D" }, { name: "Archie D.", grade: "E" }
+        ]
+      },
 
-  {file:"nsw_stage_2_mathematics_moderation_portfolio_the_community_garden_builder.html",
-   title:"The Community Garden Builder", stage:"S2", year:"3",
-   task:"Planning garden beds using partitioned fractions.",
-   focus:["Partitioned fractions"], strand:["Number and algebra"],
-   outcomes:["MA2-PF-01"], timing:"Term 4, Weeks 3–4 · Learning sequence 6"},
-  {file:"nsw_stage_2_mathematics_moderation_portfolio_community_sanctuary_playground_design.html",
-   title:"Community Sanctuary & Playground Design", stage:"S2", year:"3",
-   task:"Designing a community sanctuary and playground.",
-   focus:["Geometric measure","2D spatial structure"], strand:["Measurement and space"],
-   outcomes:["MA2-GM-01","MA2-2DS-03"], timing:"Term 4, Weeks 5–7 · Learning sequence 9"},
-  {file:"nsw_stage_2_mathematics_moderation_portfolio_community_festival_event_manager.html",
-   title:"Community Festival Event Manager", stage:"S2", year:"4",
-   task:"Planning the ultimate class stalls for a community festival.",
-   focus:["Additive relations","Multiplicative relations"], strand:["Number and algebra"],
-   outcomes:["MA2-AR-02","MA2-MR-02"], timing:"Term 4, Weeks 1–2 · Learning sequence 6"},
-  {file:"nsw_stage_2_mathematics_moderation_portfolio_primary_sports_day_track_design.html",
-   title:"Primary Sports Day Track Design", stage:"S2", year:"4",
-   task:"Designing a sports day track while representing numbers using place value.",
-   focus:["Representing numbers using place value"], strand:["Number and algebra"],
-   outcomes:["MA2-RN-02"], timing:"Term 4, Weeks 3–4 · Learning sequence 6"},
+      // ---------------- Stage 3 ----------------
+      {
+        stage: "Stage 3", year: "Year 5", term: "Term 4", weeks: "Weeks 1–3",
+        taskTitle: "Game Studio: Physics Engine & Level Blueprint",
+        unitTitle: "Geometric Measure (Angles up to 360°)",
+        learningSequence: "Learning Sequence 9",
+        outcomes: ["MA3-GM-03", "MAO-WM-01"],
+        filename: "nsw_stage_3_mathematics_moderation_portfolio_game_studio_physics_engine_level_blueprint.html",
+        focusAreas: ["Geometric measure"],
+        description: "Students design platformer game mechanics, measuring and constructing acute, obtuse and reflex angles with a protractor, right angles on tilted baselines, straight angles and full revolutions.",
+        students: [
+          { name: "Kaelen V.", grade: "A" }, { name: "Sienna M.", grade: "B" }, { name: "Tyler B.", grade: "C" },
+          { name: "Darcy L.", grade: "D" }, { name: "Jaxson P.", grade: "E" }
+        ]
+      },
+      {
+        stage: "Stage 3", year: "Year 5", term: "Term 4", weeks: "Weeks 6–7",
+        taskTitle: "Youth Expo Event Logistics Planner",
+        unitTitle: "Additive Relations & Multiplicative Relations",
+        learningSequence: "Learning Sequence 5",
+        outcomes: ["MA3-AR-01", "MA3-MR-01", "MAO-WM-01"],
+        filename: "nsw_stage_3_mathematics_moderation_portfolio_youth_expo_event_logistics_planner.html",
+        focusAreas: ["Additive relations", "Multiplicative relations"],
+        description: "Students plan a $15,000 regional event, estimate with rounded benchmarks, calculate costs with area models (64 h × $42/h = $2,688), use division with remainders for facilities, and audit a supplier invoice error.",
+        students: [
+          { name: "Elijah C.", grade: "A" }, { name: "Sienna P.", grade: "B" }, { name: "Tyler M.", grade: "C" },
+          { name: "Darcy W.", grade: "D" }, { name: "Jaxson T.", grade: "E" }
+        ]
+      },
+      {
+        stage: "Stage 3", year: "Year 6", term: "Term 3", weeks: "Weeks 3–4",
+        taskTitle: "The Illusion Museum: Same Space, Different Shape",
+        unitTitle: "Three-dimensional Spatial Structure",
+        learningSequence: "Learning Sequence 6",
+        outcomes: ["MA3-3DS-01", "MA3-3DS-02", "MAO-WM-01"],
+        filename: "nsw_stage_3_mathematics_moderation_portfolio_the_illusion_museum.html",
+        focusAreas: ["Three-dimensional spatial structure"],
+        description: "Students choose a volume (e.g. 24 m³), use factor triples to build two differently proportioned rectangular prisms, draw top, front and side views, build a skeletal frame, and convert m³ to cm³.",
+        students: [
+          { name: "Xavier R.", grade: "A" }, { name: "Sienna M.", grade: "B" }, { name: "Tyler B.", grade: "C" },
+          { name: "Darcy W.", grade: "D" }, { name: "Jaxson P.", grade: "E" }
+        ]
+      },
+      {
+        stage: "Stage 3", year: "Year 6", term: "Term 3", weeks: "Weeks 7–8",
+        taskTitle: "The Number Scramble: Order of Operations",
+        unitTitle: "Multiplicative Relations (Order of Operations)",
+        learningSequence: "Learning Sequence 6",
+        outcomes: ["MA3-MR-02", "MAO-WM-01"],
+        filename: "nsw_stage_3_mathematics_moderation_portfolio_the_number_scramble.html",
+        focusAreas: ["Multiplicative relations"],
+        description: "Students use the digits 2, 3, 4 and 5 to build expressions greater than 20, prove each step line by line, explain why mnemonics such as BODMAS can mislead, recalculate without brackets, and solve a target number challenge.",
+        students: [
+          { name: "Marcus V.", grade: "A" }, { name: "Elena S.", grade: "B" }, { name: "Lucas H.", grade: "C" },
+          { name: "Chloe P.", grade: "D" }, { name: "Toby R.", grade: "E" }
+        ]
+      }
+    ];
 
-  {file:"nsw_stage_3_mathematics_moderation_portfolio_game_studio_physics_engine_level_blueprint.html",
-   title:"Game Studio: Physics Engine & Level Blueprint", stage:"S3", year:"5",
-   task:"Building a game level blueprint with angles up to 360°.",
-   focus:["Geometric measure"], strand:["Measurement and space"],
-   outcomes:["MA3-GM-03"], timing:"Term 4, Weeks 1–3 · Learning sequence 9"},
-  {file:"nsw_stage_3_mathematics_moderation_portfolio_youth_expo_event_logistics_planner.html",
-   title:"Youth Expo Event Logistics Planner", stage:"S3", year:"5",
-   task:"Planning the logistics of a youth expo event.",
-   focus:["Additive relations","Multiplicative relations"], strand:["Number and algebra"],
-   outcomes:["MA3-AR-01","MA3-MR-01"], timing:"Term 4, Weeks 6–7 · Learning sequence 5"},
-  {file:"nsw_stage_3_mathematics_moderation_portfolio_the_illusion_museum.html",
-   title:"The Illusion Museum: Same Space, Different Shape", stage:"S3", year:"6", part:"Part B",
-   task:"Exploring prisms and objects that take up the same space in different shapes.",
-   focus:["3D spatial structure"], strand:["Measurement and space"],
-   outcomes:["MA3-3DS-01","MA3-3DS-02"], timing:"Term 3, Weeks 3–4 · Learning sequence 6"},
-  {file:"nsw_stage_3_mathematics_moderation_portfolio_the_number_scramble.html",
-   title:"The Number Scramble: Order of Operations", stage:"S3", year:"6", part:"Part B",
-   task:"Using order of operations to solve number puzzles.",
-   focus:["Multiplicative relations"], strand:["Number and algebra"],
-   outcomes:["MA3-MR-02"], timing:"Term 3, Weeks 7–8 · Learning sequence 6"},
-];
+    // NSW Mathematics K–10 (2022) focus areas grouped by strand
+    const NSW_SYLLABUS_FOCUS_AREAS = {
+      "Early Stage 1": [
+        { strand: "Number and algebra", areas: ["Representing whole numbers", "Combining and separating quantities", "Forming groups"] },
+        { strand: "Measurement and space", areas: ["Geometric measure", "Two-dimensional spatial structure", "Three-dimensional spatial structure", "Non-spatial measure"] },
+        { strand: "Statistics and probability", areas: ["Data"] }
+      ],
+      "Stage 1": [
+        { strand: "Number and algebra", areas: ["Representing whole numbers", "Combining and separating quantities", "Forming groups"] },
+        { strand: "Measurement and space", areas: ["Geometric measure", "Two-dimensional spatial structure", "Three-dimensional spatial structure", "Non-spatial measure"] },
+        { strand: "Statistics and probability", areas: ["Data", "Chance"] }
+      ],
+      "Stage 2": [
+        { strand: "Number and algebra", areas: ["Representing numbers using place value", "Additive relations", "Multiplicative relations", "Partitioned fractions"] },
+        { strand: "Measurement and space", areas: ["Geometric measure", "Two-dimensional spatial structure", "Three-dimensional spatial structure", "Non-spatial measure"] },
+        { strand: "Statistics and probability", areas: ["Data", "Chance"] }
+      ],
+      "Stage 3": [
+        { strand: "Number and algebra", areas: ["Represents numbers", "Additive relations", "Multiplicative relations", "Representing quantity fractions"] },
+        { strand: "Measurement and space", areas: ["Geometric measure", "Two-dimensional spatial structure", "Three-dimensional spatial structure", "Non-spatial measure"] },
+        { strand: "Statistics and probability", areas: ["Data", "Chance"] }
+      ]
+    };
+    // "All stages" list = every focus area above, merged by strand
+    NSW_SYLLABUS_FOCUS_AREAS["ALL"] = ["Number and algebra", "Measurement and space", "Statistics and probability"].map(strand => ({
+      strand,
+      areas: [...new Set(Object.values(NSW_SYLLABUS_FOCUS_AREAS).flatMap(groups => groups.filter(g => g.strand === strand).flatMap(g => g.areas)))]
+    }));
 
-// ---- State ----
-const state = {q:"", stage:new Set(), year:new Set(), strand:new Set(), focus:""};
-let items = PORTFOLIOS.map(p => ({...p}));
+    const YEAR_OPTIONS = {
+      "ALL": [["Kindergarten", "Kindergarten"], ["Year 1", "Year 1 (Stage 1)"], ["Year 2", "Year 2 (Stage 1)"], ["Year 3", "Year 3 (Stage 2)"], ["Year 4", "Year 4 (Stage 2)"], ["Year 5", "Year 5 (Stage 3)"], ["Year 6", "Year 6 (Stage 3)"]],
+      "Early Stage 1": [["Kindergarten", "Kindergarten"]],
+      "Stage 1": [["Year 1", "Year 1"], ["Year 2", "Year 2"]],
+      "Stage 2": [["Year 3", "Year 3"], ["Year 4", "Year 4"]],
+      "Stage 3": [["Year 5", "Year 5"], ["Year 6", "Year 6"]]
+    };
 
-const $ = s => document.querySelector(s);
-const stageOf = id => STAGES.find(s => s.id === id);
-const yearLabel = y => y === "K" ? "Kindergarten" : "Year " + y;
-const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+    let allItems = EXEMPLAR_DATA.slice();
+    let filteredList = [];
 
-function haystack(p){
-  const st = stageOf(p.stage);
-  const yrs = p.year ? [p.year] : st.years;
-  const yearWords = yrs.map(y => y === "K" ? "kindergarten kindy k foundation year k" : `year ${y} yr ${y} y${y}`).join(" ");
-  return [p.title, p.task, st.label, p.stage, yearWords, p.part||"", (p.focus||[]).join(" "),
-          (p.strand||[]).join(" "), (p.outcomes||[]).join(" "), p.timing||""].join(" ").toLowerCase();
-}
+    const $ = id => document.getElementById(id);
+    const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const urlFor = item => BASE_URL + encodeURIComponent(item.filename);
+    const gradeRange = item => {
+      const g = [...new Set(item.students.map(s => s.grade))].sort();
+      return g.length ? `Grades ${g[0]}–${g[g.length - 1]}` : "";
+    };
 
-function matches(p, skip){
-  if (skip !== "stage" && state.stage.size && !state.stage.has(p.stage)) return false;
-  if (skip !== "year" && state.year.size) {
-    const yrs = p.year ? [p.year] : stageOf(p.stage).years;
-    if (!yrs.some(y => state.year.has(y))) return false;
-  }
-  if (skip !== "strand" && state.strand.size && !(p.strand||[]).some(s => state.strand.has(s))) return false;
-  if (skip !== "focus" && state.focus && !(p.focus||[]).includes(state.focus)) return false;
-  if (state.q) {
-    const h = haystack(p);
-    const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
-    // keep "year 4" together as a phrase
-    const phrase = state.q.toLowerCase().match(/(year|yr)\s*([k1-6])/);
-    if (phrase && !h.includes("year " + phrase[2])) return false;
-    if (!terms.every(t => h.includes(t))) return false;
-  }
-  return true;
-}
+    function searchText(item) {
+      const yearWords = item.year === "Kindergarten" ? "kindergarten kindy k es1" : (item.year ? item.year.toLowerCase() : (YEAR_OPTIONS[item.stage] || []).map(o => o[0].toLowerCase()).join(" "));
+      return [item.taskTitle, item.unitTitle, item.description, item.stage, yearWords, item.term, item.weeks,
+        item.learningSequence, item.outcomes.join(" "), item.focusAreas.join(" "),
+        item.students.map(s => s.name + " grade " + s.grade).join(" "), item.filename.replace(/_/g, " ")].join(" ").toLowerCase();
+    }
 
-function chip(container, value, label, set, count){
-  const b = document.createElement("button");
-  b.className = "chip"; b.type = "button";
-  b.setAttribute("aria-pressed", set.has(value));
-  b.innerHTML = `${esc(label)}<span class="n">${count}</span>`;
-  b.disabled = count === 0 && !set.has(value);
-  b.onclick = () => { set.has(value) ? set.delete(value) : set.add(value); render(); };
-  container.appendChild(b);
-}
+    // Does an item pass every filter except (optionally) one?
+    function passes(item, skip) {
+      const q = $("searchQuery").value.trim().toLowerCase();
+      const stage = $("stageSelect").value, year = $("yearSelect").value, focus = $("strandSelect").value, term = $("termSelect").value;
+      if (skip !== "stage" && stage !== "ALL" && item.stage !== stage) return false;
+      if (skip !== "year" && year !== "ALL" && !matchesYear(item, year)) return false;
+      if (skip !== "focus" && focus !== "ALL" && !item.focusAreas.includes(focus)) return false;
+      if (skip !== "term" && term !== "ALL") {
+        if (term === "NONE" ? item.term : item.term !== term) return false;
+      }
+      if (q) {
+        const hay = searchText(item);
+        // every word typed must appear somewhere (so "year 4 fractions" works)
+        // keep "year 4" / "yr 4" / "stage 2" together as phrases, then match every other word
+        const phrases = [];
+        const esOnly = /\bearly stage 1\b|\bes1\b/.test(q);
+        if (esOnly && item.stage !== "Early Stage 1") return false;
+        const rest = q.replace(/\bearly stage 1\b|\bes1\b/g, " ").replace(/\b(year|yr|stage)\s*([k1-6])\b/g, (m, w, n) => { phrases.push((w === "stage" ? "stage " : "year ") + n); return " "; });
+        if (!phrases.every(p => p === "year k" ? item.year === "Kindergarten"
+          : p.startsWith("stage") ? item.stage.toLowerCase() === p : hay.includes(p))) return false;
+        if (!rest.split(/\s+/).filter(Boolean).every(w => hay.includes(w))) return false;
+      }
+      return true;
+    }
 
-function renderFilters(){
-  const fs = $("#f-stage"); fs.innerHTML = "";
-  STAGES.forEach(s => chip(fs, s.id, s.label, state.stage, items.filter(p => p.stage === s.id && matches(p,"stage")).length));
+    // A portfolio with no year recorded counts for every year of its stage
+    function matchesYear(item, year) {
+      return item.year ? item.year === year : (YEAR_OPTIONS[item.stage] || []).some(o => o[0] === year);
+    }
 
-  const fy = $("#f-year"); fy.innerHTML = "";
-  YEARS.forEach(y => chip(fy, y, y === "K" ? "K" : "Yr " + y, state.year,
-    items.filter(p => (p.year ? [p.year] : stageOf(p.stage).years).includes(y) && matches(p,"year")).length));
+    function updateYearDropdown(stage) {
+      const sel = $("yearSelect"), current = sel.value;
+      const opts = YEAR_OPTIONS[stage] || YEAR_OPTIONS["ALL"];
+      sel.innerHTML = '<option value="ALL">All Year Levels</option>' + opts.map(([v, label]) => {
+        const n = allItems.filter(i => matchesYear(i, v) && passes(i, "year")).length;
+        return `<option value="${v}">${label} (${n})</option>`;
+      }).join("");
+      sel.value = opts.some(o => o[0] === current) ? current : "ALL";
+    }
 
-  const fst = $("#f-strand"); fst.innerHTML = "";
-  STRANDS.forEach(s => chip(fst, s, s, state.strand, items.filter(p => (p.strand||[]).includes(s) && matches(p,"strand")).length));
+    function updateFocusAreaDropdown(stage) {
+      const sel = $("strandSelect"), current = sel.value;
+      const groups = NSW_SYLLABUS_FOCUS_AREAS[stage] || NSW_SYLLABUS_FOCUS_AREAS["ALL"];
+      let html = '<option value="ALL">All Focus Areas</option>';
+      groups.forEach(g => {
+        html += `<optgroup label="${esc(g.strand)}">`;
+        g.areas.forEach(area => {
+          const n = allItems.filter(i => i.focusAreas.includes(area) && passes(i, "focus")).length;
+          html += `<option value="${esc(area)}"${n === 0 && area !== current ? " disabled" : ""}>${esc(area)} (${n})</option>`;
+        });
+        html += "</optgroup>";
+      });
+      sel.innerHTML = html;
+      sel.value = Array.from(sel.options).some(o => o.value === current) ? current : "ALL";
+    }
 
-  const sel = $("#f-focus");
-  const all = [...new Set(items.flatMap(p => p.focus || []))].sort();
-  sel.innerHTML = `<option value="">All focus areas</option>` + all.map(f => {
-    const n = items.filter(p => (p.focus||[]).includes(f) && matches(p,"focus")).length;
-    return `<option value="${esc(f)}" ${state.focus===f?"selected":""}>${esc(f)} (${n})</option>`;
-  }).join("");
-}
+    function updateTermDropdown() {
+      const sel = $("termSelect"), current = sel.value || "ALL";
+      const count = t => allItems.filter(i => (t === "NONE" ? !i.term : i.term === t) && passes(i, "term")).length;
+      sel.innerHTML = '<option value="ALL">All Terms &amp; Weeks</option>' +
+        ["Term 1", "Term 2", "Term 3", "Term 4"].filter(t => allItems.some(i => i.term === t))
+          .map(t => `<option value="${t}">${t} Units (${count(t)})</option>`).join("") +
+        `<option value="NONE">Learning sequence only, no term listed (${count("NONE")})</option>`;
+      sel.value = current;
+    }
 
-function hl(text){
-  let out = esc(text);
-  const terms = state.q.toLowerCase().split(/\s+/).filter(t => t.length > 1);
-  terms.forEach(t => {
-    const re = new RegExp("(" + t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&") + ")", "gi");
-    out = out.replace(/(^|>)([^<]+)(?=<|$)/g, (m, a, b) => a + b.replace(re, "<mark>$1</mark>"));
-  });
-  return out;
-}
+    function onStageChange() {
+      updateYearDropdown($("stageSelect").value);
+      filterExemplars();
+    }
 
-function card(p){
-  const st = stageOf(p.stage);
-  const yr = p.year ? yearLabel(p.year) + (p.part ? ` (${p.part})` : "") : st.years.map(yearLabel).join(" / ");
-  return `<article class="card ${st.cls}">
-    <div class="tags"><span class="tag stage">${st.label}</span><span class="tag">${esc(yr)}</span>${p.isNew?'<span class="tag new">Recently added</span>':""}</div>
-    <h2>${hl(p.title)}</h2>
-    ${p.task ? `<p class="task">${hl(p.task)}</p>` : ""}
-    <div class="meta">
-      ${p.focus && p.focus.length ? `<div><b>Focus:</b> ${hl(p.focus.join(", "))}</div>` : ""}
-      ${p.timing ? `<div><b>When:</b> ${esc(p.timing)}</div>` : ""}
-      ${p.outcomes && p.outcomes.length ? `<div class="codes">${p.outcomes.map(o => `<span class="code">${hl(o)}</span>`).join("")}</div>` : ""}
-    </div>
-    <div class="open"><a href="${BASE + encodeURIComponent(p.file)}" target="_blank" rel="noopener">Open portfolio
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
-  </article>`;
-}
+    function filterExemplars() {
+      const stage = $("stageSelect").value;
+      $("clearSearchBtn").classList.toggle("hidden", !$("searchQuery").value);
+      updateYearDropdown(stage);
+      updateFocusAreaDropdown(stage);
+      updateTermDropdown();
+      filteredList = allItems.filter(i => passes(i))
+        .sort((a, b) => STAGE_ORDER[a.stage] - STAGE_ORDER[b.stage] || (YEAR_ORDER[a.year] ?? 9) - (YEAR_ORDER[b.year] ?? 9) || a.taskTitle.localeCompare(b.taskTitle));
+      renderExemplars();
+    }
 
-function render(){
-  renderFilters();
-  const order = {ES1:0,S1:1,S2:2,S3:3};
-  const list = items.filter(p => matches(p))
-    .sort((a,b) => order[a.stage]-order[b.stage] || (a.year||"").localeCompare(b.year||"") || a.title.localeCompare(b.title));
-  $("#count").innerHTML = `${list.length} portfolio${list.length===1?"":"s"} <span>of ${items.length}</span>`;
-  const active = state.q || state.stage.size || state.year.size || state.strand.size || state.focus;
-  $("#clear").hidden = !active;
-  $("#grid").innerHTML = list.length ? list.map(card).join("")
-    : `<div class="empty" style="grid-column:1/-1">No portfolios match those filters yet.<br>Try removing a filter or a search word.</div>`;
-}
+    function renderExemplars() {
+      const container = $("exemplarsContainer"), noResults = $("noResultsState");
+      $("resultsCount").textContent = filteredList.length;
+      if (!filteredList.length) { container.innerHTML = ""; noResults.classList.remove("hidden"); return; }
+      noResults.classList.add("hidden");
 
-// Pick up portfolios added to the repo since this page was last edited
-function titleFromFile(f){
-  const m = f.replace(/\.html$/,"").split("_portfolio_")[1] || f.replace(/\.html$/,"");
-  const small = new Set(["the","and","of","a","an","in","on","for","to"]);
-  return m.split("_").map((w,i) => i && small.has(w) ? w : w.charAt(0).toUpperCase()+w.slice(1)).join(" ");
-}
-function stageFromFile(f){
-  if (/early_stage_1/i.test(f)) return "ES1";
-  const m = f.match(/stage_([1-3])/i);
-  return m ? "S" + m[1] : null;
-}
-async function discover(){
-  try {
-    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/`);
-    if (!r.ok) return;
-    const files = await r.json();
-    const known = new Set(PORTFOLIOS.map(p => p.file));
-    const fresh = files.filter(f => f.type === "file" && /\.html?$/i.test(f.name) && !known.has(f.name) && f.name !== "index.html")
-      .map(f => ({file:f.name, title:titleFromFile(f.name), stage:stageFromFile(f.name), isNew:true}))
-      .filter(p => p.stage);
-    if (fresh.length) { items = items.concat(fresh); render(); }
-  } catch(e) { /* offline or rate-limited: the built-in list still works */ }
-}
+      container.innerHTML = filteredList.map((item, idx) => {
+        const url = urlFor(item);
+        const timing = [item.term && item.weeks ? `${item.term}, ${item.weeks}` : item.term, item.learningSequence].filter(Boolean)[0] || "";
+        const outcomesBadges = item.outcomes.map(o =>
+          `<span class="inline-block bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded text-[10px] font-mono border border-slate-200">${esc(o)}</span>`).join(" ");
+        const focusAreaTags = item.focusAreas.map(fa =>
+          `<span class="inline-block bg-sky-50 text-sky-800 px-2 py-0.5 rounded text-[10px] font-semibold border border-sky-200">${esc(fa)}</span>`).join(" ");
+        const studentPills = item.students.map(s =>
+          `<span class="inline-flex items-center gap-1 text-[11px] bg-slate-50 border border-slate-200 px-2 py-0.5 rounded text-slate-700">
+            <span class="w-1.5 h-1.5 rounded-full ${GRADE_DOT[s.grade] || "bg-slate-400"}"></span>
+            <strong>${esc(s.name)}</strong> (${esc(s.grade)})
+          </span>`).join(" ");
 
-$("#q").addEventListener("input", e => { state.q = e.target.value.trim(); render(); });
-$("#f-focus").addEventListener("change", e => { state.focus = e.target.value; render(); });
-$("#clear").onclick = () => { state.q=""; $("#q").value=""; state.stage.clear(); state.year.clear(); state.strand.clear(); state.focus=""; render(); };
+        return `
+          <div class="exemplar-card bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+            <div class="p-4 sm:p-5 pb-3">
+              <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-white ${STAGE_BADGE[item.stage] || "bg-slate-600"} px-2.5 py-0.5 rounded-full shadow-sm">
+                  ${esc(item.stage)}${item.year ? " &bull; " + esc(item.year) : ""}
+                </span>
+                ${item.isNew ? '<span class="text-[11px] font-semibold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Recently added</span>'
+                  : timing ? `<span class="text-[11px] font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">${esc(timing)}</span>` : ""}
+              </div>
 
-render();
-discover();
-</script>
+              <h3 class="text-base font-bold text-slate-900 leading-snug hover:text-nswBlue transition">
+                <a href="${url}" target="_blank" rel="noopener noreferrer">${esc(item.taskTitle)}</a>
+              </h3>
+
+              ${item.unitTitle ? `<div class="text-xs text-sky-900 font-semibold mt-1 mb-2">Unit: ${esc(item.unitTitle)}</div>` : '<div class="mb-2"></div>'}
+
+              ${focusAreaTags ? `<div class="flex flex-wrap gap-1 mb-2.5">${focusAreaTags}</div>` : ""}
+
+              ${item.description ? `<p class="text-xs text-slate-600 leading-relaxed mb-3">${esc(item.description)}</p>` : ""}
+
+              ${outcomesBadges ? `<div class="flex flex-wrap gap-1 mb-3">${outcomesBadges}</div>` : ""}
+
+              ${studentPills ? `
+              <div class="border-t border-slate-100 pt-2.5">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">
+                  Student Work Samples &bull; ${gradeRange(item)}
+                </span>
+                <div class="flex flex-wrap gap-1.5">${studentPills}</div>
+              </div>` : ""}
+            </div>
+
+            <div class="bg-slate-50 px-4 py-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
+              <button type="button" onclick="copyLink(${idx})" title="Copy a link to this portfolio" class="text-slate-500 hover:text-slate-800 text-[11px] font-semibold flex items-center gap-1 hover:bg-slate-200 px-2 py-1 rounded transition">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                Copy Link
+              </button>
+              <a href="${url}" target="_blank" rel="noopener noreferrer" class="bg-nswNavy hover:bg-sky-900 active:bg-slate-950 text-white font-semibold px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 shadow-sm">
+                <span>Open Portfolio</span>
+                <svg class="w-3.5 h-3.5 text-sky-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            </div>
+          </div>`;
+      }).join("");
+    }
+
+    function resetAllFilters() {
+      $("searchQuery").value = "";
+      $("stageSelect").value = "ALL";
+      $("yearSelect").value = "ALL";
+      $("strandSelect").value = "ALL";
+      $("termSelect").value = "ALL";
+      onStageChange();
+      showToast("Filters reset");
+    }
+
+    function clearSearch() {
+      $("searchQuery").value = "";
+      filterExemplars();
+      $("searchQuery").focus();
+    }
+
+    function copyLink(idx) {
+      const item = filteredList[idx];
+      if (!item) return;
+      const text = urlFor(item);
+      const done = () => showToast("Link copied: " + item.taskTitle);
+      const fallback = () => {
+        const ta = document.createElement("textarea");
+        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) { showToast("Couldn't copy. Use Open Portfolio instead."); }
+        document.body.removeChild(ta);
+      };
+      // Google Sites embeds may block the modern clipboard API, so fall back if needed
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback);
+      else fallback();
+    }
+
+    let toastTimer;
+    function showToast(msg) {
+      const toast = $("toastNotification");
+      $("toastMessage").textContent = msg;
+      toast.classList.remove("opacity-0", "pointer-events-none");
+      toast.classList.add("opacity-100");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("opacity-100");
+        toast.classList.add("opacity-0", "pointer-events-none");
+      }, 2500);
+    }
+
+    // Show portfolios uploaded to the repo after this page was last edited
+    function guessFromFilename(name) {
+      const stage = /early_stage_1/i.test(name) ? "Early Stage 1" : (name.match(/_stage_([1-3])_/i) || [])[1] ? "Stage " + name.match(/_stage_([1-3])_/i)[1] : null;
+      if (!stage) return null;
+      const small = new Set(["the", "and", "of", "a", "an", "in", "on", "for", "to"]);
+      const raw = (name.replace(/\.html?$/i, "").split("_portfolio_")[1] || name.replace(/\.html?$/i, "")).split("_");
+      const title = raw.map((w, i) => i && small.has(w) ? w : w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+      return {
+        stage, year: stage === "Early Stage 1" ? "Kindergarten" : "", term: "", weeks: "", taskTitle: title,
+        unitTitle: "", learningSequence: "", outcomes: [], filename: name, focusAreas: [], description: "", students: [], isNew: true
+      };
+    }
+    async function discoverNewPortfolios() {
+      try {
+        const res = await fetch(`https://api.github.com/repos/${REPO}/contents/`);
+        if (!res.ok) return;
+        const known = new Set(EXEMPLAR_DATA.map(i => i.filename));
+        const fresh = (await res.json())
+          .filter(f => f.type === "file" && /^nsw_.*\.html?$/i.test(f.name) && !known.has(f.name))
+          .map(f => guessFromFilename(f.name)).filter(Boolean);
+        if (fresh.length) {
+          allItems = EXEMPLAR_DATA.concat(fresh);
+          filterExemplars();
+        }
+      } catch (e) { /* offline or rate-limited: the built-in list still works */ }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      onStageChange();
+      discoverNewPortfolios();
+    });
+  </script>
+
 </body>
 </html>
