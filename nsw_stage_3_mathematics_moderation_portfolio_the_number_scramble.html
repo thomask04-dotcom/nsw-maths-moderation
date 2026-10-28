@@ -155,7 +155,7 @@
           </h2>
         </div>
         <div class="text-xs bg-indigo-50 text-indigo-900 border border-indigo-200 px-3 py-1 rounded font-medium">
-          <strong>NSW Stage 3 Common Grade Scale:</strong> Grade A (Extensive), B (Thorough), C (Sound), D (Basic), &amp; E (Elementary)
+          <strong>NSW Stage 3 Common Grade Scale:</strong> Extensive, Thorough, Sound, Basic &amp; Elementary
         </div>
       </div>
 
@@ -220,27 +220,27 @@
       </div>
     </div>
 
-    <!-- Navigation Tabs for Grades A to E & Calibration Matrix -->
-    <div class="flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
+    <!-- Navigation tabs for each level & calibration matrix -->
+    <div class="mod-nav flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
       <button onclick="switchTab('gradeA')" id="tab-gradeA" class="tab-btn active px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x transition flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
-        Grade A (Extensive) — Marcus
+        Extensive — Marcus
       </button>
       <button onclick="switchTab('gradeB')" id="tab-gradeB" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-        Grade B (Thorough) — Elena
+        Thorough — Elena
       </button>
       <button onclick="switchTab('gradeC')" id="tab-gradeC" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-        Grade C (Sound) — Lucas
+        Sound — Lucas
       </button>
       <button onclick="switchTab('gradeD')" id="tab-gradeD" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-        Grade D (Basic) — Chloe
+        Basic — Chloe
       </button>
       <button onclick="switchTab('gradeE')" id="tab-gradeE" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-        Grade E (Elementary) — Toby
+        Elementary — Toby
       </button>
       <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
         <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
@@ -249,19 +249,19 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 1: GRADE A (EXTENSIVE) — MARCUS                                       -->
+    <!-- TAB 1: EXTENSIVE — MARCUS                                       -->
     <!-- ========================================================================= -->
-    <div id="content-gradeA" class="tab-content block">
-      <div class="bg-purple-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+    <div id="content-gradeA" data-mod-sample data-mod-level="Extensive" data-mod-student="Marcus V." data-mod-open="switchTab('gradeA')" class="tab-content block">
+      <div class="mod-neutral bg-purple-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-purple-500 text-purple-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade A &bull; Extensive Knowledge &amp; Very High Competence
+            Extensive Knowledge &amp; Very High Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Marcus V. &bull; Year 6 (Term 3)</h3>
-          <p class="text-xs text-purple-200">Applies extensive knowledge and skills to unfamiliar situations: exhaustive expression generation, sophisticated distributive justification, algebraic bracket removal proof, and unprompted multi-operator card challenge.</p>
+          <p class="mod-decision text-xs text-purple-200">Applies extensive knowledge and skills to new situations: exhaustive expression generation, sophisticated distributive justification, algebraic bracket removal proof, and unprompted multi-operator card challenge.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-purple-300">GRADE A</div>
+          <div class="text-3xl font-black text-purple-300">EXTENSIVE</div>
           <div class="text-xs text-purple-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -362,7 +362,7 @@
               </div>
 
               <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-3xl font-black">
-                &#10003; <span class="text-sm">Flawless underline &amp; rewrite</span>
+                &#10003; <span class="text-sm">Accurate underline &amp; rewrite</span>
               </div>
             </div>
 
@@ -466,7 +466,7 @@
                 "Marcus worked completely autonomously. When planning his equations, he immediately discarded mnemonics (like BOMDAS): <span class="text-purple-900 font-bold">'Mnemonics trick people into thinking addition always beats subtraction. Multiplication is just unfinished repeated addition, so it takes priority naturally.'</span>"
               </p>
               <p>
-                "His line-by-line rewrite demonstrated flawless cognitive management. Solved the 5-card challenge on his first strategic attempt without trial-and-error."
+                "His line-by-line rewrite kept every step organised. Solved the 5-card challenge on his first strategic attempt without trial-and-error."
               </p>
               <div class="mt-3 text-right text-sm text-slate-600 font-sans italic">— Mrs. Vance (Year 6)</div>
             </div>
@@ -495,38 +495,38 @@
           </div>
         </div>
 
-        <!-- Grade A Moderation Rationale -->
+        <!-- Extensive Moderation Rationale -->
         <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-purple-400 bg-purple-50/60 rounded-xl p-6">
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <h4 class="text-sm font-black uppercase tracking-wider text-purple-950 flex items-center gap-2">
               <span class="w-3 h-3 rounded-full bg-purple-700"></span>
-              NESA Moderation Rationale: Grade A (Extensive)
+              Moderation Rationale: Extensive
             </h4>
             <span class="text-xs font-semibold bg-purple-200 text-purple-900 px-2.5 py-1 rounded">
-              Extensive Knowledge &bull; Transfer to Novel Situations
+              Extensive Knowledge &bull; Application to New Situations
             </span>
           </div>
           <p class="text-xs text-slate-700 leading-relaxed mb-3">
-            Marcus applies <strong>extensive knowledge and skills to unfamiliar situations</strong> by transferring the order of operations and grouping symbols to new and complex numerical problems. He generates an exhaustive range of expressions greater than 20, executes line-by-line working without dropping terms, perceptively evaluates distributive grouping patterns, and proves mathematically how the absence of grouping symbols dismantles the structural integrity of an equation. In the challenge prompt, he synthesizes five distinct card values to hit the target number accurately.
+            Marcus applies <strong>extensive knowledge and skills to new situations</strong> by transferring the order of operations and grouping symbols to new and complex numerical problems. He generates an exhaustive range of expressions greater than 20, executes line-by-line working without dropping terms, perceptively evaluates distributive grouping patterns, and proves mathematically how the absence of grouping symbols dismantles the structural integrity of an equation. In the challenge prompt, he synthesizes five distinct card values to hit the target number accurately.
           </p>
         </div>
       </div>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 2: GRADE B (THOROUGH) — ELENA                                         -->
+    <!-- TAB 2: THOROUGH — ELENA                                         -->
     <!-- ========================================================================= -->
-    <div id="content-gradeB" class="tab-content hidden">
-      <div class="bg-emerald-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+    <div id="content-gradeB" data-mod-sample data-mod-level="Thorough" data-mod-student="Elena S." data-mod-open="switchTab('gradeB')" class="tab-content hidden">
+      <div class="mod-neutral bg-emerald-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-emerald-500 text-emerald-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade B &bull; Thorough Knowledge &amp; High Competence
+            Thorough Knowledge &amp; High Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Elena S. &bull; Year 6 (Term 3)</h3>
-          <p class="text-xs text-emerald-200">Applies thorough knowledge and skills to familiar situations: systematic multi-expression generation, structured underline and rewrite proof, clear explanation of operator priority.</p>
+          <p class="mod-decision text-xs text-emerald-200">Applies thorough knowledge and skills to most situations: systematic multi-expression generation, structured underline and rewrite proof, clear explanation of operator priority.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-emerald-300">GRADE B</div>
+          <div class="text-3xl font-black text-emerald-300">THOROUGH</div>
           <div class="text-xs text-emerald-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -619,7 +619,7 @@
                 <span class="text-xs bg-emerald-200 px-2 py-0.5 rounded text-emerald-900 font-mono">28/08/26 10:45 AM</span>
               </div>
               <p class="mb-2">
-                "Elena demonstrated thorough competence. Systematically solved each line using the underline and rewrite method without dropping terms."
+                "Elena systematically solved each line using the underline and rewrite method without dropping terms."
               </p>
               <p>
                 "Clearly explained how removing brackets altered the multiplication priority from (5+3) to (3× 4)."
@@ -637,28 +637,28 @@
         </div>
 
         <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-emerald-400 bg-emerald-50/60 rounded-xl p-6">
-          <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 mb-2">NESA Moderation Rationale: Grade B (Thorough)</h4>
+          <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 mb-2">Moderation Rationale: Thorough</h4>
           <p class="text-xs text-slate-700 leading-relaxed">
-            Elena applies <strong>thorough knowledge and skills to familiar situations</strong> by accurately generating multiple expressions exceeding 20, applying the underline and rewrite method without errors, and clearly explaining how grouping symbols override standard operator precedence.
+            Elena applies <strong>thorough knowledge and skills to most situations</strong> by accurately generating multiple expressions exceeding 20, applying the underline and rewrite method without errors, and clearly explaining how grouping symbols override standard operator precedence.
           </p>
         </div>
       </div>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 3: GRADE C (SOUND) — LUCAS                                            -->
+    <!-- TAB 3: SOUND — LUCAS                                            -->
     <!-- ========================================================================= -->
-    <div id="content-gradeC" class="tab-content hidden">
-      <div class="bg-blue-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+    <div id="content-gradeC" data-mod-sample data-mod-level="Sound" data-mod-student="Lucas H." data-mod-open="switchTab('gradeC')" class="tab-content hidden">
+      <div class="mod-neutral bg-blue-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-blue-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade C &bull; Sound Knowledge &amp; Adequate Competence
+            Sound Knowledge &amp; Adequate Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Lucas H. &bull; Year 6 (Term 3)</h3>
-          <p class="text-xs text-blue-200">Demonstrates sound knowledge and skills using taught routines: identifies grouping symbol priority, calculates expressions with standard layout.</p>
+          <p class="mod-decision text-xs text-blue-200">Demonstrates sound knowledge and skills in the main areas of content using taught routines: identifies grouping symbol priority, calculates expressions with standard layout.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-blue-300">GRADE C</div>
+          <div class="text-3xl font-black text-blue-300">SOUND</div>
           <div class="text-xs text-blue-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -736,28 +736,28 @@
         </div>
 
         <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-blue-400 bg-blue-50/60 rounded-xl p-6">
-          <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 mb-2">NESA Moderation Rationale: Grade C (Sound)</h4>
+          <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 mb-2">Moderation Rationale: Sound</h4>
           <p class="text-xs text-slate-700 leading-relaxed">
-            Lucas demonstrates <strong>sound knowledge and skills</strong> by accurately creating number sentences with grouping symbols to exceed 20, following the agreed order of operations in taught problem types, and recalculating accurately when brackets are removed.
+            Lucas demonstrates <strong>sound knowledge and skills in the main areas of content</strong> by accurately creating number sentences with grouping symbols to exceed 20, following the agreed order of operations in taught problem types, and recalculating accurately when brackets are removed.
           </p>
         </div>
       </div>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 4: GRADE D (BASIC) — CHLOE                                            -->
+    <!-- TAB 4: BASIC — CHLOE                                            -->
     <!-- ========================================================================= -->
-    <div id="content-gradeD" class="tab-content hidden">
-      <div class="bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+    <div id="content-gradeD" data-mod-sample data-mod-level="Basic" data-mod-student="Chloe P." data-mod-open="switchTab('gradeD')" class="tab-content hidden">
+      <div class="mod-neutral bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-amber-500 text-amber-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade D &bull; Basic Knowledge &amp; Limited Competence
+            Basic Knowledge &amp; Limited Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Chloe P. &bull; Year 6 (Term 3)</h3>
-          <p class="text-xs text-amber-200">Demonstrates basic knowledge and skills with teacher guidance; reverts to left-to-right calculations, inconsistent order of operations.</p>
+          <p class="mod-decision text-xs text-amber-200">Demonstrates basic knowledge and skills with teacher guidance; reverts to left-to-right calculations, inconsistent order of operations.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-amber-400">GRADE D</div>
+          <div class="text-3xl font-black text-amber-400">BASIC</div>
           <div class="text-xs text-amber-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -828,7 +828,7 @@
         </div>
 
         <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-amber-400 bg-amber-50/60 rounded-xl p-6">
-          <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 mb-2">NESA Moderation Rationale: Grade D (Basic)</h4>
+          <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 mb-2">Moderation Rationale: Basic</h4>
           <p class="text-xs text-slate-700 leading-relaxed">
             Chloe demonstrates <strong>basic knowledge and skills</strong>, achieving a limited level of competence. She requires teacher prompting to apply operator precedence instead of reading strictly left-to-right, struggles to articulate why an agreed convention is necessary, and leaves the extension challenge incomplete.
           </p>
@@ -837,19 +837,19 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 5: GRADE E (ELEMENTARY) — TOBY                                        -->
+    <!-- TAB 5: ELEMENTARY — TOBY                                        -->
     <!-- ========================================================================= -->
-    <div id="content-gradeE" class="tab-content hidden">
-      <div class="bg-rose-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+    <div id="content-gradeE" data-mod-sample data-mod-level="Elementary" data-mod-student="Toby R." data-mod-open="switchTab('gradeE')" class="tab-content hidden">
+      <div class="mod-neutral bg-rose-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-rose-500 text-rose-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade E &bull; Elementary Knowledge &amp; Very Limited Competence
+            Elementary Knowledge &amp; Very Limited Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Toby R. &bull; Year 6 (Term 3)</h3>
-          <p class="text-xs text-rose-200">Demonstrates elementary knowledge and skills in few areas; confuses operations, unable to apply order of operations without continuous 1:1 support.</p>
+          <p class="mod-decision text-xs text-rose-200">Demonstrates elementary knowledge and skills in few areas; confuses operations, unable to apply order of operations without continuous 1:1 support.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-rose-400">GRADE E</div>
+          <div class="text-3xl font-black text-rose-400">ELEMENTARY</div>
           <div class="text-xs text-rose-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -912,7 +912,7 @@
         </div>
 
         <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-rose-400 bg-rose-50/60 rounded-xl p-6">
-          <h4 class="text-sm font-black uppercase tracking-wider text-rose-950 mb-2">NESA Moderation Rationale: Grade E (Elementary)</h4>
+          <h4 class="text-sm font-black uppercase tracking-wider text-rose-950 mb-2">Moderation Rationale: Elementary</h4>
           <p class="text-xs text-slate-700 leading-relaxed">
             Toby demonstrates <strong>elementary knowledge and skills</strong> in few areas of the content, achieving very limited competence. He requires significant direct teacher support to formulate number sentences, repeats single digits rather than following constraints, does not use grouping symbols, and leaves calculation proofs blank.
           </p>
@@ -923,7 +923,7 @@
     <!-- ========================================================================= -->
     <!-- TAB 6: CALIBRATION MATRIX (GRADES A TO E)                                 -->
     <!-- ========================================================================= -->
-    <div id="content-matrix" class="tab-content hidden">
+    <div id="content-matrix" class="mod-matrix tab-content hidden">
       <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
         
         <div class="bg-nswNavy text-white px-6 py-5">
@@ -932,9 +932,9 @@
               <span class="bg-indigo-500 text-indigo-950 text-xs font-black px-2.5 py-1 rounded uppercase tracking-wide">
                 Stage 3 Moderation Tool &bull; NESA Common Grade Scale
               </span>
-              <h3 class="text-xl font-bold mt-1">Cross-Grade Calibration Matrix: Year 6 (Stage 3 Part B)</h3>
+              <h3 class="text-xl font-bold mt-1">Cross-Level Calibration Matrix: Year 6 (Stage 3 Part B)</h3>
               <p class="text-xs text-sky-200">
-                Direct evidence comparison across Grades A, B, C, D, and E against the official NSW Stage 3 Mathematics Overview Rubric (MA3-MR-02 &amp; MAO-WM-01).
+                Direct evidence comparison across all five achievement levels (Extensive to Elementary) against the official NSW Stage 3 Mathematics Overview Rubric (MA3-MR-02 &amp; MAO-WM-01).
               </p>
             </div>
             <div class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded text-slate-300">
@@ -949,24 +949,24 @@
               <tr class="border-b-2 border-slate-300 bg-slate-100 text-slate-700">
                 <th class="p-3 font-bold uppercase tracking-wider w-1/6">Syllabus Focus &amp; Rubric Aspect</th>
                 <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-purple-900 bg-purple-50 border-x border-purple-200">
-                  Grade A (Extensive)<br>
-                  <span class="font-normal text-[10px] text-purple-700">Applies to unfamiliar situations</span>
+                  Extensive<br>
+                  <span class="font-normal text-[10px] text-purple-700">Applies to new situations</span>
                 </th>
                 <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-emerald-900 bg-emerald-50 border-r border-emerald-200">
-                  Grade B (Thorough)<br>
-                  <span class="font-normal text-[10px] text-emerald-700">Applies to familiar situations</span>
+                  Thorough<br>
+                  <span class="font-normal text-[10px] text-emerald-700">Applies to most situations</span>
                 </th>
                 <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-blue-900 bg-blue-50 border-r border-blue-200">
-                  Grade C (Sound)<br>
-                  <span class="font-normal text-[10px] text-blue-700">Demonstrates sound knowledge &amp; skills</span>
+                  Sound<br>
+                  <span class="font-normal text-[10px] text-blue-700">Demonstrates sound knowledge &amp; skills in main content areas</span>
                 </th>
                 <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-amber-900 bg-amber-50 border-r border-amber-200">
-                  Grade D (Basic)<br>
-                  <span class="font-normal text-[10px] text-amber-700">Demonstrates basic knowledge &amp; skills</span>
+                  Basic<br>
+                  <span class="font-normal text-[10px] text-amber-700">Demonstrates basic knowledge &amp; skills; limited competence</span>
                 </th>
                 <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-rose-900 bg-rose-50">
-                  Grade E (Elementary)<br>
-                  <span class="font-normal text-[10px] text-rose-700">Demonstrates elementary knowledge &amp; skills</span>
+                  Elementary<br>
+                  <span class="font-normal text-[10px] text-rose-700">Demonstrates elementary knowledge &amp; skills in few areas</span>
                 </th>
               </tr>
             </thead>
@@ -980,7 +980,7 @@
                   <p class="text-[11px] text-slate-500 mt-1">Applies agreed order of operations; uses grouping symbols to change priority.</p>
                 </td>
                 <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
-                  <strong>Masterful Algebraic Insight:</strong> Flawlessly constructs complex multi-operator expressions; justifies how grouping symbols alter distributive structures and priority; adapts to complex novel targets.
+                  <strong>Algebraic Insight:</strong> Accurately constructs complex multi-operator expressions; justifies how grouping symbols alter distributive structures and priority; adapts to complex novel targets.
                 </td>
                 <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
                   <strong>Accurate Systematic Application:</strong> Consistently applies the agreed order of operations in familiar contexts; resolves grouping symbols first without reverting to left-to-right.
@@ -1004,7 +1004,7 @@
                   <p class="text-[11px] text-slate-500 mt-1">Underlines priority steps; rewrites untouched terms line-by-line.</p>
                 </td>
                 <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
-                  <strong>Flawless Recording:</strong> Meticulously executes the underline and rewrite method, ensuring all uncalculated operations remain in exact mathematical sequence.
+                  <strong>Accurate Recording:</strong> Meticulously executes the underline and rewrite method, ensuring all uncalculated operations remain in exact mathematical sequence.
                 </td>
                 <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
                   <strong>Systematic Formatting:</strong> Clearly records working out across multiple lines, resolving one priority operation at a time without dropping terms.
@@ -1031,7 +1031,7 @@
                   Readily explores and connects operations, proving that multiplication is repeated addition ("unfinished business") and evaluating bracket removal impact in new contexts.
                 </td>
                 <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
-                  Connects concepts accurately and confidently, explaining why grouping symbols alter outcomes in familiar situations.
+                  Connects concepts accurately and confidently, explaining why grouping symbols alter outcomes in most situations.
                 </td>
                 <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
                   Explores concepts and makes connections, showing sound understanding of operator hierarchy.
@@ -1098,9 +1098,9 @@
 
         <div class="p-6 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 space-y-2">
           <h5 class="font-bold text-slate-900 uppercase tracking-wide">Stage 3 Team Moderation Protocols:</h5>
-          <p>&bull; <strong>Grade A Standard (Extensive):</strong> Applies extensive knowledge and skills to unfamiliar situations. Marcus demonstrates depth of reasoning by evaluating how grouping additions prior to multiplication scales total sums, proves why erasing brackets causes magnitude collapse (27 → 11), and solves the 5-card challenge on his first attempt.</p>
-          <p>&bull; <strong>Grade B vs Grade C Standard:</strong> Elena (Grade B) applies thorough knowledge and skills to familiar situations, systematically writing expressions and explaining bracket priority clearly. Lucas (Grade C) demonstrates sound knowledge and skills, relying on taught routines and descriptive explanations ("put the biggest numbers together").</p>
-          <p>&bull; <strong>Grade D vs Grade E Standard:</strong> Chloe (Grade D) demonstrates basic knowledge and skills, completing calculations with teacher guidance but frequently reverts to left-to-right execution when brackets are absent. Toby (Grade E) demonstrates elementary knowledge and skills in isolated areas, unable to apply grouping symbols or construct equations without repeating digits.</p>
+          <p>&bull; <strong>Extensive Standard:</strong> Applies extensive knowledge and skills to new situations. Marcus demonstrates depth of reasoning by evaluating how grouping additions prior to multiplication scales total sums, proves why erasing brackets causes magnitude collapse (27 → 11), and solves the 5-card challenge on his first attempt.</p>
+          <p>&bull; <strong>Thorough vs Sound Standard:</strong> Elena (Thorough) applies thorough knowledge and skills to most situations, systematically writing expressions and explaining bracket priority clearly. Lucas (Sound) demonstrates sound knowledge and skills in the main areas of content, relying on taught routines and descriptive explanations ("put the biggest numbers together").</p>
+          <p>&bull; <strong>Basic vs Elementary Standard:</strong> Chloe (Basic) demonstrates basic knowledge and skills, completing calculations with teacher guidance but frequently reverts to left-to-right execution when brackets are absent. Toby (Elementary) demonstrates elementary knowledge and skills in isolated areas, unable to apply grouping symbols or construct equations without repeating digits.</p>
         </div>
       </div>
     </div>
@@ -1148,5 +1148,6 @@
     }
   </script>
 
+  <script src="moderation-tools.js" data-scale="cgs" defer></script>
 </body>
 </html>

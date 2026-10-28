@@ -117,10 +117,6 @@
           <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-amber-400"></i>
           <span id="annotations-status-text">Hide Teacher Marks</span>
         </button>
-        <button onclick="openModal('rubric-modal')" class="px-3 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-md text-xs font-medium border border-indigo-400 flex items-center gap-1.5 transition shadow">
-          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
-          <span>ES1 Rubric</span>
-        </button>
         <button onclick="openModal('task-brief-modal')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-md text-xs font-bold flex items-center gap-1.5 transition shadow">
           <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
           <span>Task Brief</span>
@@ -132,40 +128,40 @@
     <div class="bg-slate-950/70 border-t border-slate-800 px-4 py-1.5 text-xs">
       <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-slate-300 font-mono">
         <span class="flex items-center gap-1 text-amber-400 font-semibold"><i data-lucide="target" class="w-3 h-3"></i> Targeted Outcomes:</span>
-        <span title="Working Mathematically"><strong class="text-white">MA1-WM-01 / MAO-WM-01:</strong> Working Mathematically</span>
+        <span title="Working Mathematically"><strong class="text-white">MAO-WM-01:</strong> Working Mathematically</span>
         <span title="Repeating Patterns"><strong class="text-emerald-300">MAE-FG-01:</strong> Recognises, describes and continues repeating patterns</span>
         <span title="Equal Sharing"><strong class="text-teal-300">MAE-FG-02:</strong> Forms equal groups by sharing and counting collections of objects</span>
-        <span class="text-slate-400 hidden lg:inline">• Early Stage 1 Stage Reporting Guidelines: Grades B, C, and D are evaluated for kindergarten moderation</span>
+        <span class="text-slate-400 hidden lg:inline">• Early Stage 1: the Common Grade Scale is not required; samples use Thorough, Sound and Basic achievement language</span>
       </div>
     </div>
   </header>
 
   <!-- NAVIGATION BAR / ES1 GRADE TABS (B, C, D ONLY) -->
-  <div class="bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
+  <div class="mod-nav bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex items-center justify-between overflow-x-auto py-2 gap-2 no-scrollbar">
         <div class="flex items-center gap-2">
-          <!-- Grade B -->
-          <button onclick="switchTab('grade-b')" id="tab-btn-grade-b" class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-sky-600 bg-sky-50 text-sky-900 shadow-sm">
-            <span class="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs">B</span>
-            <span>Grade B <span class="font-normal text-sky-800">(Thorough Achievement)</span></span>
+          <!-- Thorough -->
+          <button onclick="switchTab('grade-b')" id="tab-btn-grade-b" class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-emerald-600 bg-emerald-50 text-emerald-900 shadow-sm">
+            <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+            <span>Thorough <span class="font-normal text-emerald-800">Achievement</span></span>
           </button>
-          <!-- Grade C -->
+          <!-- Sound -->
           <button onclick="switchTab('grade-c')" id="tab-btn-grade-c" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
-            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs">C</span>
-            <span>Grade C <span class="font-normal text-slate-600">(Sound Achievement)</span></span>
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+            <span>Sound <span class="font-normal text-slate-600">Achievement</span></span>
           </button>
-          <!-- Grade D -->
+          <!-- Basic -->
           <button onclick="switchTab('grade-d')" id="tab-btn-grade-d" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
-            <span class="w-5 h-5 rounded-full bg-orange-600 text-white flex items-center justify-center text-xs">D</span>
-            <span>Grade D <span class="font-normal text-slate-600">(Basic Achievement)</span></span>
+            <span class="w-3 h-3 rounded-full bg-amber-600"></span>
+            <span>Basic <span class="font-normal text-slate-600">Achievement</span></span>
           </button>
         </div>
 
         <!-- Comparative Matrix Toggle -->
         <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-indigo-200 bg-indigo-50 text-indigo-800 hover:bg-indigo-100 whitespace-nowrap">
           <i data-lucide="columns" class="w-4 h-4 text-indigo-600"></i>
-          <span>ES1 Moderation Matrix (Grades B, C, D)</span>
+          <span>ES1 Moderation Matrix (Thorough, Sound, Basic)</span>
         </button>
       </div>
     </div>
@@ -175,50 +171,50 @@
   <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
 
     <!-- ========================================================================= -->
-    <!-- GRADE B: THOROUGH ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- THOROUGH ACHIEVEMENT (DUAL SAMPLES) -->
     <!-- ========================================================================= -->
-    <div id="grade-b-view" class="tab-content block space-y-6">
+    <div id="grade-b-view" data-mod-group class="tab-content block space-y-6">
       
-      <div class="bg-sky-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-sky-400">
+      <div class="mod-gdecision bg-emerald-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-emerald-400">
         <div>
-          <div class="flex items-center gap-2 text-sky-300 text-xs font-bold uppercase tracking-wider">
-            <span class="bg-sky-900 px-2.5 py-0.5 rounded border border-sky-600">Early Stage 1 (Kindergarten)</span>
+          <div class="flex items-center gap-2 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-emerald-900 px-2.5 py-0.5 rounded border border-emerald-600">Early Stage 1 (Kindergarten)</span>
             <span>2 Moderation Evidence Samples</span>
           </div>
-          <h2 class="text-2xl font-black mt-1">Grade B: Thorough Achievement</h2>
-          <p class="text-sm text-sky-100 max-w-3xl mt-1">
-            <strong>Key NESA Differentiator:</strong> Applies thorough knowledge and skills to <em>familiar situations</em> by confidently sharing collections into equal groups using systematic one-by-one distribution, constructing complex repeating pattern pathways (e.g., AABB or ABC), labelling groups accurately with numerals, and reasoning clearly about remaining items during resharing.
+          <h2 class="text-2xl font-black mt-1">Thorough Achievement</h2>
+          <p class="text-sm text-emerald-100 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Applies thorough knowledge and skills to <em>most situations</em> by confidently sharing collections into equal groups using systematic one-by-one distribution, constructing complex repeating pattern pathways (e.g., AABB or ABC), labelling groups accurately with numerals, and reasoning clearly about remaining items during resharing.
           </p>
         </div>
-        <div class="bg-sky-950/80 px-4 py-3 rounded-lg border border-sky-700/60 text-center">
-          <div class="text-xs uppercase text-sky-300 font-semibold tracking-wider">Overall Assessment</div>
-          <div class="text-2xl font-black text-white">Thorough (B)</div>
-          <div class="text-xs text-sky-300">High Competence</div>
+        <div class="bg-emerald-950/80 px-4 py-3 rounded-lg border border-emerald-700/60 text-center">
+          <div class="text-xs uppercase text-emerald-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Thorough</div>
+          <div class="text-xs text-emerald-300">High Competence</div>
         </div>
       </div>
 
       <!-- Sub-Sample Selector Sub-Bar -->
-      <div class="flex items-center justify-between bg-sky-50/80 p-2.5 rounded-xl border border-sky-200">
+      <div class="mod-gdecision flex items-center justify-between bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200">
         <div class="flex items-center gap-2">
-          <span class="text-xs font-bold text-sky-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
-          <button onclick="switchSubSample('grade-b', 'sample-1')" id="subtab-grade-b-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-700 text-white shadow-sm transition">
+          <span class="text-xs font-bold text-emerald-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-b', 'sample-1')" id="subtab-grade-b-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-sm transition">
             Sample 1: Leo T. (12 Snacks Shared to 3 Tables & AABB Pathway)
           </button>
-          <button onclick="switchSubSample('grade-b', 'sample-2')" id="subtab-grade-b-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-sky-900 border border-sky-300 hover:bg-sky-100 transition">
+          <button onclick="switchSubSample('grade-b', 'sample-2')" id="subtab-grade-b-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-emerald-900 border border-emerald-300 hover:bg-emerald-100 transition">
             Sample 2: Mia S. (10 Snacks to 2 Possums & ABC Pattern with Remainder Reasoning)
           </button>
         </div>
-        <span class="text-xs text-sky-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+        <span class="text-xs text-emerald-800 font-mono hidden md:inline">2 Evidence Modalities</span>
       </div>
 
       <!-- SAMPLE 1 CONTENT (LEO T.) -->
-      <div id="grade-b-sample-1" class="subsample-content block">
+      <div id="grade-b-sample-1" data-mod-sample data-mod-level="Thorough" data-mod-student="Leo T." data-mod-open="switchTab('grade-b');switchSubSample('grade-b','sample-1')" class="subsample-content block">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
           <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-            <div class="bg-sky-100/70 border-b border-sky-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <div class="mod-neutral bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
               <span class="font-bold text-slate-800">KINDERGARTEN WORK • TERM 4</span>
-              <span>Leo T. • Thorough Sample 1</span>
+              <span class="mod-decision">Leo T. • Thorough Sample 1</span>
             </div>
 
             <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -232,7 +228,7 @@
                     <p class="font-hand-c text-base text-slate-600">3 Animals: Koala, Kangaroo & Wombat</p>
                   </div>
                   <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
-                    VERY THOROUGH!
+                    GREAT THINKING!
                   </div>
                 </div>
 
@@ -336,29 +332,29 @@
           </div>
 
           <!-- Right: Moderation Details -->
-          <div class="lg:col-span-5 space-y-5">
+          <div class="mod-decision lg:col-span-5 space-y-5">
             <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
               <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
                 <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">NESA Standard</span>
-                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade B Moderation Rationale</h3>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Common Grade Scale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Moderation Rationale: Thorough</h3>
                 </div>
-                <span class="text-3xl font-black text-sky-600">B</span>
+                <span class="text-base font-black uppercase tracking-wide text-emerald-600">Thorough</span>
               </div>
 
               <div class="space-y-3 text-xs text-slate-700">
                 <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                  <div class="font-bold text-sky-950 flex items-center gap-1.5 mb-1">
-                    <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-600"></i>
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
                     Equal Groups & Sharing (MAE-FG-02)
                   </div>
                   <p>
-                    <strong>Thorough:</strong> Applies thorough knowledge and skills to familiar situations by confidently distributing 12 counters systematically one-by-one into 3 groups of 4, accurately labelling each group with the numeral 4 and stating the total, and fluently resolving the challenge prompt by resharing 12 across 4 groups (3 each) with zero remainders.
+                    <strong>Thorough:</strong> Applies thorough knowledge and skills to most situations by confidently distributing 12 counters systematically one-by-one into 3 groups of 4, accurately labelling each group with the numeral 4 and stating the total, and fluently resolving the challenge prompt by resharing 12 across 4 groups (3 each) with zero remainders.
                   </p>
                 </div>
                 <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                  <div class="font-bold text-sky-950 flex items-center gap-1.5 mb-1">
-                    <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-600"></i>
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
                     Repeating Patterns (MAE-FG-01) & Working Mathematically
                   </div>
                   <p>
@@ -367,9 +363,9 @@
                 </div>
               </div>
 
-              <div class="bg-sky-50/70 p-3 rounded-lg border border-sky-200 text-xs">
-                <strong class="text-sky-950">ES1 Kindergarten Reporting Context:</strong>
-                <p class="text-sky-900 mt-1">
+              <div class="bg-emerald-50/70 p-3 rounded-lg border border-emerald-200 text-xs">
+                <strong class="text-emerald-950">Kindergarten Evidence Note:</strong>
+                <p class="text-emerald-900 mt-1">
                   Leo displays high competence across all taught kindergarten outcomes without teacher prompting. He understands that resharing changes the group size while the total quantity (12) stays constant.
                 </p>
               </div>
@@ -380,12 +376,12 @@
       </div>
 
       <!-- SAMPLE 2 CONTENT (MIA S.) -->
-      <div id="grade-b-sample-2" class="subsample-content hidden">
+      <div id="grade-b-sample-2" data-mod-sample data-mod-level="Thorough" data-mod-student="Mia S." data-mod-open="switchTab('grade-b');switchSubSample('grade-b','sample-2')" class="subsample-content hidden">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-            <div class="bg-sky-100/70 border-b border-sky-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <div class="mod-neutral bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
               <span class="font-bold text-slate-800">ASSESSMENT RECORD • KINDERGARTEN</span>
-              <span>Mia S. • Thorough Sample 2</span>
+              <span class="mod-decision">Mia S. • Thorough Sample 2</span>
             </div>
 
             <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -398,7 +394,7 @@
                     <p class="font-hand-c text-base text-slate-600">2 Animal Guests: Ringtail & Brushtail</p>
                   </div>
                   <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
-                    VERY THOROUGH
+                    GREAT THINKING!
                   </div>
                 </div>
 
@@ -451,7 +447,7 @@
                     <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Scribing of Oral Explanation (Challenge Prompt):
                   </div>
                   <p class="font-teacher text-base text-slate-800 leading-snug">
-                    "When the 3rd possum arrived, Mia dealt the 10 gumnuts across 3 plates one-by-one. She had 1 gumnut left in her hand. Mia said: 'Each possum has 3 gumnuts. But I have 1 gumnut left over in my hand! If I give it to Ringtail, it will not be equal. So all 3 possums get 3 gumnuts, and 1 gumnut has to stay in the basket for tomorrow!' Mia reasons about leftovers with high competence."
+                    "When the 3rd possum arrived, Mia dealt the 10 gumnuts across 3 plates one-by-one. She had 1 gumnut left in her hand. Mia said: 'Each possum has 3 gumnuts. But I have 1 gumnut left over in my hand! If I give it to Ringtail, it will not be equal. So all 3 possums get 3 gumnuts, and 1 gumnut has to stay in the basket for tomorrow!' Mia explained the leftover without being asked."
                   </p>
                 </div>
 
@@ -459,18 +455,18 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5 space-y-5">
+          <div class="mod-decision lg:col-span-5 space-y-5">
             <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
               <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
                 <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
-                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade B (Mia S.)</h3>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Thorough (Mia S.)</h3>
                 </div>
-                <span class="text-3xl font-black text-sky-600">B</span>
+                <span class="text-base font-black uppercase tracking-wide text-emerald-600">Thorough</span>
               </div>
               <div class="text-xs text-slate-700 space-y-3">
                 <p>
-                  <strong>Thorough:</strong> Applies thorough knowledge and skills to familiar situations by successfully creating a 3-element ABC pattern. When resharing 10 items among 3 groups, she articulates that equal sharing leaves a remainder of 1 and justifies why giving it to one guest would make the groups unequal.
+                  <strong>Thorough:</strong> Applies thorough knowledge and skills to most situations by successfully creating a 3-element ABC pattern. When resharing 10 items among 3 groups, she articulates that equal sharing leaves a remainder of 1 and justifies why giving it to one guest would make the groups unequal.
                 </p>
               </div>
             </div>
@@ -481,49 +477,49 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- GRADE C: SOUND ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- SOUND ACHIEVEMENT (DUAL SAMPLES) -->
     <!-- ========================================================================= -->
-    <div id="grade-c-view" class="tab-content hidden space-y-6">
+    <div id="grade-c-view" data-mod-group class="tab-content hidden space-y-6">
       
-      <div class="bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-amber-400">
+      <div class="mod-gdecision bg-blue-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-blue-400">
         <div>
-          <div class="flex items-center gap-2 text-amber-300 text-xs font-bold uppercase tracking-wider">
-            <span class="bg-amber-900 px-2.5 py-0.5 rounded border border-amber-600">Early Stage 1 (Kindergarten)</span>
+          <div class="flex items-center gap-2 text-blue-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-blue-900 px-2.5 py-0.5 rounded border border-blue-600">Early Stage 1 (Kindergarten)</span>
             <span>2 Moderation Evidence Samples</span>
           </div>
-          <h2 class="text-2xl font-black mt-1">Grade C: Sound Achievement</h2>
-          <p class="text-sm text-amber-100 max-w-3xl mt-1">
-            <strong>Key NESA Differentiator:</strong> Demonstrates <em>sound knowledge and skills</em> by using taught classroom routines: sharing collections by distributing objects one by one into equal groups, copying and continuing a simple repeating AB pattern, and recording groups with drawings and numerals. Works with an <strong>adequate level of competence</strong>.
+          <h2 class="text-2xl font-black mt-1">Sound Achievement</h2>
+          <p class="text-sm text-blue-100 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Demonstrates <em>sound knowledge and skills in the main areas of content</em> by using taught classroom routines: sharing collections by distributing objects one by one into equal groups, copying and continuing a simple repeating AB pattern, and recording groups with drawings and numerals. Works with an <strong>adequate level of competence</strong>.
           </p>
         </div>
-        <div class="bg-amber-950/80 px-4 py-3 rounded-lg border border-amber-700/60 text-center">
-          <div class="text-xs uppercase text-amber-300 font-semibold tracking-wider">Overall Assessment</div>
-          <div class="text-2xl font-black text-white">Sound (C)</div>
-          <div class="text-xs text-amber-300">Adequate Competence</div>
+        <div class="bg-blue-950/80 px-4 py-3 rounded-lg border border-blue-700/60 text-center">
+          <div class="text-xs uppercase text-blue-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Sound</div>
+          <div class="text-xs text-blue-300">Adequate Competence</div>
         </div>
       </div>
 
       <!-- Sub-Sample Selector Sub-Bar -->
-      <div class="flex items-center justify-between bg-amber-50/80 p-2.5 rounded-xl border border-amber-200">
+      <div class="mod-gdecision flex items-center justify-between bg-blue-50/80 p-2.5 rounded-xl border border-blue-200">
         <div class="flex items-center gap-2">
-          <span class="text-xs font-bold text-amber-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
-          <button onclick="switchSubSample('grade-c', 'sample-1')" id="subtab-grade-c-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-700 text-white shadow-sm transition">
+          <span class="text-xs font-bold text-blue-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-c', 'sample-1')" id="subtab-grade-c-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-700 text-white shadow-sm transition">
             Sample 1: Oliver K. (9 Apples Shared to 3 Tables & AB Block Pathway)
           </button>
-          <button onclick="switchSubSample('grade-c', 'sample-2')" id="subtab-grade-c-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-amber-900 border border-amber-300 hover:bg-amber-100 transition">
+          <button onclick="switchSubSample('grade-c', 'sample-2')" id="subtab-grade-c-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-blue-900 border border-blue-300 hover:bg-blue-100 transition">
             Sample 2: Ruby W. (6 Biscuits Shared to 2 Koalas & Oral Scribing Record)
           </button>
         </div>
-        <span class="text-xs text-amber-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+        <span class="text-xs text-blue-800 font-mono hidden md:inline">2 Evidence Modalities</span>
       </div>
 
       <!-- SAMPLE 1 CONTENT (OLIVER K.) -->
-      <div id="grade-c-sample-1" class="subsample-content block">
+      <div id="grade-c-sample-1" data-mod-sample data-mod-level="Sound" data-mod-student="Oliver K." data-mod-open="switchTab('grade-c');switchSubSample('grade-c','sample-1')" class="subsample-content block">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-            <div class="bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <div class="mod-neutral bg-blue-100/70 border-b border-blue-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
               <span class="font-bold text-slate-800">KINDERGARTEN WORK • TERM 4</span>
-              <span>Oliver K. • Sound Sample 1</span>
+              <span class="mod-decision">Oliver K. • Sound Sample 1</span>
             </div>
 
             <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -603,18 +599,18 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5 space-y-5">
+          <div class="mod-decision lg:col-span-5 space-y-5">
             <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
               <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
                 <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">NESA Standard</span>
-                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade C Moderation Rationale</h3>
+                  <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Common Grade Scale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Moderation Rationale: Sound</h3>
                 </div>
-                <span class="text-3xl font-black text-amber-600">C</span>
+                <span class="text-base font-black uppercase tracking-wide text-blue-600">Sound</span>
               </div>
               <div class="space-y-3 text-xs text-slate-700">
                 <p>
-                  <strong>Sound:</strong> Demonstrates sound knowledge and skills by sharing 9 items into 3 equal groups using taught one-by-one routines, labelling drawings with the numeral 3, and continuing an AB repeating pattern accurately. Achieves an adequate level of competence.
+                  <strong>Sound:</strong> Demonstrates sound knowledge and skills in the main areas of content by sharing 9 items into 3 equal groups using taught one-by-one routines, labelling drawings with the numeral 3, and continuing an AB repeating pattern accurately. Achieves an adequate level of competence.
                 </p>
               </div>
             </div>
@@ -623,11 +619,11 @@
       </div>
 
       <!-- SAMPLE 2 CONTENT (RUBY W.) -->
-      <div id="grade-c-sample-2" class="subsample-content hidden">
+      <div id="grade-c-sample-2" data-mod-sample data-mod-level="Sound" data-mod-student="Ruby W." data-mod-open="switchTab('grade-c');switchSubSample('grade-c','sample-2')" class="subsample-content hidden">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-            <div class="bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
-              <span>Ruby W. • Sound Sample 2</span>
+            <div class="mod-neutral bg-blue-100/70 border-b border-blue-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="mod-decision">Ruby W. • Sound Sample 2</span>
             </div>
 
             <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -658,25 +654,25 @@
                     <i data-lucide="mic" class="w-4 h-4 text-amber-800"></i> Teacher Scribing of Oral Explanation:
                   </div>
                   <p class="font-teacher text-base text-slate-800 leading-snug">
-                    "When asked how she shared the biscuits, Ruby said: 'I put one on this plate, then one on that plate until they were all gone. Both plates have 3.' For the challenge prompt (+1 friend = 3 friends), Ruby reshared the 6 biscuits and gave 2 to each friend. When asked if it was equal, she counted each plate with her finger: '1, 2. 1, 2. 1, 2. Yes, they all have 2!' Demonstrates taught routines with adequate competence."
+                    "When asked how she shared the biscuits, Ruby said: 'I put one on this plate, then one on that plate until they were all gone. Both plates have 3.' For the challenge prompt (+1 friend = 3 friends), Ruby reshared the 6 biscuits and gave 2 to each friend. When asked if it was equal, she counted each plate with her finger: '1, 2. 1, 2. 1, 2. Yes, they all have 2!'"
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="lg:col-span-5 space-y-5">
+          <div class="mod-decision lg:col-span-5 space-y-5">
             <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
               <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
                 <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
-                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade C (Ruby W.)</h3>
+                  <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Sound (Ruby W.)</h3>
                 </div>
-                <span class="text-3xl font-black text-amber-600">C</span>
+                <span class="text-base font-black uppercase tracking-wide text-blue-600">Sound</span>
               </div>
               <div class="text-xs text-slate-700 space-y-3">
                 <p>
-                  <strong>Sound:</strong> Demonstrates sound knowledge and skills by following taught one-by-one dealing routines to share 6 items into 2 groups of 3, and successfully resharing into 3 groups of 2 with direct recounting. Demonstrates adequate competence.
+                  <strong>Sound:</strong> Demonstrates sound knowledge and skills in the main areas of content by following taught one-by-one dealing routines to share 6 items into 2 groups of 3, and successfully resharing into 3 groups of 2 with direct recounting. Demonstrates adequate competence.
                 </p>
               </div>
             </div>
@@ -687,48 +683,48 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- GRADE D: BASIC ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- BASIC ACHIEVEMENT (DUAL SAMPLES) -->
     <!-- ========================================================================= -->
-    <div id="grade-d-view" class="tab-content hidden space-y-6">
+    <div id="grade-d-view" data-mod-group class="tab-content hidden space-y-6">
       
-      <div class="bg-orange-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-orange-400">
+      <div class="mod-gdecision bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-amber-400">
         <div>
-          <div class="flex items-center gap-2 text-orange-300 text-xs font-bold uppercase tracking-wider">
-            <span class="bg-orange-900 px-2.5 py-0.5 rounded border border-orange-600">Early Stage 1 (Kindergarten)</span>
+          <div class="flex items-center gap-2 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-amber-900 px-2.5 py-0.5 rounded border border-amber-600">Early Stage 1 (Kindergarten)</span>
             <span>2 Moderation Evidence Samples</span>
           </div>
-          <h2 class="text-2xl font-black mt-1">Grade D: Basic Achievement</h2>
-          <p class="text-sm text-orange-100 max-w-3xl mt-1">
-            <strong>Key NESA Differentiator:</strong> Demonstrates basic knowledge and skills with limited competence. Requires teacher prompting and scaffolding; displays partial execution (e.g., distributes objects unequally into lumps, loses count of items, or creates non-repeating random object arrangements).
+          <h2 class="text-2xl font-black mt-1">Basic Achievement</h2>
+          <p class="text-sm text-amber-100 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Demonstrates basic knowledge and skills with limited competence. Requires teacher prompting and scaffolding; displays partial execution (e.g., distributes objects unequally into lumps, loses count of items, or creates non-repeating random object arrangements).
           </p>
         </div>
-        <div class="bg-orange-950/80 px-4 py-3 rounded-lg border border-orange-700/60 text-center">
-          <div class="text-xs uppercase text-orange-300 font-semibold tracking-wider">Overall Assessment</div>
-          <div class="text-2xl font-black text-white">Basic (D)</div>
-          <div class="text-xs text-orange-300">Requires Scaffolding</div>
+        <div class="bg-amber-950/80 px-4 py-3 rounded-lg border border-amber-700/60 text-center">
+          <div class="text-xs uppercase text-amber-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Basic</div>
+          <div class="text-xs text-amber-300">Requires Scaffolding</div>
         </div>
       </div>
 
       <!-- Sub-Sample Selector Sub-Bar -->
-      <div class="flex items-center justify-between bg-orange-50/80 p-2.5 rounded-xl border border-orange-200">
+      <div class="mod-gdecision flex items-center justify-between bg-amber-50/80 p-2.5 rounded-xl border border-amber-200">
         <div class="flex items-center gap-2">
-          <span class="text-xs font-bold text-orange-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
-          <button onclick="switchSubSample('grade-d', 'sample-1')" id="subtab-grade-d-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-orange-700 text-white shadow-sm transition">
+          <span class="text-xs font-bold text-amber-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-d', 'sample-1')" id="subtab-grade-d-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-700 text-white shadow-sm transition">
             Sample 1: Jack N. (Unequal Sharing 5 and 3 & Broken Pattern Sequence)
           </button>
-          <button onclick="switchSubSample('grade-d', 'sample-2')" id="subtab-grade-d-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-orange-900 border border-orange-300 hover:bg-orange-100 transition">
+          <button onclick="switchSubSample('grade-d', 'sample-2')" id="subtab-grade-d-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-amber-900 border border-amber-300 hover:bg-amber-100 transition">
             Sample 2: Ella M. (Random Object Clusters & Hand-Over-Hand Scaffolding)
           </button>
         </div>
-        <span class="text-xs text-orange-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+        <span class="text-xs text-amber-800 font-mono hidden md:inline">2 Evidence Modalities</span>
       </div>
 
       <!-- SAMPLE 1 CONTENT (JACK N.) -->
-      <div id="grade-d-sample-1" class="subsample-content block">
+      <div id="grade-d-sample-1" data-mod-sample data-mod-level="Basic" data-mod-student="Jack N." data-mod-open="switchTab('grade-d');switchSubSample('grade-d','sample-1')" class="subsample-content block">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-            <div class="bg-orange-100/70 border-b border-orange-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
-              <span>Jack N. • Basic Sample 1</span>
+            <div class="mod-neutral bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="mod-decision">Jack N. • Basic Sample 1</span>
             </div>
 
             <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -782,14 +778,14 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5 space-y-5">
+          <div class="mod-decision lg:col-span-5 space-y-5">
             <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
               <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
                 <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2 py-0.5 rounded">NESA Standard</span>
-                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade D Moderation Rationale</h3>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Common Grade Scale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Moderation Rationale: Basic</h3>
                 </div>
-                <span class="text-3xl font-black text-orange-600">D</span>
+                <span class="text-base font-black uppercase tracking-wide text-amber-600">Basic</span>
               </div>
               <div class="text-xs text-slate-700 space-y-3">
                 <p>
@@ -802,11 +798,11 @@
       </div>
 
       <!-- SAMPLE 2 CONTENT (ELLA M.) -->
-      <div id="grade-d-sample-2" class="subsample-content hidden">
+      <div id="grade-d-sample-2" data-mod-sample data-mod-level="Basic" data-mod-student="Ella M." data-mod-open="switchTab('grade-d');switchSubSample('grade-d','sample-2')" class="subsample-content hidden">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-            <div class="bg-orange-100/70 border-b border-orange-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
-              <span>Ella M. • Basic Sample 2</span>
+            <div class="mod-neutral bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="mod-decision">Ella M. • Basic Sample 2</span>
             </div>
 
             <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -842,14 +838,14 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5 space-y-5">
+          <div class="mod-decision lg:col-span-5 space-y-5">
             <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
               <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
                 <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
-                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade D (Ella M.)</h3>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Basic (Ella M.)</h3>
                 </div>
-                <span class="text-3xl font-black text-orange-600">D</span>
+                <span class="text-base font-black uppercase tracking-wide text-amber-600">Basic</span>
               </div>
               <div class="text-xs text-slate-700 space-y-3">
                 <p>
@@ -866,14 +862,14 @@
     <!-- ========================================================================= -->
     <!-- COMPARATIVE MODERATION MATRIX (ES1 GRADES B, C, D) -->
     <!-- ========================================================================= -->
-    <div id="matrix-view" class="tab-content hidden space-y-6">
+    <div id="matrix-view" class="mod-matrix tab-content hidden space-y-6">
       
       <div class="bg-indigo-950 text-white rounded-xl p-5 shadow-lg flex flex-wrap items-center justify-between gap-4 border-l-8 border-indigo-400">
         <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-indigo-300 bg-indigo-900/60 px-2 py-0.5 rounded border border-indigo-700">NESA Early Stage 1 Grade Scale</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-300 bg-indigo-900/60 px-2 py-0.5 rounded border border-indigo-700">Early Stage 1 Achievement Language</span>
           <h2 class="text-2xl font-black mt-1">Early Stage 1 Mathematics Moderation Matrix</h2>
           <p class="text-sm text-indigo-200 max-w-3xl mt-1">
-            Comparative analysis of student performance across Grades B, C, and D for <em>The Great Bush Picnic Design Challenge</em> (Forming Groups).
+            Comparative analysis of student performance across Thorough, Sound and Basic achievement for <em>The Great Bush Picnic Design Challenge</em> (Forming Groups).
           </p>
         </div>
         <button onclick="window.print()" class="px-3 py-2 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold flex items-center gap-2 transition shadow">
@@ -881,15 +877,15 @@
         </button>
       </div>
 
-      <!-- Comparative Table for Grades B, C, D -->
+      <!-- Comparative table: Thorough, Sound, Basic -->
       <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-x-auto">
         <table class="w-full text-left text-xs border-collapse min-w-[750px]">
           <thead>
             <tr class="bg-slate-900 text-white border-b-2 border-slate-800">
               <th class="p-3.5 font-bold w-48">Syllabus Focus Area</th>
-              <th class="p-3.5 font-bold bg-sky-950/80 text-sky-300 w-1/3 border-l border-slate-800">Grade B (Thorough Achievement)</th>
-              <th class="p-3.5 font-bold bg-amber-950/80 text-amber-300 w-1/3 border-l border-slate-800">Grade C (Sound Achievement)</th>
-              <th class="p-3.5 font-bold bg-orange-950/80 text-orange-300 w-1/3 border-l border-slate-800">Grade D (Basic Achievement)</th>
+              <th class="p-3.5 font-bold bg-emerald-950/80 text-emerald-300 w-1/3 border-l border-slate-800">Thorough Achievement</th>
+              <th class="p-3.5 font-bold bg-blue-950/80 text-blue-300 w-1/3 border-l border-slate-800">Sound Achievement</th>
+              <th class="p-3.5 font-bold bg-amber-950/80 text-amber-300 w-1/3 border-l border-slate-800">Basic Achievement</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-200 text-slate-800">
@@ -898,13 +894,13 @@
                 <div class="font-bold">Investigate & Form Equal Groups by Sharing</div>
                 <div class="text-[11px] text-slate-500 font-mono">MAE-FG-02</div>
               </td>
-              <td class="p-3.5 bg-sky-50/30 border-l border-slate-200">
+              <td class="p-3.5 bg-emerald-50/30 border-l border-slate-200">
                 Distributes collections systematically one-by-one into equal groups. Labels groups with numerals accurately. Solves the challenge prompt by resharing total collections (e.g. 12 shared to 4 = 3 each) and articulates remainder leftovers clearly.
               </td>
-              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">
+              <td class="p-3.5 bg-blue-50/30 border-l border-slate-200">
                 Demonstrates sharing collections equally into small groups using taught one-by-one routines. Labels drawings with correct numerals. Follows guided resharing steps with an adequate level of competence.
               </td>
-              <td class="p-3.5 bg-orange-50/30 border-l border-slate-200">
+              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">
                 Distributes items in unequal piles (e.g., 5 and 3). Relies on step-by-step teacher prompts to correct imbalances. Struggles to count or reshare independently.
               </td>
             </tr>
@@ -914,13 +910,13 @@
                 <div class="font-bold">Copy, Continue & Create Patterns</div>
                 <div class="text-[11px] text-slate-500 font-mono">MAE-FG-01</div>
               </td>
-              <td class="p-3.5 bg-sky-50/30 border-l border-slate-200">
+              <td class="p-3.5 bg-emerald-50/30 border-l border-slate-200">
                 Creates complex repeating pattern pathways (AABB or ABC). Explicitly identifies the repeating unit and predicts missing or subsequent items fluently.
               </td>
-              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">
+              <td class="p-3.5 bg-blue-50/30 border-l border-slate-200">
                 Demonstrates copying, continuing, and creating simple AB repeating patterns using concrete materials or drawings. Names alternating elements accurately.
               </td>
-              <td class="p-3.5 bg-orange-50/30 border-l border-slate-200">
+              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">
                 Produces non-repeating or broken sequences (e.g., Circle, Circle, Triangle, Star). Needs teacher guidance to identify pattern errors.
               </td>
             </tr>
@@ -928,15 +924,15 @@
             <tr class="hover:bg-slate-50/80">
               <td class="p-3.5 font-bold bg-slate-50 text-slate-900">
                 <div class="font-bold">Working Mathematically</div>
-                <div class="text-[11px] text-slate-500 font-mono">MA1-WM-01 / MAO-WM-01</div>
+                <div class="text-[11px] text-slate-500 font-mono">MAO-WM-01</div>
               </td>
-              <td class="p-3.5 bg-sky-50/30 border-l border-slate-200">
-                <strong>Thorough:</strong> Applies thorough knowledge and skills to familiar situations by clearly explaining reasoning using mathematical words (<em>equal, not equal, share, pattern, repeating</em>).
+              <td class="p-3.5 bg-emerald-50/30 border-l border-slate-200">
+                <strong>Thorough:</strong> Applies thorough knowledge and skills to most situations by clearly explaining reasoning using mathematical words (<em>equal, not equal, share, pattern, repeating</em>).
+              </td>
+              <td class="p-3.5 bg-blue-50/30 border-l border-slate-200">
+                <strong>Sound:</strong> Demonstrates sound knowledge and skills in the main areas of content by using taught routines and explaining the sharing process simply with everyday words when prompted.
               </td>
               <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">
-                <strong>Sound:</strong> Demonstrates sound knowledge and skills by using taught routines and explaining the sharing process simply with everyday words when prompted.
-              </td>
-              <td class="p-3.5 bg-orange-50/30 border-l border-slate-200">
                 <strong>Basic:</strong> Demonstrates basic knowledge and skills with limited competence. Relies on heavy teacher questioning and physical scaffolding to complete tasks.
               </td>
             </tr>
@@ -972,41 +968,21 @@
     </div>
   </div>
 
-  <div id="rubric-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
-    <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
-      <div class="flex items-center justify-between border-b pb-3">
-        <h3 class="text-lg font-bold text-slate-900">NESA Early Stage 1 Reporting Guidelines</h3>
-        <button onclick="closeModal('rubric-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
-      </div>
-      <div class="space-y-3 text-xs text-slate-700">
-        <div class="p-3 bg-amber-50 rounded border border-amber-300">
-          <strong>Key Early Stage 1 Rule: Grades B, C, and D Only</strong>
-          <p class="mt-1">Under NSW Department of Education and NESA Kindergarten reporting practices, formal A to E reporting applies from Stage 1 (Years 1–10). For Early Stage 1, teachers moderate against Thorough (B), Sound (C), and Basic (D) achievement standards.</p>
-        </div>
-        <div class="p-2 rounded bg-amber-50 border border-amber-200">
-          <strong>Grade C (Sound):</strong> Demonstrates sound knowledge and skills with an adequate level of competence, using taught routines.
-        </div>
-      </div>
-      <div class="flex justify-end pt-2">
-        <button onclick="closeModal('rubric-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
-      </div>
-    </div>
-  </div>
 
   <!-- JAVASCRIPT CONTROLLERS -->
   <script>
     lucide.createIcons();
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-sky-600', 'bg-sky-50', 'text-sky-900', 'border-amber-500', 'bg-amber-50', 'text-amber-900', 'border-orange-600', 'bg-orange-50', 'text-orange-900', 'border-indigo-600', 'bg-indigo-100'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-purple-600', 'border-purple-500', 'bg-purple-50', 'bg-purple-100', 'text-purple-900', 'text-purple-950', 'border-emerald-600', 'border-emerald-500', 'bg-emerald-50', 'bg-emerald-100', 'text-emerald-900', 'text-emerald-950', 'border-blue-600', 'border-blue-500', 'bg-blue-50', 'bg-blue-100', 'text-blue-900', 'text-blue-950', 'border-amber-600', 'border-amber-500', 'bg-amber-50', 'bg-amber-100', 'text-amber-900', 'text-amber-950', 'border-rose-600', 'border-rose-500', 'bg-rose-50', 'bg-rose-100', 'text-rose-900', 'text-rose-950', 'border-sky-600', 'border-sky-500', 'bg-sky-50', 'bg-sky-100', 'text-sky-900', 'text-sky-950', 'border-orange-600', 'border-orange-500', 'bg-orange-50', 'bg-orange-100', 'text-orange-900', 'text-orange-950', 'border-indigo-600', 'border-indigo-500', 'bg-indigo-50', 'bg-indigo-100', 'text-indigo-900', 'text-indigo-950'));
       const target = document.getElementById(`${tabId}-view`);
       if (target) target.classList.remove('hidden');
       const activeBtn = document.getElementById(`tab-btn-${tabId}`);
       if (activeBtn) {
         activeBtn.classList.add('active', 'border-2');
-        if (tabId === 'grade-b') activeBtn.classList.add('border-sky-600', 'bg-sky-50', 'text-sky-900');
-        if (tabId === 'grade-c') activeBtn.classList.add('border-amber-500', 'bg-amber-50', 'text-amber-900');
-        if (tabId === 'grade-d') activeBtn.classList.add('border-orange-600', 'bg-orange-50', 'text-orange-900');
+        if (tabId === 'grade-b') activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900');
+        if (tabId === 'grade-c') activeBtn.classList.add('border-blue-500', 'bg-blue-50', 'text-blue-900');
+        if (tabId === 'grade-d') activeBtn.classList.add('border-amber-600', 'bg-amber-50', 'text-amber-900');
         if (tabId === 'matrix') activeBtn.classList.add('border-indigo-600', 'bg-indigo-100', 'text-indigo-950');
       }
       lucide.createIcons();
@@ -1018,15 +994,15 @@
       const target = document.getElementById(`${gradeId}-${sampleId}`);
       if (target) target.classList.remove('hidden');
       container.querySelectorAll('.subtab-btn').forEach(b => {
-        b.classList.remove('active', 'bg-sky-700', 'bg-amber-700', 'bg-orange-700', 'text-white');
+        b.classList.remove('active', 'bg-purple-700', 'bg-emerald-700', 'bg-blue-700', 'bg-amber-700', 'bg-rose-700', 'bg-sky-700', 'bg-orange-700', 'bg-indigo-700', 'text-white');
         b.classList.add('bg-white');
       });
       const activeSubBtn = document.getElementById(`subtab-${gradeId}-${sampleId}`);
       if (activeSubBtn) {
         activeSubBtn.classList.add('active', 'text-white');
-        if (gradeId === 'grade-b') activeSubBtn.classList.add('bg-sky-700');
-        if (gradeId === 'grade-c') activeSubBtn.classList.add('bg-amber-700');
-        if (gradeId === 'grade-d') activeSubBtn.classList.add('bg-orange-700');
+        if (gradeId === 'grade-b') activeSubBtn.classList.add('bg-emerald-700');
+        if (gradeId === 'grade-c') activeSubBtn.classList.add('bg-blue-700');
+        if (gradeId === 'grade-d') activeSubBtn.classList.add('bg-amber-700');
       }
       lucide.createIcons();
     }
@@ -1039,5 +1015,6 @@
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
   </script>
+  <script src="moderation-tools.js" data-scale="es1" defer></script>
 </body>
 </html>

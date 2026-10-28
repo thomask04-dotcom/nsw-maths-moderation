@@ -163,7 +163,7 @@
           </h2>
         </div>
         <div class="text-xs bg-indigo-50 text-indigo-900 border border-indigo-200 px-3 py-1 rounded font-medium">
-          <strong>NSW Stage 3 Common Grade Scale:</strong> Grade A (Extensive), B (Thorough), C (Sound), D (Basic), &amp; E (Elementary)
+          <strong>NSW Stage 3 Common Grade Scale:</strong> Extensive, Thorough, Sound, Basic &amp; Elementary
         </div>
       </div>
 
@@ -244,26 +244,26 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
+    <div class="mod-nav flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
       <button onclick="switchTab('gradeA')" id="tab-gradeA" class="tab-btn active px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x transition flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
-        Grade A (Extensive) — Kaelen
+        Extensive — Kaelen
       </button>
       <button onclick="switchTab('gradeB')" id="tab-gradeB" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-        Grade B (Thorough) — Sienna
+        Thorough — Sienna
       </button>
       <button onclick="switchTab('gradeC')" id="tab-gradeC" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-        Grade C (Sound) — Tyler
+        Sound — Tyler
       </button>
       <button onclick="switchTab('gradeD')" id="tab-gradeD" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-        Grade D (Basic) — Darcy
+        Basic — Darcy
       </button>
       <button onclick="switchTab('gradeE')" id="tab-gradeE" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
         <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-        Grade E (Elementary) — Jaxson
+        Elementary — Jaxson
       </button>
       <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-xs sm:text-sm border-t-2 border-x border-transparent transition flex items-center gap-1.5">
         <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
@@ -272,19 +272,19 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 1: GRADE A (EXTENSIVE) — KAELEN                                       -->
+    <!-- TAB 1: EXTENSIVE — KAELEN                                       -->
     <!-- ========================================================================= -->
-    <div id="content-gradeA" class="tab-content block">
-      <div class="bg-purple-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+    <div id="content-gradeA" data-mod-sample data-mod-level="Extensive" data-mod-student="Kaelen V." data-mod-open="switchTab('gradeA')" class="tab-content block">
+      <div class="mod-neutral bg-purple-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-purple-500 text-purple-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade A &bull; Extensive Knowledge &amp; Very High Competence
+            Extensive Knowledge &amp; Very High Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Kaelen V. &bull; Year 5 (Term 4)</h3>
-          <p class="text-xs text-purple-200">Theme: Cyberpunk Skate Racer &bull; Applies extensive knowledge and skills to unfamiliar situations: flawless construction, multi-angle drift correction, dual reflex proof, mental rotation of perpendicular vectors.</p>
+          <p class="mod-decision text-xs text-purple-200">Theme: Cyberpunk Skate Racer &bull; Applies extensive knowledge and skills to new situations: accurate construction, multi-angle drift correction, dual reflex proof, mental rotation of perpendicular vectors.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-purple-300">GRADE A</div>
+          <div class="text-3xl font-black text-purple-300">EXTENSIVE</div>
           <div class="text-xs text-purple-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -378,7 +378,7 @@
               </div>
 
               <div class="teacher-mark absolute -right-3 top-8 text-teacherRed font-teacher text-3xl font-black">
-                &#10003; <span class="text-sm">Masterful protractor accuracy</span>
+                &#10003; <span class="text-sm">Very High protractor accuracy</span>
               </div>
             </div>
 
@@ -484,38 +484,38 @@
           </div>
         </div>
 
-        <!-- Grade A Moderation Rationale -->
+        <!-- Extensive Moderation Rationale -->
         <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-purple-400 bg-purple-50/60 rounded-xl p-6">
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <h4 class="text-sm font-black uppercase tracking-wider text-purple-950 flex items-center gap-2">
               <span class="w-3 h-3 rounded-full bg-purple-700"></span>
-              NESA Moderation Rationale: Grade A (Extensive)
+              Moderation Rationale: Extensive
             </h4>
             <span class="text-xs font-semibold bg-purple-200 text-purple-900 px-2.5 py-1 rounded">
-              Extensive Knowledge &bull; Transfer to Novel Situations
+              Extensive Knowledge &bull; Application to New Situations
             </span>
           </div>
           <p class="text-xs text-slate-700 leading-relaxed mb-3">
-            Kaelen applies <strong>extensive knowledge and skills to unfamiliar situations</strong> by transferring angle concepts and protractor skills to a complex, non-routine game blueprint layout. He seamlessly navigates rotated baselines, articulates the relationship between interior and reflex angles using both subtractive and circular measurement techniques, and justifies perpendicularity independently of coordinate axes. His mathematical communication is precise, fluent, and autonomous.
+            Kaelen applies <strong>extensive knowledge and skills to new situations</strong> by transferring angle concepts and protractor skills to a complex, non-routine game blueprint layout. He seamlessly navigates rotated baselines, articulates the relationship between interior and reflex angles using both subtractive and circular measurement techniques, and justifies perpendicularity independently of coordinate axes. His mathematical communication is precise, fluent, and autonomous.
           </p>
         </div>
       </div>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 2: GRADE B (THOROUGH) — SIENNA                                        -->
+    <!-- TAB 2: THOROUGH — SIENNA                                        -->
     <!-- ========================================================================= -->
-    <div id="content-gradeB" class="tab-content hidden">
-      <div class="bg-emerald-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+    <div id="content-gradeB" data-mod-sample data-mod-level="Thorough" data-mod-student="Sienna M." data-mod-open="switchTab('gradeB')" class="tab-content hidden">
+      <div class="mod-neutral bg-emerald-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-emerald-500 text-emerald-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade B &bull; Thorough Knowledge &amp; High Competence
+            Thorough Knowledge &amp; High Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Sienna M. &bull; Year 5 (Term 4)</h3>
-          <p class="text-xs text-emerald-200">Theme: Sci-Fi Drone Rescue &bull; Applies thorough knowledge and skills to familiar situations: structured protractor construction, reliable scale selection, accurate reflex calculation, clear reasoning.</p>
+          <p class="mod-decision text-xs text-emerald-200">Theme: Sci-Fi Drone Rescue &bull; Applies thorough knowledge and skills to most situations: structured protractor construction, reliable scale selection, accurate reflex calculation, clear reasoning.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-emerald-300">GRADE B</div>
+          <div class="text-3xl font-black text-emerald-300">THOROUGH</div>
           <div class="text-xs text-emerald-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -562,7 +562,7 @@
                 <span class="text-xs bg-emerald-200 px-2 py-0.5 rounded text-emerald-900 font-mono">24/10/26 10:45 AM</span>
               </div>
               <p class="mb-2">
-                "Sienna demonstrated thorough competence in using a protractor. She constructed all 6 angles within specifications and clearly explained her subtractive method for the 220° reflex angle."
+                "Sienna constructed all 6 angles within specifications and clearly explained her subtractive method for the 220° reflex angle."
               </p>
               <p>
                 "Consistently checked scale readings against 90° benchmarks in familiar tasks."
@@ -580,28 +580,28 @@
         </div>
 
         <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-emerald-400 bg-emerald-50/60 rounded-xl p-6">
-          <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 mb-2">NESA Moderation Rationale: Grade B (Thorough)</h4>
+          <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 mb-2">Moderation Rationale: Thorough</h4>
           <p class="text-xs text-slate-700 leading-relaxed">
-            Sienna applies <strong>thorough knowledge and skills to familiar situations</strong> by constructing and classifying angles up to 360°, using protractor measurement procedures accurately across all blueprint components, avoiding dual-scale errors through baseline tracking, calculating reflex angles using subtraction, and articulating her reasoning clearly.
+            Sienna applies <strong>thorough knowledge and skills to most situations</strong> by constructing and classifying angles up to 360°, using protractor measurement procedures accurately across all blueprint components, avoiding dual-scale errors through baseline tracking, calculating reflex angles using subtraction, and articulating her reasoning clearly.
           </p>
         </div>
       </div>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 3: GRADE C (SOUND) — TYLER                                            -->
+    <!-- TAB 3: SOUND — TYLER                                            -->
     <!-- ========================================================================= -->
-    <div id="content-gradeC" class="tab-content hidden">
-      <div class="bg-blue-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+    <div id="content-gradeC" data-mod-sample data-mod-level="Sound" data-mod-student="Tyler B." data-mod-open="switchTab('gradeC')" class="tab-content hidden">
+      <div class="mod-neutral bg-blue-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-blue-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade C &bull; Sound Knowledge &amp; Adequate Competence
+            Sound Knowledge &amp; Adequate Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Tyler B. &bull; Year 5 (Term 4)</h3>
-          <p class="text-xs text-blue-200">Theme: Ninja Parkour Dash &bull; Demonstrates sound knowledge and skills: applies taught 3-step routine, measures up to 180° accurately, calculates reflex angle with formula prompt.</p>
+          <p class="mod-decision text-xs text-blue-200">Theme: Ninja Parkour Dash &bull; Demonstrates sound knowledge and skills in the main areas of content: applies taught 3-step routine, measures up to 180° accurately, calculates reflex angle with formula prompt.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-blue-300">GRADE C</div>
+          <div class="text-3xl font-black text-blue-300">SOUND</div>
           <div class="text-xs text-blue-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -665,28 +665,28 @@
         </div>
 
         <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-blue-400 bg-blue-50/60 rounded-xl p-6">
-          <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 mb-2">NESA Moderation Rationale: Grade C (Sound)</h4>
+          <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 mb-2">Moderation Rationale: Sound</h4>
           <p class="text-xs text-slate-700 leading-relaxed">
-            Tyler demonstrates <strong>sound knowledge and skills</strong> by accurately measuring and constructing angles up to 180° using a protractor, using degree notation correctly, classifying all standard angle types, and calculating reflex angles using taught anchor-chart formulas.
+            Tyler demonstrates <strong>sound knowledge and skills in the main areas of content</strong> by accurately measuring and constructing angles up to 180° using a protractor, using degree notation correctly, classifying all standard angle types, and calculating reflex angles using taught anchor-chart formulas.
           </p>
         </div>
       </div>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 4: GRADE D (BASIC) — DARCY                                            -->
+    <!-- TAB 4: BASIC — DARCY                                            -->
     <!-- ========================================================================= -->
-    <div id="content-gradeD" class="tab-content hidden">
-      <div class="bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+    <div id="content-gradeD" data-mod-sample data-mod-level="Basic" data-mod-student="Darcy L." data-mod-open="switchTab('gradeD')" class="tab-content hidden">
+      <div class="mod-neutral bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-amber-500 text-amber-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade D &bull; Basic Knowledge &amp; Limited Competence
+            Basic Knowledge &amp; Limited Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Darcy L. &bull; Year 5 (Term 4)</h3>
-          <p class="text-xs text-amber-200">Demonstrates basic knowledge and skills with teacher guidance; occasional dual-scale reversal, struggles with reflex calculations and diagonal baselines.</p>
+          <p class="mod-decision text-xs text-amber-200">Demonstrates basic knowledge and skills with teacher guidance; occasional dual-scale reversal, struggles with reflex calculations and diagonal baselines.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-amber-400">GRADE D</div>
+          <div class="text-3xl font-black text-amber-400">BASIC</div>
           <div class="text-xs text-amber-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -753,7 +753,7 @@
         </div>
 
         <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-amber-400 bg-amber-50/60 rounded-xl p-6">
-          <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 mb-2">NESA Moderation Rationale: Grade D (Basic)</h4>
+          <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 mb-2">Moderation Rationale: Basic</h4>
           <p class="text-xs text-slate-700 leading-relaxed">
             Darcy demonstrates <strong>basic knowledge and skills</strong> in angle measurement, achieving a limited level of competence. He requires teacher guidance to select the correct protractor scale, makes dual-scale errors, struggles to measure reflex angles beyond 180°, and occasionally omits degree symbols.
           </p>
@@ -762,19 +762,19 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- TAB 5: GRADE E (ELEMENTARY) — JAXSON                                      -->
+    <!-- TAB 5: ELEMENTARY — JAXSON                                      -->
     <!-- ========================================================================= -->
-    <div id="content-gradeE" class="tab-content hidden">
-      <div class="bg-rose-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+    <div id="content-gradeE" data-mod-sample data-mod-level="Elementary" data-mod-student="Jaxson P." data-mod-open="switchTab('gradeE')" class="tab-content hidden">
+      <div class="mod-neutral bg-rose-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-rose-500 text-rose-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade E &bull; Elementary Knowledge &amp; Very Limited Competence
+            Elementary Knowledge &amp; Very Limited Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Jaxson P. &bull; Year 5 (Term 4)</h3>
-          <p class="text-xs text-rose-200">Demonstrates elementary knowledge and skills in few areas; unable to align protractor origin or baseline independently, reads random numbers, omits degree symbols.</p>
+          <p class="mod-decision text-xs text-rose-200">Demonstrates elementary knowledge and skills in few areas; unable to align protractor origin or baseline independently, reads random numbers, omits degree symbols.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-rose-400">GRADE E</div>
+          <div class="text-3xl font-black text-rose-400">ELEMENTARY</div>
           <div class="text-xs text-rose-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -839,7 +839,7 @@
         </div>
 
         <div class="teacher-banner mt-8 pt-6 border-t-2 border-dashed border-rose-400 bg-rose-50/60 rounded-xl p-6">
-          <h4 class="text-sm font-black uppercase tracking-wider text-rose-950 mb-2">NESA Moderation Rationale: Grade E (Elementary)</h4>
+          <h4 class="text-sm font-black uppercase tracking-wider text-rose-950 mb-2">Moderation Rationale: Elementary</h4>
           <p class="text-xs text-slate-700 leading-relaxed">
             Jaxson demonstrates <strong>elementary knowledge and skills</strong> in few areas of the content, achieving very limited competence. He requires significant direct teacher support to position a protractor, cannot identify the vertex or baseline, reads numbers arbitrarily off the curved edge, omits degree symbols, and cannot classify angles.
           </p>
@@ -850,7 +850,7 @@
     <!-- ========================================================================= -->
     <!-- TAB 6: CALIBRATION MATRIX (GRADES A TO E)                                 -->
     <!-- ========================================================================= -->
-    <div id="content-matrix" class="tab-content hidden">
+    <div id="content-matrix" class="mod-matrix tab-content hidden">
       <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
         
         <div class="bg-nswNavy text-white px-6 py-5">
@@ -859,9 +859,9 @@
               <span class="bg-indigo-500 text-indigo-950 text-xs font-black px-2.5 py-1 rounded uppercase tracking-wide">
                 Stage 3 Moderation Tool &bull; NESA Common Grade Scale
               </span>
-              <h3 class="text-xl font-bold mt-1">Cross-Grade Calibration Matrix: Year 5 (Stage 3 Part A)</h3>
+              <h3 class="text-xl font-bold mt-1">Cross-Level Calibration Matrix: Year 5 (Stage 3 Part A)</h3>
               <p class="text-xs text-sky-200">
-                Direct evidence comparison across Grades A, B, C, D, and E against the official NSW Stage 3 Mathematics Overview Rubric (MA3-GM-03 &amp; MAO-WM-01).
+                Direct evidence comparison across all five achievement levels (Extensive to Elementary) against the official NSW Stage 3 Mathematics Overview Rubric (MA3-GM-03 &amp; MAO-WM-01).
               </p>
             </div>
             <div class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded text-slate-300">
@@ -876,24 +876,24 @@
               <tr class="border-b-2 border-slate-300 bg-slate-100 text-slate-700">
                 <th class="p-3 font-bold uppercase tracking-wider w-1/6">Syllabus Focus &amp; Rubric Aspect</th>
                 <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-purple-900 bg-purple-50 border-x border-purple-200">
-                  Grade A (Extensive)<br>
-                  <span class="font-normal text-[10px] text-purple-700">Applies to unfamiliar situations</span>
+                  Extensive<br>
+                  <span class="font-normal text-[10px] text-purple-700">Applies to new situations</span>
                 </th>
                 <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-emerald-900 bg-emerald-50 border-r border-emerald-200">
-                  Grade B (Thorough)<br>
-                  <span class="font-normal text-[10px] text-emerald-700">Applies to familiar situations</span>
+                  Thorough<br>
+                  <span class="font-normal text-[10px] text-emerald-700">Applies to most situations</span>
                 </th>
                 <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-blue-900 bg-blue-50 border-r border-blue-200">
-                  Grade C (Sound)<br>
-                  <span class="font-normal text-[10px] text-blue-700">Demonstrates sound knowledge &amp; skills</span>
+                  Sound<br>
+                  <span class="font-normal text-[10px] text-blue-700">Demonstrates sound knowledge &amp; skills in main content areas</span>
                 </th>
                 <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-amber-900 bg-amber-50 border-r border-amber-200">
-                  Grade D (Basic)<br>
-                  <span class="font-normal text-[10px] text-amber-700">Demonstrates basic knowledge &amp; skills</span>
+                  Basic<br>
+                  <span class="font-normal text-[10px] text-amber-700">Demonstrates basic knowledge &amp; skills; limited competence</span>
                 </th>
                 <th class="p-2.5 font-bold uppercase tracking-wider w-1/6 text-rose-900 bg-rose-50">
-                  Grade E (Elementary)<br>
-                  <span class="font-normal text-[10px] text-rose-700">Demonstrates elementary knowledge &amp; skills</span>
+                  Elementary<br>
+                  <span class="font-normal text-[10px] text-rose-700">Demonstrates elementary knowledge &amp; skills in few areas</span>
                 </th>
               </tr>
             </thead>
@@ -907,7 +907,7 @@
                   <p class="text-[11px] text-slate-500 mt-1">Measures and constructs angles up to 360° using protractors and degree symbol (°).</p>
                 </td>
                 <td class="p-2.5 bg-purple-50/30 border-x border-purple-100 align-top">
-                  <strong>Flawless Precision:</strong> Seamlessly measures and constructs angles in any orientation; self-corrects cumulative drift; tracks baseline zero to eliminate dual-scale errors.
+                  <strong>Precise Measurement:</strong> Seamlessly measures and constructs angles in any orientation; self-corrects cumulative drift; tracks baseline zero to eliminate dual-scale errors.
                 </td>
                 <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
                   <strong>Accurate Construction:</strong> Accurately measures and constructs familiar acute, obtuse, and reflex angles using protractors; avoids dual-scale errors consistently.
@@ -982,7 +982,7 @@
                   Readily explores and connects geometric concepts across focus areas (rotation, vectors, perpendicularity), applying understanding accurately and flexibly in new situations.
                 </td>
                 <td class="p-2.5 bg-emerald-50/30 border-r border-emerald-100 align-top">
-                  Connects concepts accurately and confidently, applying understanding of angle turns and circle divisions in familiar situations.
+                  Connects concepts accurately and confidently, applying understanding of angle turns and circle divisions in most situations.
                 </td>
                 <td class="p-2.5 bg-blue-50/30 border-r border-blue-100 align-top">
                   Explores concepts and makes connections, showing sound understanding of the main ideas taught (benchmarks, degree ranges).
@@ -1049,9 +1049,9 @@
 
         <div class="p-6 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 space-y-2">
           <h5 class="font-bold text-slate-900 uppercase tracking-wide">Stage 3 Team Moderation Protocols:</h5>
-          <p>&bull; <strong>Grade A Standard (Extensive):</strong> Applies extensive knowledge and skills to unfamiliar situations. Kaelen demonstrates depth of reasoning by constructing a tilted 90° right angle on an inclined baseline, applying subtractive reflex formulas, and tracking baseline zeros autonomously.</p>
-          <p>&bull; <strong>Grade B vs Grade C Standard:</strong> Sienna (Grade B) applies thorough knowledge and skills to familiar situations, rotating her protractor smoothly to match diagonal rays and explaining scale selection. Tyler (Grade C) demonstrates sound knowledge and skills, relying on taught 3-step routines and turning the paper so lines appear horizontal.</p>
-          <p>&bull; <strong>Grade D vs Grade E Standard:</strong> Darcy (Grade D) demonstrates basic knowledge and skills, completing calculations with teacher guidance but falls into dual-scale reversals (reading 150° for 30°). Jaxson (Grade E) demonstrates elementary knowledge and skills in isolated areas, unable to align the protractor origin without 1-to-1 physical support.</p>
+          <p>&bull; <strong>Extensive Standard:</strong> Applies extensive knowledge and skills to new situations. Kaelen demonstrates depth of reasoning by constructing a tilted 90° right angle on an inclined baseline, applying subtractive reflex formulas, and tracking baseline zeros autonomously.</p>
+          <p>&bull; <strong>Thorough vs Sound Standard:</strong> Sienna (Thorough) applies thorough knowledge and skills to most situations, rotating her protractor smoothly to match diagonal rays and explaining scale selection. Tyler (Sound) demonstrates sound knowledge and skills in the main areas of content, relying on taught 3-step routines and turning the paper so lines appear horizontal.</p>
+          <p>&bull; <strong>Basic vs Elementary Standard:</strong> Darcy (Basic) demonstrates basic knowledge and skills, completing calculations with teacher guidance but falls into dual-scale reversals (reading 150° for 30°). Jaxson (Elementary) demonstrates elementary knowledge and skills in isolated areas, unable to align the protractor origin without 1-to-1 physical support.</p>
         </div>
       </div>
     </div>
@@ -1098,5 +1098,6 @@
     }
   </script>
 
+  <script src="moderation-tools.js" data-scale="cgs" defer></script>
 </body>
 </html>

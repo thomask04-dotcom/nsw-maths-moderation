@@ -1,3 +1,6 @@
+NOTE (Oct 2026): superseded. The A and B patterns below did not match the Common Grade Scale
+(B is 'most situations', not 'familiar situations'). See MODERATION-REVIEW.md for the current wording.
+
 Grade wording changes — before / after
 Pattern applied:
   A: applies extensive knowledge and skills to unfamiliar situations by ...

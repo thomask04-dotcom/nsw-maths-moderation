@@ -132,7 +132,7 @@
     <div class="bg-slate-950/70 border-t border-slate-800 px-4 py-1.5 text-xs">
       <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-slate-300 font-mono">
         <span class="flex items-center gap-1 text-amber-400 font-semibold"><i data-lucide="target" class="w-3 h-3"></i> Targeted Outcomes:</span>
-        <span title="Working Mathematically"><strong class="text-white">MA1-WM-01:</strong> Working Mathematically</span>
+        <span title="Working Mathematically"><strong class="text-white">MAO-WM-01:</strong> Working Mathematically</span>
         <span title="3D Spatial Structure"><strong class="text-sky-300">MA1-3DS-02:</strong> Volume & Cube Stacking</span>
         <span title="2D Spatial Structure: Area"><strong class="text-emerald-300">MA1-2DS-02:</strong> Area in Rows & Columns</span>
         <span title="2D Spatial Structure: Transformations"><strong class="text-fuchsia-300">MA1-2DS-01:</strong> Slides, Reflections & Symmetry</span>
@@ -141,41 +141,41 @@
   </header>
 
   <!-- NAVIGATION BAR / GRADE SELECTION TABS -->
-  <div class="bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
+  <div class="mod-nav bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex items-center justify-between overflow-x-auto py-2 gap-2 no-scrollbar">
         <div class="flex items-center gap-1.5">
-          <!-- Grade A -->
-          <button onclick="switchTab('grade-a')" id="tab-btn-grade-a" class="tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-emerald-600 bg-emerald-50 text-emerald-900 shadow-sm">
-            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">A</span>
-            <span>Grade A <span class="hidden md:inline font-normal text-emerald-700">(Extensive)</span></span>
+          <!-- Extensive -->
+          <button onclick="switchTab('grade-a')" id="tab-btn-grade-a" class="tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-purple-600 bg-purple-50 text-purple-900 shadow-sm">
+            <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+            <span>Extensive</span>
           </button>
-          <!-- Grade B -->
+          <!-- Thorough -->
           <button onclick="switchTab('grade-b')" id="tab-btn-grade-b" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
-            <span class="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs">B</span>
-            <span>Grade B <span class="hidden md:inline font-normal text-slate-500">(Thorough)</span></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+            <span>Thorough</span>
           </button>
-          <!-- Grade C -->
+          <!-- Sound -->
           <button onclick="switchTab('grade-c')" id="tab-btn-grade-c" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
-            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs">C</span>
-            <span>Grade C <span class="hidden md:inline font-normal text-slate-500">(Sound)</span></span>
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+            <span>Sound</span>
           </button>
-          <!-- Grade D -->
+          <!-- Basic -->
           <button onclick="switchTab('grade-d')" id="tab-btn-grade-d" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
-            <span class="w-5 h-5 rounded-full bg-orange-600 text-white flex items-center justify-center text-xs">D</span>
-            <span>Grade D <span class="hidden md:inline font-normal text-slate-500">(Basic)</span></span>
+            <span class="w-3 h-3 rounded-full bg-amber-600"></span>
+            <span>Basic</span>
           </button>
-          <!-- Grade E -->
+          <!-- Elementary -->
           <button onclick="switchTab('grade-e')" id="tab-btn-grade-e" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
-            <span class="w-5 h-5 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs">E</span>
-            <span>Grade E <span class="hidden md:inline font-normal text-slate-500">(Elementary)</span></span>
+            <span class="w-3 h-3 rounded-full bg-rose-600"></span>
+            <span>Elementary</span>
           </button>
         </div>
 
         <!-- Comparative Matrix Toggle -->
         <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-indigo-200 bg-indigo-50 text-indigo-800 hover:bg-indigo-100 whitespace-nowrap">
           <i data-lucide="columns" class="w-4 h-4 text-indigo-600"></i>
-          <span>Moderation Matrix (All Grades)</span>
+          <span>Moderation Matrix (All Levels)</span>
         </button>
       </div>
     </div>
@@ -185,25 +185,25 @@
   <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
 
     <!-- ========================================================================= -->
-    <!-- GRADE A: EXTENSIVE ACHIEVEMENT -->
+    <!-- EXTENSIVE ACHIEVEMENT -->
     <!-- ========================================================================= -->
-    <div id="grade-a-view" class="tab-content block space-y-6">
+    <div id="grade-a-view" data-mod-sample data-mod-level="Extensive" data-mod-student="Aria M." data-mod-open="switchTab('grade-a')" class="tab-content block space-y-6">
       
-      <div class="bg-emerald-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-emerald-400">
+      <div class="mod-decision bg-purple-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-purple-400">
         <div>
-          <div class="flex items-center gap-2 text-emerald-300 text-xs font-bold uppercase tracking-wider">
-            <span class="bg-emerald-900 px-2.5 py-0.5 rounded border border-emerald-600">Stage 1 Part A (Year 1)</span>
+          <div class="flex items-center gap-2 text-purple-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-purple-900 px-2.5 py-0.5 rounded border border-purple-600">Stage 1 Part A (Year 1)</span>
             <span>Student: Aria M. • Age: 7 yrs 1 mo</span>
           </div>
-          <h2 class="text-2xl font-black mt-1">Grade A: Extensive Achievement</h2>
-          <p class="text-sm text-emerald-100 max-w-3xl mt-1">
-            <strong>Key NESA Differentiator:</strong> Applies extensive knowledge and skills to <em>unfamiliar situations</em>, demonstrating depth and conceptual transfer through autonomous problem-solving and multi-layered spatial reasoning.
+          <h2 class="text-2xl font-black mt-1">Extensive Achievement</h2>
+          <p class="text-sm text-purple-100 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Applies extensive knowledge and skills to <em>new situations</em>, demonstrating depth and conceptual transfer through autonomous problem-solving and multi-layered spatial reasoning.
           </p>
         </div>
-        <div class="bg-emerald-950/80 px-4 py-3 rounded-lg border border-emerald-700/60 text-center">
-          <div class="text-xs uppercase text-emerald-300 font-semibold tracking-wider">Overall Assessment</div>
-          <div class="text-2xl font-black text-white">Extensive (A)</div>
-          <div class="text-xs text-emerald-300">Depth in Unfamiliar Situations</div>
+        <div class="bg-purple-950/80 px-4 py-3 rounded-lg border border-purple-700/60 text-center">
+          <div class="text-xs uppercase text-purple-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Extensive</div>
+          <div class="text-xs text-purple-300">Very High Competence</div>
         </div>
       </div>
 
@@ -211,9 +211,9 @@
         
         <!-- Left: Student Exercise Book Artefact -->
         <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-          <div class="bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+          <div class="mod-neutral bg-purple-100/70 border-b border-purple-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
             <span class="font-bold text-slate-800">CLASS WORK • STAGE 1</span>
-            <span>Aria M. • Extensive Sample</span>
+            <span class="mod-decision">Aria M. • Extensive Sample</span>
           </div>
 
           <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -348,30 +348,30 @@
         </div>
 
         <!-- Right: Moderation Details & NESA Rationales -->
-        <div class="lg:col-span-5 space-y-5">
+        <div class="mod-decision lg:col-span-5 space-y-5">
           <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
             <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
               <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">NESA Standard</span>
-                <h3 class="text-lg font-bold text-slate-900 mt-1">Grade A Moderation Rationale</h3>
+                <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2 py-0.5 rounded">Common Grade Scale</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1">Moderation Rationale: Extensive</h3>
               </div>
-              <span class="text-3xl font-black text-emerald-600">A</span>
+              <span class="text-base font-black uppercase tracking-wide text-purple-600">Extensive</span>
             </div>
 
             <div class="space-y-3 text-xs text-slate-700">
               <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                <div class="font-bold text-purple-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-600"></i>
                   Two-Dimensional Spatial Structure (MA1-2DS-01 & 02)
                 </div>
                 <p>
-                  <strong>Extensive:</strong> Applies extensive knowledge and skills to unfamiliar situations by constructing a flawless 4 &times; 5 tile array without gaps or overlaps, efficiently calculating total area using array skip-counting rather than counting by ones, and autonomously incorporating 6 extra tiles into a balanced composite footprint.
+                  <strong>Extensive:</strong> Applies extensive knowledge and skills to new situations by constructing an accurate 4 &times; 5 tile array without gaps or overlaps, efficiently calculating total area using array skip-counting rather than counting by ones, and autonomously incorporating 6 extra tiles into a balanced composite footprint.
                 </p>
               </div>
 
               <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                <div class="font-bold text-purple-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-600"></i>
                   Three-Dimensional Spatial Structure (MA1-3DS-02)
                 </div>
                 <p>
@@ -380,9 +380,9 @@
               </div>
 
               <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
-                  Working Mathematically (MA1-WM-01)
+                <div class="font-bold text-purple-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-600"></i>
+                  Working Mathematically (MAO-WM-01)
                 </div>
                 <p>
                   <strong>Extensive:</strong> Chooses efficient techniques, adapts them to solve unfamiliar problems, and communicates thinking clearly with precise mathematical terminology (<em>array, rows, layers, symmetry, fold line, volume</em>).
@@ -390,9 +390,9 @@
               </div>
             </div>
 
-            <div class="bg-emerald-50/70 p-3 rounded-lg border border-emerald-200 text-xs">
-              <strong class="text-emerald-950">Next Pedagogical Steps (Depth, Not Acceleration):</strong>
-              <p class="text-emerald-900 mt-1">
+            <div class="bg-purple-50/70 p-3 rounded-lg border border-purple-200 text-xs">
+              <strong class="text-purple-950">Next Pedagogical Steps (Depth, Not Acceleration):</strong>
+              <p class="text-purple-900 mt-1">
                 Explore how many different rectangular prisms can be formed from the same 24 cubes (e.g., 2 &times; 3 &times; 4, 1 &times; 4 &times; 6, and 2 &times; 2 &times; 6) to consolidate volume conservation, and introduce fractional partitioning (half-tiles) to measure irregular borders.
               </p>
             </div>
@@ -403,32 +403,32 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- GRADE B: THOROUGH ACHIEVEMENT -->
+    <!-- THOROUGH ACHIEVEMENT -->
     <!-- ========================================================================= -->
-    <div id="grade-b-view" class="tab-content hidden space-y-6">
+    <div id="grade-b-view" data-mod-sample data-mod-level="Thorough" data-mod-student="Benjamin T." data-mod-open="switchTab('grade-b')" class="tab-content hidden space-y-6">
       
-      <div class="bg-sky-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-sky-400">
+      <div class="mod-decision bg-emerald-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-emerald-400">
         <div>
-          <div class="flex items-center gap-2 text-sky-300 text-xs font-bold uppercase tracking-wider">
-            <span class="bg-sky-900 px-2.5 py-0.5 rounded border border-sky-600">Stage 1 Part A (Year 1)</span>
+          <div class="flex items-center gap-2 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-emerald-900 px-2.5 py-0.5 rounded border border-emerald-600">Stage 1 Part A (Year 1)</span>
             <span>Student: Benjamin T. • Age: 6 yrs 11 mos</span>
           </div>
-          <h2 class="text-2xl font-black mt-1">Grade B: Thorough Achievement</h2>
-          <p class="text-sm text-sky-100 max-w-3xl mt-1">
-            <strong>Key NESA Differentiator:</strong> Applies thorough knowledge and skills to <em>familiar situations</em> with clear structured communication.
+          <h2 class="text-2xl font-black mt-1">Thorough Achievement</h2>
+          <p class="text-sm text-emerald-100 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Applies thorough knowledge and skills to <em>most situations</em> with clear structured communication.
           </p>
         </div>
-        <div class="bg-sky-950/80 px-4 py-3 rounded-lg border border-sky-700/60 text-center">
-          <div class="text-xs uppercase text-sky-300 font-semibold tracking-wider">Overall Assessment</div>
-          <div class="text-2xl font-black text-white">Thorough (B)</div>
-          <div class="text-xs text-sky-300">High Competence</div>
+        <div class="bg-emerald-950/80 px-4 py-3 rounded-lg border border-emerald-700/60 text-center">
+          <div class="text-xs uppercase text-emerald-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Thorough</div>
+          <div class="text-xs text-emerald-300">High Competence</div>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-          <div class="bg-sky-100/70 border-b border-sky-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
-            <span>Benjamin T. • Thorough Sample</span>
+          <div class="mod-neutral bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <span class="mod-decision">Benjamin T. • Thorough Sample</span>
           </div>
 
           <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -441,7 +441,7 @@
                   <p class="font-hand-b text-base text-slate-600">Benjamin</p>
                 </div>
                 <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">
-                  VERY THOROUGH
+                  GREAT THINKING!
                 </div>
               </div>
 
@@ -489,18 +489,18 @@
         </div>
 
         <!-- Right Rationale -->
-        <div class="lg:col-span-5 space-y-5">
+        <div class="mod-decision lg:col-span-5 space-y-5">
           <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
             <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
               <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">NESA Standard</span>
-                <h3 class="text-lg font-bold text-slate-900 mt-1">Grade B Moderation Rationale</h3>
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Common Grade Scale</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1">Moderation Rationale: Thorough</h3>
               </div>
-              <span class="text-3xl font-black text-sky-600">B</span>
+              <span class="text-base font-black uppercase tracking-wide text-emerald-600">Thorough</span>
             </div>
             <div class="text-xs text-slate-700 space-y-3">
               <p>
-                <strong>Thorough:</strong> Applies thorough knowledge and skills to familiar situations by fluently skip-counting rows (4, 8, 12), adding layers (4 + 4 = 8), using clear additive expansion (12 + 6 = 18 tiles and 8 + 12 = 20 cubes), and explaining thinking logically using appropriate mathematical language.
+                <strong>Thorough:</strong> Applies thorough knowledge and skills to most situations by fluently skip-counting rows (4, 8, 12), adding layers (4 + 4 = 8), using clear additive expansion (12 + 6 = 18 tiles and 8 + 12 = 20 cubes), and explaining thinking logically using appropriate mathematical language.
               </p>
             </div>
           </div>
@@ -509,34 +509,34 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- GRADE C: SOUND ACHIEVEMENT -->
+    <!-- SOUND ACHIEVEMENT -->
     <!-- ========================================================================= -->
-    <div id="grade-c-view" class="tab-content hidden space-y-6">
+    <div id="grade-c-view" data-mod-sample data-mod-level="Sound" data-mod-student="Chloe S." data-mod-open="switchTab('grade-c')" class="tab-content hidden space-y-6">
       
-      <div class="bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-amber-400">
+      <div class="mod-decision bg-blue-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-blue-400">
         <div>
-          <div class="flex items-center gap-2 text-amber-300 text-xs font-bold uppercase tracking-wider">
-            <span class="bg-amber-900 px-2.5 py-0.5 rounded border border-amber-600">Stage 1 Part A (Year 1)</span>
+          <div class="flex items-center gap-2 text-blue-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-blue-900 px-2.5 py-0.5 rounded border border-blue-600">Stage 1 Part A (Year 1)</span>
             <span>Student: Chloe S. • Age: 6 yrs 9 mos</span>
           </div>
-          <h2 class="text-2xl font-black mt-1">Grade C: Sound Achievement</h2>
-          <p class="text-sm text-amber-100 max-w-3xl mt-1">
-            <strong>Key NESA Differentiator:</strong> Demonstrates <em>sound knowledge and skills</em> by meeting the core Stage 1 outcomes using taught routines (direct counting and recounting by ones, structured rows and layers, clear translation/reflection), achieving an <strong>adequate level of competence</strong>.
+          <h2 class="text-2xl font-black mt-1">Sound Achievement</h2>
+          <p class="text-sm text-blue-100 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Demonstrates <em>sound knowledge and skills in the main areas of content</em> by meeting the core Stage 1 outcomes using taught routines (direct counting and recounting by ones, structured rows and layers, clear translation/reflection), achieving an <strong>adequate level of competence</strong>.
           </p>
         </div>
-        <div class="bg-amber-950/80 px-4 py-3 rounded-lg border border-amber-700/60 text-center">
-          <div class="text-xs uppercase text-amber-300 font-semibold tracking-wider">Overall Assessment</div>
-          <div class="text-2xl font-black text-white">Sound (C)</div>
-          <div class="text-xs text-amber-300">Adequate Competence</div>
+        <div class="bg-blue-950/80 px-4 py-3 rounded-lg border border-blue-700/60 text-center">
+          <div class="text-xs uppercase text-blue-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Sound</div>
+          <div class="text-xs text-blue-300">Adequate Competence</div>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
         <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-          <div class="bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+          <div class="mod-neutral bg-blue-100/70 border-b border-blue-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
             <span class="font-bold text-slate-800">CLASS WORK • STAGE 1</span>
-            <span>Chloe S. • Sound Sample</span>
+            <span class="mod-decision">Chloe S. • Sound Sample</span>
           </div>
 
           <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -676,30 +676,30 @@
         </div>
 
         <!-- Right: Moderation Details -->
-        <div class="lg:col-span-5 space-y-5">
+        <div class="mod-decision lg:col-span-5 space-y-5">
           <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
             <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
               <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">NESA Standard</span>
-                <h3 class="text-lg font-bold text-slate-900 mt-1">Grade C Moderation Rationale</h3>
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Common Grade Scale</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1">Moderation Rationale: Sound</h3>
               </div>
-              <span class="text-3xl font-black text-amber-600">C</span>
+              <span class="text-base font-black uppercase tracking-wide text-blue-600">Sound</span>
             </div>
 
             <div class="space-y-3 text-xs text-slate-700">
               <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
                   Two-Dimensional Spatial Structure (MA1-2DS-01 & 02)
                 </div>
                 <p>
-                  <strong>Sound:</strong> Demonstrates sound knowledge and skills by covering the surface with square tiles in straight rows and columns without gaps or overlaps, correctly labelling total area with an informal unit ("12 square tiles"), and identifying and creating a slide (translation).
+                  <strong>Sound:</strong> Demonstrates sound knowledge and skills in the main areas of content by covering the surface with square tiles in straight rows and columns without gaps or overlaps, correctly labelling total area with an informal unit ("12 square tiles"), and identifying and creating a slide (translation).
                 </p>
               </div>
 
               <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
                   Three-Dimensional Spatial Structure (MA1-3DS-02)
                 </div>
                 <p>
@@ -708,20 +708,20 @@
               </div>
 
               <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
-                  Working Mathematically (MA1-WM-01)
+                <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                  Working Mathematically (MAO-WM-01)
                 </div>
                 <p>
-                  <strong>Sound:</strong> Demonstrates sound knowledge and skills by successfully carrying out familiar classroom routines, relying on counting and recounting by ones rather than skip-counting. Achieves an adequate level of competence.
+                  <strong>Sound:</strong> Demonstrates sound knowledge and skills in the main areas of content by successfully carrying out familiar classroom routines, relying on counting and recounting by ones rather than skip-counting. Achieves an adequate level of competence.
                 </p>
               </div>
             </div>
 
-            <div class="bg-amber-50/70 p-3 rounded-lg border border-amber-200 text-xs">
-              <strong class="text-amber-950">Sound (C) Alignment:</strong>
-              <p class="text-amber-900 mt-1">
-                Grade C represents sound knowledge and skills with adequate competence. Chloe demonstrates this by fulfilling every core requirement of the task.
+            <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200 text-xs">
+              <strong class="text-blue-950">Sound Alignment:</strong>
+              <p class="text-blue-900 mt-1">
+                Sound achievement represents sound knowledge and skills in the main areas of content with adequate competence. Chloe demonstrates this by fulfilling every core requirement of the task.
               </p>
             </div>
           </div>
@@ -731,33 +731,33 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- GRADE D: BASIC ACHIEVEMENT -->
+    <!-- BASIC ACHIEVEMENT -->
     <!-- ========================================================================= -->
-    <div id="grade-d-view" class="tab-content hidden space-y-6">
+    <div id="grade-d-view" data-mod-sample data-mod-level="Basic" data-mod-student="Daniel K." data-mod-open="switchTab('grade-d')" class="tab-content hidden space-y-6">
       
-      <div class="bg-orange-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-orange-400">
+      <div class="mod-decision bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-amber-400">
         <div>
-          <div class="flex items-center gap-2 text-orange-300 text-xs font-bold uppercase tracking-wider">
-            <span class="bg-orange-900 px-2.5 py-0.5 rounded border border-orange-600">Stage 1 Part A (Year 1)</span>
+          <div class="flex items-center gap-2 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-amber-900 px-2.5 py-0.5 rounded border border-amber-600">Stage 1 Part A (Year 1)</span>
             <span>Student: Daniel K. • Age: 7 yrs 2 mos</span>
           </div>
-          <h2 class="text-2xl font-black mt-1">Grade D: Basic Achievement</h2>
-          <p class="text-sm text-orange-100 max-w-3xl mt-1">
-            <strong>Key NESA Differentiator:</strong> Demonstrates <em>basic knowledge and skills with limited competence</em>. Requires regular teacher prompting and scaffolding; displays partial execution (some tile gaps/overlaps, one-by-one counting errors, pedestal structural instability).
+          <h2 class="text-2xl font-black mt-1">Basic Achievement</h2>
+          <p class="text-sm text-amber-100 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Demonstrates <em>basic knowledge and skills with limited competence</em>. Requires regular teacher prompting and scaffolding; displays partial execution (some tile gaps/overlaps, one-by-one counting errors, pedestal structural instability).
           </p>
         </div>
-        <div class="bg-orange-950/80 px-4 py-3 rounded-lg border border-orange-700/60 text-center">
-          <div class="text-xs uppercase text-orange-300 font-semibold tracking-wider">Overall Assessment</div>
-          <div class="text-2xl font-black text-white">Basic (D)</div>
-          <div class="text-xs text-orange-300">Requires Scaffolding</div>
+        <div class="bg-amber-950/80 px-4 py-3 rounded-lg border border-amber-700/60 text-center">
+          <div class="text-xs uppercase text-amber-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Basic</div>
+          <div class="text-xs text-amber-300">Requires Scaffolding</div>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
         <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-          <div class="bg-orange-100/70 border-b border-orange-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
-            <span>Daniel K. • Basic Sample</span>
+          <div class="mod-neutral bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <span class="mod-decision">Daniel K. • Basic Sample</span>
           </div>
 
           <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -808,14 +808,14 @@
         </div>
 
         <!-- Right Rationale -->
-        <div class="lg:col-span-5 space-y-5">
+        <div class="mod-decision lg:col-span-5 space-y-5">
           <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
             <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
               <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-2 py-0.5 rounded">NESA Standard</span>
-                <h3 class="text-lg font-bold text-slate-900 mt-1">Grade D Moderation Rationale</h3>
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Common Grade Scale</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1">Moderation Rationale: Basic</h3>
               </div>
-              <span class="text-3xl font-black text-orange-600">D</span>
+              <span class="text-base font-black uppercase tracking-wide text-amber-600">Basic</span>
             </div>
             <div class="text-xs text-slate-700 space-y-3">
               <p>
@@ -828,32 +828,32 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- GRADE E: ELEMENTARY ACHIEVEMENT -->
+    <!-- ELEMENTARY ACHIEVEMENT -->
     <!-- ========================================================================= -->
-    <div id="grade-e-view" class="tab-content hidden space-y-6">
+    <div id="grade-e-view" data-mod-sample data-mod-level="Elementary" data-mod-student="Eli W." data-mod-open="switchTab('grade-e')" class="tab-content hidden space-y-6">
       
-      <div class="bg-rose-900 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-rose-400">
+      <div class="mod-decision bg-rose-900 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-rose-400">
         <div>
           <div class="flex items-center gap-2 text-rose-300 text-xs font-bold uppercase tracking-wider">
             <span class="bg-rose-950 px-2.5 py-0.5 rounded border border-rose-700">Stage 1 Part A (Year 1)</span>
             <span>Student: Eli W. • Age: 6 yrs 8 mos</span>
           </div>
-          <h2 class="text-2xl font-black mt-1">Grade E: Elementary Achievement</h2>
+          <h2 class="text-2xl font-black mt-1">Elementary Achievement</h2>
           <p class="text-sm text-rose-100 max-w-3xl mt-1">
-            <strong>Key NESA Differentiator:</strong> Demonstrates <em>elementary knowledge and skills</em> in few areas of the content. Achieved very limited competence; requires <strong>substantial direct 1:1 teacher support</strong> to engage with materials; unable to complete the task independently.
+            <strong>Key Differentiator:</strong> Demonstrates <em>elementary knowledge and skills</em> in few areas of the content. Achieved very limited competence; requires <strong>substantial direct 1:1 teacher support</strong> to engage with materials; unable to complete the task independently.
           </p>
         </div>
         <div class="bg-rose-950/80 px-4 py-3 rounded-lg border border-rose-700/60 text-center">
           <div class="text-xs uppercase text-rose-300 font-semibold tracking-wider">Overall Assessment</div>
-          <div class="text-2xl font-black text-white">Elementary (E)</div>
+          <div class="text-2xl font-black text-white">Elementary</div>
           <div class="text-xs text-rose-300">Substantial Support</div>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-          <div class="bg-rose-100/70 border-b border-rose-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
-            <span>Eli W. • Elementary Running Record</span>
+          <div class="mod-neutral bg-rose-100/70 border-b border-rose-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <span class="mod-decision">Eli W. • Elementary Running Record</span>
           </div>
 
           <div class="p-6 sm:p-8 exercise-grid relative min-h-[750px]">
@@ -881,14 +881,14 @@
         </div>
 
         <!-- Right Rationale -->
-        <div class="lg:col-span-5 space-y-5">
+        <div class="mod-decision lg:col-span-5 space-y-5">
           <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
             <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
               <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-100 px-2 py-0.5 rounded">NESA Standard</span>
-                <h3 class="text-lg font-bold text-slate-900 mt-1">Grade E Moderation Rationale</h3>
+                <span class="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Common Grade Scale</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1">Moderation Rationale: Elementary</h3>
               </div>
-              <span class="text-3xl font-black text-rose-600">E</span>
+              <span class="text-base font-black uppercase tracking-wide text-rose-600">Elementary</span>
             </div>
             <div class="text-xs text-slate-700 space-y-3">
               <p>
@@ -903,14 +903,14 @@
     <!-- ========================================================================= -->
     <!-- COMPARATIVE MODERATION MATRIX (ALL 5 GRADES) -->
     <!-- ========================================================================= -->
-    <div id="matrix-view" class="tab-content hidden space-y-6">
+    <div id="matrix-view" class="mod-matrix tab-content hidden space-y-6">
       
       <div class="bg-indigo-950 text-white rounded-xl p-5 shadow-lg flex flex-wrap items-center justify-between gap-4 border-l-8 border-indigo-400">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-indigo-300 bg-indigo-900/60 px-2 py-0.5 rounded border border-indigo-700">NESA K–10 Common Grade Scale</span>
           <h2 class="text-2xl font-black mt-1">Stage 1 Mathematics Moderation Matrix</h2>
           <p class="text-sm text-indigo-200 max-w-3xl mt-1">
-            Comparative analysis of student performance across all 5 grade levels for <em>The Tabletop Museum Exhibition Booth Challenge</em>.
+            Comparative analysis of student performance across all five achievement levels for <em>The Tabletop Museum Exhibition Booth Challenge</em>.
           </p>
         </div>
         <button onclick="window.print()" class="px-3 py-2 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold flex items-center gap-2 transition shadow">
@@ -924,11 +924,11 @@
           <thead>
             <tr class="bg-slate-900 text-white border-b-2 border-slate-800">
               <th class="p-3 font-bold w-44">Syllabus Focus Area</th>
-              <th class="p-3 font-bold bg-emerald-950/80 text-emerald-300 w-1/5 border-l border-slate-800">Grade A (Extensive)</th>
-              <th class="p-3 font-bold bg-sky-950/80 text-sky-300 w-1/5 border-l border-slate-800">Grade B (Thorough)</th>
-              <th class="p-3 font-bold bg-amber-950/80 text-amber-300 w-1/5 border-l border-slate-800">Grade C (Sound)</th>
-              <th class="p-3 font-bold bg-orange-950/80 text-orange-300 w-1/5 border-l border-slate-800">Grade D (Basic)</th>
-              <th class="p-3 font-bold bg-rose-950/80 text-rose-300 w-1/5 border-l border-slate-800">Grade E (Elementary)</th>
+              <th class="p-3 font-bold bg-purple-950/80 text-purple-300 w-1/5 border-l border-slate-800">Extensive</th>
+              <th class="p-3 font-bold bg-emerald-950/80 text-emerald-300 w-1/5 border-l border-slate-800">Thorough</th>
+              <th class="p-3 font-bold bg-blue-950/80 text-blue-300 w-1/5 border-l border-slate-800">Sound</th>
+              <th class="p-3 font-bold bg-amber-950/80 text-amber-300 w-1/5 border-l border-slate-800">Basic</th>
+              <th class="p-3 font-bold bg-rose-950/80 text-rose-300 w-1/5 border-l border-slate-800">Elementary</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-200 text-slate-800">
@@ -937,16 +937,16 @@
                 <div class="font-bold">Area in Rows & Columns</div>
                 <div class="text-[11px] text-slate-500 font-mono">MA1-2DS-02</div>
               </td>
-              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+              <td class="p-3 bg-purple-50/30 border-l border-slate-200">
                 Constructs 4 &times; 5 array (20 tiles) without gaps/overlaps. Autonomously reconfigures composite footprint when adding 6 extra tiles (20 + 6 = 26). Skip-counts and uses array reasoning.
               </td>
-              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
                 Constructs 3 &times; 4 array (12 tiles). Skip-counts fluently (4, 8, 12). Handles expansion by adding a row of 4 and 2 at the side (12 + 6 = 18).
               </td>
-              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+              <td class="p-3 bg-blue-50/30 border-l border-slate-200">
                 Constructs 3 &times; 4 array (12 tiles) edge-to-edge. Counts tiles one-by-one (1 to 12). Recounts all 18 tiles one-by-one after adding 6 tiles.
               </td>
-              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
                 Lays tiles with noticeable gaps and overlaps. Requires teacher prompt to correct alignment. Counts by ones with minor tracking errors.
               </td>
               <td class="p-3 bg-rose-50/30 border-l border-slate-200">
@@ -959,16 +959,16 @@
                 <div class="font-bold">Prism Volume & Stacking</div>
                 <div class="text-[11px] text-slate-500 font-mono">MA1-3DS-02</div>
               </td>
-              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
+              <td class="p-3 bg-purple-50/30 border-l border-slate-200">
                 Solid 2 &times; 3 &times; 2 prism (12 cubes). Reasons multiplicatively about layers (6 + 6 = 12). Fluidly expands with 12 more cubes into a balanced 24-cube stepped double-tower.
               </td>
-              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
+              <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
                 Solid 2 &times; 2 &times; 2 prism (8 cubes). Calculates volume via repeated layer addition (4 + 4 = 8). Builds a second multi-layer pedestal (4 + 4 + 4 = 12) to use the 12 extra cubes (8 + 12 = 20).
               </td>
-              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
+              <td class="p-3 bg-blue-50/30 border-l border-slate-200">
                 Builds solid 8-cube structure (2 layers of 4). Verifies total by recounting cubes. Records volume using informal units ("8 wooden cubes").
               </td>
-              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
+              <td class="p-3 bg-amber-50/30 border-l border-slate-200">
                 Builds unstable single-column stack that topples. Requires physical teacher scaffolding to construct a 2-layer stable base. Counts by ones.
               </td>
               <td class="p-3 bg-rose-50/30 border-l border-slate-200">
@@ -979,18 +979,18 @@
             <tr class="hover:bg-slate-50/80">
               <td class="p-3 font-bold bg-slate-50 text-slate-900">
                 <div class="font-bold">Working Mathematically</div>
-                <div class="text-[11px] text-slate-500 font-mono">MA1-WM-01</div>
+                <div class="text-[11px] text-slate-500 font-mono">MAO-WM-01</div>
+              </td>
+              <td class="p-3 bg-purple-50/30 border-l border-slate-200">
+                <strong>Extensive:</strong> Applies extensive knowledge and skills to new situations through autonomous problem-solving in the challenge context. Fluent mathematical reasoning, precise vocabulary, and self-monitoring.
               </td>
               <td class="p-3 bg-emerald-50/30 border-l border-slate-200">
-                <strong>Extensive:</strong> Applies extensive knowledge and skills to unfamiliar situations through autonomous problem-solving in the challenge context. Fluent mathematical reasoning, precise vocabulary, and self-monitoring.
+                <strong>Thorough:</strong> Applies thorough knowledge and skills to most situations, giving clear explanations using appropriate syllabus vocabulary and structured mathematical thinking.
               </td>
-              <td class="p-3 bg-sky-50/30 border-l border-slate-200">
-                <strong>Thorough:</strong> Applies thorough knowledge and skills to familiar situations, giving clear explanations using appropriate syllabus vocabulary and structured mathematical thinking.
+              <td class="p-3 bg-blue-50/30 border-l border-slate-200">
+                <strong>Sound:</strong> Demonstrates sound knowledge and skills in the main areas of content by carrying out taught procedures accurately. Relies on counting/recounting by ones. Explains thinking simply when prompted. Adequate competence.
               </td>
               <td class="p-3 bg-amber-50/30 border-l border-slate-200">
-                <strong>Sound:</strong> Demonstrates sound knowledge and skills by carrying out taught procedures accurately. Relies on counting/recounting by ones. Explains thinking simply when prompted. Adequate competence.
-              </td>
-              <td class="p-3 bg-orange-50/30 border-l border-slate-200">
                 <strong>Basic:</strong> Demonstrates basic knowledge and skills with limited competence. Relies on heavy teacher questioning and prompting to complete familiar tasks. Everyday language used.
               </td>
               <td class="p-3 bg-rose-50/30 border-l border-slate-200">
@@ -1032,19 +1032,22 @@
   <div id="rubric-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
     <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b pb-3">
-        <h3 class="text-lg font-bold text-slate-900">NESA Common Grade Scale & Stage 1 Rubric</h3>
+        <h3 class="text-lg font-bold text-slate-900">Common Grade Scale &amp; Stage 1 Rubric</h3>
         <button onclick="closeModal('rubric-modal')" class="text-slate-400 hover:text-slate-700 p-1">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
-      <div class="space-y-3 text-xs text-slate-700">
+      <div class="space-y-2.5 text-xs text-slate-700">
         <div class="p-3 bg-amber-50 rounded border border-amber-300">
-          <strong>Key NESA Rubric Principle: Depth, Not Acceleration</strong>
-          <p class="mt-1">Grade A reflects applying extensive knowledge and skills of Stage 1 content to unfamiliar situations. It does not require content from Stage 2.</p>
+          <strong>Key principle: depth, not acceleration</strong>
+          <p class="mt-1">Extensive achievement reflects extensive knowledge and skills in Stage 1 content, applied to new situations. It does not require content from Stage 2.</p>
         </div>
-        <div class="p-2 rounded bg-amber-50 border border-amber-200">
-          <strong>Grade C (Sound):</strong> Demonstrates sound knowledge and skills with an adequate level of competence, using taught routines.
-        </div>
+        <div class="p-2.5 rounded bg-purple-50 border border-purple-200"><strong class="text-purple-900">Extensive:</strong> Extensive knowledge and skills, readily applied, and a very high level of competence in the processes and skills, applied to new situations.</div>
+        <div class="p-2.5 rounded bg-emerald-50 border border-emerald-200"><strong class="text-emerald-900">Thorough:</strong> Thorough knowledge and skills and a high level of competence in the processes and skills, applied to most situations.</div>
+        <div class="p-2.5 rounded bg-blue-50 border border-blue-200"><strong class="text-blue-900">Sound:</strong> Sound knowledge and skills in the main areas of content and an adequate level of competence in the processes and skills.</div>
+        <div class="p-2.5 rounded bg-amber-50 border border-amber-200"><strong class="text-amber-900">Basic:</strong> Basic knowledge and skills and a limited level of competence in the processes and skills.</div>
+        <div class="p-2.5 rounded bg-rose-50 border border-rose-200"><strong class="text-rose-900">Elementary:</strong> Elementary knowledge and skills in few areas of the content and very limited competence in some of the processes and skills.</div>
+        <p class="text-[11px] text-slate-500">Adapted from the NESA Common Grade Scale (Years 1–10). Judgements are made on balance across the whole task.</p>
       </div>
       <div class="flex justify-end pt-2">
         <button onclick="closeModal('rubric-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
@@ -1056,16 +1059,16 @@
     lucide.createIcons();
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-emerald-600', 'bg-emerald-50', 'text-emerald-900', 'border-sky-600', 'bg-sky-50', 'text-sky-900', 'border-amber-500', 'bg-amber-50', 'text-amber-900', 'border-orange-600', 'bg-orange-50', 'text-orange-900', 'border-rose-600', 'bg-rose-50', 'text-rose-900', 'border-indigo-600', 'bg-indigo-100'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-purple-600', 'border-purple-500', 'bg-purple-50', 'bg-purple-100', 'text-purple-900', 'text-purple-950', 'border-emerald-600', 'border-emerald-500', 'bg-emerald-50', 'bg-emerald-100', 'text-emerald-900', 'text-emerald-950', 'border-blue-600', 'border-blue-500', 'bg-blue-50', 'bg-blue-100', 'text-blue-900', 'text-blue-950', 'border-amber-600', 'border-amber-500', 'bg-amber-50', 'bg-amber-100', 'text-amber-900', 'text-amber-950', 'border-rose-600', 'border-rose-500', 'bg-rose-50', 'bg-rose-100', 'text-rose-900', 'text-rose-950', 'border-sky-600', 'border-sky-500', 'bg-sky-50', 'bg-sky-100', 'text-sky-900', 'text-sky-950', 'border-orange-600', 'border-orange-500', 'bg-orange-50', 'bg-orange-100', 'text-orange-900', 'text-orange-950', 'border-indigo-600', 'border-indigo-500', 'bg-indigo-50', 'bg-indigo-100', 'text-indigo-900', 'text-indigo-950'));
       const target = document.getElementById(`${tabId}-view`);
       if (target) target.classList.remove('hidden');
       const activeBtn = document.getElementById(`tab-btn-${tabId}`);
       if (activeBtn) {
         activeBtn.classList.add('active', 'border-2');
-        if (tabId === 'grade-a') activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900');
-        if (tabId === 'grade-b') activeBtn.classList.add('border-sky-600', 'bg-sky-50', 'text-sky-900');
-        if (tabId === 'grade-c') activeBtn.classList.add('border-amber-500', 'bg-amber-50', 'text-amber-900');
-        if (tabId === 'grade-d') activeBtn.classList.add('border-orange-600', 'bg-orange-50', 'text-orange-900');
+        if (tabId === 'grade-a') activeBtn.classList.add('border-purple-600', 'bg-purple-50', 'text-purple-900');
+        if (tabId === 'grade-b') activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900');
+        if (tabId === 'grade-c') activeBtn.classList.add('border-blue-500', 'bg-blue-50', 'text-blue-900');
+        if (tabId === 'grade-d') activeBtn.classList.add('border-amber-600', 'bg-amber-50', 'text-amber-900');
         if (tabId === 'grade-e') activeBtn.classList.add('border-rose-600', 'bg-rose-50', 'text-rose-900');
         if (tabId === 'matrix') activeBtn.classList.add('border-indigo-600', 'bg-indigo-100', 'text-indigo-950');
       }
@@ -1080,5 +1083,6 @@
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
   </script>
+  <script src="moderation-tools.js" data-scale="cgs" defer></script>
 </body>
 </html>
