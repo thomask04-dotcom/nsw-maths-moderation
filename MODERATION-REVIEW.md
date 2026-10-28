@@ -57,3 +57,9 @@ Include the shared tools before `</body>`:
 ```
 
 and mark each work sample with `data-mod-sample data-mod-level="Sound" data-mod-student="Name" data-mod-open="switchTab('gradeC')"`. Decision content inside a sample is hidden automatically if it uses `.grade-badge`, `.teacher-banner`, `.teacher-check`, `.rubber-stamp` or `.mod-decision`. See the comment at the top of `moderation-tools.js` for the full list.
+
+## Where to next (added October 2026)
+
+Every work sample now ends with a **Where to next** box written for the teacher: two or three specific next steps, drawn from that sample's evidence, that would move the student to the next level. For the top level (Extensive, or Thorough in Early Stage 1) the box suggests ways to deepen achievement within the same stage, never content from the next stage. The box is part of the moderation decision, so it stays hidden in judgement mode until the decision is revealed.
+
+Two arithmetic slips in Extensive samples were also corrected: Marcus K.'s calendar duration (School Fun Day Time Explorer) and Aria M.'s podium cube count (Tabletop Museum).
