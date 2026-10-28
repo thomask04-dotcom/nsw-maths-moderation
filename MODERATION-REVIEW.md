@@ -4,15 +4,15 @@ Consistency and Common Grade Scale (CGS) alignment review of every portfolio in 
 
 ## Common Grade Scale wording now used
 
-Every rationale, banner, matrix and rubric uses the NESA wording below, and the achievement **language replaces letter grades** throughout (no "Grade B", "(C)" or letter badges remain).
+Every rationale, banner, matrix and rubric uses the wording below (adapted from the NESA Common Grade Scale, keeping "knowledge and skills"), and the achievement **language replaces letter grades** throughout (no "Grade B", "(C)" or letter badges remain).
 
 | Level | Wording used |
 |---|---|
-| Extensive | extensive knowledge and understanding of the content, readily applied; very high competence in the processes and skills, applied to **new situations** |
-| Thorough | thorough knowledge and understanding of the content; high level of competence; applied to **most situations** |
-| Sound | sound knowledge and understanding of the **main areas of content**; adequate level of competence |
-| Basic | basic knowledge and understanding of the content; limited level of competence |
-| Elementary | elementary knowledge and understanding in **few areas** of the content; very limited competence in some of the processes and skills |
+| Extensive | extensive knowledge and skills, readily applied; very high competence in the processes and skills, applied to **new situations** |
+| Thorough | thorough knowledge and skills; high level of competence; applied to **most situations** |
+| Sound | sound knowledge and skills in the **main areas of content**; adequate level of competence |
+| Basic | basic knowledge and skills; limited level of competence |
+| Elementary | elementary knowledge and skills in **few areas** of the content; very limited competence in some of the processes and skills |
 
 Early Stage 1: the CGS is not required for reporting in Early Stage 1. Kindergarten portfolios use the descriptor language for Thorough, Sound and Basic only, and say so.
 
@@ -20,9 +20,8 @@ Early Stage 1: the CGS is not required for reporting in Early Stage 1. Kindergar
 
 **Language not aligned to the CGS**
 - Thorough was described as applying knowledge "to *familiar* situations" in every portfolio (53 places). The CGS says "most situations". Fixed everywhere, including Working Mathematically matrix cells.
-- Extensive said "unfamiliar situations" and "knowledge and skills"; now "knowledge and understanding … new situations".
-- Sound said "sound knowledge and skills"; now "sound knowledge and understanding of the main areas of content".
-- Basic and Elementary said "knowledge and skills"; now "knowledge and understanding".
+- Extensive said "unfamiliar situations"; now "new situations".
+- Sound said "sound knowledge and skills"; now "sound knowledge and skills in the main areas of content".
 - Overstated wording that the CGS does not use ("flawless", "masterful", "exemplary") replaced with accurate, evidence-based wording.
 - Teacher running records that stated a level ("demonstrated thorough understanding", "with adequate competence") rewritten as observations, so the evidence does not pre-empt the judgement.
 - Rubber stamps on student work that named a level ("VERY THOROUGH", "SOUND ATTAINMENT", "VERY HIGH COMPETENCE") replaced with ordinary classroom stamps.
@@ -37,7 +36,7 @@ Early Stage 1: the CGS is not required for reporting in Early Stage 1. Kindergar
 - Invalid outcome code `MA1-WM-01` (Stage 1 files) and `MA1-WM-01 / MAO-WM-01` (Bush Picnic) corrected to `MAO-WM-01`.
 - Sports Day matrix referred to "Sophie/Mia" for the Sound sample; corrected to Mia.
 - School Fun Day Stall subtitle implied Stage 2 content ("to Additive Relations"); corrected to Combining and Separating Quantities.
-- Rubric pop-ups in the Stage 1–style portfolios now all show the full CGS wording.
+- Rubric pop-ups in the Stage 1–style portfolios now all show the same descriptor wording (adapted from the CGS).
 
 **Visual consistency**
 - Five portfolios coloured the levels differently from the others (e.g. Thorough blue in one file, green in another). All portfolios and the index now share one colour code: Extensive purple, Thorough green, Sound blue, Basic amber, Elementary rose. Student work keeps its own colours.

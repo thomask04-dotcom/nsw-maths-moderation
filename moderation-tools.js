@@ -32,11 +32,11 @@
   var SCALE = (script && script.getAttribute("data-scale")) || "cgs";
 
   var LEVELS = {
-    Extensive: { color: "#7e22ce", tint: "#f3e8ff", text: "Extensive knowledge and understanding of the content, readily applied. Very high competence in the processes and skills, applied to new situations." },
-    Thorough: { color: "#047857", tint: "#d1fae5", text: "Thorough knowledge and understanding of the content and a high level of competence in the processes and skills, applied to most situations." },
-    Sound: { color: "#1d4ed8", tint: "#dbeafe", text: "Sound knowledge and understanding of the main areas of content and an adequate level of competence in the processes and skills." },
-    Basic: { color: "#b45309", tint: "#fef3c7", text: "Basic knowledge and understanding of the content and a limited level of competence in the processes and skills." },
-    Elementary: { color: "#be123c", tint: "#ffe4e6", text: "Elementary knowledge and understanding in few areas of the content and very limited competence in some of the processes and skills." }
+    Extensive: { color: "#7e22ce", tint: "#f3e8ff", text: "Extensive knowledge and skills, readily applied. Very high competence in the processes and skills, applied to new situations." },
+    Thorough: { color: "#047857", tint: "#d1fae5", text: "Thorough knowledge and skills and a high level of competence in the processes and skills, applied to most situations." },
+    Sound: { color: "#1d4ed8", tint: "#dbeafe", text: "Sound knowledge and skills in the main areas of content and an adequate level of competence in the processes and skills." },
+    Basic: { color: "#b45309", tint: "#fef3c7", text: "Basic knowledge and skills and a limited level of competence in the processes and skills." },
+    Elementary: { color: "#be123c", tint: "#ffe4e6", text: "Elementary knowledge and skills in few areas of the content and very limited competence in some of the processes and skills." }
   };
   var ORDER = SCALE === "es1" ? ["Thorough", "Sound", "Basic"] : ["Extensive", "Thorough", "Sound", "Basic", "Elementary"];
   var DECISION = ".mod-decision, .grade-badge, .teacher-banner, .teacher-check, .rubber-stamp";
