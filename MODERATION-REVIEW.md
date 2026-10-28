@@ -29,7 +29,7 @@ Early Stage 1: the CGS is not required for reporting in Early Stage 1. Kindergar
 
 **Early Stage 1**
 - Bush Picnic and Toy Workshop stated that Kindergarten is moderated against "Grades B, C and D". Replaced with the correct position: the CGS is not required in ES1; samples use its Thorough/Sound/Basic language.
-- Bush Picnic rubric listed only the Sound descriptor; now lists Thorough, Sound and Basic in full.
+- The ES1 rubric pop-up was removed from the Kindergarten portfolios; the ES1 rubric is kept as a separate document.
 
 **Content and structure**
 - *Community Playground Toy Box Challenge* only had real work samples for Extensive; Thorough, Sound, Basic and Elementary were one-line summaries and the matrix was a placeholder, although the index promised 10 students. Eight full work samples (Benjamin, Sophie, Chloe, Liam, Daniel, Mia, Eli, Noah) and a complete comparison matrix were added. Its task brief was also expanded.

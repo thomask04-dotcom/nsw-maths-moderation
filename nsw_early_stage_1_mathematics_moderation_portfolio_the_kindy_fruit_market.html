@@ -116,10 +116,6 @@
           <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-amber-400"></i>
           <span id="annotations-status-text">Hide Teacher Marks</span>
         </button>
-        <button onclick="openModal('rubric-modal')" class="px-3 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-md text-xs font-medium border border-indigo-400 flex items-center gap-1.5 transition shadow">
-          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
-          <span>ES1 Achievement Language</span>
-        </button>
         <button onclick="openModal('task-brief-modal')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-md text-xs font-bold flex items-center gap-1.5 transition shadow">
           <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
           <span>Task Brief</span>
@@ -927,26 +923,6 @@
     </div>
   </div>
 
-  <div id="rubric-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
-    <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
-      <div class="flex items-center justify-between border-b pb-3">
-        <h3 class="text-lg font-bold text-slate-900">Early Stage 1 Reporting &amp; Achievement Language</h3>
-        <button onclick="closeModal('rubric-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
-      </div>
-      <div class="space-y-2.5 text-xs text-slate-700">
-        <div class="p-3 bg-amber-50 rounded border border-amber-300">
-          <strong>Early Stage 1 reporting note</strong>
-          <p class="mt-1">The Common Grade Scale is not required for reporting in Early Stage 1; A to E reporting applies from Year 1. These samples use the scale's descriptor language for Thorough, Sound and Basic achievement so Kindergarten teachers can make consistent on-balance judgements. Teacher scribing of oral explanations is primary evidence.</p>
-        </div>
-        <div class="p-2.5 rounded bg-emerald-50 border border-emerald-200"><strong class="text-emerald-900">Thorough:</strong> Thorough knowledge and skills and a high level of competence in the processes and skills, applied to most situations.</div>
-        <div class="p-2.5 rounded bg-blue-50 border border-blue-200"><strong class="text-blue-900">Sound:</strong> Sound knowledge and skills in the main areas of content and an adequate level of competence in the processes and skills.</div>
-        <p class="text-[11px] text-slate-500">Descriptor language adapted from the NESA Common Grade Scale. Judgements are made on balance across the whole task.</p>
-      </div>
-      <div class="flex justify-end pt-2">
-        <button onclick="closeModal('rubric-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
-      </div>
-    </div>
-  </div>
 
   <!-- JAVASCRIPT CONTROLLERS -->
   <script>
