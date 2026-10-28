@@ -148,7 +148,7 @@
           </h2>
         </div>
         <div class="text-xs bg-amber-50 text-amber-900 border border-amber-200 px-3 py-1 rounded font-medium">
-          <strong>NESA Kindergarten Scale:</strong> Grade B (Thorough), Grade C (Sound), &amp; Grade D (Basic)
+          <strong>Early Stage 1 achievement language:</strong> Thorough, Sound &amp; Basic
         </div>
       </div>
 
@@ -207,18 +207,18 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
+    <div class="mod-nav flex flex-wrap gap-2 border-b border-slate-300 mb-6 no-print">
       <button onclick="switchTab('gradeB')" id="tab-gradeB" class="tab-btn active px-4 py-2.5 rounded-t-lg font-bold text-sm border-t-2 border-x transition flex items-center gap-2">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-        Exemplar 1: Grade B (Thorough) — Maya
+        Exemplar 1: Thorough — Maya
       </button>
       <button onclick="switchTab('gradeC')" id="tab-gradeC" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-sm border-t-2 border-x border-transparent transition flex items-center gap-2">
         <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-        Exemplar 2: Grade C (Sound) — Oliver
+        Exemplar 2: Sound — Oliver
       </button>
       <button onclick="switchTab('gradeD')" id="tab-gradeD" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-sm border-t-2 border-x border-transparent transition flex items-center gap-2">
         <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-        Exemplar 3: Grade D (Basic) — Leo
+        Exemplar 3: Basic — Leo
       </button>
       <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn bg-slate-200 text-slate-700 hover:bg-slate-300 px-4 py-2.5 rounded-t-lg font-bold text-sm border-t-2 border-x border-transparent transition flex items-center gap-2">
         <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
@@ -226,20 +226,20 @@
       </button>
     </div>
 
-    <!-- TAB 1: GRADE B (THOROUGH) -->
-    <div id="content-gradeB" class="tab-content block">
+    <!-- TAB 1: THOROUGH -->
+    <div id="content-gradeB" data-mod-sample data-mod-level="Thorough" data-mod-student="Maya K." data-mod-open="switchTab('gradeB')" class="tab-content block">
       
       <!-- Student Banner -->
-      <div class="bg-emerald-900 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+      <div class="mod-neutral bg-emerald-900 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-emerald-500 text-emerald-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade B &bull; Thorough Knowledge &amp; High Competence
+            Thorough Knowledge &amp; High Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Maya K. &bull; Kindergarten (Term 4)</h3>
-          <p class="text-xs text-emerald-200">Applies thorough knowledge and skills to familiar situations, with autonomous reasoning &amp; comparative language.</p>
+          <p class="mod-decision text-xs text-emerald-200">Applies thorough knowledge and understanding to most situations, with autonomous reasoning &amp; comparative language.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-emerald-300">GRADE B</div>
+          <div class="text-3xl font-black text-emerald-300">THOROUGH</div>
           <div class="text-xs text-emerald-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -453,7 +453,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <h4 class="text-sm font-black uppercase tracking-wider text-emerald-950 flex items-center gap-2">
               <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
-              NESA Moderation Rationale: Grade B (Thorough)
+              Moderation Rationale: Thorough
             </h4>
             <span class="text-xs font-semibold bg-emerald-200 text-emerald-900 px-2.5 py-1 rounded">
               ES1 Syllabus Aligned &bull; High Competence
@@ -461,7 +461,7 @@
           </div>
 
           <p class="text-xs text-slate-700 leading-relaxed mb-4">
-            Maya applies <strong>thorough knowledge and skills to familiar situations</strong> by confidently and autonomously constructing stable 3D models with orientation awareness, explaining volume conservation through deconstruction/reconstruction, and providing clear reasoning for area comparison via superimposition.
+            Maya applies <strong>thorough knowledge and understanding to most situations</strong> by confidently and autonomously constructing stable 3D models with orientation awareness, explaining volume conservation through deconstruction/reconstruction, and providing clear reasoning for area comparison via superimposition.
           </p>
 
           <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-[11px]">
@@ -487,20 +487,20 @@
       </div>
     </div>
 
-    <!-- TAB 2: GRADE C (SOUND) -->
-    <div id="content-gradeC" class="tab-content hidden">
+    <!-- TAB 2: SOUND -->
+    <div id="content-gradeC" data-mod-sample data-mod-level="Sound" data-mod-student="Oliver T." data-mod-open="switchTab('gradeC')" class="tab-content hidden">
       
       <!-- Student Banner -->
-      <div class="bg-blue-900 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+      <div class="mod-neutral bg-blue-900 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-blue-500 text-blue-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade C &bull; Sound Knowledge &amp; Adequate Competence
+            Sound Knowledge &amp; Adequate Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Oliver T. &bull; Kindergarten (Term 4)</h3>
-          <p class="text-xs text-blue-200">Demonstrates sound knowledge and skills, relying on taught routines and direct counting.</p>
+          <p class="mod-decision text-xs text-blue-200">Demonstrates sound knowledge and understanding of the main areas of content, relying on taught routines and direct counting.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-blue-300">GRADE C</div>
+          <div class="text-3xl font-black text-blue-300">SOUND</div>
           <div class="text-xs text-blue-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -693,7 +693,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <h4 class="text-sm font-black uppercase tracking-wider text-blue-950 flex items-center gap-2">
               <span class="w-3 h-3 rounded-full bg-blue-600"></span>
-              NESA Moderation Rationale: Grade C (Sound)
+              Moderation Rationale: Sound
             </h4>
             <span class="text-xs font-semibold bg-blue-200 text-blue-900 px-2.5 py-1 rounded">
               ES1 Syllabus Aligned &bull; Sound Competence
@@ -701,7 +701,7 @@
           </div>
 
           <p class="text-xs text-slate-700 leading-relaxed mb-4">
-            Oliver demonstrates <strong>sound knowledge and skills</strong> by competently completing all key steps of the rich assessment task using taught routines: sorting flat faces for stacking, counting one-by-one to verify volume equivalence, independently tracing 3D faces, and superimposing tags to identify the larger surface area.
+            Oliver demonstrates <strong>sound knowledge and understanding of the main areas of content</strong> by competently completing all key steps of the rich assessment task using taught routines: sorting flat faces for stacking, counting one-by-one to verify volume equivalence, independently tracing 3D faces, and superimposing tags to identify the larger surface area.
           </p>
 
           <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-[11px]">
@@ -727,20 +727,20 @@
       </div>
     </div>
 
-    <!-- TAB 3: GRADE D (BASIC) -->
-    <div id="content-gradeD" class="tab-content hidden">
+    <!-- TAB 3: BASIC -->
+    <div id="content-gradeD" data-mod-sample data-mod-level="Basic" data-mod-student="Leo M." data-mod-open="switchTab('gradeD')" class="tab-content hidden">
       
       <!-- Student Banner -->
-      <div class="bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
+      <div class="mod-neutral bg-amber-950 text-white rounded-t-xl px-6 py-4 flex flex-wrap justify-between items-center shadow">
         <div>
           <span class="grade-badge bg-amber-500 text-amber-950 font-black text-xs px-2.5 py-1 rounded uppercase tracking-wide">
-            Grade D &bull; Basic Knowledge &amp; Limited Competence
+            Basic Knowledge &amp; Limited Competence
           </span>
           <h3 class="text-xl font-bold mt-1">Student: Leo M. &bull; Kindergarten (Term 4)</h3>
-          <p class="text-xs text-amber-200">Demonstrates basic knowledge and skills with teacher guidance, scaffolding, and prompt-driven execution.</p>
+          <p class="mod-decision text-xs text-amber-200">Demonstrates basic knowledge and understanding with teacher guidance, scaffolding, and prompt-driven execution.</p>
         </div>
         <div class="text-right grade-badge">
-          <div class="text-3xl font-black text-amber-400">GRADE D</div>
+          <div class="text-3xl font-black text-amber-400">BASIC</div>
           <div class="text-xs text-amber-200">On-Balance Moderated Standard</div>
         </div>
       </div>
@@ -934,7 +934,7 @@
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
             <h4 class="text-sm font-black uppercase tracking-wider text-amber-950 flex items-center gap-2">
               <span class="w-3 h-3 rounded-full bg-amber-600"></span>
-              NESA Moderation Rationale: Grade D (Basic)
+              Moderation Rationale: Basic
             </h4>
             <span class="text-xs font-semibold bg-amber-200 text-amber-900 px-2.5 py-1 rounded">
               ES1 Syllabus Aligned &bull; Limited Competence
@@ -942,7 +942,7 @@
           </div>
 
           <p class="text-xs text-slate-700 leading-relaxed mb-4">
-            Leo demonstrates <strong>basic knowledge and skills</strong>, achieving a limited level of competence. He requires frequent teacher prompting and physical assistance to select flat faces for stacking, dismantle structures without adding extra blocks, close traced outlines, and align boundaries when superimposing shapes to compare surface area.
+            Leo demonstrates <strong>basic knowledge and understanding</strong>, achieving a limited level of competence. He requires frequent teacher prompting and physical assistance to select flat faces for stacking, dismantle structures without adding extra blocks, close traced outlines, and align boundaries when superimposing shapes to compare surface area.
           </p>
 
           <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-[11px]">
@@ -969,7 +969,7 @@
     </div>
 
     <!-- TAB 4: MODERATION CALIBRATION MATRIX -->
-    <div id="content-matrix" class="tab-content hidden">
+    <div id="content-matrix" class="mod-matrix tab-content hidden">
       <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
         
         <div class="bg-nswNavy text-white px-6 py-5">
@@ -978,9 +978,9 @@
               <span class="bg-purple-500 text-purple-950 text-xs font-black px-2.5 py-1 rounded uppercase tracking-wide">
                 Teacher Moderation Tool
               </span>
-              <h3 class="text-xl font-bold mt-1">Cross-Grade Calibration Matrix: Early Stage 1 (Kindergarten)</h3>
+              <h3 class="text-xl font-bold mt-1">Cross-Level Calibration Matrix: Early Stage 1 (Kindergarten)</h3>
               <p class="text-xs text-sky-200">
-                Direct evidence comparison across Grade B (Thorough), Grade C (Sound), and Grade D (Basic) against NSW Syllabus Outcomes.
+                Direct evidence comparison across Thorough, Sound and Basic achievement against NSW Syllabus Outcomes.
               </p>
             </div>
             <div class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded text-slate-300">
@@ -995,13 +995,13 @@
               <tr class="border-b-2 border-slate-300 bg-slate-100 text-slate-700">
                 <th class="p-3 font-bold uppercase tracking-wider w-1/5">Syllabus Focus &amp; Outcome</th>
                 <th class="p-3 font-bold uppercase tracking-wider w-1/4 text-emerald-900 bg-emerald-50/70 border-x border-emerald-200">
-                  Grade B (Thorough) — Maya
+                  Thorough — Maya
                 </th>
                 <th class="p-3 font-bold uppercase tracking-wider w-1/4 text-blue-900 bg-blue-50/70 border-r border-blue-200">
-                  Grade C (Sound) — Oliver
+                  Sound — Oliver
                 </th>
                 <th class="p-3 font-bold uppercase tracking-wider w-1/4 text-amber-900 bg-amber-50/70">
-                  Grade D (Basic) — Leo
+                  Basic — Leo
                 </th>
               </tr>
             </thead>
@@ -1121,7 +1121,7 @@
           <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wide mb-2">Stage Team Moderation Notes &amp; Best Practice:</h4>
           <ul class="list-disc list-inside text-xs text-slate-600 space-y-1">
             <li><strong>Oral Language as Primary Evidence:</strong> In Early Stage 1, student oral dialogue captured in teacher scribing blocks provides the primary evidence of mathematical reasoning, rather than written recordings.</li>
-            <li><strong>Conservation of Volume vs Direct Counting:</strong> Grade B students understand that volume is conserved regardless of shape, whereas Grade C students rely on physically counting cubes to confirm equivalence.</li>
+            <li><strong>Conservation of Volume vs Direct Counting:</strong> Students demonstrating thorough achievement understand that volume is conserved regardless of shape, whereas students demonstrating sound achievement rely on physically counting cubes to confirm equivalence.</li>
             <li><strong>Superimposition Technique:</strong> Ensure students physically place shapes directly over one another with aligned edges, rather than solely comparing them side-by-side.</li>
           </ul>
         </div>
@@ -1175,5 +1175,6 @@
     }
   </script>
 
+  <script src="moderation-tools.js" data-scale="es1" defer></script>
 </body>
 </html>

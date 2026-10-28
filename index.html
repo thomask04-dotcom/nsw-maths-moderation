@@ -215,18 +215,22 @@
         <span class="w-5 h-5 rounded-full bg-indigo-700 text-white flex items-center justify-center font-bold text-[11px]">i</span>
         <h4 class="font-bold text-sm text-indigo-950">NSW Mathematics K–10 Syllabus (2022) Alignment Protocol</h4>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-indigo-900 pt-1 leading-relaxed">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-indigo-900 pt-1 leading-relaxed">
         <div class="p-3 bg-white/80 rounded-lg border border-indigo-100">
           <strong class="text-indigo-950 block mb-0.5">Early Stage 1 (Kindergarten)</strong>
-          Moderated across Grades B (Thorough), C (Sound), and D (Basic). Oral language captured in teacher scribing blocks serves as primary evidence of mathematical reasoning.
+          The Common Grade Scale is not required for Early Stage 1 reporting. Samples use its descriptor language for <strong>Thorough</strong>, <strong>Sound</strong> and <strong>Basic</strong> achievement. Oral language captured in teacher scribing serves as primary evidence of mathematical reasoning.
         </div>
         <div class="p-3 bg-white/80 rounded-lg border border-indigo-100">
           <strong class="text-indigo-950 block mb-0.5">Stages 1 to 3 (Years 1 to 6)</strong>
-          Calibrated across all 5 grades (A to E). <strong>Grade A reflects depth and application to novel/unfamiliar situations</strong>, never acceleration to content from higher stages.
+          Calibrated across all five Common Grade Scale levels: Extensive, Thorough, Sound, Basic and Elementary. <strong>Extensive reflects depth and the application of knowledge and skills to new situations</strong>, never acceleration to content from higher stages.
         </div>
         <div class="p-3 bg-white/80 rounded-lg border border-indigo-100">
           <strong class="text-indigo-950 block mb-0.5">Working Mathematically (MAO-WM-01)</strong>
           Embedded throughout: <em>Exploring and connecting concepts</em>, <em>Choosing and applying techniques</em>, and <em>Communicating thinking and reasoning clearly</em>.
+        </div>
+        <div class="p-3 bg-white/80 rounded-lg border border-indigo-100">
+          <strong class="text-indigo-950 block mb-0.5">Professional judgement first</strong>
+          Use <strong>Judge First</strong> (or the <em>Hidden</em> setting inside any portfolio) to view samples in a shuffled order with decisions hidden, record your own judgement and evidence, then reveal the moderated level. <strong>Print this sample</strong> prints only the sample on screen.
         </div>
       </div>
     </div>
@@ -258,7 +262,9 @@
     };
     const STAGE_ORDER = { "Early Stage 1": 0, "Stage 1": 1, "Stage 2": 2, "Stage 3": 3 };
     const YEAR_ORDER = { "Kindergarten": 0, "Year 1": 1, "Year 2": 2, "Year 3": 3, "Year 4": 4, "Year 5": 5, "Year 6": 6 };
-    const GRADE_DOT = { A: "bg-purple-600", B: "bg-emerald-500", C: "bg-blue-500", D: "bg-amber-500", E: "bg-rose-500" };
+    // Common Grade Scale achievement language, highest to lowest
+    const LEVELS = ["Extensive", "Thorough", "Sound", "Basic", "Elementary"];
+    const LEVEL_DOT = { Extensive: "bg-purple-600", Thorough: "bg-emerald-500", Sound: "bg-blue-500", Basic: "bg-amber-500", Elementary: "bg-rose-500" };
 
     // Master registry — one entry per portfolio file in the repository
     const EXEMPLAR_DATA = [
@@ -273,9 +279,9 @@
         focusAreas: ["Forming groups"],
         description: "Students choose animal guests, use equal sharing to deal out 6, 9 or 12 snack counters one by one, label each group with numerals, build an AB, ABC or AABB pattern pathway, and reshare when one more friend arrives.",
         students: [
-          { name: "Leo T.", grade: "B" }, { name: "Mia S.", grade: "B" },
-          { name: "Oliver K.", grade: "C" }, { name: "Ruby W.", grade: "C" },
-          { name: "Jack N.", grade: "D" }, { name: "Ella M.", grade: "D" }
+          { name: "Leo T.", level: "Thorough" }, { name: "Mia S.", level: "Thorough" },
+          { name: "Oliver K.", level: "Sound" }, { name: "Ruby W.", level: "Sound" },
+          { name: "Jack N.", level: "Basic" }, { name: "Ella M.", level: "Basic" }
         ]
       },
       {
@@ -288,7 +294,23 @@
         focusAreas: ["Three-dimensional spatial structure", "Two-dimensional spatial structure"],
         description: "Students build 3D toys, prove volume conservation by deconstructing and rebuilding copies with identical blocks, trace 2D gift tags, and directly superimpose shapes to compare area.",
         students: [
-          { name: "Maya K.", grade: "B" }, { name: "Oliver T.", grade: "C" }, { name: "Leo M.", grade: "D" }
+          { name: "Maya K.", level: "Thorough" }, { name: "Oliver T.", level: "Sound" }, { name: "Leo M.", level: "Basic" }
+        ]
+      },
+
+      {
+        stage: "Early Stage 1", year: "Kindergarten", term: "Term 3", weeks: "",
+        taskTitle: "The Kindy Fruit Market",
+        unitTitle: "Representing Whole Numbers & Combining and Separating Quantities",
+        learningSequence: "",
+        outcomes: ["MAE-RWN-01", "MAE-RWN-02", "MAE-CSQ-01", "MAE-CSQ-02", "MAO-WM-01"],
+        filename: "nsw_early_stage_1_mathematics_moderation_portfolio_the_kindy_fruit_market.html",
+        focusAreas: ["Representing whole numbers", "Combining and separating quantities"],
+        description: "Students run a fruit stall: count a basket of 13–18 pieces and write the numeral, pack bags of exactly 10 using two kinds of fruit, work out how many are left after a customer buys 3, and compare two baskets to find how many more.",
+        students: [
+          { name: "Harper L.", level: "Thorough" }, { name: "Ari K.", level: "Thorough" },
+          { name: "Isla P.", level: "Sound" }, { name: "Mason T.", level: "Sound" },
+          { name: "Zoe R.", level: "Basic" }, { name: "Kai M.", level: "Basic" }
         ]
       },
 
@@ -303,11 +325,11 @@
         focusAreas: ["Combining and separating quantities"],
         description: "Students choose items from a Park Shop menu to fill a toy box with exactly 30 items, regroup addends into tens, and solve 30 − 8 using flexible subtraction strategies.",
         students: [
-          { name: "Aria M.", grade: "A" }, { name: "Marcus K.", grade: "A" },
-          { name: "Benjamin", grade: "B" }, { name: "Sophie", grade: "B" },
-          { name: "Chloe", grade: "C" }, { name: "Liam", grade: "C" },
-          { name: "Daniel", grade: "D" }, { name: "Mia", grade: "D" },
-          { name: "Eli", grade: "E" }, { name: "Noah", grade: "E" }
+          { name: "Aria M.", level: "Extensive" }, { name: "Marcus K.", level: "Extensive" },
+          { name: "Benjamin", level: "Thorough" }, { name: "Sophie", level: "Thorough" },
+          { name: "Chloe", level: "Sound" }, { name: "Liam", level: "Sound" },
+          { name: "Daniel", level: "Basic" }, { name: "Mia", level: "Basic" },
+          { name: "Eli", level: "Elementary" }, { name: "Noah", level: "Elementary" }
         ]
       },
       {
@@ -320,8 +342,8 @@
         focusAreas: ["Two-dimensional spatial structure", "Three-dimensional spatial structure"],
         description: "Students design a tabletop display booth: covering the floor in rows and columns of tiles without gaps or overlaps, building a cube pedestal counted in layers, and making a slide or symmetrical banner with pattern blocks.",
         students: [
-          { name: "Aria M.", grade: "A" }, { name: "Benjamin T.", grade: "B" },
-          { name: "Chloe S.", grade: "C" }, { name: "Daniel K.", grade: "D" }, { name: "Eli W.", grade: "E" }
+          { name: "Aria M.", level: "Extensive" }, { name: "Benjamin T.", level: "Thorough" },
+          { name: "Chloe S.", level: "Sound" }, { name: "Daniel K.", level: "Basic" }, { name: "Eli W.", level: "Elementary" }
         ]
       },
       {
@@ -334,11 +356,11 @@
         focusAreas: ["Non-spatial measure", "Chance"],
         description: "Students design a timed game, count months, weeks and days to the Fun Day on a calendar, time two tasks with a stopwatch and combine the durations, set a time limit, and describe the chance of winning as likely, unlikely or possible.",
         students: [
-          { name: "Aria M.", grade: "A" }, { name: "Marcus K.", grade: "A" },
-          { name: "Benjamin T.", grade: "B" }, { name: "Sophie L.", grade: "B" },
-          { name: "Chloe S.", grade: "C" }, { name: "Liam P.", grade: "C" },
-          { name: "Daniel K.", grade: "D" }, { name: "Mia B.", grade: "D" },
-          { name: "Eli W.", grade: "E" }, { name: "Noah J.", grade: "E" }
+          { name: "Aria M.", level: "Extensive" }, { name: "Marcus K.", level: "Extensive" },
+          { name: "Benjamin T.", level: "Thorough" }, { name: "Sophie L.", level: "Thorough" },
+          { name: "Chloe S.", level: "Sound" }, { name: "Liam P.", level: "Sound" },
+          { name: "Daniel K.", level: "Basic" }, { name: "Mia B.", level: "Basic" },
+          { name: "Eli W.", level: "Elementary" }, { name: "Noah J.", level: "Elementary" }
         ]
       },
       {
@@ -351,11 +373,11 @@
         focusAreas: ["Combining and separating quantities"],
         description: "Students design an activity stall with a $50 budget, add item prices by bridging to 10 or on an empty number line, work out change using the shopkeeper's method, and write equivalent number sentences for a balanced swap.",
         students: [
-          { name: "Aria M.", grade: "A" }, { name: "Marcus K.", grade: "A" },
-          { name: "Benjamin T.", grade: "B" }, { name: "Sophie L.", grade: "B" },
-          { name: "Chloe S.", grade: "C" }, { name: "Liam P.", grade: "C" },
-          { name: "Daniel K.", grade: "D" }, { name: "Mia B.", grade: "D" },
-          { name: "Eli W.", grade: "E" }, { name: "Noah J.", grade: "E" }
+          { name: "Aria M.", level: "Extensive" }, { name: "Marcus K.", level: "Extensive" },
+          { name: "Benjamin T.", level: "Thorough" }, { name: "Sophie L.", level: "Thorough" },
+          { name: "Chloe S.", level: "Sound" }, { name: "Liam P.", level: "Sound" },
+          { name: "Daniel K.", level: "Basic" }, { name: "Mia B.", level: "Basic" },
+          { name: "Eli W.", level: "Elementary" }, { name: "Noah J.", level: "Elementary" }
         ]
       },
 
@@ -370,8 +392,8 @@
         focusAreas: ["Partitioned fractions"],
         description: "Students partition a 1-metre garden bed into equal fractional sections, find complements to one whole with bar models (3/8 + 5/8 = 1), rebuild a herb box from a 1/3 unit fraction, and extend past one whole (5/4 = 10/8).",
         students: [
-          { name: "Zara N.", grade: "A" }, { name: "Marcus K.", grade: "B" }, { name: "Liam T.", grade: "C" },
-          { name: "Chloe S.", grade: "D" }, { name: "Toby B.", grade: "E" }
+          { name: "Zara N.", level: "Extensive" }, { name: "Marcus K.", level: "Thorough" }, { name: "Liam T.", level: "Sound" },
+          { name: "Chloe S.", level: "Basic" }, { name: "Toby B.", level: "Elementary" }
         ]
       },
       {
@@ -384,8 +406,8 @@
         focusAreas: ["Geometric measure", "Two-dimensional spatial structure"],
         description: "Students construct a scaled grid map, calculate rectangular areas in square metres using rows and columns, design a 4 m² non-square shelter, write a 3-step navigation route, and show how a 6 m² cafe fits a 1 m wide space.",
         students: [
-          { name: "Maya L.", grade: "A" }, { name: "Lucas P.", grade: "B" }, { name: "Ethan R.", grade: "C" },
-          { name: "Sienna W.", grade: "D" }, { name: "Noah K.", grade: "E" }
+          { name: "Maya L.", level: "Extensive" }, { name: "Lucas P.", level: "Thorough" }, { name: "Ethan R.", level: "Sound" },
+          { name: "Sienna W.", level: "Basic" }, { name: "Noah K.", level: "Elementary" }
         ]
       },
       {
@@ -398,8 +420,8 @@
         focusAreas: ["Additive relations", "Multiplicative relations"],
         description: "Students manage a $100 budget across 4 activity stations, multiply package costs, find total spend and change with mental strategies, share items equally using division, and adapt to a cut to $80 across 5 stations.",
         students: [
-          { name: "Ananya M.", grade: "A" }, { name: "Liam D.", grade: "B" }, { name: "Sophie K.", grade: "C" },
-          { name: "Cooper B.", grade: "D" }, { name: "Jayden W.", grade: "E" }
+          { name: "Ananya M.", level: "Extensive" }, { name: "Liam D.", level: "Thorough" }, { name: "Sophie K.", level: "Sound" },
+          { name: "Cooper B.", level: "Basic" }, { name: "Jayden W.", level: "Elementary" }
         ]
       },
       {
@@ -412,8 +434,8 @@
         focusAreas: ["Representing numbers using place value"],
         description: "Students plan a track zone, record distances in metres to two decimal places using placeholder zeros (2.05 m vs 2.50 m), place benchmark flags at 1/4, 1/2 and 3/4, order lengths with < and >, and disprove decimal misconceptions.",
         students: [
-          { name: "Tahlia R.", grade: "A" }, { name: "Marcus T.", grade: "B" }, { name: "Mia K.", grade: "C" },
-          { name: "Braxton L.", grade: "D" }, { name: "Archie D.", grade: "E" }
+          { name: "Tahlia R.", level: "Extensive" }, { name: "Marcus T.", level: "Thorough" }, { name: "Mia K.", level: "Sound" },
+          { name: "Braxton L.", level: "Basic" }, { name: "Archie D.", level: "Elementary" }
         ]
       },
 
@@ -428,8 +450,8 @@
         focusAreas: ["Geometric measure"],
         description: "Students design platformer game mechanics, measuring and constructing acute, obtuse and reflex angles with a protractor, right angles on tilted baselines, straight angles and full revolutions.",
         students: [
-          { name: "Kaelen V.", grade: "A" }, { name: "Sienna M.", grade: "B" }, { name: "Tyler B.", grade: "C" },
-          { name: "Darcy L.", grade: "D" }, { name: "Jaxson P.", grade: "E" }
+          { name: "Kaelen V.", level: "Extensive" }, { name: "Sienna M.", level: "Thorough" }, { name: "Tyler B.", level: "Sound" },
+          { name: "Darcy L.", level: "Basic" }, { name: "Jaxson P.", level: "Elementary" }
         ]
       },
       {
@@ -442,8 +464,8 @@
         focusAreas: ["Additive relations", "Multiplicative relations"],
         description: "Students plan a $15,000 regional event, estimate with rounded benchmarks, calculate costs with area models (64 h × $42/h = $2,688), use division with remainders for facilities, and audit a supplier invoice error.",
         students: [
-          { name: "Elijah C.", grade: "A" }, { name: "Sienna P.", grade: "B" }, { name: "Tyler M.", grade: "C" },
-          { name: "Darcy W.", grade: "D" }, { name: "Jaxson T.", grade: "E" }
+          { name: "Elijah C.", level: "Extensive" }, { name: "Sienna P.", level: "Thorough" }, { name: "Tyler M.", level: "Sound" },
+          { name: "Darcy W.", level: "Basic" }, { name: "Jaxson T.", level: "Elementary" }
         ]
       },
       {
@@ -456,8 +478,8 @@
         focusAreas: ["Three-dimensional spatial structure"],
         description: "Students choose a volume (e.g. 24 m³), use factor triples to build two differently proportioned rectangular prisms, draw top, front and side views, build a skeletal frame, and convert m³ to cm³.",
         students: [
-          { name: "Xavier R.", grade: "A" }, { name: "Sienna M.", grade: "B" }, { name: "Tyler B.", grade: "C" },
-          { name: "Darcy W.", grade: "D" }, { name: "Jaxson P.", grade: "E" }
+          { name: "Xavier R.", level: "Extensive" }, { name: "Sienna M.", level: "Thorough" }, { name: "Tyler B.", level: "Sound" },
+          { name: "Darcy W.", level: "Basic" }, { name: "Jaxson P.", level: "Elementary" }
         ]
       },
       {
@@ -470,8 +492,8 @@
         focusAreas: ["Multiplicative relations"],
         description: "Students use the digits 2, 3, 4 and 5 to build expressions greater than 20, prove each step line by line, explain why mnemonics such as BODMAS can mislead, recalculate without brackets, and solve a target number challenge.",
         students: [
-          { name: "Marcus V.", grade: "A" }, { name: "Elena S.", grade: "B" }, { name: "Lucas H.", grade: "C" },
-          { name: "Chloe P.", grade: "D" }, { name: "Toby R.", grade: "E" }
+          { name: "Marcus V.", level: "Extensive" }, { name: "Elena S.", level: "Thorough" }, { name: "Lucas H.", level: "Sound" },
+          { name: "Chloe P.", level: "Basic" }, { name: "Toby R.", level: "Elementary" }
         ]
       }
     ];
@@ -519,16 +541,17 @@
     const $ = id => document.getElementById(id);
     const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const urlFor = item => BASE_URL + encodeURIComponent(item.filename);
-    const gradeRange = item => {
-      const g = [...new Set(item.students.map(s => s.grade))].sort();
-      return g.length ? `Grades ${g[0]}–${g[g.length - 1]}` : "";
+    const levelRange = item => {
+      const g = LEVELS.filter(l => item.students.some(s => s.level === l));
+      return g.length ? (g.length === 1 ? g[0] : `${g[0]} to ${g[g.length - 1]}`) : "";
     };
+    const judgeUrlFor = item => urlFor(item) + "?judge=1";
 
     function searchText(item) {
       const yearWords = item.year === "Kindergarten" ? "kindergarten kindy k es1" : (item.year ? item.year.toLowerCase() : (YEAR_OPTIONS[item.stage] || []).map(o => o[0].toLowerCase()).join(" "));
       return [item.taskTitle, item.unitTitle, item.description, item.stage, yearWords, item.term, item.weeks,
         item.learningSequence, item.outcomes.join(" "), item.focusAreas.join(" "),
-        item.students.map(s => s.name + " grade " + s.grade).join(" "), item.filename.replace(/_/g, " ")].join(" ").toLowerCase();
+        item.students.map(s => s.name + " " + s.level).join(" "), item.filename.replace(/_/g, " ")].join(" ").toLowerCase();
     }
 
     // Does an item pass every filter except (optionally) one?
@@ -628,8 +651,8 @@
           `<span class="inline-block bg-sky-50 text-sky-800 px-2 py-0.5 rounded text-[10px] font-semibold border border-sky-200">${esc(fa)}</span>`).join(" ");
         const studentPills = item.students.map(s =>
           `<span class="inline-flex items-center gap-1 text-[11px] bg-slate-50 border border-slate-200 px-2 py-0.5 rounded text-slate-700">
-            <span class="w-1.5 h-1.5 rounded-full ${GRADE_DOT[s.grade] || "bg-slate-400"}"></span>
-            <strong>${esc(s.name)}</strong> (${esc(s.grade)})
+            <span class="w-1.5 h-1.5 rounded-full ${LEVEL_DOT[s.level] || "bg-slate-400"}"></span>
+            <strong>${esc(s.name)}</strong> ${esc(s.level)}
           </span>`).join(" ");
 
         return `
@@ -656,12 +679,12 @@
               ${outcomesBadges ? `<div class="flex flex-wrap gap-1 mb-3">${outcomesBadges}</div>` : ""}
 
               ${studentPills ? `
-              <div class="border-t border-slate-100 pt-2.5">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">
-                  Student Work Samples &bull; ${gradeRange(item)}
-                </span>
-                <div class="flex flex-wrap gap-1.5">${studentPills}</div>
-              </div>` : ""}
+              <details class="border-t border-slate-100 pt-2.5" title="Show each student&#39;s moderated level">
+                <summary class="cursor-pointer select-none text-[10px] font-bold uppercase tracking-wider text-slate-500 hover:text-slate-700">
+                  ${item.students.length} Student Work Samples &bull; ${levelRange(item)}
+                </summary>
+                <div class="flex flex-wrap gap-1.5 mt-1.5">${studentPills}</div>
+              </details>` : ""}
             </div>
 
             <div class="bg-slate-50 px-4 py-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
@@ -669,10 +692,13 @@
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
                 Copy Link
               </button>
+              <div class="flex items-center gap-1.5">
+              <a href="${judgeUrlFor(item)}" target="_blank" rel="noopener noreferrer" title="Open with moderation decisions hidden so you can make your own judgement first" class="bg-white hover:bg-slate-100 text-nswNavy border border-slate-300 font-semibold px-3 py-1.5 rounded-lg transition">Judge First</a>
               <a href="${url}" target="_blank" rel="noopener noreferrer" class="bg-nswNavy hover:bg-sky-900 active:bg-slate-950 text-white font-semibold px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 shadow-sm">
                 <span>Open Portfolio</span>
                 <svg class="w-3.5 h-3.5 text-sky-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
               </a>
+              </div>
             </div>
           </div>`;
       }).join("");

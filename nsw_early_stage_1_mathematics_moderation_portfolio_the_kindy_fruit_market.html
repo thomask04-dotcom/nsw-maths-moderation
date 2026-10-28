@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSW Early Stage 1 Mathematics Moderation Portfolio | The Kindy Fruit Market</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts for Authentic Kindergarten Student Handwriting and Clean UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Gochi+Hand&family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Schoolbell&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Kindergarten handwriting font utility classes */
+    .font-hand-a { font-family: 'Patrick Hand', cursive; }
+    .font-hand-b { font-family: 'Comic Neue', cursive; }
+    .font-hand-c { font-family: 'Schoolbell', cursive; }
+    .font-hand-d { font-family: 'Architects Daughter', cursive; }
+    .font-hand-e { font-family: 'Gochi Hand', cursive; }
+    .font-teacher { font-family: 'Caveat', cursive; }
+    .font-stamp { font-family: 'Permanent Marker', cursive; }
+
+    /* Exercise book paper styling */
+    .exercise-grid {
+      background-color: #fbfbf9;
+      background-image: 
+        linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+      background-size: 26px 26px;
+      position: relative;
+    }
+
+    /* Red student margin line */
+    .red-margin {
+      border-left: 2px solid rgba(239, 68, 68, 0.45);
+    }
+
+    /* Sticky post-it note effects */
+    .sticky-note {
+      box-shadow: 2px 4px 10px rgba(0,0,0,0.12), -1px 2px 4px rgba(0,0,0,0.06);
+      transform: rotate(-1.2deg);
+      transition: transform 0.2s ease;
+    }
+    .sticky-note:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+
+    /* Rubber stamp styling */
+    .rubber-stamp {
+      border: 3px solid #dc2626;
+      color: #dc2626;
+      border-radius: 8px;
+      display: inline-block;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transform: rotate(-7deg);
+      opacity: 0.88;
+    }
+    .rubber-stamp-green {
+      border-color: #15803d;
+      color: #15803d;
+      transform: rotate(5deg);
+    }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: white !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- TOP HEADER & NSW CURRICULUM BANNER -->
+  <header class="bg-gradient-to-r from-emerald-950 via-teal-900 to-slate-900 text-white shadow-lg sticky top-0 z-40 border-b-4 border-amber-400 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-amber-400 p-2 rounded-lg text-slate-950 font-black shadow-md flex items-center justify-center">
+          <i data-lucide="apple" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold tracking-widest bg-emerald-500/30 text-emerald-200 px-2 py-0.5 rounded border border-emerald-400/40 uppercase">NSW K–10 Syllabus (2022)</span>
+            <span class="text-xs font-semibold text-amber-300">Early Stage 1 (Kindergarten) • Term 3</span>
+          </div>
+          <h1 class="text-lg sm:text-xl font-extrabold tracking-tight">NSW Early Stage 1 Mathematics Moderation Portfolio | The Kindy Fruit Market</h1>
+          <p class="text-xs text-slate-300">Rich Task: <span class="text-amber-200 font-medium">Counting Collections to 20, Making 10 &amp; Combining and Separating (Representing Whole Numbers; Combining and Separating Quantities)</span></p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="toggle-annotations-btn" onclick="toggleAnnotations()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-md text-xs font-medium border border-slate-600 flex items-center gap-1.5 transition">
+          <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span id="annotations-status-text">Hide Teacher Marks</span>
+        </button>
+        <button onclick="openModal('rubric-modal')" class="px-3 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-md text-xs font-medium border border-indigo-400 flex items-center gap-1.5 transition shadow">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+          <span>ES1 Achievement Language</span>
+        </button>
+        <button onclick="openModal('task-brief-modal')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-md text-xs font-bold flex items-center gap-1.5 transition shadow">
+          <i data-lucide="clipboard-list" class="w-3.5 h-3.5"></i>
+          <span>Task Brief</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="bg-slate-950/70 border-t border-slate-800 px-4 py-1.5 text-xs">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-slate-300 font-mono">
+        <span class="flex items-center gap-1 text-amber-400 font-semibold"><i data-lucide="target" class="w-3 h-3"></i> Targeted Outcomes:</span>
+        <span><strong class="text-emerald-300">MAE-RWN-01:</strong> Whole numbers indicate quantity</span>
+        <span><strong class="text-emerald-300">MAE-RWN-02:</strong> Reads numerals and represents whole numbers to at least 20</span>
+        <span><strong class="text-teal-300">MAE-CSQ-01:</strong> Models addition and subtraction by combining, separating and comparing</span>
+        <span><strong class="text-teal-300">MAE-CSQ-02:</strong> Parts that form a whole, numbers to 10</span>
+        <span><strong class="text-white">MAO-WM-01:</strong> Working Mathematically</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR / LEVEL TABS -->
+  <div class="mod-nav bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between overflow-x-auto py-2 gap-2 no-scrollbar">
+        <div class="flex items-center gap-2">
+          <button onclick="switchTab('grade-b')" id="tab-btn-grade-b" class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-emerald-600 bg-emerald-50 text-emerald-900 shadow-sm">
+            <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+            <span>Thorough <span class="font-normal text-emerald-800">Achievement</span></span>
+          </button>
+          <button onclick="switchTab('grade-c')" id="tab-btn-grade-c" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+            <span>Sound <span class="font-normal text-slate-600">Achievement</span></span>
+          </button>
+          <button onclick="switchTab('grade-d')" id="tab-btn-grade-d" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
+            <span class="w-3 h-3 rounded-full bg-amber-600"></span>
+            <span>Basic <span class="font-normal text-slate-600">Achievement</span></span>
+          </button>
+        </div>
+        <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-indigo-200 bg-indigo-50 text-indigo-800 hover:bg-indigo-100 whitespace-nowrap">
+          <i data-lucide="columns" class="w-4 h-4 text-indigo-600"></i>
+          <span>ES1 Moderation Matrix (Thorough, Sound, Basic)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
+
+    <!-- ========================================================================= -->
+    <!-- THOROUGH ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-b-view" data-mod-group class="tab-content block space-y-6">
+
+      <div class="mod-gdecision bg-emerald-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-emerald-400">
+        <div>
+          <div class="flex items-center gap-2 text-emerald-200 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-emerald-900 px-2.5 py-0.5 rounded border border-emerald-600">Early Stage 1 (Kindergarten)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Thorough Achievement</h2>
+          <p class="text-sm text-emerald-50 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Applies thorough knowledge and understanding to <em>most situations</em> with a high level of competence: counts collections to 20 accurately and efficiently (including counting in groups), records numerals correctly, finds several ways to make 10 and explains them, and uses known part-part-whole facts to work out how many are left or how many more.
+          </p>
+        </div>
+        <div class="bg-emerald-950/80 px-4 py-3 rounded-lg border border-emerald-700/60 text-center">
+          <div class="text-xs uppercase text-emerald-200 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Thorough</div>
+          <div class="text-xs text-emerald-200">High Competence</div>
+        </div>
+      </div>
+
+      <div class="mod-gdecision flex items-center justify-between bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-emerald-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-b', 'sample-1')" id="subtab-grade-b-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-sm transition">
+            Sample 1: Harper L. (Counts in 5s & Four Ways to Make 10)
+          </button>
+          <button onclick="switchSubSample('grade-b', 'sample-2')" id="subtab-grade-b-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-emerald-900 border border-emerald-300 hover:bg-emerald-100 transition">
+            Sample 2: Ari K. (Turn-Around Facts & Counting On)
+          </button>
+        </div>
+        <span class="text-xs text-emerald-800 font-mono hidden md:inline">2 Evidence Samples</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (HARPER L.) -->
+      <div id="grade-b-sample-1" data-mod-sample data-mod-level="Thorough" data-mod-student="Harper L." data-mod-open="switchTab('grade-b');switchSubSample('grade-b','sample-1')" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">KINDERGARTEN WORK • TERM 3</span>
+              <span class="mod-decision">Harper L. • Thorough Sample 1</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[640px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-5">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-a text-2xl font-bold text-slate-900">Harper's Fruit Market</h3>
+                    <p class="font-hand-a text-base text-slate-600">Strawberry stall</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">FANTASTIC!</div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. How many strawberries?</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ Counts in groups of 5</span>
+                  </div>
+                  <div class="font-hand-a text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block ml-2"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block ml-2"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span></div><p>"5, 10, 15. I put them in 5s so I don't lose count."</p><p class="text-3xl font-bold">15</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Bags of 10 (apples and bananas)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ Systematic</span>
+                  </div>
+                  <div class="font-hand-a text-lg text-slate-800"><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span></div><span class="text-base">9 and 1</span></div><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span></div><span class="text-base">8 and 2</span></div><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span></div><span class="text-base">7 and 3</span></div><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span></div><span class="text-base">6 and 4</span></div><p>"The apples go down and the bananas go up. It's always 10."</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. A customer buys 3 apples (8 in the basket)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ Uses part-part-whole</span>
+                  </div>
+                  <div class="font-hand-a text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span></div><p>"5 left. I know 5 and 3 make 8."</p></div>
+                </div>
+                <div class="bg-sky-50/80 border-sky-300 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Challenge: Which basket has more?</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ Counts on from 9</span>
+                  </div>
+                  <div class="font-hand-a text-lg text-slate-800"><p>Bananas 12 &nbsp; Pears 9</p><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-yellow-300 border border-yellow-600 inline-block"></span></div><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-lime-400 border border-lime-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-lime-400 border border-lime-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-lime-400 border border-lime-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-lime-400 border border-lime-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-lime-400 border border-lime-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-lime-400 border border-lime-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-lime-400 border border-lime-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-lime-400 border border-lime-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-lime-400 border border-lime-700 inline-block"></span></div><p>"Bananas. 9… 10, 11, 12. That's 3 more."</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Scribing (Oral Explanation):
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Harper moved the strawberries into lines of 5 before counting. Asked how she knew there were 5 apples left without counting, she said: 'Because 5 and 3 is 8. I took the 3 away so the 5 is left.'"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Harper L.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-emerald-600">Thorough</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Representing Whole Numbers (MAE-RWN-01, MAE-RWN-02)
+                  </div>
+                  <p><strong>Thorough:</strong> Applies thorough knowledge and understanding to most situations by counting 15 efficiently in groups of 5, stating the total without recounting, and recording the numeral correctly.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Combining & Separating Quantities (MAE-CSQ-01, MAE-CSQ-02)
+                  </div>
+                  <p><strong>Thorough:</strong> Finds four ways to make 10 in order and explains the pattern; uses the known fact 5 and 3 make 8 to separate, and counts on from 9 to compare collections.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Thorough:</strong> Explains her thinking clearly using number words and the language 'more' and 'left' without prompting.</p>
+                </div>
+              </div>
+              <div class="bg-emerald-50/70 p-3 rounded-lg border border-emerald-200 text-xs">
+                <strong class="text-emerald-950">Kindergarten Evidence Note:</strong>
+                <p class="text-emerald-900 mt-1">Harper's reasoning was captured through teacher scribing; oral explanation is primary evidence in Early Stage 1.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (ARI K.) -->
+      <div id="grade-b-sample-2" data-mod-sample data-mod-level="Thorough" data-mod-student="Ari K." data-mod-open="switchTab('grade-b');switchSubSample('grade-b','sample-2')" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">ASSESSMENT RECORD • KINDERGARTEN</span>
+              <span class="mod-decision">Ari K. • Thorough Sample 2</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[640px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-5">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-b text-2xl font-bold text-slate-900">Ari's grape stall</h3>
+                    <p class="font-hand-b text-base text-slate-600">Grapes and oranges</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">SUPER COUNTING</div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. How many grapes?</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ Subitises 6</span>
+                  </div>
+                  <div class="font-hand-b text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-purple-500 border border-purple-700 inline-block"></span></div><p>Counted 18 by moving each grape. Wrote <span class="text-2xl font-bold">18</span></p><p>Dot card <strong>6</strong>: "3 and 3 is 6." (no counting)</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Bags of 10</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ Turn-around idea</span>
+                  </div>
+                  <div class="font-hand-b text-lg text-slate-800"><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span></div><span class="text-base">5 and 5</span></div><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span></div><span class="text-base">6 and 4</span></div><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span></div><span class="text-base">7 and 3</span></div><p>"If I swap it, 4 and 6, it is still 10."</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. 8 oranges, 2 more arrive</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ Counts on</span>
+                  </div>
+                  <div class="font-hand-b text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span></div><p>"8… 9, 10. Now there are 10."</p></div>
+                </div>
+                <div class="bg-sky-50/80 border-sky-300 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Challenge: Which basket has more?</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ One-to-one compare</span>
+                  </div>
+                  <div class="font-hand-b text-lg text-slate-800"><p>Lined up 12 bananas and 9 pears in two rows.</p><p>"The bananas have 3 more. Look, these 3 don't have a partner."</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Observation:
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Ari found three ways to make 10 and then said the turn-around fact without making it. He counted on from 8 to find 10 when 2 more oranges arrived."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Ari K.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-emerald-600">Thorough</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Representing Whole Numbers (MAE-RWN-01, MAE-RWN-02)
+                  </div>
+                  <p><strong>Thorough:</strong> Applies thorough knowledge and understanding to most situations by counting 18 accurately, recording the numeral correctly and recognising 6 as 3 and 3 without counting.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Combining & Separating Quantities (MAE-CSQ-01, MAE-CSQ-02)
+                  </div>
+                  <p><strong>Thorough:</strong> Makes 10 three ways and states the turn-around fact; counts on to combine and matches one-to-one to find 'how many more'.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Thorough:</strong> Justifies comparisons by pointing to the unmatched fruit. Finds fewer combinations to 10 than Harper and does not explain a pattern, but works with a high level of competence.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SOUND ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-c-view" data-mod-group class="tab-content hidden space-y-6">
+
+      <div class="mod-gdecision bg-blue-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-blue-400">
+        <div>
+          <div class="flex items-center gap-2 text-blue-200 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-blue-900 px-2.5 py-0.5 rounded border border-blue-600">Early Stage 1 (Kindergarten)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Sound Achievement</h2>
+          <p class="text-sm text-blue-50 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Demonstrates sound knowledge and understanding of the main areas of content with an adequate level of competence: counts collections to 20 by ones with one-to-one correspondence and states how many, records numerals, makes 10 in one or two ways with fruit, and separates or compares collections by acting it out and recounting.
+          </p>
+        </div>
+        <div class="bg-blue-950/80 px-4 py-3 rounded-lg border border-blue-700/60 text-center">
+          <div class="text-xs uppercase text-blue-200 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Sound</div>
+          <div class="text-xs text-blue-200">Adequate Competence</div>
+        </div>
+      </div>
+
+      <div class="mod-gdecision flex items-center justify-between bg-blue-50/80 p-2.5 rounded-xl border border-blue-200">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-blue-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-c', 'sample-1')" id="subtab-grade-c-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-700 text-white shadow-sm transition">
+            Sample 1: Isla P. (Counts by Ones & Makes 10 Two Ways)
+          </button>
+          <button onclick="switchSubSample('grade-c', 'sample-2')" id="subtab-grade-c-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-blue-900 border border-blue-300 hover:bg-blue-100 transition">
+            Sample 2: Mason T. (Counts to 13 & Acts It Out)
+          </button>
+        </div>
+        <span class="text-xs text-blue-800 font-mono hidden md:inline">2 Evidence Samples</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (ISLA P.) -->
+      <div id="grade-c-sample-1" data-mod-sample data-mod-level="Sound" data-mod-student="Isla P." data-mod-open="switchTab('grade-c');switchSubSample('grade-c','sample-1')" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-blue-100/70 border-b border-blue-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">KINDERGARTEN WORK • TERM 3</span>
+              <span class="mod-decision">Isla P. • Sound Sample 1</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[640px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-5">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Isla's fruit shop</h3>
+                    <p class="font-hand-c text-base text-slate-600">Strawberries</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">GOOD WORK</div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. How many strawberries?</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ One-to-one</span>
+                  </div>
+                  <div class="font-hand-c text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span></div><p>Touched and moved each one: "1, 2, 3 … 15." Asked how many: "15."</p><p class="text-3xl font-bold">15</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Bags of 10</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ 2 ways</span>
+                  </div>
+                  <div class="font-hand-c text-lg text-slate-800"><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span></div><span class="text-base">6 and 4</span></div><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span></div><span class="text-base">7 and 3</span></div><p>Drew two bags. Wrote 6 and 4, 7 and 3 when asked to label them.</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. A customer buys 3 apples (8 in the basket)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ Recounts</span>
+                  </div>
+                  <div class="font-hand-c text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span></div><p>Took 3 away, then counted the rest from 1: "1, 2, 3, 4, 5. 5 left."</p></div>
+                </div>
+                <div class="bg-amber-50/80 border-amber-300 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Challenge: Which basket has more?</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ With prompt</span>
+                  </div>
+                  <div class="font-hand-c text-lg text-slate-800"><p>Lined up the bananas and pears. "Bananas has more." Teacher: "How many more?" Counted the extra ones: "3."</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Scribing (Prompted):
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Isla counted carefully by ones and always gave the total when asked 'how many?'. She made two bags of 10 and stopped. She explained the customer problem as 'I took them away and counted what's left.'"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Isla P.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-blue-600">Sound</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                    Representing Whole Numbers (MAE-RWN-01, MAE-RWN-02)
+                  </div>
+                  <p><strong>Sound:</strong> Demonstrates sound knowledge and understanding of the main areas of content by counting 15 by ones with one-to-one correspondence, stating the total and writing the numeral correctly.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                    Combining & Separating Quantities (MAE-CSQ-01, MAE-CSQ-02)
+                  </div>
+                  <p><strong>Sound:</strong> Makes 10 two ways with concrete fruit and labels them when prompted. Separates by acting out and recounting from 1, and compares collections by lining them up.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Sound:</strong> Uses taught counting routines with an adequate level of competence and explains simply when asked.</p>
+                </div>
+              </div>
+              <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200 text-xs">
+                <strong class="text-blue-950">Sound, Not Thorough:</strong>
+                <p class="text-blue-900 mt-1">Isla is accurate but recounts from 1 each time; Harper and Ari use groups, known facts and counting on, and explain their thinking without being asked.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (MASON T.) -->
+      <div id="grade-c-sample-2" data-mod-sample data-mod-level="Sound" data-mod-student="Mason T." data-mod-open="switchTab('grade-c');switchSubSample('grade-c','sample-2')" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-blue-100/70 border-b border-blue-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">ASSESSMENT RECORD • KINDERGARTEN</span>
+              <span class="mod-decision">Mason T. • Sound Sample 2</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[640px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-5">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-d text-2xl font-bold text-slate-900">Mason apples</h3>
+                    <p class="font-hand-d text-base text-slate-600">Apple stall</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">WELL DONE</div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. How many apples?</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ Accurate</span>
+                  </div>
+                  <div class="font-hand-d text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span></div><p>Counted 13 by ones, touching each apple.</p><p class="text-3xl font-bold">13</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Bags of 10</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓ 5 and 5</span>
+                  </div>
+                  <div class="font-hand-d text-lg text-slate-800"><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span></div><span class="text-base">5 and 5</span></div><p>Made 5 and 5. Teacher: "Can you make 10 another way?" Made 8 and 2 after trying.</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. A customer buys 3 apples (8 in the basket)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✓</span>
+                  </div>
+                  <div class="font-hand-d text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span></div><p>Took 3 away and counted the rest: "5."</p></div>
+                </div>
+                <div class="bg-amber-50/80 border-amber-300 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Challenge: Which basket has more?</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">Explains with numbers</span>
+                  </div>
+                  <div class="font-hand-d text-lg text-slate-800"><p>"Bananas, because 12 is a bigger number." Teacher asked him to show it. He lined them up and pointed to the extra bananas.</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Observation:
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Mason counted reliably to 13 and recorded the numeral. He made 10 as 5 and 5 independently and needed a prompt to find another way. He compared using number size and then showed it with the fruit when asked."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Mason T.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-blue-600">Sound</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                    Representing Whole Numbers (MAE-RWN-01, MAE-RWN-02)
+                  </div>
+                  <p><strong>Sound:</strong> Demonstrates sound knowledge and understanding of the main areas of content by counting 13 accurately by ones and recording the numeral.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                    Combining & Separating Quantities (MAE-CSQ-01, MAE-CSQ-02)
+                  </div>
+                  <p><strong>Sound:</strong> Makes 10 as 5 and 5 and finds a second way with a prompt; separates 3 from 8 by acting it out and recounting.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Sound:</strong> Compares quantities using the number sequence ('12 is bigger') and demonstrates with materials when asked, with an adequate level of competence.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- BASIC ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-d-view" data-mod-group class="tab-content hidden space-y-6">
+
+      <div class="mod-gdecision bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-amber-400">
+        <div>
+          <div class="flex items-center gap-2 text-amber-200 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-amber-900 px-2.5 py-0.5 rounded border border-amber-600">Early Stage 1 (Kindergarten)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Basic Achievement</h2>
+          <p class="text-sm text-amber-50 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Demonstrates basic knowledge and understanding with a limited level of competence: counts small collections reliably but makes one-to-one or sequence errors beyond 10, reverses or omits numerals, needs teacher modelling to make 10, and relies on adult support to separate or compare collections.
+          </p>
+        </div>
+        <div class="bg-amber-950/80 px-4 py-3 rounded-lg border border-amber-700/60 text-center">
+          <div class="text-xs uppercase text-amber-200 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Basic</div>
+          <div class="text-xs text-amber-200">Limited Competence</div>
+        </div>
+      </div>
+
+      <div class="mod-gdecision flex items-center justify-between bg-amber-50/80 p-2.5 rounded-xl border border-amber-200">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-amber-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-d', 'sample-1')" id="subtab-grade-d-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-700 text-white shadow-sm transition">
+            Sample 1: Zoe R. (Counting Errors Beyond 10 & Reversed Numeral)
+          </button>
+          <button onclick="switchSubSample('grade-d', 'sample-2')" id="subtab-grade-d-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-amber-900 border border-amber-300 hover:bg-amber-100 transition">
+            Sample 2: Kai M. (Counts to 8 & Reads Numerals to 10)
+          </button>
+        </div>
+        <span class="text-xs text-amber-800 font-mono hidden md:inline">2 Evidence Samples</span>
+      </div>
+
+      <!-- SAMPLE 1 CONTENT (ZOE R.) -->
+      <div id="grade-d-sample-1" data-mod-sample data-mod-level="Basic" data-mod-student="Zoe R." data-mod-open="switchTab('grade-d');switchSubSample('grade-d','sample-1')" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">KINDERGARTEN WORK • TERM 3</span>
+              <span class="mod-decision">Zoe R. • Basic Sample 1</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[640px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-5">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-e text-2xl font-bold text-slate-900">zoe</h3>
+                    <p class="font-hand-e text-base text-slate-600">strawbrees</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">GOOD TRY</div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. How many strawberries?</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">Reversal: 51 for 15</span>
+                  </div>
+                  <div class="font-hand-e text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span><span class="w-4 h-4 rounded-full bg-rose-500 border border-rose-700 inline-block"></span></div><p>"1, 2, 3 … 9, 10, 11." (skipped some, counted others twice) Said "11".</p><p>Recounted with teacher pointing: 15. Wrote <span class="text-3xl font-bold">51</span></p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Bags of 10</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">Needed modelling</span>
+                  </div>
+                  <div class="font-hand-e text-lg text-slate-800"><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span><span class="w-3 h-3 rounded-full bg-yellow-300 inline-block"></span></div><span class="text-base">7 and 5</span></div><p>Put 12 fruit in the bag. Teacher counted with her and took 2 out. Made 5 and 5 after the teacher showed one hand of 5.</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. A customer buys 3 apples (8 in the basket)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">✗ Recount error</span>
+                  </div>
+                  <div class="font-hand-e text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 border border-red-800 inline-block"></span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span><span class="w-4 h-4 rounded-full bg-red-600 opacity-40 border border-red-800 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span></div><p>Took 3 away, counted the rest from 1: "6."</p></div>
+                </div>
+                <div class="bg-orange-50/80 border-orange-300 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Challenge: Which basket has more?</h4>
+                    
+                  </div>
+                  <div class="font-hand-e text-lg text-slate-800"><p>Pointed to the bigger pile: "That one." Did not say how many more.</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Scribing (Supported):
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Zoe lost track when counting past 10 and did not move the counted strawberries aside. With the teacher pointing she counted to 15 correctly. She wrote 51 for 15. She needed the teacher to model making 10."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Zoe R.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-amber-600">Basic</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                    Representing Whole Numbers (MAE-RWN-01, MAE-RWN-02)
+                  </div>
+                  <p><strong>Basic:</strong> Demonstrates basic knowledge and understanding with a limited level of competence. Makes one-to-one errors beyond 10, counts accurately only with adult pointing, and reverses the digits in 15.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                    Combining & Separating Quantities (MAE-CSQ-01, MAE-CSQ-02)
+                  </div>
+                  <p><strong>Basic:</strong> Needs teacher modelling to make exactly 10; separates by acting out but recounts inaccurately (6 left instead of 5).</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Basic:</strong> Compares by appearance ('that one') and relies on teacher questioning; uses gestures and single words.</p>
+                </div>
+              </div>
+              <div class="bg-amber-50/70 p-3 rounded-lg border border-amber-200 text-xs">
+                <strong class="text-amber-950">Basic, Not Sound:</strong>
+                <p class="text-amber-900 mt-1">Isla and Mason count and separate accurately by themselves; Zoe needs adult support to count past 10 and to make 10, and her recount is incorrect.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (KAI M.) -->
+      <div id="grade-d-sample-2" data-mod-sample data-mod-level="Basic" data-mod-student="Kai M." data-mod-open="switchTab('grade-d');switchSubSample('grade-d','sample-2')" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">ASSESSMENT RECORD • KINDERGARTEN</span>
+              <span class="mod-decision">Kai M. • Basic Sample 2</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[640px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-5">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-e text-2xl font-bold text-slate-900">KAI</h3>
+                    <p class="font-hand-e text-base text-slate-600">oranges</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp rubber-stamp-green font-stamp text-xs sm:text-sm">KEEP GOING</div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. How many oranges?</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">Sequence beyond 10</span>
+                  </div>
+                  <div class="font-hand-e text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span></div><p>Counted 8 oranges correctly. Counting 15 strawberries: "…9, 10, 11, 13, 14, 16."</p><p>Read numeral cards 1–10. Did not read 15.</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Bags of 10</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">Copied model</span>
+                  </div>
+                  <div class="font-hand-e text-lg text-slate-800"><div class="inline-flex flex-col items-center mr-3 mb-2"><div class="flex gap-0.5 p-1.5 border-2 border-dashed border-slate-500 rounded-b-2xl bg-white"><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-lime-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-lime-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-lime-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-lime-400 inline-block"></span><span class="w-3 h-3 rounded-full bg-lime-400 inline-block"></span></div><span class="text-base">5 and 5</span></div><p>Copied the teacher's bag of 5 and 5. Did not make another.</p></div>
+                </div>
+                <div class="bg-white/90 border-slate-200 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">3. A customer buys 3 (8 in the basket)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-emerald-700 font-bold">Physical support</span>
+                  </div>
+                  <div class="font-hand-e text-lg text-slate-800"><div class="flex flex-wrap gap-1 my-1.5 items-center"><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 border border-orange-600 inline-block"></span><span class="w-4 h-4 rounded-full bg-orange-400 opacity-40 border border-orange-600 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span><span class="w-4 h-4 rounded-full bg-orange-400 opacity-40 border border-orange-600 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span><span class="w-4 h-4 rounded-full bg-orange-400 opacity-40 border border-orange-600 inline-flex items-center justify-center text-[10px] font-bold text-slate-900">×</span></div><p>Teacher held his hand to take 3 away one at a time. Counted the rest with help: "5."</p></div>
+                </div>
+                <div class="bg-orange-50/80 border-orange-300 p-4 rounded-xl border shadow-sm space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Challenge: Which basket has more?</h4>
+                    
+                  </div>
+                  <div class="font-hand-e text-lg text-slate-800"><p class="text-slate-600">Not attempted.</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Running Record:
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Kai counts collections to 8 reliably and reads numerals to 10. Beyond 10 the counting sequence is not yet secure. He separated 3 from 8 with hand-over-hand support and did not attempt the comparison."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Kai M.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-amber-600">Basic</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                    Representing Whole Numbers (MAE-RWN-01, MAE-RWN-02)
+                  </div>
+                  <p><strong>Basic:</strong> Demonstrates basic knowledge and understanding with a limited level of competence. Counts small collections to 8 and reads numerals to 10; the sequence beyond 10 is not yet secure.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                    Combining & Separating Quantities (MAE-CSQ-01, MAE-CSQ-02)
+                  </div>
+                  <p><strong>Basic:</strong> Copies a modelled bag of 10 and separates with physical support; does not access the comparison prompt.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Basic:</strong> Communicates with gestures and single number words, relying on continuous teacher guidance.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="matrix-view" class="mod-matrix tab-content hidden space-y-6">
+      <div class="bg-indigo-950 text-white rounded-xl p-5 shadow-lg flex flex-wrap items-center justify-between gap-4 border-l-8 border-indigo-400">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-300 bg-indigo-900/60 px-2 py-0.5 rounded border border-indigo-700">Early Stage 1 Achievement Language</span>
+          <h2 class="text-2xl font-black mt-1">Early Stage 1 Mathematics Moderation Matrix</h2>
+          <p class="text-sm text-indigo-200 max-w-3xl mt-1">Comparative analysis of student performance across Thorough, Sound and Basic achievement for <em>The Kindy Fruit Market</em> (Representing Whole Numbers; Combining and Separating Quantities).</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse min-w-[750px]">
+          <thead>
+            <tr class="bg-slate-900 text-white border-b-2 border-slate-800">
+              <th class="p-3.5 font-bold w-48">Syllabus Focus</th><th class="p-3.5 font-bold bg-emerald-950/80 text-emerald-300 w-1/3 border-l border-slate-800">Thorough Achievement</th><th class="p-3.5 font-bold bg-blue-950/80 text-blue-300 w-1/3 border-l border-slate-800">Sound Achievement</th><th class="p-3.5 font-bold bg-amber-950/80 text-amber-300 w-1/3 border-l border-slate-800">Basic Achievement</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3.5 font-bold bg-slate-50 text-slate-900"><div class="font-bold">Counting & Recording Numerals</div><div class="text-[11px] text-slate-500 font-mono">MAE-RWN-01, MAE-RWN-02</div></td>
+              <td class="p-3.5 bg-emerald-50/30 border-l border-slate-200">Counts collections to 20 accurately and efficiently (moves items aside, counts in groups of 5, subitises small groups). States the total without recounting and writes numerals correctly.</td>
+              <td class="p-3.5 bg-blue-50/30 border-l border-slate-200">Counts collections to 20 by ones with one-to-one correspondence and states how many when asked. Writes numerals correctly.</td>
+              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">Counts small collections (to about 8–10) reliably; makes one-to-one or sequence errors beyond 10. May reverse numerals (51 for 15).</td>
+            </tr>
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3.5 font-bold bg-slate-50 text-slate-900"><div class="font-bold">Parts That Make 10</div><div class="text-[11px] text-slate-500 font-mono">MAE-CSQ-02</div></td>
+              <td class="p-3.5 bg-emerald-50/30 border-l border-slate-200">Finds three or more ways to make 10, often in order, and explains a pattern or the turn-around idea (6 and 4, 4 and 6).</td>
+              <td class="p-3.5 bg-blue-50/30 border-l border-slate-200">Makes 10 one or two ways with concrete fruit; labels the parts when prompted.</td>
+              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">Needs teacher modelling to make exactly 10; copies a modelled combination.</td>
+            </tr>
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3.5 font-bold bg-slate-50 text-slate-900"><div class="font-bold">Combining, Separating & Comparing</div><div class="text-[11px] text-slate-500 font-mono">MAE-CSQ-01</div></td>
+              <td class="p-3.5 bg-emerald-50/30 border-l border-slate-200">Uses known facts (5 and 3 make 8) or counts on to combine, separate and find 'how many more'.</td>
+              <td class="p-3.5 bg-blue-50/30 border-l border-slate-200">Acts out taking away or joining, then recounts from 1. Compares by lining collections up; says how many more when prompted.</td>
+              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200">Separates with adult support and may recount inaccurately. Compares by appearance ('that one') or does not access the comparison.</td>
+            </tr>
+            <tr class="hover:bg-slate-50/80">
+              <td class="p-3.5 font-bold bg-slate-50 text-slate-900"><div class="font-bold">Working Mathematically</div><div class="text-[11px] text-slate-500 font-mono">MAO-WM-01</div></td>
+              <td class="p-3.5 bg-emerald-50/30 border-l border-slate-200"><strong>Thorough:</strong> Explains thinking clearly using number words and 'more', 'left' and 'altogether' without prompting.</td>
+              <td class="p-3.5 bg-blue-50/30 border-l border-slate-200"><strong>Sound:</strong> Uses taught routines with an adequate level of competence and explains simply when asked.</td>
+              <td class="p-3.5 bg-amber-50/30 border-l border-slate-200"><strong>Basic:</strong> Relies on teacher questioning and modelling; communicates with gestures and single words.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-xs text-indigo-950 space-y-1.5">
+        <p>&bull; <strong>Thorough vs Sound:</strong> Harper and Ari count in groups, use known facts and count on, and explain without being asked. Isla and Mason are accurate but count and recount by ones, and explain when prompted.</p>
+        <p>&bull; <strong>Sound vs Basic:</strong> Isla and Mason count to 13–15 and separate accurately by themselves. Zoe and Kai count reliably only to about 8–10 and need modelling or physical support to make 10 and to separate.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODALS -->
+  <div id="task-brief-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">Assessment Task Brief: The Kindy Fruit Market</h3>
+        <button onclick="closeModal('task-brief-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+        <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+          <h4 class="font-bold text-emerald-950 mb-1">Context</h4>
+          <p>Our class is running a fruit market for the school community. You are the stall keeper! Count your fruit, pack bags of 10 and serve your customers.</p>
+        </div>
+        <ol class="list-decimal list-inside space-y-1.5">
+          <li><strong>Count the fruit:</strong> How many are in your basket (13–18 pieces)? Show how you counted and write the number on a price tag.</li>
+          <li><strong>Pack bags of 10:</strong> Fill a bag with exactly 10 pieces using two kinds of fruit. How many different bags can you make? Draw and label them.</li>
+          <li><strong>Serve a customer:</strong> There are 8 apples. A customer buys 3. How many are left? (Or: 2 more oranges arrive. How many now?)</li>
+          <li><strong>Challenge prompt:</strong> The banana basket has 12 and the pear basket has 9. Which has more? How many more? Show how you know.</li>
+        </ol>
+        <p class="text-slate-600"><strong>Evidence:</strong> work samples, photos of concrete arrangements and teacher scribing of each child's oral explanation. Materials: real or plastic fruit, counters, paper bags, numeral cards 0–20, dot cards.</p>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('task-brief-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="rubric-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+    <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-lg font-bold text-slate-900">Early Stage 1 Reporting &amp; Achievement Language</h3>
+        <button onclick="closeModal('rubric-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-2.5 text-xs text-slate-700">
+        <div class="p-3 bg-amber-50 rounded border border-amber-300">
+          <strong>Early Stage 1 reporting note</strong>
+          <p class="mt-1">The Common Grade Scale is not required for reporting in Early Stage 1; A to E reporting applies from Year 1. These samples use the scale's descriptor language for Thorough, Sound and Basic achievement so Kindergarten teachers can make consistent on-balance judgements. Teacher scribing of oral explanations is primary evidence.</p>
+        </div>
+        <div class="p-2.5 rounded bg-emerald-50 border border-emerald-200"><strong class="text-emerald-900">Thorough:</strong> The student has a thorough knowledge and understanding of the content and a high level of competence in the processes and skills. In addition, the student is able to apply this knowledge and these skills to most situations.</div>
+        <div class="p-2.5 rounded bg-blue-50 border border-blue-200"><strong class="text-blue-900">Sound:</strong> The student has a sound knowledge and understanding of the main areas of content and has achieved an adequate level of competence in the processes and skills.</div>
+        <div class="p-2.5 rounded bg-amber-50 border border-amber-200"><strong class="text-amber-900">Basic:</strong> The student has a basic knowledge and understanding of the content and has achieved a limited level of competence in the processes and skills.</div>
+        <p class="text-[11px] text-slate-500">Descriptor language adapted from the NESA Common Grade Scale. Judgements are made on balance across the whole task.</p>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('rubric-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT CONTROLLERS -->
+  <script>
+    lucide.createIcons();
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-purple-600', 'border-purple-500', 'bg-purple-50', 'bg-purple-100', 'text-purple-900', 'text-purple-950', 'border-emerald-600', 'border-emerald-500', 'bg-emerald-50', 'bg-emerald-100', 'text-emerald-900', 'text-emerald-950', 'border-blue-600', 'border-blue-500', 'bg-blue-50', 'bg-blue-100', 'text-blue-900', 'text-blue-950', 'border-amber-600', 'border-amber-500', 'bg-amber-50', 'bg-amber-100', 'text-amber-900', 'text-amber-950', 'border-rose-600', 'border-rose-500', 'bg-rose-50', 'bg-rose-100', 'text-rose-900', 'text-rose-950', 'border-sky-600', 'border-sky-500', 'bg-sky-50', 'bg-sky-100', 'text-sky-900', 'text-sky-950', 'border-orange-600', 'border-orange-500', 'bg-orange-50', 'bg-orange-100', 'text-orange-900', 'text-orange-950', 'border-indigo-600', 'border-indigo-500', 'bg-indigo-50', 'bg-indigo-100', 'text-indigo-900', 'text-indigo-950'));
+      const target = document.getElementById(`${tabId}-view`);
+      if (target) target.classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'border-2');
+        if (tabId === 'grade-b') activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900');
+        if (tabId === 'grade-c') activeBtn.classList.add('border-blue-500', 'bg-blue-50', 'text-blue-900');
+        if (tabId === 'grade-d') activeBtn.classList.add('border-amber-600', 'bg-amber-50', 'text-amber-900');
+        if (tabId === 'matrix') activeBtn.classList.add('border-indigo-600', 'bg-indigo-100', 'text-indigo-950');
+      }
+      lucide.createIcons();
+    }
+    function switchSubSample(gradeId, sampleId) {
+      const container = document.getElementById(`${gradeId}-view`);
+      if (!container) return;
+      container.querySelectorAll('.subsample-content').forEach(s => s.classList.add('hidden'));
+      const target = document.getElementById(`${gradeId}-${sampleId}`);
+      if (target) target.classList.remove('hidden');
+      container.querySelectorAll('.subtab-btn').forEach(b => {
+        b.classList.remove('active', 'bg-purple-700', 'bg-emerald-700', 'bg-blue-700', 'bg-amber-700', 'bg-rose-700', 'bg-sky-700', 'bg-orange-700', 'bg-indigo-700', 'text-white');
+        b.classList.add('bg-white');
+      });
+      const activeSubBtn = document.getElementById(`subtab-${gradeId}-${sampleId}`);
+      if (activeSubBtn) {
+        activeSubBtn.classList.add('active', 'text-white');
+        if (gradeId === 'grade-b') activeSubBtn.classList.add('bg-emerald-700');
+        if (gradeId === 'grade-c') activeSubBtn.classList.add('bg-blue-700');
+        if (gradeId === 'grade-d') activeSubBtn.classList.add('bg-amber-700');
+      }
+      lucide.createIcons();
+    }
+    let annotationsVisible = true;
+    function toggleAnnotations() {
+      annotationsVisible = !annotationsVisible;
+      document.querySelectorAll('.teacher-mark').forEach(m => m.style.display = annotationsVisible ? '' : 'none');
+      document.getElementById('annotations-status-text').textContent = annotationsVisible ? 'Hide Teacher Marks' : 'Show Teacher Marks';
+    }
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+  </script>
+  <script src="moderation-tools.js" data-scale="es1" defer></script>
+</body>
+</html>

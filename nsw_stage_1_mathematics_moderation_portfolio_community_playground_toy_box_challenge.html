@@ -113,7 +113,7 @@
     <div class="bg-slate-950/70 border-t border-slate-800 px-4 py-1.5 text-xs">
       <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-slate-300 font-mono">
         <span class="flex items-center gap-1 text-amber-400 font-semibold"><i data-lucide="target" class="w-3 h-3"></i> Targeted Outcomes:</span>
-        <span title="Working Mathematically"><strong class="text-white">MA1-WM-01:</strong> Working Mathematically</span>
+        <span title="Working Mathematically"><strong class="text-white">MAO-WM-01:</strong> Working Mathematically</span>
         <span title="Combining and Separating Quantities"><strong class="text-teal-300">MA1-CSQ-01:</strong> Number bonds, partitioning, bridging to 10 & equality relations</span>
         <span class="text-slate-400 hidden lg:inline">• Non-count-by-one strategies, friends of 10, doubles, commutative property</span>
       </div>
@@ -121,41 +121,41 @@
   </header>
 
   <!-- NAVIGATION BAR / GRADE SELECTION TABS -->
-  <div class="bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
+  <div class="mod-nav bg-white border-b border-slate-200 shadow-sm sticky top-[73px] z-30 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex items-center justify-between overflow-x-auto py-2 gap-2 no-scrollbar">
         <div class="flex items-center gap-1.5">
-          <!-- Grade A -->
-          <button onclick="switchTab('grade-a')" id="tab-btn-grade-a" class="tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-emerald-600 bg-emerald-50 text-emerald-900 shadow-sm">
-            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">A</span>
-            <span>Grade A <span class="hidden md:inline font-normal text-emerald-700">(Extensive)</span></span>
+          <!-- Extensive -->
+          <button onclick="switchTab('grade-a')" id="tab-btn-grade-a" class="tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border-2 border-purple-600 bg-purple-50 text-purple-900 shadow-sm">
+            <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+            <span>Extensive</span>
           </button>
-          <!-- Grade B -->
+          <!-- Thorough -->
           <button onclick="switchTab('grade-b')" id="tab-btn-grade-b" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
-            <span class="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs">B</span>
-            <span>Grade B <span class="hidden md:inline font-normal text-slate-500">(Thorough)</span></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+            <span>Thorough</span>
           </button>
-          <!-- Grade C -->
+          <!-- Sound -->
           <button onclick="switchTab('grade-c')" id="tab-btn-grade-c" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
-            <span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs">C</span>
-            <span>Grade C <span class="hidden md:inline font-normal text-slate-500">(Sound)</span></span>
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+            <span>Sound</span>
           </button>
-          <!-- Grade D -->
+          <!-- Basic -->
           <button onclick="switchTab('grade-d')" id="tab-btn-grade-d" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
-            <span class="w-5 h-5 rounded-full bg-orange-600 text-white flex items-center justify-center text-xs">D</span>
-            <span>Grade D <span class="hidden md:inline font-normal text-slate-500">(Basic)</span></span>
+            <span class="w-3 h-3 rounded-full bg-amber-600"></span>
+            <span>Basic</span>
           </button>
-          <!-- Grade E -->
+          <!-- Elementary -->
           <button onclick="switchTab('grade-e')" id="tab-btn-grade-e" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-slate-200 hover:bg-slate-50 text-slate-700">
-            <span class="w-5 h-5 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs">E</span>
-            <span>Grade E <span class="hidden md:inline font-normal text-slate-500">(Elementary)</span></span>
+            <span class="w-3 h-3 rounded-full bg-rose-600"></span>
+            <span>Elementary</span>
           </button>
         </div>
 
         <!-- Comparative Matrix Toggle -->
         <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition border border-indigo-200 bg-indigo-50 text-indigo-800 hover:bg-indigo-100 whitespace-nowrap">
           <i data-lucide="columns" class="w-4 h-4 text-indigo-600"></i>
-          <span>Moderation Matrix (All Grades)</span>
+          <span>Moderation Matrix (All Levels)</span>
         </button>
       </div>
     </div>
@@ -165,50 +165,50 @@
   <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
 
     <!-- ========================================================================= -->
-    <!-- GRADE A: EXTENSIVE ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- EXTENSIVE ACHIEVEMENT (DUAL SAMPLES) -->
     <!-- ========================================================================= -->
-    <div id="grade-a-view" class="tab-content block space-y-6">
+    <div id="grade-a-view" data-mod-group class="tab-content block space-y-6">
       
-      <div class="bg-emerald-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-emerald-400">
+      <div class="mod-gdecision bg-purple-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-purple-400">
         <div>
-          <div class="flex items-center gap-2 text-emerald-300 text-xs font-bold uppercase tracking-wider">
-            <span class="bg-emerald-900 px-2.5 py-0.5 rounded border border-emerald-600">Stage 1 Part A (Year 1)</span>
+          <div class="flex items-center gap-2 text-purple-300 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-purple-900 px-2.5 py-0.5 rounded border border-purple-600">Stage 1 Part A (Year 1)</span>
             <span>2 Moderation Evidence Samples</span>
           </div>
-          <h2 class="text-2xl font-black mt-1">Grade A: Extensive Achievement</h2>
-          <p class="text-sm text-emerald-100 max-w-3xl mt-1">
-            <strong>Key NESA Differentiator:</strong> Applies extensive knowledge and skills to <em>unfamiliar situations</em>, demonstrating depth and conceptual transfer by reordering multi-addends autonomously into tens, explaining relational equivalence (= means "is the same value as"), and using reversible reasoning to solve inverse subtractions.
+          <h2 class="text-2xl font-black mt-1">Extensive Achievement</h2>
+          <p class="text-sm text-purple-100 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Applies extensive knowledge and understanding to <em>new situations</em>, demonstrating depth and conceptual transfer by reordering multi-addends autonomously into tens, explaining relational equivalence (= means "is the same value as"), and using reversible reasoning to solve inverse subtractions.
           </p>
         </div>
-        <div class="bg-emerald-950/80 px-4 py-3 rounded-lg border border-emerald-700/60 text-center">
-          <div class="text-xs uppercase text-emerald-300 font-semibold tracking-wider">Overall Assessment</div>
-          <div class="text-2xl font-black text-white">Extensive (A)</div>
-          <div class="text-xs text-emerald-300">Depth in Unfamiliar Situations</div>
+        <div class="bg-purple-950/80 px-4 py-3 rounded-lg border border-purple-700/60 text-center">
+          <div class="text-xs uppercase text-purple-300 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Extensive</div>
+          <div class="text-xs text-purple-300">Very High Competence</div>
         </div>
       </div>
 
       <!-- Sub-Sample Selector Sub-Bar -->
-      <div class="flex items-center justify-between bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200">
+      <div class="mod-gdecision flex items-center justify-between bg-purple-50/80 p-2.5 rounded-xl border border-purple-200">
         <div class="flex items-center gap-2">
-          <span class="text-xs font-bold text-emerald-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
-          <button onclick="switchSubSample('grade-a', 'sample-1')" id="subtab-grade-a-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-sm transition">
+          <span class="text-xs font-bold text-purple-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-a', 'sample-1')" id="subtab-grade-a-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-purple-700 text-white shadow-sm transition">
             Sample 1: Aria M. (Triple Ten-Frames & Relational Equality)
           </button>
-          <button onclick="switchSubSample('grade-a', 'sample-2')" id="subtab-grade-a-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-emerald-900 border border-emerald-300 hover:bg-emerald-100 transition">
+          <button onclick="switchSubSample('grade-a', 'sample-2')" id="subtab-grade-a-sample-2" class="subtab-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-purple-900 border border-purple-300 hover:bg-purple-100 transition">
             Sample 2: Marcus K. (Open Number Line & Decade Bridging)
           </button>
         </div>
-        <span class="text-xs text-emerald-800 font-mono hidden md:inline">2 Evidence Modalities</span>
+        <span class="text-xs text-purple-800 font-mono hidden md:inline">2 Evidence Modalities</span>
       </div>
 
       <!-- SAMPLE 1 CONTENT (ARIA M.) -->
-      <div id="grade-a-sample-1" class="subsample-content block">
+      <div id="grade-a-sample-1" data-mod-sample data-mod-level="Extensive" data-mod-student="Aria M." data-mod-open="switchTab('grade-a');switchSubSample('grade-a','sample-1')" class="subsample-content block">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
           <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-            <div class="bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <div class="mod-neutral bg-purple-100/70 border-b border-purple-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
               <span class="font-bold text-slate-800">CLASS WORK • YEAR 1</span>
-              <span>Aria M. • Extensive Sample 1</span>
+              <span class="mod-decision">Aria M. • Extensive Sample 1</span>
             </div>
 
             <div class="p-6 sm:p-8 exercise-grid relative min-h-[720px]">
@@ -267,30 +267,30 @@
           </div>
 
           <!-- Right: Moderation Details -->
-          <div class="lg:col-span-5 space-y-5">
+          <div class="mod-decision lg:col-span-5 space-y-5">
             <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
               <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
                 <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">NESA Standard</span>
-                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade A Moderation Rationale</h3>
+                  <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2 py-0.5 rounded">Common Grade Scale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Moderation Rationale: Extensive</h3>
                 </div>
-                <span class="text-3xl font-black text-emerald-600">A</span>
+                <span class="text-base font-black uppercase tracking-wide text-purple-600">Extensive</span>
               </div>
 
               <div class="space-y-3 text-xs text-slate-700">
                 <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
-                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                  <div class="font-bold text-purple-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-600"></i>
                     Combining & Separating Quantities (MA1-CSQ-01)
                   </div>
                   <p>
-                    <strong>Extensive:</strong> Applies extensive knowledge and skills to unfamiliar situations by autonomously reordering multi-addends into tens (8 + 2 = 10 and 5 + 5 = 10) and solving 30 - 8 = 22 using quantity partitioning (30 = 20 + 10) and known bonds rather than recounting.
+                    <strong>Extensive:</strong> Applies extensive knowledge and understanding to new situations by autonomously reordering multi-addends into tens (8 + 2 = 10 and 5 + 5 = 10) and solving 30 - 8 = 22 using quantity partitioning (30 = 20 + 10) and known bonds rather than recounting.
                   </p>
                 </div>
                 <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
-                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
-                    Working Mathematically (MA1-WM-01)
+                  <div class="font-bold text-purple-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-600"></i>
+                    Working Mathematically (MAO-WM-01)
                   </div>
                   <p>
                     <strong>Extensive:</strong> Justifies thinking with precise mathematical language and records non-standard relational equality statements showing deep conceptual understanding.
@@ -298,9 +298,9 @@
                 </div>
               </div>
 
-              <div class="bg-emerald-50/70 p-3 rounded-lg border border-emerald-200 text-xs">
-                <strong class="text-emerald-950">Depth, Not Acceleration:</strong>
-                <p class="text-emerald-900 mt-1">
+              <div class="bg-purple-50/70 p-3 rounded-lg border border-purple-200 text-xs">
+                <strong class="text-purple-950">Depth, Not Acceleration:</strong>
+                <p class="text-purple-900 mt-1">
                   Aria demonstrates depth within Stage 1 Part A through flexible partitioning and relational equality, without requiring Stage 2 vertical algorithms.
                 </p>
               </div>
@@ -311,12 +311,12 @@
       </div>
 
       <!-- SAMPLE 2 CONTENT (MARCUS K.) -->
-      <div id="grade-a-sample-2" class="subsample-content hidden">
+      <div id="grade-a-sample-2" data-mod-sample data-mod-level="Extensive" data-mod-student="Marcus K." data-mod-open="switchTab('grade-a');switchSubSample('grade-a','sample-2')" class="subsample-content hidden">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
-            <div class="bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+            <div class="mod-neutral bg-purple-100/70 border-b border-purple-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
               <span class="font-bold text-slate-800">ASSESSMENT RECORD • YEAR 1</span>
-              <span>Marcus K. • Extensive Sample 2</span>
+              <span class="mod-decision">Marcus K. • Extensive Sample 2</span>
             </div>
 
             <div class="p-6 sm:p-8 exercise-grid relative min-h-[720px]">
@@ -329,7 +329,7 @@
                     <p class="font-hand-a text-base text-slate-600">Open Number Line Strategy</p>
                   </div>
                   <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">
-                    VERY HIGH COMPETENCE
+                    SUPER STRATEGY!
                   </div>
                 </div>
 
@@ -351,14 +351,14 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5 space-y-5">
+          <div class="mod-decision lg:col-span-5 space-y-5">
             <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
               <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
                 <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
-                  <h3 class="text-lg font-bold text-slate-900 mt-1">Grade A (Marcus K.)</h3>
+                  <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2 py-0.5 rounded">Sample 2 Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Extensive (Marcus K.)</h3>
                 </div>
-                <span class="text-3xl font-black text-emerald-600">A</span>
+                <span class="text-base font-black uppercase tracking-wide text-purple-600">Extensive</span>
               </div>
               <div class="text-xs text-slate-700 space-y-3">
                 <p>
@@ -372,72 +372,773 @@
 
     </div>
 
-    <!-- GRADE B, C, D, E & MATRIX (Standardised & Complete) -->
-    <!-- (Retains full interactive tab navigation and sub-sample toggles) -->
-    <div id="grade-b-view" class="tab-content hidden space-y-6">
-      <div class="bg-sky-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex justify-between items-center border-l-8 border-sky-400">
+
+    <!-- ========================================================================= -->
+    <!-- THOROUGH ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-b-view" data-mod-group class="tab-content hidden space-y-6">
+
+      <div class="mod-gdecision bg-emerald-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-emerald-400">
         <div>
-          <h2 class="text-2xl font-black">Grade B: Thorough Achievement</h2>
-          <p class="text-sm text-sky-100 mt-1">Applies thorough knowledge and skills to <em>familiar situations</em> with high competence (Linear bead-string grouping and structured repeated subtraction).</p>
+          <div class="flex items-center gap-2 text-emerald-200 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-emerald-900 px-2.5 py-0.5 rounded border border-emerald-600">Stage 1 Part A (Year 1)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Thorough Achievement</h2>
+          <p class="text-sm text-emerald-50 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Applies thorough knowledge and understanding to <em>most situations</em> with a high level of competence: groups addends into tens with known bonds (8 + 2, 5 + 5), subtracts 8 by splitting it into parts (30 − 5 − 3), records accurate number sentences and explains the strategy clearly.
+          </p>
         </div>
-        <div class="text-2xl font-black bg-sky-950 px-4 py-2 rounded">Thorough (B)</div>
+        <div class="bg-emerald-950/80 px-4 py-3 rounded-lg border border-emerald-700/60 text-center">
+          <div class="text-xs uppercase text-emerald-200 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Thorough</div>
+          <div class="text-xs text-emerald-200">High Competence</div>
+        </div>
       </div>
-      <div class="p-6 bg-white rounded-xl border border-slate-200">
-        <p class="font-hand-b text-lg text-slate-800">Benjamin & Sophie demonstrate fluent number bonds (5 + 5 = 10, 8 + 2 = 10) and structured chunked subtraction (30 - 5 = 25; 25 - 3 = 22) with clear mathematical explanations.</p>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="mod-gdecision flex items-center justify-between bg-emerald-50/80 p-2.5 rounded-xl border border-emerald-200">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-emerald-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-b', 'sample-1')" id="subtab-grade-b-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-sm transition">
+            Sample 1: Benjamin T. (Bead String Groups & Split Subtraction)
+          </button>
+          <button onclick="switchSubSample('grade-b', 'sample-2')" id="subtab-grade-b-sample-2" class="subtab-btn  px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-emerald-900 border border-emerald-300 hover:bg-emerald-100 transition">
+            Sample 2: Sophie L. (Two Tens & Number Line Jumps)
+          </button>
+        </div>
+        <span class="text-xs text-emerald-800 font-mono hidden md:inline">2 Evidence Modalities</span>
       </div>
+
+      <!-- SAMPLE 1 CONTENT (BENJAMIN T.) -->
+      <div id="grade-b-sample-1" data-mod-sample data-mod-level="Thorough" data-mod-student="Benjamin T." data-mod-open="switchTab('grade-b');switchSubSample('grade-b','sample-1')" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">CLASS WORK • YEAR 1</span>
+              <span class="mod-decision">Benjamin T. • Thorough Sample 1</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[560px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-b text-2xl font-bold text-slate-900">Benjamin's Toy Box</h3>
+                    <p class="font-hand-b text-base text-slate-600">Benjamin T. (Year 1)</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">GREAT THINKING!</div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. My 30 Items</h4>
+                    <span class="teacher-mark font-teacher text-lg text-sky-700 font-bold">✓ Groups into tens</span>
+                  </div>
+                  <div class="font-hand-b text-lg text-slate-800 space-y-1"><div class="space-y-1"><p>• Jump Rope pack = 10</p><p>• Skipping Ball pack = 8 + Beanbag pack = 2 <span class="text-sky-700 font-bold">→ 10</span></p><p>• Handball pack = 5 + Chalk pack = 5 <span class="text-sky-700 font-bold">→ 10</span></p></div><div class="flex flex-wrap gap-1 my-2" aria-label="Bead string of 30 in three tens"><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-rose-400"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-rose-400"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-rose-400"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-rose-400"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-rose-400"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-rose-400"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-rose-400"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-rose-400"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-rose-400"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-rose-400"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span><span class="w-3.5 h-3.5 rounded-full inline-block bg-sky-600"></span></div><p class="font-bold">10 + 10 + 10 = 30</p></div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Challenge: 8 items got wet</h4>
+                    <span class="teacher-mark font-teacher text-lg text-sky-700 font-bold">✓ Partitions 8</span>
+                  </div>
+                  <div class="font-hand-b text-lg text-slate-800 space-y-1"><p class="font-bold">30 − 8 = 22</p><p>"I split 8 into 5 and 3. 30 take away 5 is 25. 25 take away 3 is 22."</p><p class="text-slate-600">30 − 5 = 25 &nbsp; 25 − 3 = 22</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Scribing (Check):
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"When asked how he could check, Benjamin said: 'If I put the 8 wet ones back with the 22, I get 30 again.' He wrote 22 + 8 = 30 after the question was asked."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Benjamin T.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-emerald-600">Thorough</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Combining & Separating Quantities (MA1-CSQ-01)
+                  </div>
+                  <p><strong>Thorough:</strong> Applies thorough knowledge and understanding to most situations by grouping addends into tens with known bonds (8 + 2 = 10, 5 + 5 = 10) and subtracting 8 by partitioning it into 5 and 3 rather than counting back by ones.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Thorough:</strong> Records accurate number sentences and explains his strategy clearly. Checks with the inverse (22 + 8 = 30) when prompted, rather than independently.</p>
+                </div>
+              </div>
+              <div class="bg-emerald-50/70 p-3 rounded-lg border border-emerald-200 text-xs">
+                <strong class="text-emerald-950">Thorough, Not Extensive:</strong>
+                <p class="text-emerald-900 mt-1">Benjamin uses efficient known facts with a high level of competence, but needs a prompt to connect addition and subtraction; Aria and Marcus make that connection themselves and use it to solve the challenge.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (SOPHIE L.) -->
+      <div id="grade-b-sample-2" data-mod-sample data-mod-level="Thorough" data-mod-student="Sophie L." data-mod-open="switchTab('grade-b');switchSubSample('grade-b','sample-2')" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-emerald-100/70 border-b border-emerald-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">ASSESSMENT RECORD • YEAR 1</span>
+              <span class="mod-decision">Sophie L. • Thorough Sample 2</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[560px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-b text-2xl font-bold text-slate-900">Sophie's Toy Box</h3>
+                    <p class="font-hand-b text-base text-slate-600">Empty Number Line</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">SUPER!</div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. My 30 Items</h4>
+                    <span class="teacher-mark font-teacher text-lg text-sky-700 font-bold">✓ Doubles 5 + 5</span>
+                  </div>
+                  <div class="font-hand-b text-lg text-slate-800 space-y-1"><p>2 Jump Rope packs = 10 + 10 = 20</p><p>1 Handball pack + 1 Chalk pack = 5 + 5 = 10</p><p class="font-bold">20 + 10 = 30 ✓</p></div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Challenge: 30 − 8</h4>
+                    <span class="teacher-mark font-teacher text-lg text-sky-700 font-bold">✓ Bridges through 25</span>
+                  </div>
+                  <div class="font-hand-b text-lg text-slate-800 space-y-1"><svg viewBox="0 0 300 70" class="w-full max-w-sm" role="img" aria-label="Number line jumping back 5 from 30 to 25 then 3 to 22"><line x1="10" y1="50" x2="290" y2="50" stroke="#334155" stroke-width="2"/><path d="M270 48 Q230 8 190 48" fill="none" stroke="#0284c7" stroke-width="2"/><path d="M190 48 Q166 20 142 48" fill="none" stroke="#0284c7" stroke-width="2"/><text x="230" y="20" font-family="Comic Neue" font-size="13" fill="#0369a1">−5</text><text x="160" y="28" font-family="Comic Neue" font-size="13" fill="#0369a1">−3</text><text x="262" y="66" font-family="Comic Neue" font-size="13">30</text><text x="182" y="66" font-family="Comic Neue" font-size="13">25</text><text x="134" y="66" font-family="Comic Neue" font-size="13">22</text></svg><p class="font-bold">30 − 8 = 22</p><p>"I jumped back 5 to get to 25 because that is easy, then 3 more."</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Observation:
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Sophie chose the jumps herself. Asked if there was another way, she said: '8 is 10 take away 2… I'm not sure.' She did not use the idea to solve the problem."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Sophie L.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-emerald-600">Thorough</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Combining & Separating Quantities (MA1-CSQ-01)
+                  </div>
+                  <p><strong>Thorough:</strong> Applies thorough knowledge and understanding to most situations by using doubles (5 + 5) and tens to make 30, and an empty number line with a convenient jump to 25 to find 30 − 8 accurately.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Thorough:</strong> Explains why she chose each jump. Begins to consider a compensation strategy but does not yet apply it, which places the work below Extensive.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div id="grade-c-view" class="tab-content hidden space-y-6">
-      <div class="bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex justify-between items-center border-l-8 border-amber-400">
+    <!-- ========================================================================= -->
+    <!-- SOUND ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-c-view" data-mod-group class="tab-content hidden space-y-6">
+
+      <div class="mod-gdecision bg-blue-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-blue-400">
         <div>
-          <h2 class="text-2xl font-black">Grade C: Sound Achievement</h2>
-          <p class="text-sm text-amber-100 mt-1">Demonstrates sound knowledge and skills, relying on taught routines, ten-frames, and direct recounting. Adequate competence.</p>
+          <div class="flex items-center gap-2 text-blue-200 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-blue-900 px-2.5 py-0.5 rounded border border-blue-600">Stage 1 Part A (Year 1)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Sound Achievement</h2>
+          <p class="text-sm text-blue-50 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Demonstrates sound knowledge and understanding of the main areas of content with an adequate level of competence: reaches exactly 30 using taught routines (ten-frames, counting by tens), finds 30 − 8 by counting back or crossing out and recounting, and explains thinking simply when prompted.
+          </p>
         </div>
-        <div class="text-2xl font-black bg-amber-950 px-4 py-2 rounded">Sound (C)</div>
+        <div class="bg-blue-950/80 px-4 py-3 rounded-lg border border-blue-700/60 text-center">
+          <div class="text-xs uppercase text-blue-200 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Sound</div>
+          <div class="text-xs text-blue-200">Adequate Competence</div>
+        </div>
       </div>
-      <div class="p-6 bg-white rounded-xl border border-slate-200">
-        <p class="font-hand-c text-lg text-slate-800">Chloe & Liam compose 30 by filling ten-frames in 5s and 10s. For the subtraction prompt (30 - 8 = 22), they cross out dots and recount by ones, meeting core outcomes with adequate competence.</p>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="mod-gdecision flex items-center justify-between bg-blue-50/80 p-2.5 rounded-xl border border-blue-200">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-blue-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-c', 'sample-1')" id="subtab-grade-c-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-700 text-white shadow-sm transition">
+            Sample 1: Chloe S. (Ten-Frames & Cross Out and Recount)
+          </button>
+          <button onclick="switchSubSample('grade-c', 'sample-2')" id="subtab-grade-c-sample-2" class="subtab-btn  px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-blue-900 border border-blue-300 hover:bg-blue-100 transition">
+            Sample 2: Liam P. (Three Tens & Counting Back by Ones)
+          </button>
+        </div>
+        <span class="text-xs text-blue-800 font-mono hidden md:inline">2 Evidence Modalities</span>
       </div>
+
+      <!-- SAMPLE 1 CONTENT (CHLOE S.) -->
+      <div id="grade-c-sample-1" data-mod-sample data-mod-level="Sound" data-mod-student="Chloe S." data-mod-open="switchTab('grade-c');switchSubSample('grade-c','sample-1')" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-blue-100/70 border-b border-blue-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">CLASS WORK • YEAR 1</span>
+              <span class="mod-decision">Chloe S. • Sound Sample 1</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[560px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Chloe's Toy Box</h3>
+                    <p class="font-hand-c text-base text-slate-600">Chloe S. (Year 1)</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">WELL DONE</div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. My 30 Items (ten-frames)</h4>
+                    <span class="teacher-mark font-teacher text-lg text-amber-700 font-bold">✓ Fills each frame</span>
+                  </div>
+                  <div class="font-hand-c text-lg text-slate-800 space-y-1"><div class="flex flex-wrap gap-3"><div class="grid grid-cols-5 gap-0.5 p-1 border-2 border-slate-500 bg-white"><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span></div><div class="grid grid-cols-5 gap-0.5 p-1 border-2 border-slate-500 bg-white"><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span><span class="w-3.5 h-3.5 rounded-full bg-sky-500"></span><span class="w-3.5 h-3.5 rounded-full bg-sky-500"></span><span class="w-3.5 h-3.5 rounded-full bg-sky-500"></span><span class="w-3.5 h-3.5 rounded-full bg-sky-500"></span><span class="w-3.5 h-3.5 rounded-full bg-sky-500"></span></div><div class="grid grid-cols-5 gap-0.5 p-1 border-2 border-slate-500 bg-white"><span class="w-3.5 h-3.5 rounded-full bg-rose-500"></span><span class="w-3.5 h-3.5 rounded-full bg-rose-500"></span><span class="w-3.5 h-3.5 rounded-full bg-rose-500"></span><span class="w-3.5 h-3.5 rounded-full bg-rose-500"></span><span class="w-3.5 h-3.5 rounded-full bg-rose-500"></span><span class="w-3.5 h-3.5 rounded-full bg-rose-500"></span><span class="w-3.5 h-3.5 rounded-full bg-rose-500"></span><span class="w-3.5 h-3.5 rounded-full bg-rose-500"></span><span class="w-3.5 h-3.5 rounded-full bg-emerald-500"></span><span class="w-3.5 h-3.5 rounded-full bg-emerald-500"></span></div></div><p>Jump Rope 10. Handball 5 and Chalk 5. Skipping Ball 8 and Beanbag 2.</p><p class="font-bold">10, 20, 30. I have 30!</p></div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Challenge: 8 got wet</h4>
+                    <span class="teacher-mark font-teacher text-lg text-amber-700 font-bold">✓ Correct answer</span>
+                  </div>
+                  <div class="font-hand-c text-lg text-slate-800 space-y-1"><div class="grid grid-cols-5 gap-0.5 p-1 border-2 border-slate-500 bg-white w-max"><span class="w-3.5 h-3.5 rounded-full bg-rose-200 text-rose-900 text-[10px] leading-[14px] text-center font-bold">×</span><span class="w-3.5 h-3.5 rounded-full bg-rose-200 text-rose-900 text-[10px] leading-[14px] text-center font-bold">×</span><span class="w-3.5 h-3.5 rounded-full bg-rose-200 text-rose-900 text-[10px] leading-[14px] text-center font-bold">×</span><span class="w-3.5 h-3.5 rounded-full bg-rose-200 text-rose-900 text-[10px] leading-[14px] text-center font-bold">×</span><span class="w-3.5 h-3.5 rounded-full bg-rose-200 text-rose-900 text-[10px] leading-[14px] text-center font-bold">×</span><span class="w-3.5 h-3.5 rounded-full bg-rose-200 text-rose-900 text-[10px] leading-[14px] text-center font-bold">×</span><span class="w-3.5 h-3.5 rounded-full bg-rose-200 text-rose-900 text-[10px] leading-[14px] text-center font-bold">×</span><span class="w-3.5 h-3.5 rounded-full bg-rose-200 text-rose-900 text-[10px] leading-[14px] text-center font-bold">×</span><span class="w-3.5 h-3.5 rounded-full bg-emerald-500"></span><span class="w-3.5 h-3.5 rounded-full bg-emerald-500"></span></div><p>I crossed out 8. Then I counted the dots left: 1, 2, 3 … 22.</p><p class="font-bold">30 − 8 = 22</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Scribing (Prompted):
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Asked to explain, Chloe said: 'I took 8 away and counted what was left.' She recounted all 22 remaining dots by ones rather than using the two full tens."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Chloe S.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-blue-600">Sound</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                    Combining & Separating Quantities (MA1-CSQ-01)
+                  </div>
+                  <p><strong>Sound:</strong> Demonstrates sound knowledge and understanding of the main areas of content by composing exactly 30 with ten-frames and counting by tens, and by finding 30 − 8 = 22 through crossing out and recounting by ones.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Sound:</strong> Uses taught routines accurately with an adequate level of competence. Explains thinking simply when prompted; does not use known facts to work more efficiently.</p>
+                </div>
+              </div>
+              <div class="bg-blue-50/70 p-3 rounded-lg border border-blue-200 text-xs">
+                <strong class="text-blue-950">Sound, Not Thorough:</strong>
+                <p class="text-blue-900 mt-1">Chloe reaches the correct answers using taught routines but recounts collections by ones; Benjamin and Sophie use known bonds and partitioning to avoid recounting.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (LIAM P.) -->
+      <div id="grade-c-sample-2" data-mod-sample data-mod-level="Sound" data-mod-student="Liam P." data-mod-open="switchTab('grade-c');switchSubSample('grade-c','sample-2')" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-blue-100/70 border-b border-blue-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">ASSESSMENT RECORD • YEAR 1</span>
+              <span class="mod-decision">Liam P. • Sound Sample 2</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[560px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-c text-2xl font-bold text-slate-900">Liam's Toy Box</h3>
+                    <p class="font-hand-c text-base text-slate-600">Number Track</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">GOOD WORK</div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. My 30 Items</h4>
+                    <span class="teacher-mark font-teacher text-lg text-amber-700 font-bold">✓ Counts by tens</span>
+                  </div>
+                  <div class="font-hand-c text-lg text-slate-800 space-y-1"><p>3 Jump Rope packs</p><p>10 + 10 + 10 = 30</p><p class="text-slate-600">"10, 20, 30."</p></div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Challenge: 30 − 8</h4>
+                    <span class="teacher-mark font-teacher text-lg text-amber-700 font-bold">✓ Keeps track on fingers</span>
+                  </div>
+                  <div class="font-hand-c text-lg text-slate-800 space-y-1"><div class="flex flex-wrap gap-1"><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-white">20</span><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-white">21</span><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-amber-100">22</span><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-amber-100">23</span><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-amber-100">24</span><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-amber-100">25</span><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-amber-100">26</span><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-amber-100">27</span><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-amber-100">28</span><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-amber-100">29</span><span class="w-7 h-7 border border-slate-400 rounded text-xs flex items-center justify-center bg-white">30</span></div><p>"I started on 30 and went back 8: 29, 28, 27, 26, 25, 24, 23, 22."</p><p class="font-bold">30 − 8 = 22</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Observation:
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Liam counted back on a number track, raising a finger for each count. He chose three identical packs to avoid adding different amounts. When asked for another way, he said he would 'count again'."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Liam P.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-blue-600">Sound</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                    Combining & Separating Quantities (MA1-CSQ-01)
+                  </div>
+                  <p><strong>Sound:</strong> Demonstrates sound knowledge and understanding of the main areas of content by counting by tens to make 30 and by counting back by ones on a number track to find 30 − 8 = 22 accurately.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Sound:</strong> Chooses a familiar, safe combination and applies taught counting routines with an adequate level of competence. Describes his method in everyday language.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div id="grade-d-view" class="tab-content hidden space-y-6">
-      <div class="bg-orange-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex justify-between items-center border-l-8 border-orange-400">
+    <!-- ========================================================================= -->
+    <!-- BASIC ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-d-view" data-mod-group class="tab-content hidden space-y-6">
+
+      <div class="mod-gdecision bg-amber-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-amber-400">
         <div>
-          <h2 class="text-2xl font-black">Grade D: Basic Achievement</h2>
-          <p class="text-sm text-orange-100 mt-1">Demonstrates basic knowledge and skills with limited competence; requires teacher scaffolding, overshoots targets (33), or displays run-on equals sign misconceptions.</p>
+          <div class="flex items-center gap-2 text-amber-200 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-amber-900 px-2.5 py-0.5 rounded border border-amber-600">Stage 1 Part A (Year 1)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Basic Achievement</h2>
+          <p class="text-sm text-amber-50 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Demonstrates basic knowledge and understanding with a limited level of competence: needs prompting to reach exactly 30 (overshoots to 33), relies on counting by ones, records run-on number sentences and makes tracking errors when counting back.
+          </p>
         </div>
-        <div class="text-2xl font-black bg-orange-950 px-4 py-2 rounded">Basic (D)</div>
+        <div class="bg-amber-950/80 px-4 py-3 rounded-lg border border-amber-700/60 text-center">
+          <div class="text-xs uppercase text-amber-200 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Basic</div>
+          <div class="text-xs text-amber-200">Limited Competence</div>
+        </div>
       </div>
-      <div class="p-6 bg-white rounded-xl border border-slate-200">
-        <p class="font-hand-d text-lg text-slate-800">Daniel & Mia write run-on equations (10 + 10 = 20 + 8 = 28…) and count back on fingers with tracking errors, requiring continuous teacher prompts.</p>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="mod-gdecision flex items-center justify-between bg-amber-50/80 p-2.5 rounded-xl border border-amber-200">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-amber-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-d', 'sample-1')" id="subtab-grade-d-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-700 text-white shadow-sm transition">
+            Sample 1: Daniel K. (Overshoot to 33 & Run-on Equals)
+          </button>
+          <button onclick="switchSubSample('grade-d', 'sample-2')" id="subtab-grade-d-sample-2" class="subtab-btn  px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-amber-900 border border-amber-300 hover:bg-amber-100 transition">
+            Sample 2: Mia B. (Tallies & Counters with Support)
+          </button>
+        </div>
+        <span class="text-xs text-amber-800 font-mono hidden md:inline">2 Evidence Modalities</span>
       </div>
+
+      <!-- SAMPLE 1 CONTENT (DANIEL K.) -->
+      <div id="grade-d-sample-1" data-mod-sample data-mod-level="Basic" data-mod-student="Daniel K." data-mod-open="switchTab('grade-d');switchSubSample('grade-d','sample-1')" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">CLASS WORK • YEAR 1</span>
+              <span class="mod-decision">Daniel K. • Basic Sample 1</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[560px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-d text-2xl font-bold text-slate-900">Daniels toy box</h3>
+                    <p class="font-hand-d text-base text-slate-600">Daniel K. (Year 1)</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">KEEP TRYING</div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. My Items</h4>
+                    <span class="teacher-mark font-teacher text-lg text-orange-700 font-bold">Run-on = sign</span>
+                  </div>
+                  <div class="font-hand-d text-lg text-slate-800 space-y-1"><p>Jump Rope 10, Skipping Ball 8, Handball 5, Chalk 5, Handball 5</p><p class="line-through text-slate-500">10 + 8 = 18 + 5 = 23 + 5 = 28 + 5 = 33</p><p class="text-slate-700">(after teacher asked "Is that 30?") took a Handball off, added a Beanbag:</p><p class="font-bold">10 + 8 = 18 + 5 = 23 + 5 = 28 + 2 = 30</p></div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Challenge: 30 − 8</h4>
+                    <span class="teacher-mark font-teacher text-lg text-orange-700 font-bold">✗ Counted 30 as a step</span>
+                  </div>
+                  <div class="font-hand-d text-lg text-slate-800 space-y-1"><p>"30 … 29, 28, 27, 26, 25, 24, 23."</p><p class="font-bold">30 − 8 = 23</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Scribing (Supported):
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Daniel counted on by ones using his fingers to add each pack. He did not notice the total of 33 was too many until prompted. Counting back, he said '30' as his first count and finished on 23."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Daniel K.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-amber-600">Basic</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                    Combining & Separating Quantities (MA1-CSQ-01)
+                  </div>
+                  <p><strong>Basic:</strong> Demonstrates basic knowledge and understanding with a limited level of competence. Overshoots the target (33) and needs a prompt to adjust; counts on and back by ones and makes a tracking error (30 − 8 = 23).</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Basic:</strong> Records a run-on number sentence (10 + 8 = 18 + 5 = 23 …), showing the equals sign read as 'makes the answer' rather than 'is the same as'. Relies on teacher questioning to check work.</p>
+                </div>
+              </div>
+              <div class="bg-amber-50/70 p-3 rounded-lg border border-amber-200 text-xs">
+                <strong class="text-amber-950">Basic, Not Sound:</strong>
+                <p class="text-amber-900 mt-1">Liam and Chloe reach both answers accurately with taught routines; Daniel needs prompting to reach 30 and his counting-back answer is incorrect.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (MIA B.) -->
+      <div id="grade-d-sample-2" data-mod-sample data-mod-level="Basic" data-mod-student="Mia B." data-mod-open="switchTab('grade-d');switchSubSample('grade-d','sample-2')" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-amber-100/70 border-b border-amber-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">ASSESSMENT RECORD • YEAR 1</span>
+              <span class="mod-decision">Mia B. • Basic Sample 2</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[560px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-hand-d text-2xl font-bold text-slate-900">Mia toy box</h3>
+                    <p class="font-hand-d text-base text-slate-600">Tally Marks</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">GOOD TRY</div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. My Items</h4>
+                    <span class="teacher-mark font-teacher text-lg text-orange-700 font-bold">Counts by ones</span>
+                  </div>
+                  <div class="font-hand-d text-lg text-slate-800 space-y-1"><p class="tracking-widest">|||| |||| (Jump Rope)</p><p class="tracking-widest">|||| ||| (Skipping Ball)</p><p class="tracking-widest">|||| |||| ||| (?)</p><p class="text-slate-700">Counted all tallies by ones: 31. Recounted with teacher, crossing each off: 30.</p></div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Challenge: 30 − 8</h4>
+                    <span class="teacher-mark font-teacher text-lg text-orange-700 font-bold">Needs support</span>
+                  </div>
+                  <div class="font-hand-d text-lg text-slate-800 space-y-1"><p>Used 30 counters. Teacher helped her take 8 away one at a time.</p><p class="font-bold">22</p><p class="text-slate-600">(no number sentence written)</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Running Record:
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Mia drew tallies for each pack but did not group them in fives or tens. With counters and adult guidance she removed 8 and counted 22 by ones. Unable to say a number sentence for what she did."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Mia B.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-amber-600">Basic</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                    Combining & Separating Quantities (MA1-CSQ-01)
+                  </div>
+                  <p><strong>Basic:</strong> Demonstrates basic knowledge and understanding with a limited level of competence. Reaches 30 only after a supported recount, and finds 30 − 8 with concrete materials and step-by-step adult guidance.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-amber-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Basic:</strong> Represents quantities with ungrouped tallies; does not record a number sentence and describes her thinking with gestures and single words.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div id="grade-e-view" class="tab-content hidden space-y-6">
-      <div class="bg-rose-900 text-white rounded-xl p-4 sm:p-5 shadow-md flex justify-between items-center border-l-8 border-rose-400">
+    <!-- ========================================================================= -->
+    <!-- ELEMENTARY ACHIEVEMENT (DUAL SAMPLES) -->
+    <!-- ========================================================================= -->
+    <div id="grade-e-view" data-mod-group class="tab-content hidden space-y-6">
+
+      <div class="mod-gdecision bg-rose-800 text-white rounded-xl p-4 sm:p-5 shadow-md flex flex-wrap items-center justify-between gap-4 border-l-8 border-rose-400">
         <div>
-          <h2 class="text-2xl font-black">Grade E: Elementary Achievement</h2>
-          <p class="text-sm text-rose-100 mt-1">Demonstrates elementary knowledge and skills in few areas; very limited competence; requires substantial direct 1:1 adult assistance.</p>
+          <div class="flex items-center gap-2 text-rose-200 text-xs font-bold uppercase tracking-wider">
+            <span class="bg-rose-900 px-2.5 py-0.5 rounded border border-rose-600">Stage 1 Part A (Year 1)</span>
+            <span>2 Moderation Evidence Samples</span>
+          </div>
+          <h2 class="text-2xl font-black mt-1">Elementary Achievement</h2>
+          <p class="text-sm text-rose-50 max-w-3xl mt-1">
+            <strong>Key Differentiator:</strong> Demonstrates elementary knowledge and understanding in few areas of the content with very limited competence: counts small collections by ones with adult support, does not combine packs to make 30 and does not access the subtraction prompt.
+          </p>
         </div>
-        <div class="text-2xl font-black bg-rose-950 px-4 py-2 rounded">Elementary (E)</div>
+        <div class="bg-rose-950/80 px-4 py-3 rounded-lg border border-rose-700/60 text-center">
+          <div class="text-xs uppercase text-rose-200 font-semibold tracking-wider">Overall Assessment</div>
+          <div class="text-2xl font-black text-white">Elementary</div>
+          <div class="text-xs text-rose-200">Very Limited Competence</div>
+        </div>
       </div>
-      <div class="p-6 bg-white rounded-xl border border-slate-200">
-        <p class="font-teacher text-lg text-slate-800">Eli & Noah require direct physical modeling with Unifix blocks, demonstrate inconsistent counting past 5, and do not access the subtraction challenge.</p>
+
+      <!-- Sub-Sample Selector Sub-Bar -->
+      <div class="mod-gdecision flex items-center justify-between bg-rose-50/80 p-2.5 rounded-xl border border-rose-200">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-rose-950 uppercase tracking-wider pl-2">Select Student Sample:</span>
+          <button onclick="switchSubSample('grade-e', 'sample-1')" id="subtab-grade-e-sample-1" class="subtab-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-700 text-white shadow-sm transition">
+            Sample 1: Eli W. (Unifix Blocks with Adult Modelling)
+          </button>
+          <button onclick="switchSubSample('grade-e', 'sample-2')" id="subtab-grade-e-sample-2" class="subtab-btn  px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-rose-900 border border-rose-300 hover:bg-rose-100 transition">
+            Sample 2: Noah J. (Drawing & Matching Numeral 10)
+          </button>
+        </div>
+        <span class="text-xs text-rose-800 font-mono hidden md:inline">2 Evidence Modalities</span>
       </div>
+
+      <!-- SAMPLE 1 CONTENT (ELI W.) -->
+      <div id="grade-e-sample-1" data-mod-sample data-mod-level="Elementary" data-mod-student="Eli W." data-mod-open="switchTab('grade-e');switchSubSample('grade-e','sample-1')" class="subsample-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-rose-100/70 border-b border-rose-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">RUNNING RECORD • YEAR 1</span>
+              <span class="mod-decision">Eli W. • Elementary Sample 1</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[560px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-teacher text-2xl font-bold text-slate-900">Eli</h3>
+                    <p class="font-teacher text-base text-slate-600">Teacher-scribed observation</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">WELL DONE ELI</div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Choosing Items</h4>
+                    <span class="teacher-mark font-teacher text-lg text-rose-700 font-bold">Counts to 12</span>
+                  </div>
+                  <div class="font-teacher text-lg text-slate-800 space-y-1"><p>Eli pointed to the Jump Rope pack and the Handball pack.</p><p>"That one and that one. It's lots."</p><div class="flex gap-0.5 my-2"><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span><span class="w-4 h-6 bg-rose-400 border border-rose-600 inline-block"></span></div><p class="text-slate-600">(counted Unifix blocks to 12 with one-to-one matching, then lost track)</p></div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Challenge: 30 − 8</h4>
+                    
+                  </div>
+                  <div class="font-teacher text-lg text-slate-800 space-y-1"><p class="text-slate-600">Not attempted.</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Running Record:
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"With the teacher building a tower of 10, Eli counted it correctly. He could not join the 10 and 5 packs to find a total and did not attempt to make 30. The subtraction prompt was not accessed."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Eli W.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-rose-600">Elementary</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-rose-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-rose-600"></i>
+                    Combining & Separating Quantities (MA1-CSQ-01)
+                  </div>
+                  <p><strong>Elementary:</strong> Demonstrates elementary knowledge and understanding in few areas of the content. Counts a collection to 12 with one-to-one correspondence when supported; does not combine quantities to make 30.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-rose-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-rose-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Elementary:</strong> Very limited competence in the processes and skills. Communicates choices by pointing and short phrases with direct 1:1 adult modelling.</p>
+                </div>
+              </div>
+              <div class="bg-rose-50/70 p-3 rounded-lg border border-rose-200 text-xs">
+                <strong class="text-rose-950">Elementary, Not Basic:</strong>
+                <p class="text-rose-900 mt-1">Daniel and Mia combine quantities to 30 and attempt the subtraction with support; Eli does not combine quantities or access the subtraction prompt.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE 2 CONTENT (NOAH J.) -->
+      <div id="grade-e-sample-2" data-mod-sample data-mod-level="Elementary" data-mod-student="Noah J." data-mod-open="switchTab('grade-e');switchSubSample('grade-e','sample-2')" class="subsample-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-[#fffdfa] rounded-2xl shadow-xl border border-slate-300 overflow-hidden relative">
+            <div class="mod-neutral bg-rose-100/70 border-b border-rose-200 px-5 py-2.5 flex items-center justify-between text-xs text-slate-600 font-mono">
+              <span class="font-bold text-slate-800">RUNNING RECORD • YEAR 1</span>
+              <span class="mod-decision">Noah J. • Elementary Sample 2</span>
+            </div>
+            <div class="p-6 sm:p-8 exercise-grid relative min-h-[560px]">
+              <div class="absolute top-0 bottom-0 left-12 sm:left-14 red-margin pointer-events-none z-10"></div>
+              <div class="pl-8 sm:pl-10 space-y-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-teacher text-2xl font-bold text-slate-900">Noah</h3>
+                    <p class="font-teacher text-base text-slate-600">Drawing of balls</p>
+                  </div>
+                  <div class="teacher-mark rubber-stamp font-stamp text-xs sm:text-sm">LOVELY DRAWING</div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">1. Choosing Items</h4>
+                    <span class="teacher-mark font-teacher text-lg text-rose-700 font-bold">Matches 10</span>
+                  </div>
+                  <div class="font-teacher text-lg text-slate-800 space-y-1"><div class="flex flex-wrap gap-1 my-1"><span class="w-5 h-5 rounded-full border-2 border-slate-700 inline-block"></span><span class="w-5 h-5 rounded-full border-2 border-slate-700 inline-block"></span><span class="w-5 h-5 rounded-full border-2 border-slate-700 inline-block"></span><span class="w-5 h-5 rounded-full border-2 border-slate-700 inline-block"></span><span class="w-5 h-5 rounded-full border-2 border-slate-700 inline-block"></span><span class="w-5 h-5 rounded-full border-2 border-slate-700 inline-block"></span><span class="w-5 h-5 rounded-full border-2 border-slate-700 inline-block"></span></div><p>Noah drew 7 balls. With his teacher he matched the numeral card <strong>10</strong> to the Jump Rope pack.</p></div>
+                </div>
+                <div class="bg-white/90 p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">2. Challenge: 30 − 8</h4>
+                    
+                  </div>
+                  <div class="font-teacher text-lg text-slate-800 space-y-1"><p class="text-slate-600">Not attempted.</p></div>
+                </div>
+                <div class="sticky-note bg-sky-100 p-4 rounded-xl border border-sky-300 shadow-sm space-y-1 text-slate-900">
+                  <div class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+                    <i data-lucide="mic" class="w-4 h-4 text-sky-800"></i> Teacher Running Record:
+                  </div>
+                  <p class="font-teacher text-lg text-slate-800 leading-snug">"Noah counted his drawn balls to 7 with one-to-one correspondence while the teacher pointed. He did not attempt to combine packs or explain a total, and needed continuous direction to stay on task."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-decision lg:col-span-5 space-y-5">
+            <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-5 space-y-4">
+              <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Moderation Rationale</span>
+                  <h3 class="text-lg font-bold text-slate-900 mt-1">Noah J.</h3>
+                </div>
+                <span class="text-base font-black uppercase tracking-wide text-rose-600">Elementary</span>
+              </div>
+              <div class="space-y-3 text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-rose-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-rose-600"></i>
+                    Combining & Separating Quantities (MA1-CSQ-01)
+                  </div>
+                  <p><strong>Elementary:</strong> Demonstrates elementary knowledge and understanding in few areas of the content. Counts small collections with support and matches a numeral to a pack; does not combine or separate quantities.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-rose-950 flex items-center gap-1.5 mb-1">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-rose-600"></i>
+                    Working Mathematically (MAO-WM-01)
+                  </div>
+                  <p><strong>Elementary:</strong> Very limited competence in some of the processes and skills; represents items by drawing but does not record numbers or number sentences.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div id="matrix-view" class="tab-content hidden space-y-6">
-      <div class="bg-indigo-950 text-white rounded-xl p-5 shadow-lg flex justify-between items-center border-l-8 border-indigo-400">
+    <div id="matrix-view" class="mod-matrix tab-content hidden space-y-6">
+      <div class="bg-indigo-950 text-white rounded-xl p-5 shadow-lg flex flex-wrap gap-3 justify-between items-center border-l-8 border-indigo-400">
         <div>
-          <h2 class="text-2xl font-black">Stage 1 Mathematics Moderation Matrix (All 5 Grades)</h2>
-          <p class="text-sm text-indigo-200">The Community Playground Toy Box Challenge • Combining & Separating Quantities</p>
+          <h2 class="text-2xl font-black">Stage 1 Mathematics Moderation Matrix (All 5 Levels)</h2>
+          <p class="text-sm text-indigo-200">The Community Playground Toy Box Challenge • Combining &amp; Separating Quantities (MA1-CSQ-01, MAO-WM-01)</p>
         </div>
-        <button onclick="window.print()" class="px-3 py-2 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold flex items-center gap-2">
-          <i data-lucide="printer" class="w-4 h-4"></i> Print Matrix
-        </button>
       </div>
-      <div class="p-4 bg-white rounded-xl border border-slate-200 text-xs">
-        <p>Comparative moderation data across all 5 grade levels is ready for stage meeting analysis and printable A4 reporting.</p>
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-x-auto">
+        <table class="w-full text-xs min-w-[900px]">
+          <thead><tr class="bg-slate-900 text-white"><th class="p-3 text-left w-1/6">Evidence</th><th class="p-3 font-bold bg-purple-950/80 text-purple-200 border-l border-slate-800 w-1/6">Extensive</th><th class="p-3 font-bold bg-emerald-950/80 text-emerald-200 border-l border-slate-800 w-1/6">Thorough</th><th class="p-3 font-bold bg-blue-950/80 text-blue-200 border-l border-slate-800 w-1/6">Sound</th><th class="p-3 font-bold bg-amber-950/80 text-amber-200 border-l border-slate-800 w-1/6">Basic</th><th class="p-3 font-bold bg-rose-950/80 text-rose-200 border-l border-slate-800 w-1/6">Elementary</th></tr></thead>
+          <tbody><tr class="border-t border-slate-200 align-top"><th class="p-3 text-left font-bold text-slate-900 bg-slate-50">Combining to make 30</th><td class="p-3 text-slate-700 border-l border-slate-200">Reorders addends into tens unprompted (8 + 2, 5 + 5) and records relational equality: 10 + (8 + 2) + (5 + 5) = 30.</td><td class="p-3 text-slate-700 border-l border-slate-200">Groups addends into tens using known bonds and doubles; records accurate number sentences.</td><td class="p-3 text-slate-700 border-l border-slate-200">Reaches 30 with taught routines: fills ten-frames, counts by tens or chooses identical packs.</td><td class="p-3 text-slate-700 border-l border-slate-200">Overshoots (33) and adjusts only when prompted; counts on by ones; run-on equals sign.</td><td class="p-3 text-slate-700 border-l border-slate-200">Counts small collections to 7–12 with support; does not combine packs to make 30.</td></tr><tr class="border-t border-slate-200 align-top"><th class="p-3 text-left font-bold text-slate-900 bg-slate-50">Separating: 30 − 8</th><td class="p-3 text-slate-700 border-l border-slate-200">Partitions 30 (20 + 10) or compensates (−10 + 2); connects to the fact family 22 + 8 = 30.</td><td class="p-3 text-slate-700 border-l border-slate-200">Partitions 8 into 5 and 3 and jumps on an empty number line (30 → 25 → 22).</td><td class="p-3 text-slate-700 border-l border-slate-200">Counts back by ones on a number track, or crosses out 8 and recounts the rest.</td><td class="p-3 text-slate-700 border-l border-slate-200">Counts back with a tracking error (30 − 8 = 23) or needs step-by-step adult support with counters.</td><td class="p-3 text-slate-700 border-l border-slate-200">Does not access the subtraction prompt.</td></tr><tr class="border-t border-slate-200 align-top"><th class="p-3 text-left font-bold text-slate-900 bg-slate-50">Working Mathematically (MAO-WM-01)</th><td class="p-3 text-slate-700 border-l border-slate-200">Justifies strategies with precise language; explains the equals sign as 'the same value as'.</td><td class="p-3 text-slate-700 border-l border-slate-200">Explains strategy choices clearly; checks with the inverse when prompted.</td><td class="p-3 text-slate-700 border-l border-slate-200">Explains taught routines simply when prompted, using everyday language.</td><td class="p-3 text-slate-700 border-l border-slate-200">Relies on teacher questioning; uses gestures and single words.</td><td class="p-3 text-slate-700 border-l border-slate-200">Communicates by pointing and short phrases with direct 1:1 modelling.</td></tr></tbody>
+        </table>
+      </div>
+      <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-xs text-indigo-950 space-y-1.5">
+        <p>&bull; <strong>Extensive vs Thorough:</strong> Aria and Marcus connect addition and subtraction themselves (fact families, compensation); Benjamin and Sophie use efficient known facts but need a prompt to make that connection.</p>
+        <p>&bull; <strong>Thorough vs Sound:</strong> Benjamin and Sophie partition and use known bonds; Chloe and Liam reach correct answers with taught counting routines and recounting by ones.</p>
+        <p>&bull; <strong>Sound vs Basic:</strong> Chloe and Liam are accurate and independent; Daniel and Mia need prompting to reach 30 and make counting errors or need adult support for 30 − 8.</p>
+        <p>&bull; <strong>Basic vs Elementary:</strong> Daniel and Mia combine quantities to 30 with support; Eli and Noah count small collections only and do not access the subtraction prompt.</p>
       </div>
     </div>
 
@@ -451,7 +1152,9 @@
         <button onclick="closeModal('task-brief-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <div class="space-y-3 text-xs sm:text-sm text-slate-700">
-        <p>Choose items from the Park Shop Menu to fill the Toy Box with exactly 30 items. Challenge: Solve 30 - 8 using flexible subtraction strategies.</p>
+        <p><strong>Scenario:</strong> The community playground needs a new toy box. Choose packs from the Park Shop Menu so the box holds <strong>exactly 30 items</strong>. Show how you worked out the total and write a number sentence.</p>
+        <p><strong>Park Shop Menu:</strong> Jump Rope pack (10) &bull; Skipping Ball pack (8) &bull; Handball pack (5) &bull; Chalk Set pack (5) &bull; Beanbag pack (2)</p>
+        <p><strong>Challenge prompt:</strong> Oh no! 8 items got wet in the rain and must be thrown away. How many items are left? Show a strategy that does not count back by ones if you can.</p>
       </div>
       <div class="flex justify-end pt-2">
         <button onclick="closeModal('task-brief-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
@@ -462,14 +1165,20 @@
   <div id="rubric-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
     <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b pb-3">
-        <h3 class="text-lg font-bold text-slate-900">NESA Common Grade Scale & Stage 1 Rubric</h3>
+        <h3 class="text-lg font-bold text-slate-900">Common Grade Scale &amp; Stage 1 Rubric</h3>
         <button onclick="closeModal('rubric-modal')" class="text-slate-400 hover:text-slate-700 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
-      <div class="space-y-3 text-xs text-slate-700">
+      <div class="space-y-2.5 text-xs text-slate-700">
         <div class="p-3 bg-amber-50 rounded border border-amber-300">
-          <strong>Key NESA Rubric Principle: Depth, Not Acceleration</strong>
-          <p class="mt-1">Grade A reflects applying extensive knowledge and skills of Stage 1 content to unfamiliar situations. It does not require content from Stage 2.</p>
+          <strong>Key principle: depth, not acceleration</strong>
+          <p class="mt-1">Extensive achievement reflects extensive knowledge and understanding of Stage 1 content, applied to new situations. It does not require content from Stage 2.</p>
         </div>
+        <div class="p-2.5 rounded bg-purple-50 border border-purple-200"><strong class="text-purple-900">Extensive:</strong> The student has an extensive knowledge and understanding of the content and can readily apply this knowledge. In addition, the student has achieved a very high level of competence in the processes and skills and can apply these skills to new situations.</div>
+        <div class="p-2.5 rounded bg-emerald-50 border border-emerald-200"><strong class="text-emerald-900">Thorough:</strong> The student has a thorough knowledge and understanding of the content and a high level of competence in the processes and skills. In addition, the student is able to apply this knowledge and these skills to most situations.</div>
+        <div class="p-2.5 rounded bg-blue-50 border border-blue-200"><strong class="text-blue-900">Sound:</strong> The student has a sound knowledge and understanding of the main areas of content and has achieved an adequate level of competence in the processes and skills.</div>
+        <div class="p-2.5 rounded bg-amber-50 border border-amber-200"><strong class="text-amber-900">Basic:</strong> The student has a basic knowledge and understanding of the content and has achieved a limited level of competence in the processes and skills.</div>
+        <div class="p-2.5 rounded bg-rose-50 border border-rose-200"><strong class="text-rose-900">Elementary:</strong> The student has an elementary knowledge and understanding in few areas of the content and has achieved very limited competence in some of the processes and skills.</div>
+        <p class="text-[11px] text-slate-500">NESA Common Grade Scale (Years 1–10). Judgements are made on balance across the whole task.</p>
       </div>
       <div class="flex justify-end pt-2">
         <button onclick="closeModal('rubric-modal')" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-slate-700">Close</button>
@@ -481,16 +1190,16 @@
     lucide.createIcons();
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-emerald-600', 'bg-emerald-50', 'text-emerald-900', 'border-sky-600', 'bg-sky-50', 'text-sky-900', 'border-amber-500', 'bg-amber-50', 'text-amber-900', 'border-orange-600', 'bg-orange-50', 'text-orange-900', 'border-rose-600', 'bg-rose-50', 'text-rose-900', 'border-indigo-600', 'bg-indigo-100'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'border-2', 'border-purple-600', 'border-purple-500', 'bg-purple-50', 'bg-purple-100', 'text-purple-900', 'text-purple-950', 'border-emerald-600', 'border-emerald-500', 'bg-emerald-50', 'bg-emerald-100', 'text-emerald-900', 'text-emerald-950', 'border-blue-600', 'border-blue-500', 'bg-blue-50', 'bg-blue-100', 'text-blue-900', 'text-blue-950', 'border-amber-600', 'border-amber-500', 'bg-amber-50', 'bg-amber-100', 'text-amber-900', 'text-amber-950', 'border-rose-600', 'border-rose-500', 'bg-rose-50', 'bg-rose-100', 'text-rose-900', 'text-rose-950', 'border-sky-600', 'border-sky-500', 'bg-sky-50', 'bg-sky-100', 'text-sky-900', 'text-sky-950', 'border-orange-600', 'border-orange-500', 'bg-orange-50', 'bg-orange-100', 'text-orange-900', 'text-orange-950', 'border-indigo-600', 'border-indigo-500', 'bg-indigo-50', 'bg-indigo-100', 'text-indigo-900', 'text-indigo-950'));
       const target = document.getElementById(`${tabId}-view`);
       if (target) target.classList.remove('hidden');
       const activeBtn = document.getElementById(`tab-btn-${tabId}`);
       if (activeBtn) {
         activeBtn.classList.add('active', 'border-2');
-        if (tabId === 'grade-a') activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900');
-        if (tabId === 'grade-b') activeBtn.classList.add('border-sky-600', 'bg-sky-50', 'text-sky-900');
-        if (tabId === 'grade-c') activeBtn.classList.add('border-amber-500', 'bg-amber-50', 'text-amber-900');
-        if (tabId === 'grade-d') activeBtn.classList.add('border-orange-600', 'bg-orange-50', 'text-orange-900');
+        if (tabId === 'grade-a') activeBtn.classList.add('border-purple-600', 'bg-purple-50', 'text-purple-900');
+        if (tabId === 'grade-b') activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-900');
+        if (tabId === 'grade-c') activeBtn.classList.add('border-blue-500', 'bg-blue-50', 'text-blue-900');
+        if (tabId === 'grade-d') activeBtn.classList.add('border-amber-600', 'bg-amber-50', 'text-amber-900');
         if (tabId === 'grade-e') activeBtn.classList.add('border-rose-600', 'bg-rose-50', 'text-rose-900');
         if (tabId === 'matrix') activeBtn.classList.add('border-indigo-600', 'bg-indigo-100', 'text-indigo-950');
       }
@@ -503,11 +1212,12 @@
       const target = document.getElementById(`${gradeId}-${sampleId}`);
       if (target) target.classList.remove('hidden');
       container.querySelectorAll('.subtab-btn').forEach(b => {
-        b.classList.remove('active', 'bg-emerald-700', 'text-white');
-        b.classList.add('bg-white', 'text-emerald-900');
+        b.classList.remove('active', 'bg-purple-700', 'bg-emerald-700', 'bg-blue-700', 'bg-amber-700', 'bg-rose-700', 'bg-sky-700', 'bg-orange-700', 'bg-indigo-700', 'text-white');
+        b.classList.add('bg-white');
       });
       const activeSubBtn = document.getElementById(`subtab-${gradeId}-${sampleId}`);
-      if (activeSubBtn) activeSubBtn.classList.add('active', 'bg-emerald-700', 'text-white');
+      const tone = { 'grade-a': 'bg-purple-700', 'grade-b': 'bg-emerald-700', 'grade-c': 'bg-blue-700', 'grade-d': 'bg-amber-700', 'grade-e': 'bg-rose-700' }[gradeId];
+      if (activeSubBtn) { activeSubBtn.classList.remove('bg-white'); activeSubBtn.classList.add('active', tone, 'text-white'); }
       lucide.createIcons();
     }
     let annotationsVisible = true;
@@ -519,5 +1229,6 @@
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
   </script>
+  <script src="moderation-tools.js" data-scale="cgs" defer></script>
 </body>
 </html>
