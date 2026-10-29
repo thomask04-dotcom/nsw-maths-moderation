@@ -39,7 +39,7 @@
     Elementary: { color: "#be123c", tint: "#ffe4e6", text: "Elementary knowledge and skills in few areas of the content and very limited competence in some of the processes and skills." }
   };
   var ORDER = SCALE === "es1" ? ["Thorough", "Sound", "Basic"] : ["Extensive", "Thorough", "Sound", "Basic", "Elementary"];
-  var DECISION = ".mod-decision, .grade-badge, .teacher-banner, .teacher-check, .rubber-stamp";
+  var DECISION = ".mod-decision, .grade-badge, .teacher-banner, .teacher-check, .rubber-stamp, .teacher-mark";
 
   var KEY = "modtools:" + location.pathname.split("/").pop();
   var store = {
@@ -263,6 +263,9 @@
   function render() {
     document.body.classList.toggle("mod-judge", state.judging);
     if (ui.place) ui.place();
+    document.querySelectorAll("#annotations-status-text, #annotationBtnText").forEach(function (t) {
+      t.textContent = state.judging ? "Show judgements" : "Hide judgements";
+    });
     ui.bar.querySelectorAll(".mod-seg button").forEach(function (b) {
       b.setAttribute("aria-pressed", String((b.getAttribute("data-act") === "judge") === state.judging));
     });
@@ -313,8 +316,11 @@
   }
 
   function setJudging(on) {
+    var starting = on && !state.judging;
     state.judging = on;
     if (on) {
+      // every time decisions are hidden, start with all of them hidden again
+      if (starting) state.revealed = {};
       if (!state.order.length || state.order.length !== samples.length) state.order = shuffle(samples.map(function (s) { return s.id; }));
       var vis = currentVisibleSample();
       if (!state.current) state.current = state.order[0];
@@ -506,6 +512,17 @@
   function printAll() { preparePrint("all"); nativePrint(); armCleanupFallback(); }
   function printMatrix() { preparePrint("matrix"); nativePrint(); armCleanupFallback(); }
 
+  // The portfolios' own "Hide Teacher Marks" buttons switch the Hidden option on
+  // and off, so every portfolio hides the whole decision the same way.
+  function rewireHideButtons() {
+    document.querySelectorAll("[onclick]").forEach(function (b) {
+      if (!/toggleAnnotations\(\)/.test(b.getAttribute("onclick"))) return;
+      b.removeAttribute("onclick");
+      b.title = "Hide or show the teacher's marks and moderation decisions";
+      b.addEventListener("click", function (e) { e.preventDefault(); setJudging(!state.judging); });
+    });
+  }
+
   // The portfolios' own Print buttons use the same engine.
   function rewirePrintButtons() {
     document.querySelectorAll("[onclick]").forEach(function (b) {
@@ -549,7 +566,7 @@
     var saved = store.get();
     state.judgements = saved.judgements || {};
     state.notes = saved.notes || {};
-    state.revealed = saved.revealed || {};
+    state.revealed = {};
     var ids = samples.map(function (s) { return s.id; });
     var ok = saved.order && saved.order.length === ids.length && saved.order.every(function (id) { return ids.indexOf(id) > -1; });
     state.order = ok ? saved.order : shuffle(ids);
@@ -558,6 +575,8 @@
     var wantJudge = /[?&]judge=1\b/.test(location.search) || !!saved.judging;
     render();
     rewirePrintButtons();
+    rewireHideButtons();
+    render();
     if (wantJudge) setJudging(true);
   }
 
