@@ -63,3 +63,13 @@ and mark each work sample with `data-mod-sample data-mod-level="Sound" data-mod-
 Every work sample now ends with a **Where to next** box written for the teacher: two or three specific next steps, drawn from that sample's evidence, that would move the student to the next level. For the top level (Extensive, or Thorough in Early Stage 1) the box suggests ways to deepen achievement within the same stage, never content from the next stage. The box is part of the moderation decision, so it stays hidden in judgement mode until the decision is revealed.
 
 Two arithmetic slips in Extensive samples were also corrected: Marcus K.'s calendar duration (School Fun Day Time Explorer) and Aria M.'s podium cube count (Tabletop Museum).
+
+## A4 printing (added October 2026)
+
+Every print (Print this sample, Print all samples, the portfolio's own Print buttons and the browser's Ctrl/Cmd + P) now goes through one print engine in `moderation-tools.js`:
+
+- Prints on A4 portrait with 10 mm margins, in the desktop two-column layout whatever the screen size.
+- Each sample is scaled to fit **one page** whenever it stays readable (77 of 90 samples, and all 15 matrices).
+- Longer samples (mostly Extensive) use 2–3 pages: the columns are stacked and page breaks fall between parts, so no card, table, note, rationale or Where to next box is split across pages.
+- Print all samples starts every sample on a new page.
+- In judgement mode the print hides the decision and adds the circle-one judgement box; once revealed it shows the moderated level with the teacher's own judgement and notes.

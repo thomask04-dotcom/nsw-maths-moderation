@@ -97,7 +97,6 @@
     ".mod-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}",
     ".mod-result{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:13px;line-height:1.5}",
     ".mod-hint{font-size:12px;color:#64748b}",
-    ".mod-print-head{display:none}",
     /* judgement mode: hide decisions and anything that names the level */
     "body.mod-judge .mod-nav, body.mod-judge .mod-matrix{display:none !important}",
     "body.mod-judge [data-mod-sample]:not(.mod-is-revealed) :is(" + DECISION + "){display:none !important}",
@@ -106,24 +105,32 @@
     "body.mod-judge [data-mod-sample]:not(.mod-is-revealed) .mod-neutral *{color:inherit !important;border-color:#94a3b8 !important}",
     ".mod-anon{display:none}",
     "body.mod-judge [data-mod-sample]:not(.mod-is-revealed) .mod-anon{display:block}",
-    /* printing */
+    /* printing: everything prints from a dedicated, scaled copy (see "printing" below) */
+    "#mod-print-root{display:none}",
+    "body.mod-printing > *:not(#mod-print-root){display:none !important}",
+    "body.mod-printing{background:#fff !important;padding:0 !important;margin:0 !important;min-height:0 !important}",
+    "body.mod-printing #mod-print-root{display:block}",
+    "#mod-print-root .mod-print-sheet{box-sizing:border-box;padding:0 4px;background:#fff}",
+    "#mod-print-root .mod-print-sheet + .mod-print-sheet{break-before:page}",
+    "#mod-print-root .tab-content{break-after:auto !important;page-break-after:auto !important;display:block !important}",
+    "#mod-print-root [class*='min-h-[']{min-height:0 !important}",
+    "#mod-print-root *{box-shadow:none !important}",
+    "#mod-print-root .sticky-note{transform:none !important}",
+    "#mod-print-root .mod-keep{break-inside:avoid;page-break-inside:avoid}",
+    "#mod-print-root .mod-linear .lg\\:grid-cols-12{display:block !important}",
+    "#mod-print-root .mod-linear .lg\\:grid-cols-12 > * + *{margin-top:20px}",
+    "#mod-print-root .mod-linear .absolute.\\-top-3{position:static !important;display:inline-block;transform:none;margin:0 0 6px}",
+    "#mod-print-root h1,#mod-print-root h2,#mod-print-root h3,#mod-print-root h4,#mod-print-root .mod-print-head{break-after:avoid;page-break-after:avoid}",
+    ".mod-print-head{font-family:Inter,system-ui,sans-serif;border-bottom:2px solid #0f172a;padding:0 0 8px;margin:0 0 14px;color:#0f172a}",
+    ".mod-print-head h2{font-size:17px;font-weight:800;margin:0}.mod-print-head p{font-size:12px;margin:2px 0 0;color:#334155}",
+    ".mod-print-judge{margin-top:10px;font-size:13px}",
+    ".mod-print-judge .boxes span{display:inline-block;border:1.5px solid #0f172a;border-radius:4px;padding:3px 12px;margin:4px 8px 8px 0}",
+    ".mod-print-judge .lines{border-bottom:1px solid #94a3b8;height:24px}",
+    ".mod-print-result{margin-top:8px;padding:8px 10px;border:1.5px solid #0f172a;border-radius:8px;font-size:13px}",
     "@media print{",
-    "  .mod-bar,.mod-card .mod-actions,.mod-card .mod-levels{display:none !important}",
-    "  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}",
-    "  body.mod-print-one .mod-print-hidden{display:none !important}",
-    "  body.mod-print-one .mod-print-path{display:block !important;position:static !important;max-width:none !important;box-shadow:none !important}",
-    "  body.mod-print-one .mod-print-head{display:block !important}",
-    "  body.mod-print-one .mod-card{border:1.5px solid #0f172a;box-shadow:none;break-inside:avoid}",
-    "  body.mod-print-one .mod-print-path .sticky-note, body.mod-print-one .mod-print-path .shadow-sm, body.mod-print-one .mod-print-path tr{break-inside:avoid}",
-    "  body.mod-print-one [class*='min-h-[']{min-height:0 !important}",
-    "  body.mod-print-all .tab-content, body.mod-print-all .subsample-content{display:block !important}",
-    "  body.mod-print-all [data-mod-sample]{break-after:page}",
-    "  .mod-print-head{font-family:Inter,system-ui,sans-serif;border-bottom:2px solid #0f172a;padding:0 0 8px;margin:0 0 14px}",
-    "  .mod-print-head h2{font-size:16px;margin:0}.mod-print-head p{font-size:11px;margin:2px 0 0;color:#334155}",
-    "  .mod-print-judge{margin-top:10px;font-size:12px}",
-    "  .mod-print-judge .boxes span{display:inline-block;border:1.5px solid #0f172a;border-radius:4px;padding:3px 10px;margin:0 6px 6px 0}",
-    "  .mod-print-judge .lines{border-bottom:1px solid #94a3b8;height:22px}",
-    "  .lg\\:col-span-7,.lg\\:col-span-5{grid-column:1/-1 !important}",
+    "  @page{size:A4 portrait;margin:10mm}",
+    "  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}",
+    "  .mod-bar{display:none !important}",
     "}"
   ].join("\n");
 
@@ -151,10 +158,10 @@
       '<button type="button" data-act="judge" aria-pressed="false">Hidden &ndash; make my own judgement first</button>' +
       "</div>" +
       '<span class="mod-spacer"></span>' +
-      '<button type="button" class="mod-btn" data-act="print-one" title="Print only the sample on screen">' +
+      '<button type="button" class="mod-btn" data-act="print-one" title="Print only the sample on screen, fitted to A4">' +
       '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>' +
       "Print this sample</button>" +
-      '<button type="button" class="mod-btn" data-act="print-all" title="Print every sample in this portfolio">Print all samples</button>' +
+      '<button type="button" class="mod-btn" data-act="print-all" title="Print every sample in this portfolio, each starting on a new A4 page">Print all samples</button>' +
       '<div class="mod-picker" aria-label="Work samples">' +
       '<span class="mod-label">Samples</span><span data-role="chips"></span>' +
       '<button type="button" class="mod-btn" data-act="reshuffle" title="Present the samples in a new random order">Reshuffle</button>' +
@@ -322,65 +329,195 @@
     }
   }
 
-  /* ----------------------------------------------------------- printing */
+  /* ----------------------------------------------------------- printing
+     Printing builds a separate copy of what is being printed (#mod-print-root),
+     lays it out at a fixed desktop width so it looks the same on every screen,
+     then scales it to fit A4 portrait:
+       - one page whenever it fits at a readable size;
+       - otherwise over as few pages as needed, never splitting a card, table
+         row, note or other part across a page break.
+     It is used by Print this sample, Print all samples, the portfolio's own
+     Print buttons and the browser's own Print command (Ctrl/Cmd + P). */
+  var A4 = { w: 718, h: 1035 };       // printable area of A4 at 10 mm margins, in CSS px (with a little safety)
+  var LAYOUT_W = 900;                 // width the sample is laid out at before scaling
+  var MATRIX_W = 1100;                // matrices are wide tables
+  var MIN_ONE_PAGE = 0.6;             // smallest scale accepted to keep a sample on one page
+  var MIN_MULTI = 0.68;               // smallest scale used to save a page on longer samples
+  var PART = ".rounded,.rounded-md,.rounded-lg,.rounded-xl,.rounded-2xl,.rounded-t-xl,.rounded-b-xl,.sticky-note,.where-next," +
+             ".teacher-banner,.mod-print-head,table,tr,li,p,svg,img,h3,h4,pre,blockquote,[class*='border-l-']";
   var printCleanup = null;
+  var nativePrint = window.print.bind(window);
 
-  function printOne() {
-    var s = state.judging ? sampleById(state.current) : currentVisibleSample();
-    var target = s ? s.el : null;
-    if (!target) {
-      var tabs = document.querySelectorAll(".tab-content");
-      for (var i = 0; i < tabs.length; i++) if (isVisible(tabs[i])) { target = tabs[i]; break; }
+  // Tailwind's sm/md/lg rules only apply on wide screens, but a printed page is
+  // narrow. Copy them, scoped to the print copy, so print matches the desktop layout.
+  function desktopRules() {
+    var out = [];
+    function split(sel) {
+      var parts = [], depth = 0, cur = "";
+      for (var i = 0; i < sel.length; i++) {
+        var c = sel[i];
+        if (c === "(" || c === "[") depth++;
+        if (c === ")" || c === "]") depth--;
+        if (c === "," && depth === 0) { parts.push(cur); cur = ""; } else cur += c;
+      }
+      parts.push(cur);
+      return parts.map(function (p) { return "#mod-print-root " + p.trim(); }).join(",");
     }
-    if (!target) { window.print(); return; }
-
-    var keep = [target];
-    if (state.judging && ui.card.style.display !== "none") keep.push(ui.card);
-
-    // a print-only heading so the page makes sense on its own
-    var title = (document.querySelector("h1") || {}).textContent || document.title;
-    var head = el("div", { "class": "mod-print-head" });
-    var label = s ? (state.judging ? "Sample " + (state.order.indexOf(s.id) + 1) + " of " + state.order.length : (s.student + " — " + s.level)) : "Moderation matrix";
-    var judgeBox = "";
-    if (s && state.judging && !state.revealed[s.id]) {
-      judgeBox = '<div class="mod-print-judge"><b>Teacher judgement (circle one):</b><div class="boxes">' +
-        ORDER.map(function (L) { return "<span>" + L + "</span>"; }).join("") +
-        "</div><b>Evidence that decided it:</b><div class=\"lines\"></div><div class=\"lines\"></div><div class=\"lines\"></div></div>";
-      keep.pop(); // the paper version replaces the on-screen card
+    function walk(rules, inWide) {
+      for (var i = 0; i < rules.length; i++) {
+        var r = rules[i];
+        if (r.type === 4) {
+          var t = (r.conditionText || (r.media && r.media.mediaText) || "");
+          var m = /min-width:\s*(\d+)px/.exec(t);
+          if (m && +m[1] <= 1024 && !/max-width|print/.test(t)) walk(r.cssRules, true);
+        } else if (r.type === 1 && inWide) {
+          out.push(split(r.selectorText) + "{" + r.style.cssText + "}");
+        }
+      }
     }
-    head.innerHTML = "<h2>" + esc(title.trim()) + "</h2><p>" + esc(label) + " &middot; printed " + new Date().toLocaleDateString("en-AU") + "</p>" + judgeBox;
-    target.parentNode.insertBefore(head, target);
-    keep.push(head);
-
-    // hide every branch of the page that does not lead to the kept elements
-    var path = new Set();
-    keep.forEach(function (k) { for (var n = k; n && n !== document.body; n = n.parentElement) path.add(n); });
-    var hidden = [];
-    path.forEach(function (n) {
-      n.classList.add("mod-print-path");
-      Array.prototype.forEach.call(n.parentElement ? n.parentElement.children : [], function (sib) {
-        if (!path.has(sib) && !sib.classList.contains("mod-print-hidden")) { sib.classList.add("mod-print-hidden"); hidden.push(sib); }
-      });
+    Array.prototype.forEach.call(document.styleSheets, function (sh) {
+      try { walk(sh.cssRules, false); } catch (e) { /* cross-origin sheet (fonts) */ }
     });
-    // inside the target, show everything that is currently on screen
-    document.body.classList.add("mod-print-one");
-
-    printCleanup = function () {
-      document.body.classList.remove("mod-print-one");
-      hidden.forEach(function (n) { n.classList.remove("mod-print-hidden"); });
-      path.forEach(function (n) { n.classList.remove("mod-print-path"); });
-      if (head.parentNode) head.parentNode.removeChild(head);
-      printCleanup = null;
-    };
-    window.print();
-    armCleanupFallback();
+    return out.join("\n");
   }
 
-  function printAll() {
-    document.body.classList.add("mod-print-all");
-    printCleanup = function () { document.body.classList.remove("mod-print-all"); printCleanup = null; };
-    window.print();
-    armCleanupFallback();
+  // A copy of an element that can sit beside the original without clashing.
+  function copyOf(node) {
+    var c = node.cloneNode(true);
+    var map = {};
+    [c].concat(Array.prototype.slice.call(c.querySelectorAll("[id]"))).forEach(function (n) {
+      if (!n.id) return;
+      map[n.id] = n.id + "-print";
+      n.id = map[n.id];
+    });
+    c.querySelectorAll("*").forEach(function (n) {
+      Array.prototype.forEach.call(n.attributes, function (a) {
+        if (/url\(#|^#/.test(a.value)) {
+          var v = a.value.replace(/url\(#([^)]+)\)/g, function (m, id) { return map[id] ? "url(#" + map[id] + ")" : m; })
+                         .replace(/^#(.+)$/, function (m, id) { return map[id] ? "#" + map[id] : m; });
+          if (v !== a.value) n.setAttribute(a.name, v);
+        }
+      });
+    });
+    c.classList.remove("hidden");
+    c.style.display = "block";
+    return c;
+  }
+
+  function headFor(s, kind) {
+    var title = ((document.querySelector("h1") || {}).textContent || document.title).trim();
+    var date = new Date().toLocaleDateString("en-AU");
+    var html = "<h2>" + esc(title) + "</h2>";
+    if (kind === "matrix") return html + "<p>Moderation matrix &middot; printed " + date + "</p>";
+    if (!s) return html + "<p>Printed " + date + "</p>";
+    if (!state.judging) return html + "<p>" + esc(s.student) + " &mdash; " + esc(s.level) + " &middot; printed " + date + "</p>";
+    var n = state.order.indexOf(s.id) + 1, mine = state.judgements[s.id], notes = state.notes[s.id];
+    html += "<p>Sample " + n + " of " + state.order.length + " &middot; printed " + date + "</p>";
+    if (state.revealed[s.id]) {
+      return html + '<div class="mod-print-result"><b>Moderated as: ' + esc(s.level) + "</b>" + (s.student ? " &middot; " + esc(s.student) : "") +
+        (mine ? "<br>My judgement: " + esc(mine) : "") + (notes ? "<br>My evidence: " + esc(notes) : "") + "</div>";
+    }
+    return html + '<div class="mod-print-judge"><b>Teacher judgement (circle one):</b><div class="boxes">' +
+      ORDER.map(function (L) { return "<span>" + L + "</span>"; }).join("") + "</div>" +
+      "<b>Evidence that decided it:</b>" + (notes ? "<div>" + esc(notes) + "</div>" : '<div class="lines"></div><div class="lines"></div><div class="lines"></div>') + "</div>";
+  }
+
+  function sheetFor(target, s, kind, root) {
+    var sheet = el("div", { "class": "mod-print-sheet" });
+    if (target.closest(".hide-annotations")) sheet.classList.add("hide-annotations");
+    var head = el("div", { "class": "mod-print-head" }, headFor(s, kind));
+    sheet.appendChild(head);
+    sheet.appendChild(copyOf(target));
+    root.appendChild(sheet);
+    return sheet;
+  }
+
+  // Scale one sheet to A4, preferring a single page.
+  function measure(sheet, width) {
+    sheet.style.zoom = "1";
+    sheet.style.width = width + "px";
+    return { w: Math.max(width, sheet.scrollWidth), h: sheet.getBoundingClientRect().height };
+  }
+  function fit(sheet, width) {
+    var m = measure(sheet, width);
+    var z = A4.w / m.w, keepUpTo = 0.92;
+    if (m.h * z > A4.h) {
+      if (m.h * MIN_ONE_PAGE <= A4.h) {
+        z = A4.h / m.h;                                      // shrink a little to keep it on one page
+      } else {
+        // Too long for one page: stack the columns so the page breaks fall cleanly
+        // between parts, then use as few pages as a readable size allows.
+        sheet.classList.add("mod-linear");
+        m = measure(sheet, width);
+        z = A4.w / m.w;
+        var pages = Math.ceil((m.h * z) / (A4.h * 0.9));
+        var fewer = ((pages - 1) * A4.h * 0.88) / m.h;
+        if (pages > 1 && fewer >= MIN_MULTI && fewer < z) z = fewer;
+        keepUpTo = 0.75;
+      }
+    }
+    // Mark the parts that must not be split across pages. Anything too tall has to break.
+    var limit = (A4.h * keepUpTo) / z;
+    sheet.querySelectorAll(PART).forEach(function (n) {
+      if (n.getBoundingClientRect().height < limit) n.classList.add("mod-keep");
+    });
+    sheet.style.zoom = String(Math.floor(z * 1000) / 1000);
+    return { pages: Math.ceil((m.h * z) / A4.h), scale: z, linear: sheet.classList.contains("mod-linear") };
+  }
+
+  function visibleMatrix() {
+    var ms = document.querySelectorAll(".mod-matrix");
+    for (var i = 0; i < ms.length; i++) if (isVisible(ms[i])) return ms[i];
+    return null;
+  }
+
+  // what: "one" (the sample or matrix on screen), "all", or "matrix"
+  function preparePrint(what) {
+    if (printCleanup) printCleanup();
+    // decide what to print while the page is still showing normally
+    var jobs = [];
+    if (what === "all") {
+      (state.judging ? state.order.map(sampleById) : samples).forEach(function (s) { jobs.push([s.el, s, "sample"]); });
+      var mx = document.querySelector(".mod-matrix");
+      if (mx && !state.judging) jobs.push([mx, null, "matrix"]);
+    } else {
+      var s = what === "matrix" ? null : (state.judging ? sampleById(state.current) : currentVisibleSample());
+      var target = s ? s.el : (visibleMatrix() || (what === "matrix" ? document.querySelector(".mod-matrix") : null));
+      if (!target) target = document.querySelector("main") || document.body.firstElementChild;
+      jobs.push([target, s, s ? "sample" : (target.classList.contains("mod-matrix") ? "matrix" : "page")]);
+    }
+    var root = el("div", { id: "mod-print-root" });
+    var style = el("style", { "data-mod-print": "" }, desktopRules());
+    document.head.appendChild(style);
+    document.body.appendChild(root);
+    document.body.classList.add("mod-printing");
+    var report = jobs.map(function (j) { return fit(sheetFor(j[0], j[1], j[2], root), j[2] === "matrix" ? MATRIX_W : LAYOUT_W); });
+
+    printCleanup = function () {
+      document.body.classList.remove("mod-printing");
+      if (root.parentNode) root.parentNode.removeChild(root);
+      if (style.parentNode) style.parentNode.removeChild(style);
+      printCleanup = null;
+    };
+    return report;
+  }
+
+  function printOne() { preparePrint("one"); nativePrint(); armCleanupFallback(); }
+  function printAll() { preparePrint("all"); nativePrint(); armCleanupFallback(); }
+  function printMatrix() { preparePrint("matrix"); nativePrint(); armCleanupFallback(); }
+
+  // The portfolios' own Print buttons use the same engine.
+  function rewirePrintButtons() {
+    document.querySelectorAll("[onclick]").forEach(function (b) {
+      if (!/window\.print\(\)/.test(b.getAttribute("onclick"))) return;
+      b.removeAttribute("onclick");
+      b.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (b.closest(".mod-matrix")) printMatrix();
+        else if (/portfolio/i.test(b.textContent)) printAll();
+        else printOne();
+      });
+    });
   }
 
   // Browsers fire afterprint when the dialog closes; if one doesn't, tidy up on
@@ -396,6 +533,8 @@
       document.addEventListener("keydown", once, true);
     }, 0);
   }
+  // Ctrl/Cmd + P or the browser menu: print what is on screen, nicely.
+  window.addEventListener("beforeprint", function () { if (!printCleanup) preparePrint("one"); });
   window.addEventListener("afterprint", function () { if (printCleanup) printCleanup(); });
 
   /* ----------------------------------------------------------- start */
@@ -418,11 +557,12 @@
     // ?judge=1 in the link opens the portfolio straight into judgement mode
     var wantJudge = /[?&]judge=1\b/.test(location.search) || !!saved.judging;
     render();
+    rewirePrintButtons();
     if (wantJudge) setJudging(true);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 
-  window.ModerationTools = { judge: function () { setJudging(true); }, show: function () { setJudging(false); }, printSample: printOne, printAll: printAll };
+  window.ModerationTools = { judge: function () { setJudging(true); }, show: function () { setJudging(false); }, printSample: printOne, printAll: printAll, preparePrint: preparePrint, cleanupPrint: function () { if (printCleanup) printCleanup(); } };
 })();
